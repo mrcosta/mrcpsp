@@ -94,4 +94,7 @@ public final class UrlUtils {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.LOCAL_SEARCH_EVERY_SOLUTION))
 	}
 
+    public Integer getGenerateDiagram() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.GENERATE_DIAGRAM))
+    }
 }

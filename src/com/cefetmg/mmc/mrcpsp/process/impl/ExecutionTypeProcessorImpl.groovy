@@ -127,6 +127,7 @@ class ExecutionTypeProcessorImpl implements ExecutionTypeProcessor {
 		mmProcessor.initialSolutionWithGrasp(fileName)	
 		checkLocalSearchExecutionEverySolution();
 		mmProcessor.executeWriteResults()
+        checkGenerateDiagram()
 	}
 	
 	private void executeLocalSearch() {
@@ -149,6 +150,14 @@ class ExecutionTypeProcessorImpl implements ExecutionTypeProcessor {
 			mmProcessor.localSearchDescentUphillMethod()
 		}
 	}
+
+    private void checkGenerateDiagram() {
+        Integer generateDiagram = UrlUtils.getInstance().getGenerateDiagram()
+
+        if (generateDiagram == PropertyConstants.TRUE) {
+            mmProcessor.generateDiagram()
+        }
+    }
 	
 	private void printResultAndTimeToFile(ChronoWatch watch, String fileName) {
 		// finish

@@ -275,8 +275,15 @@ class MmProcessorImpl implements MmProcessor {
 			
 		true
 	}
-	
-	private Project callExecuteLocalSearch() {
+
+    @Override
+    boolean generateDiagram() {
+        println "TRUZAÇO"
+
+        return false
+    }
+
+    private Project callExecuteLocalSearch() {
 		// localSearch
 		success = executeLocalSearch()
 		

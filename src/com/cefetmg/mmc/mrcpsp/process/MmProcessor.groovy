@@ -26,4 +26,6 @@ interface MmProcessor {
     abstract void executeWriteResults()	
 	
 	abstract boolean setProjectMakespan()
+
+    abstract boolean generateDiagram()
 }

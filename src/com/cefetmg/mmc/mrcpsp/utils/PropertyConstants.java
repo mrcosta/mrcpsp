@@ -36,6 +36,7 @@ public interface PropertyConstants {
 	public static final String HAS_THREAD = "thread";
 	public static final String EXECUTION_TIMES = "execution.times";
 	public static final String CONCURRENT_POOLSIZE = "concurrent.poolSize";
+    public static final String GENERATE_DIAGRAM = "generate.diagram";
 	
 	//############# MRCPSP - TYPE - LOCALSEARCH  #################
 	public static final String LOCAL_SEARCH = "type.localSearch";
