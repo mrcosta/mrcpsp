@@ -13,14 +13,9 @@ import com.esotericsoftware.kryo.Kryo;
  *
  */
 public final class CloneUtils {
-		
-	/*public static <T> T clone(T objectToClone) {
-		Cloner cloner = new Cloner();
-		return cloner.deepClone(objectToClone);
-	}*/
-	
+
 	public static Project cloneProject(Project projectToClone) {
-		Kryo kryo = new Kryo();	    
+		Kryo kryo = new Kryo();
 	    Project projectCloned = kryo.copy(projectToClone);
 		
 		return projectCloned;

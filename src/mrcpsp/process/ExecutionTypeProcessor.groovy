@@ -22,8 +22,8 @@ class ExecutionTypeProcessor {
 	
 	public void execute() {
 		PropertyManager.getInstance()		
-		def executionType = UrlUtils.getInstance().getExecutionType()
-		def hasThread = UrlUtils.getInstance().getHasThread()
+		def executionType = UrlUtils.instance.executionType
+		def hasThread = UrlUtils.instance.hasThread
 		
 		removeOldResultFiles()
 		SystemUtils.getSystemInformation()

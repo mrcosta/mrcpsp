@@ -149,7 +149,8 @@ public class Job {
 				+ ", successorsAmount: " + successorsAmount
 				+ ", predecessorsAmount: " + predecessorsAmount
 				+ ", successors: " + successors + ", predecessors: "+ predecessors
-				+ ", staggeredPredecessors: " + runningJobInformation.getStaggeredPredecessors();
+				+ ", staggeredPredecessors: " + runningJobInformation.getStaggeredPredecessors()
+                + ", {Start, End} = " + "{ " + startTime + ", " + endTime + "}";
 	}
 	
 	public String toStringAvailableModes(Mode mode) {

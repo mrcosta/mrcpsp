@@ -1,11 +1,13 @@
 package mrcpsp.process
 
+import mrcpsp.diagram.GanttDiagram
 import mrcpsp.model.enums.EnumLogUtils
 import mrcpsp.model.main.Project
 import mrcpsp.process.initialsolution.GenerateInitialSolutionGRASP
 import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.localsearch.LocalSearch
 import mrcpsp.utils.LogUtils
+import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Logger
 
 /**
@@ -25,6 +27,7 @@ class MmProcessor {
 	JobTimeProcessor jobTimeProcessor
 	ResultsProcessor resultsProcessor
 	LocalSearch localSearch
+    GanttDiagram ganttDiagram
 	Project project
 	
 	boolean success
@@ -262,9 +265,27 @@ class MmProcessor {
 	}
 
     boolean generateDiagram() {
-        println "REALLY TRUE"
+        try {
+            log.info("==========================================================================")
+            log.info("Generating the gantt diagram. . .")
 
-        return false
+            ganttDiagram = new GanttDiagram()
+            success = ganttDiagram.generateGanttDiagram(project)
+
+            if (success) {
+                log.info("Diagram path: " + UrlUtils.instance.diagramPath)
+            } else {
+                log.info("Something went wrong generating the gantt diagram.")
+            }
+
+            log.info("Generating the gantt diagram. . .DONE")
+
+            true
+        } catch (Exception e) {
+            log.error(e.toString() + " --- " + e.getMessage())
+        }
+
+        true
     }
 
     private Project callExecuteLocalSearch() {

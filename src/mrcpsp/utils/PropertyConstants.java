@@ -49,5 +49,8 @@ public interface PropertyConstants {
 	public static final Integer ADD = 1;
 		
 	//############# RESULTS #################
-	public static final String RESULTS_PATH = System.getProperty("user.home") + "/mrcpsp/results";	
+	public static final String RESULTS_PATH = System.getProperty("user.home") + "/mrcpsp/results";
+
+    //############# DIAGRAM #################
+    public static final String DIAGRAM_PATH = "diagram.path";
 }

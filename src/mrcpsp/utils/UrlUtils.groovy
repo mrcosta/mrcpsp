@@ -97,4 +97,8 @@ public final class UrlUtils {
     public Integer getGenerateDiagram() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.GENERATE_DIAGRAM))
     }
+
+    public String getDiagramPath() {
+        return PropertyManager.getInstance().getProperty(PropertyConstants.DIAGRAM_PATH)
+    }
 }
