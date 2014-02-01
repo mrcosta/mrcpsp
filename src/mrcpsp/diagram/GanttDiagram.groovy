@@ -2,6 +2,7 @@ package mrcpsp.diagram
 
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
+import mrcpsp.utils.PropertyConstants
 import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Logger
 import org.gantt.generator.mrcpsp.Gantt
@@ -60,8 +61,14 @@ class GanttDiagram {
             def end = new Time(it.endTime + setYear)
 
             log.info(it)
-
             task = new Task(id, start, end)
+
+            if (UrlUtils.instance.showPredecessors == PropertyConstants.TRUE) {
+                it.predecessors.each {
+                    task.addPredecessor(tasks[it - 1])
+                }
+            }
+
             tasks.add(task)
         }
 

@@ -53,4 +53,5 @@ public interface PropertyConstants {
 
     //############# DIAGRAM #################
     public static final String DIAGRAM_PATH = "diagram.path";
+    public static final String SHOW_PREDECESSORS = "show.predecessors";
 }

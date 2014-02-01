@@ -101,4 +101,8 @@ public final class UrlUtils {
     public String getDiagramPath() {
         return PropertyManager.getInstance().getProperty(PropertyConstants.DIAGRAM_PATH)
     }
+
+    public Integer getShowPredecessors() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_PREDECESSORS))
+    }
 }
