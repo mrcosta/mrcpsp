@@ -14,7 +14,12 @@ import org.apache.log4j.Logger
 public class JobsModeSelectProcessor {
 	
 	private static final Logger log = Logger.getLogger(JobsModeSelectProcessor.class);
-		
+
+    /**
+     * each job get a mode that doesn't break the non renewable resources amount
+     * @param jobs
+     * @return
+     */
 	public List<Job> getModeToStaggeredJobs(List<Job> jobs) {
 		String jobsMode = UrlUtils.getInstance().getJobsMode();
 		List<Job> jobsWithMode;

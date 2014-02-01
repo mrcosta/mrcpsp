@@ -11,7 +11,13 @@ import mrcpsp.utils.CloneUtils;
 public class JobOperations {
 
 	private static final Logger log = Logger.getLogger(JobOperations.class);
-	
+
+    /**
+     * remove the job, using as base the index of the clonedJob
+     * @param jobs
+     * @param index
+     * @return
+     */
 	public Job removeJobFromListByIndex(List<Job> jobs, Integer index) {
 		boolean foundJob = false;
 		Integer count = 0;
@@ -35,6 +41,12 @@ public class JobOperations {
 		}
 	}
 
+    /**
+     * remove the jobs, using as base the each index in the list passed by parameter
+     * @param jobs
+     * @param indexList
+     * @return
+     */
 	public List<Job> removeJobsFromListByIndexList(List<Job> jobs, List<Integer> indexList) {
 		Job job;
 		List<Job> jobsRemoved = new ArrayList<Job>();
@@ -54,6 +66,12 @@ public class JobOperations {
 		return jobsRemoved;
 	}
 
+    /**
+     * get a cloned list with only the jobs passed in the index list
+     * @param jobs
+     * @param indexList
+     * @return
+     */
 	public List<Job> getJobsCopyListByIndexList(List<Job> jobs, List<Integer> indexList) {
 		List<Job> clonedJobs = new ArrayList<Job>();
 		boolean foundJob = false;

@@ -22,6 +22,13 @@ public class InitialSolutionsOperations {
 	
 	private static final Logger log = Logger.getLogger(InitialSolutionsOperations.class);
 
+    /**
+     * If the predecessors list equals to staggeredPredecessors, so the job has all its predecessor schedulled.
+     * Then the job is ready to be scheduled and added to the rclJobsList
+     * @param remainingJobs
+     * @param eligibleJobsList
+     * @return
+     */
 	public List<Job> getEligibleJobsList(List<Job> remainingJobs, List<Job> eligibleJobsList) {
 		
 		log.debug("Getting the list of remaining jobs to scheduling...");
@@ -42,7 +49,13 @@ public class InitialSolutionsOperations {
 		
 		return eligibleJobsList;
 	}
-	
+
+    /**
+     * Return a randomized job from rclJobsList base in the RCList Size
+     * If the RCList Size is lesser than the rclJobsList size then randomize a job from the entire list
+     * @param rclJobsList
+     * @return
+     */
 	public Job getRandomJobFromRCL(List<Job> rclJobsList) {
 		Integer randomIndex;
 		Integer rclSize = rclJobsList.size();
@@ -57,8 +70,15 @@ public class InitialSolutionsOperations {
 		
 		return rclJobsList.get(randomIndex);
 	}
-	
-	public List<Job> updateRunningJobInformation(List<Job> remainingJobs, Job randomizedJob) {
+
+    /**
+     * Update the RunningJobInformation - nis, can and niscan amount
+     * Update the predecessors list of the successors jobs of the task that was picked to be scheduled
+     * @param remainingJobs
+     * @param  randomizedJob
+     * @return
+     */
+    public List<Job> updateRunningJobInformation(List<Job> remainingJobs, Job randomizedJob) {
 		
 		for (Job job : remainingJobs) {
 			RunningJobInformation runningJobInformation = job.getRunningJobInformation();

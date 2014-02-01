@@ -8,8 +8,11 @@ import mrcpsp.utils.FileUtils;
  *
  */
 public class InstanceDataProcessor {
-	
-	public Project getInstanceData(String fileName) {
+
+    /**
+     * get the instance's information
+     */
+    public Project getInstanceData(String fileName) {
 		FileUtils fileUtils = new FileUtils();		
 		
 		return fileUtils.loadInstanceInformation(fileName);

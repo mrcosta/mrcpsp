@@ -14,7 +14,12 @@ import mrcpsp.utils.PropertyConstants
 public class RestrictionsProcessor {
 
 	private static final Logger log = Logger.getLogger(RestrictionsProcessor.class)
-	
+
+    /**
+     * Checks if there is some NON RENEWABLE resources to be used.
+     * If not, then the scheduled is broken
+     * @return
+     */
 	public boolean checkNonRenewableResourcesAmount(Project project) {
 		ResourceAvailabilities ra = project.resourceAvailabilities
 		List<Job> jobs = project.staggeredJobs
@@ -38,7 +43,13 @@ public class RestrictionsProcessor {
 		log.info("Remaining non renewable amounts after jobs execution will be: " + ra.remainingNonRenewableAmount)
 		return checkAmount
 	}
-	
+
+    /**
+     * Setting the RENEWABLE resources amount usage
+     * @param ra
+     * @param mode
+     * @return
+     */
 	private boolean setNonRenewableResourcesConsumedAmount(ResourceAvailabilities ra, Mode mode) {
 		Integer count = 0
 		boolean checkAmount = true
@@ -108,6 +119,13 @@ public class RestrictionsProcessor {
 		return checkAmount
 	}
 
+    /**
+     * Should find a unique job that freeing its resources is enough to add the new job in the scheduling.
+     * @param ra
+     * @param jobs
+     * @param jobToScheduled
+     * @return
+     */
 	public Job getBestJobToRemoveRR(ResourceAvailabilities ra, List<Job> jobs, Job jobToScheduled) {
 		Integer newAmount
 		Integer countJob = 0

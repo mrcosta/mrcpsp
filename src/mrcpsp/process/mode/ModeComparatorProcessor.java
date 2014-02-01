@@ -23,6 +23,11 @@ public class ModeComparatorProcessor {
 		modeComparator = new ModeComparator();
 	}
 
+    /**
+     * order job modes list by renewable amount resources
+     * @param job
+     * @return
+     */
 	public ModesInformation orderModeByRenewableAmountResources(Job job) {
 		ModesInformation modesInformation = job.getModesInformation();
 		// to not lose the natural modes order		
@@ -42,6 +47,11 @@ public class ModeComparatorProcessor {
 		return modesInformation;
 	}
 
+    /**
+     * order job modes list by non renewable amount resources
+     * @param job
+     * @return
+     */
 	public ModesInformation orderModeByNonRenewableAmountResources(Job job) {
 		ModesInformation modesInformation = job.getModesInformation();
 		// to not lose the natural modes order		
@@ -61,6 +71,11 @@ public class ModeComparatorProcessor {
 		return modesInformation;
 	}
 
+    /**
+     * order job modes list by duration of the mode
+     * @param job
+     * @return
+     */
 	public ModesInformation orderModeByDuration(Job job) {
 		ModesInformation modesInformation = job.getModesInformation();
 		// to not lose the natural modes order		
@@ -80,6 +95,11 @@ public class ModeComparatorProcessor {
 		return modesInformation;
 	}
 
+    /**
+     * order job modes list by the sum of resources (renewable + non renewable)
+     * @param job
+     * @return
+     */
 	public ModesInformation orderModeBySumResources(Job job) {
 		ModesInformation modesInformation = job.getModesInformation();
 		// to not lose the natural modes order		
