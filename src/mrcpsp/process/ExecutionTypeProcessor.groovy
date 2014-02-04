@@ -13,6 +13,9 @@ class ExecutionTypeProcessor {
 	ResultsProcessor resultsProcessor
 	MmProcessor mmProcessor
 	ChronoWatch watch
+    def executionType;
+    def hasThread;
+
 	
 	public ExecutionTypeProcessor() {
 		super()
@@ -22,16 +25,16 @@ class ExecutionTypeProcessor {
 	
 	public void execute() {
 		PropertyManager.getInstance()		
-		def executionType = UrlUtils.instance.executionType
-		def hasThread = UrlUtils.instance.hasThread
+		executionType = UrlUtils.instance.executionType
+		hasThread = UrlUtils.instance.hasThread
 		
 		removeOldResultFiles()
 		SystemUtils.getSystemInformation()
 		watch = ChronoWatch.getInstance("MRCPSP Execution").start()
 		
-		if (StringUtils.equals(executionType, EnumExecutionTypes.ONE_FILE.getName())) {		
+		if (checkOneFileExecution()) {
 			executeOneFile()
-		} else if (StringUtils.equals(executionType, EnumExecutionTypes.ONE_FILE_TIMES.getName())) {
+		} else if (checkOneFileTimesExecution()) {
 			executeOneFileTimes()
 		} else if (StringUtils.equals(executionType, EnumExecutionTypes.ALL.getName())) {
 			
@@ -56,10 +59,19 @@ class ExecutionTypeProcessor {
 		
 	}
 
-	public void executeOneFile() {
+    private boolean checkOneFileTimesExecution() {
+        StringUtils.equals(executionType, EnumExecutionTypes.ONE_FILE_TIMES.getName())
+    }
+
+    private boolean checkOneFileExecution() {
+        StringUtils.equals(executionType, EnumExecutionTypes.ONE_FILE.getName())
+    }
+
+    public void executeOneFile() {
 		String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
 		
 		executeAll(fileName)
+        checkGenerateDiagram()
 		
 		printResultAndTimeToFile(watch, fileName)
 	}
@@ -71,8 +83,9 @@ class ExecutionTypeProcessor {
 		for (int i = 0; i < timesToRun; i++) {
 			executeAll(fileName)			
 			resultsProcessor.checkLowerMakespan(mmProcessor.project)
-		}		
-		
+		}
+
+        checkGenerateDiagram()
 		executeLocalSearch()
 		
 		resultsProcessor.writeLowerMakespanToOneInstance(fileName)
@@ -110,7 +123,6 @@ class ExecutionTypeProcessor {
 		mmProcessor.initialSolutionWithGrasp(fileName)	
 		checkLocalSearchExecutionEverySolution();
 		mmProcessor.executeWriteResults()
-        checkGenerateDiagram()
 	}
 	
 	private void executeLocalSearch() {
@@ -135,10 +147,14 @@ class ExecutionTypeProcessor {
 	}
 
     private void checkGenerateDiagram() {
-        Integer generateDiagram = UrlUtils.getInstance().getGenerateDiagram()
+        Integer generateDiagram = UrlUtils.instance.generateDiagram
 
         if (generateDiagram == PropertyConstants.TRUE) {
-            mmProcessor.generateDiagram()
+            if (checkOneFileExecution()) {
+                mmProcessor.generateDiagram(mmProcessor.project)
+            } else if (checkOneFileTimesExecution()) {
+                mmProcessor.generateDiagram(resultsProcessor.getLowerMakespan())
+            }
         }
     }
 	

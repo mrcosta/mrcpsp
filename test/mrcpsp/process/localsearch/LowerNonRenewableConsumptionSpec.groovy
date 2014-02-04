@@ -49,9 +49,9 @@ class LowerNonRenewableConsumptionSpec extends Specification {
 		where:                                                                                
 		jobPosition		| remainingNonRenewableAmount | nonRenewableConsumedAmount  | check  | modeNonRenewable
 		2				| [12, 7]               	  |	[17, 23]					| false  | [6, 0]
-		5				| [14, 2]             	      | [15, 28]					| true   | [0, 5]
-		7				| [5, 13] 			  		  |	[24, 17]					| true   | [7, 0]
-		9				| [4, 14] 			  		  | [25, 16]					| true   | [8, 0]
+		5				| [29, 30]             	      | [0, 0]  					| true   | [0, 5]
+		7				| [29, 30] 			  		  |	[0, 0]	    				| true   | [7, 0]
+		9				| [29, 30] 			  		  | [0, 0]  					| true   | [8, 0]
 		10				| [12, 7]            		  |	[17, 23]					| false  | [2, 0]
 	}
 

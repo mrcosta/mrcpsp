@@ -16,24 +16,8 @@ class GanttDiagram {
 
     static final Logger log = Logger.getLogger(GanttDiagram.class)
 
-    /*public Gantt(Task[] tasks, String filePath) {
-        this.tasks = tasks;
-        this.filePath = filePath;
-    }*/
-
-    /*Task task1 = new Task("1", new Time(1000), new Time(1001));
-		Task task2 = new Task("2", new Time(1013), new Time(1018));
-        Task task3 = new Task("3", new Time(1005), new Time(1008));
-
-		task2.addPredecessor(task1);
-
-        tasks = new Task[]{task1, task2, task3};*/
-
-    //filePath = "gantt/test.png"
-    //
-
     def generateGanttDiagram(Project project) {
-        Gantt gantt
+        Gantt gantt = null
         def diagramPath = getDiagramPath(project)
         def orderedJobs = project.staggeredJobs.sort{it.id}
         def tasks = createTasksList(orderedJobs)

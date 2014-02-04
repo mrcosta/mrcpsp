@@ -264,7 +264,7 @@ class MmProcessor {
 		true
 	}
 
-    boolean generateDiagram() {
+    boolean generateDiagram(Project project) {
         try {
             log.info("==========================================================================")
             log.info("Generating the gantt diagram. . .")
