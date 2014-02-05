@@ -179,21 +179,12 @@ class MmProcessor {
 			
 		success
 	}
-	
-	public boolean executeCheckRestrictionsAndGetJobTimes(Project project) {
-		this.project = project
-		success = callCheckRestrictionsAndGetJobTimes()
-		
-		success
-	}
-	
-	public boolean executeCheckRestrictionsAndGetJobTimes() {
-		success = callCheckRestrictionsAndGetJobTimes()
-	}
-	
-	private boolean callCheckRestrictionsAndGetJobTimes() {
+
+	private boolean executeCheckRestrictionsAndGetJobTimes(Project project) {
 		if (success) {			
-			try {					
+			try {
+                this.project = project
+
 				// checking if the restrictions are OK
 				success = executeCheckRestrictions()
 				
@@ -307,14 +298,17 @@ class MmProcessor {
         // getting a mode for each job
         success = executeJobsModeSelect()
 
+        // checking if the restrictions for the NR resources are OK
+        success = executeCheckRestrictions()
+
 		// some priority rules can run without runtime information update (like NIS)
 		success = executeJobsPriorityRules()
 		
 		// generating the initial solution
 		success = executeGenerateInitialSolution()
 
-		// checking if the restrictions for the NR resources are OK -- getting initial and finish time for jobs and checking the R resources restrictions
-		success = executeCheckRestrictionsAndGetJobTimes()
+        //getting initial and finish time for jobs and checking the R resources restrictions
+        success = executeGetJobTimes()
 		
 		// setting the project makespan
 		success = setProjectMakespan()
