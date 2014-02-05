@@ -127,7 +127,7 @@ class MmProcessor {
 				log.info("Executing jobs mode select . . .")
 				
 				jobsModeSelectProcessor = new JobsModeSelectProcessor()
-				project.setStaggeredJobs(jobsModeSelectProcessor.getModeToStaggeredJobs(project.getStaggeredJobs()))
+				project.setStaggeredJobs(jobsModeSelectProcessor.setJobsMode(project.getJobs()))
 				
 				log.info(LogUtils.generateJobsModeIDListLog(project.getStaggeredJobs(), EnumLogUtils.JOBS_MODE_LIST))
 				
@@ -303,16 +303,16 @@ class MmProcessor {
 		
 		// getting some useful information about the modes of each job - priority rules will use this information
 		success = executeGetJobModesInformation()
-		
+
+        // getting a mode for each job
+        success = executeJobsModeSelect()
+
 		// some priority rules can run without runtime information update (like NIS)
 		success = executeJobsPriorityRules()
 		
 		// generating the initial solution
 		success = executeGenerateInitialSolution()
-		
-		// getting a mode for each job
-		success = executeJobsModeSelect()
-		
+
 		// checking if the restrictions for the NR resources are OK -- getting initial and finish time for jobs and checking the R resources restrictions
 		success = executeCheckRestrictionsAndGetJobTimes()
 		

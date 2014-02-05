@@ -20,7 +20,7 @@ public class JobsModeSelectProcessor {
      * @param jobs
      * @return
      */
-	public List<Job> getModeToStaggeredJobs(List<Job> jobs) {
+	public List<Job> setJobsMode(List<Job> jobs) {
 		String jobsMode = UrlUtils.getInstance().getJobsMode();
 		List<Job> jobsWithMode;
 		

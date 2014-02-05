@@ -170,7 +170,7 @@ public class JobPriorityRulesOperations {
 
     /**
      * order the predecessor Jobs by the its end time. Used to set the start and the finish time of each job
-     * @param elegibleJobs
+     * @param jobs
      * @return
      */
 	public List<Job> getJobListOrderByEndTime(List<Job> jobs) {
