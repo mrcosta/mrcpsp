@@ -31,14 +31,11 @@ class ResourceAvailabilities {
 
 	@Override
 	public String toString() {
-		return "ResourceAvailabilities [renewableInitialAmount:" + renewableInitialAmount + ", nonRenewableInitialAmount: " + nonRenewableInitialAmount
-								   + ", renewableConsumedAmount: " + renewableConsumedAmount  + ", nonRenewableConsumedAmount: " + nonRenewableConsumedAmount
+		return """ResourceAvailabilities [renewableInitialAmount: $renewableInitialAmount, nonRenewableInitialAmount: $nonRenewableInitialAmount, renewableConsumedAmount: $renewableConsumedAmount, nonRenewableConsumedAmount: $nonRenewableConsumedAmount] """
 	}
 	
 	public String toStringRenewable() {
-		 return	"Total: " + renewableInitialAmount 
-				+ " - Usage: " + renewableConsumedAmount
-				+ " - Remaining: " + remainingRenewableAmount
+		 return	"""Total: $renewableInitialAmount - Usage: $renewableConsumedAmount - Remaining: $remainingRenewableAmount"""
 	}
 
 }

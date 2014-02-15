@@ -123,6 +123,8 @@ class ModeComparatorProcessor {
      */
     def ModesInformation checkModeNearLowerNRConsumption(Job job) {
 
+
+
     }
 
 }

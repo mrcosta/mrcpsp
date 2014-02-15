@@ -49,12 +49,7 @@ class Job {
 
 	@Override
 	public String toString() {
-		return "Job [id:" + id + ", modesAmount: " + modesAmount
-				+ ", successorsAmount: " + successorsAmount
-				+ ", predecessorsAmount: " + predecessorsAmount
-				+ ", successors: " + successors + ", predecessors: "+ predecessors
-				+ ", staggeredPredecessors: " + runningJobInformation.getStaggeredPredecessors()
-                + ", {Start, End} = " + "{ " + startTime + ", " + endTime + "}";
+		return """Job [id: $id, modesAmount: $modesAmount, successorsAmount: $successorsAmount, predecessorsAmount: $predecessorsAmount, successors: $successors, predecessors: $predecessors, staggeredPredecessors: $runningJobInformation.staggeredPredecessors, {Start, End} =  { $startTime, $endTime }"""
 	}
 	
 	public String toStringAvailableModes(Mode mode) {

@@ -42,13 +42,14 @@ class ModesInformation {
 
 	@Override
 	public String toString() {
-		return "{ longer: " + longer + ", shorter: " + shorter
-				+ ", lowerRenewableConsumption: " + lowerRenewableConsumption
-				+ ", greaterRenewableConsumption: " + greaterRenewableConsumption
-				+ ", lowerNonRenewableConsumption: " + lowerNonRenewableConsumption
-				+ ", greaterNonRenewableConsumption: " + greaterNonRenewableConsumption 
-				+ ", higherSumComsuption: " + higherSumComsuption 
-				+ ", lowerSumComsuption: " + lowerSumComsuption + "}";
+		return """{longer: $longer,
+                   shorter: $shorter,
+                   lowerRenewableConsumption: $lowerRenewableConsumption,
+                   greaterRenewableConsumption: $greaterRenewableConsumption,
+                   lowerNonRenewableConsumption: $lowerNonRenewableConsumption,
+				   greaterNonRenewableConsumption: $greaterNonRenewableConsumption,
+                   higherSumComsuption: $higherSumComsuption,
+                   lowerSumComsuption: $lowerSumComsuption,
+                   shorterNearToLowerNonRenewableComsumption: $shorterNearToLowerNonRenewableComsumption}""";
 	}
-
 }

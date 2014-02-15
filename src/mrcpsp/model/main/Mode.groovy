@@ -29,8 +29,7 @@ class Mode {
 	public Mode() {	
 	}	
 	
-	public Mode(Integer id, Integer duration, List<Integer> renewable,
-			List<Integer> nonRenewable) {
+	public Mode(Integer id, Integer duration, List<Integer> renewable, List<Integer> nonRenewable) {
 		super();		
 		this.id = id;
 		this.duration = duration;

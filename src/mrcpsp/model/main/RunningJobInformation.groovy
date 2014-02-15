@@ -21,7 +21,7 @@ class RunningJobInformation {
 	
 	@Override
 	def String toString() {
-		return "{NIS:" + nisAmount + ", CAN: " + canAmount + ", NISCAN: " + niscanAmount + "}";
+		return """{NIS: $nisAmount, CAN: $canAmount, NISCAN: $niscanAmount}""";
 				
 	}
 	
