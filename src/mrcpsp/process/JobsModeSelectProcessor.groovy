@@ -20,45 +20,47 @@ public class JobsModeSelectProcessor {
      * @param jobs
      * @return
      */
-	public List<Job> setJobsMode(List<Job> jobs) {
-		String jobsMode = UrlUtils.getInstance().getJobsMode();
-		List<Job> jobsWithMode;
+	def setJobsMode(List<Job> jobs) {
+		def jobsMode = UrlUtils.getInstance().getJobsMode()
+		def jobsWithMode = []
+
+        log.info("MODE SELECTION: " + jobsMode)
+        switch (jobsMode) {
+            case EnumJobsMode.LESS_DURATION.description:
+                jobsWithMode = setShorterDurationMode(jobs)
+                break
+            case EnumJobsMode.MINIMUM_NON_RENEWABLE_RESOURCES.description:
+                jobsWithMode = setJobsLowerNonRenewableConsumption(jobs)
+                break
+            case EnumJobsMode.MINIMUM_RESOURCES.description:
+                jobsWithMode = setJobsLowerSumComsuption(jobs)
+                break
+            case EnumJobsMode.SHORTER_NEAR_TO_LOWER_NON_RENEWABLE_RESOURCES.description:
+
+                break
+            default:
+                log.log(Level.ERROR, "MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
+                throw new IllegalArgumentException("MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
+                break
+        }
 		
-		log.info("MODE SELECTION: " + jobsMode);
-		if (StringUtils.equals(jobsMode, EnumJobsMode.LESS_DURATION.getDescription())) {
-			
-			jobsWithMode = setShorterDurationMode(jobs);
-			
-		} else if (StringUtils.equals(jobsMode, EnumJobsMode.MINIMUM_NON_RENEWABLE_RESOURCES.getDescription())) { 
-			
-			jobsWithMode = setJobsLowerNonRenewableConsumption(jobs);
-			
-		} else if (StringUtils.equals(jobsMode, EnumJobsMode.MINIMUM_RESOURCES.getDescription())) {
-			
-			jobsWithMode = setJobsLowerSumComsuption(jobs);
-			
-		} else {
-			log.log(Level.ERROR, "MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
-			throw new IllegalArgumentException("MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
-		}		
-		
-		return jobsWithMode;
+		jobsWithMode;
 	}
 	
 	/**
 	 * get a mode to each job, choosing the mode with the minimum duration to be execute
 	 * @return
 	 */
-	public List<Job> setShorterDurationMode(List<Job> jobs) {		
-		
-		for (Job job: jobs) {
-			Integer index = job.getModesInformation().getShorter() - 1;
-			job.setMode(job.getAvailableModes().get(index));
-			
-			log.info("JOB: " + job.getId() + " - Selected mode: " + job.getMode().getId() + " - Values: " + job.getMode().getNonRenewable());
+	def setShorterDurationMode(List<Job> jobs) {
+
+		jobs.each { job ->
+			def index = job.modesInformation.shorter - 1
+			job.mode = job.availableModes[index]
+
+			log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
 		}
 		
-		return jobs;
+		return jobs
 	}
 	
 	/**
@@ -66,15 +68,15 @@ public class JobsModeSelectProcessor {
 	 * if the sum of resources are equals, then, get the mode that have the less duration.
 	 * @return
 	 */
-	public List<Job> setJobsLowerNonRenewableConsumption(List<Job> jobs) {
-		
-		for (Job job: jobs) {
-			Integer index = job.getModesInformation().getLowerNonRenewableConsumption() - 1;
-			job.setMode(job.getAvailableModes().get(index));
-			
-			log.info("JOB: " + job.getId() + " - Selected mode: " + job.getMode().getId() + " - Values: " + job.getMode().getNonRenewable());
-		}
-		
+	def List<Job> setJobsLowerNonRenewableConsumption(List<Job> jobs) {
+
+        jobs.each { job ->
+            def index = job.modesInformation.lowerNonRenewableConsumption - 1;
+            job.mode = job.availableModes[index]
+
+            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
+        }
+
 		return jobs;
 	}
 	
@@ -83,16 +85,28 @@ public class JobsModeSelectProcessor {
 	 * if the sum of resources are equals, then, get the mode that have the less duration.
 	 * @return
 	 */
-	public List<Job> setJobsLowerSumComsuption(List<Job> jobs) {
-		
-		for (Job job: jobs) {
-			Integer index = job.getModesInformation().getLowerSumComsuption() - 1;
-			job.setMode(job.getAvailableModes().get(index));
-			
-			log.info("JOB: " + job.getId() + " - Selected mode: " + job.getMode().getId() + " - Values: " + job.getMode().getNonRenewable());
-		}
+	def List<Job> setJobsLowerSumComsuption(List<Job> jobs) {
+
+        jobs.each { job ->
+            def index = job.modesInformation.lowerSumComsuption - 1;
+            job.mode = job.availableModes[index]
+
+            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
+        }
 		
 		return jobs;
 	}
+
+    def List<Job> setJobsShorterNearToMinimumNonRenewableResources(List<Job> jobs) {
+
+        jobs.each { job ->
+            def index = job.modesInformation.shorterNearToLowerNonRenewableComsumption - 1;
+            job.mode = job.availableModes[index]
+
+            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
+        }
+
+        return jobs;
+    }
 
 }
