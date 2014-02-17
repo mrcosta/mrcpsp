@@ -4,10 +4,12 @@ import com.google.common.collect.Iterables;
 import mrcpsp.model.enums.EnumModesComparator;
 import mrcpsp.model.main.Job;
 import mrcpsp.model.main.Mode;
-import mrcpsp.model.main.ModesInformation;
+import mrcpsp.model.main.ModesInformation
+import mrcpsp.model.main.ResourceAvailabilities;
 import mrcpsp.utils.CloneUtils;
 import mrcpsp.utils.LogUtils;
-import mrcpsp.utils.PropertyConstants;
+import mrcpsp.utils.PropertyConstants
+import mrcpsp.utils.UrlUtils;
 import org.apache.log4j.Logger;
 
 import java.util.Collections;
@@ -122,9 +124,70 @@ class ModeComparatorProcessor {
      * @return
      */
     def ModesInformation checkModeNearLowerNRConsumption(Job job) {
+        def indexLowerNonRenewableConsumption = job.modesInformation.lowerNonRenewableConsumption
+        job.modesInformation.shorterNearToLowerNonRenewableComsumption = indexLowerNonRenewableConsumption
 
+        def shorterModes = job.availableModes.findAll { it.duration < job.availableModes.find{ it.id == indexLowerNonRenewableConsumption }.duration}
 
+        if (shorterModes) {
+            shorterModes.each { mode ->
+                def indexShorterNearToLowerNonRenewableConsumption = job.modesInformation.shorterNearToLowerNonRenewableComsumption
+                def modeShorterNear = job.availableModes.find{ it.id == indexShorterNearToLowerNonRenewableConsumption}
 
+                if (checkConditionsNearLowerNRConsumption(modeShorterNear, mode)) {
+                    job.modesInformation.shorterNearToLowerNonRenewableComsumption = mode.id
+                }
+            }
+        }
+
+        return job.modesInformation
+    }
+
+    def boolean checkConditionsNearLowerNRConsumption(Mode modeShorterNear, Mode modeToCompare) {
+        def percentage = UrlUtils.instance.modeShorterNearToLowerNrPercentage
+        def units = UrlUtils.instance.modeShorterNearToLowerNrUnit
+
+        if ( ((( (modeToCompare.amountNonRenewable * 100) / modeShorterNear.amountNonRenewable) - 100) <= percentage) || ((modeToCompare.amountNonRenewable - modeShorterNear.amountNonRenewable) <= units))  {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    def List<Mode> excludeRenewableDumbModes(Job job, ResourceAvailabilities ra) {
+        def modes = job.availableModes
+        def cloneModeList = CloneUtils.cloneModeList(modes)
+
+        modes.each { mode ->
+            def countResource = 0
+            mode.renewable.each {
+                if (it > ra.renewableInitialAmount[countResource]) {
+                    cloneModeList.removeAll { it.id == mode.id }
+                    log.info("JOB " + job.id + " - Excluded mode: " + mode.id + " - Duration: " + mode.duration + " - Values R: " + mode.renewable)
+                }
+                countResource++
+            }
+        }
+
+        return modes = cloneModeList
+    }
+
+    def List<Mode> excludeNonRenewableDumbModes(Job job, ResourceAvailabilities ra) {
+        def modes = job.availableModes
+        def cloneModeList = CloneUtils.cloneModeList(modes)
+
+        modes.each { mode ->
+            def countResource = 0
+            mode.nonRenewable.each {
+                if (it > ra.nonRenewableInitialAmount[countResource]) {
+                    cloneModeList.removeAll { it.id == mode.id }
+                    log.info("JOB " + job.id + " - Excluded mode: " + mode.id + " - Duration: " + mode.duration + " - Values NR: " + mode.nonRenewable)
+                }
+                countResource++
+            }
+        }
+
+        return modes = cloneModeList
     }
 
 }

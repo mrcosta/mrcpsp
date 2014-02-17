@@ -36,7 +36,7 @@ public class JobsModeSelectProcessor {
                 jobsWithMode = setJobsLowerSumComsuption(jobs)
                 break
             case EnumJobsMode.SHORTER_NEAR_TO_LOWER_NON_RENEWABLE_RESOURCES.description:
-
+                jobsWithMode = setJobsShorterNearToMinimumNonRenewableResources(jobs)
                 break
             default:
                 log.log(Level.ERROR, "MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
@@ -54,10 +54,10 @@ public class JobsModeSelectProcessor {
 	def setShorterDurationMode(List<Job> jobs) {
 
 		jobs.each { job ->
-			def index = job.modesInformation.shorter - 1
-			job.mode = job.availableModes[index]
+			def index = job.modesInformation.shorter
+			job.mode = job.availableModes.find { it.id == index}
 
-			log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
+            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Duration: " + job.mode.duration + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
 		}
 		
 		return jobs
@@ -71,10 +71,10 @@ public class JobsModeSelectProcessor {
 	def List<Job> setJobsLowerNonRenewableConsumption(List<Job> jobs) {
 
         jobs.each { job ->
-            def index = job.modesInformation.lowerNonRenewableConsumption - 1;
-            job.mode = job.availableModes[index]
+            def index = job.modesInformation.lowerNonRenewableConsumption
+            job.mode = job.availableModes.find { it.id == index}
 
-            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
+            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Duration: " + job.mode.duration + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
         }
 
 		return jobs;
@@ -88,22 +88,26 @@ public class JobsModeSelectProcessor {
 	def List<Job> setJobsLowerSumComsuption(List<Job> jobs) {
 
         jobs.each { job ->
-            def index = job.modesInformation.lowerSumComsuption - 1;
-            job.mode = job.availableModes[index]
+            def index = job.modesInformation.lowerSumComsuption
+            job.mode = job.availableModes.find { it.id == index}
 
-            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
+            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Duration: " + job.mode.duration + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
         }
 		
 		return jobs;
 	}
 
+    /**
+     * get a mode to each job, choosing the mode that is next (use almost the amount that the lower nr consumption uses) to the lower non renewable consumption mode
+     * @return
+     */
     def List<Job> setJobsShorterNearToMinimumNonRenewableResources(List<Job> jobs) {
 
         jobs.each { job ->
-            def index = job.modesInformation.shorterNearToLowerNonRenewableComsumption - 1;
-            job.mode = job.availableModes[index]
+            def index = job.modesInformation.shorterNearToLowerNonRenewableComsumption
+            job.mode = job.availableModes.find { it.id == index}
 
-            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
+            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Duration: " + job.mode.duration + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
         }
 
         return jobs;

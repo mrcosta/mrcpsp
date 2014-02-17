@@ -66,7 +66,7 @@ class Job {
 		for(int i = 1; i < mode.getRenewable().size(); i++) {
 			availableModesString+= ", N" + (i + 1) + ": " + mode.getNonRenewable().get(i);
 		}
-		availableModesString+= "]}";
+		availableModesString+= "], amountRenewable: $mode.amountRenewable, amountNonRenewable: $mode.amountNonRenewable}";
 		
 		return availableModesString;
 				

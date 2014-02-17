@@ -66,7 +66,7 @@ class MmProcessor {
 				log.info("==========================================================================")
 				log.info("Getting job modes information . . .")
 				jobsModeInformationProcessor = new JobsModeInformationProcessor()
-				project.setJobs(jobsModeInformationProcessor.getJobModesInformation(project.getJobs()))
+				project.setJobs(jobsModeInformationProcessor.getJobModesInformation(project.getJobs(), project.resourceAvailabilities))
 				success = true
 				log.info("Getting job modes information . . . DONE \n")	
 			} catch (Exception e) {
@@ -150,8 +150,10 @@ class MmProcessor {
 				
 				restrictionsProcessor = new RestrictionsProcessor()
 				success = restrictionsProcessor.checkNonRenewableResourcesAmount(project)
-				
-				log.info(LogUtils.generateJobsModeIDListLog(project.getStaggeredJobs(), EnumLogUtils.JOBS_MODE_LIST))				
+
+                if (success) {
+                    log.info(LogUtils.generateJobsModeIDListLog(project.getStaggeredJobs(), EnumLogUtils.JOBS_MODE_LIST))
+                }
 				log.info("Executing Restrictions Verification . . .DONE \n")	
 			} catch (Exception e) {
 				log.error(e.toString() + " --- " + e.getMessage())
@@ -251,32 +253,34 @@ class MmProcessor {
 		} catch (Exception e) {
 			log.error(e.toString() + " --- " + e.getMessage())
 		}
-			
-		true
+
+        success
 	}
 
     boolean generateDiagram(Project project) {
-        try {
-            log.info("==========================================================================")
-            log.info("Generating the gantt diagram. . .")
+        if (success) {
+            try {
+                log.info("==========================================================================")
+                log.info("Generating the gantt diagram. . .")
 
-            ganttDiagram = new GanttDiagram()
-            success = ganttDiagram.generateGanttDiagram(project)
+                ganttDiagram = new GanttDiagram()
+                success = ganttDiagram.generateGanttDiagram(project)
 
-            if (success) {
-                log.info("Diagram path: " + UrlUtils.instance.diagramPath)
-            } else {
-                log.info("Something went wrong generating the gantt diagram.")
+                if (success) {
+                    log.info("Diagram path: " + UrlUtils.instance.diagramPath)
+                } else {
+                    log.info("Something went wrong generating the gantt diagram.")
+                }
+
+                log.info("Generating the gantt diagram. . .DONE")
+
+                true
+            } catch (Exception e) {
+                log.error(e.toString() + " --- " + e.getMessage())
             }
-
-            log.info("Generating the gantt diagram. . .DONE")
-
-            true
-        } catch (Exception e) {
-            log.error(e.toString() + " --- " + e.getMessage())
         }
 
-        true
+        success
     }
 
     private Project callExecuteLocalSearch() {
@@ -292,7 +296,7 @@ class MmProcessor {
 		// reading the file information and creating the objects
 		success = executeGetInstanceData(fileName)
 		
-		// getting some useful information about the modes of each job - priority rules will use this information
+		// excluding the dumb modes and getting some useful information about the modes of each job - priority rules will use this information
 		success = executeGetJobModesInformation()
 
         // getting a mode for each job
@@ -324,7 +328,12 @@ class MmProcessor {
 	}
 	
 	def Project localSearchDescentUphillMethod() {
-		callExecuteLocalSearch()
+		if (success) {
+            callExecuteLocalSearch()
+        } else {
+            log.info("==========================================================================")
+            log.info("Some problem was previously found. Local Search won't be executed. . .")
+        }
 	}	
 	
 }

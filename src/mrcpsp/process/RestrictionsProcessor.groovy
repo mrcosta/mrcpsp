@@ -32,7 +32,9 @@ public class RestrictionsProcessor {
 			checkAmount = setNonRenewableResourcesConsumedAmount(ra, mode)
 			
 			if (checkAmount == false) {				
-				log.log(Level.ERROR, "FILE instance: "  + project.fileName + " .Problem calculating the non renewable resources amount of the job " + job.id + ".")			
+				log.log(Level.ERROR, "FILE instance: "  + project.fileName + " .Problem calculating the non renewable resources amount of the job " + job.id + ".")
+                log.info("Consumed non renewable amounts after jobs execution would be: " + ra.nonRenewableConsumedAmount)
+                log.info("Remaining non renewable amounts after jobs execution would be: " + ra.remainingNonRenewableAmount)
 				return checkAmount
 			} 
 			

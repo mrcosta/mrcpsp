@@ -105,4 +105,12 @@ public final class UrlUtils {
     public Integer getShowPredecessors() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_PREDECESSORS))
     }
+
+    public Integer getModeShorterNearToLowerNrPercentage() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODE_SHORTER_NEAR_TO_LOWER_NR_PERCENTAGE))
+    }
+
+    public Integer getModeShorterNearToLowerNrUnit() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT))
+    }
 }

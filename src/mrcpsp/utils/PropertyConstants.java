@@ -22,14 +22,17 @@ public interface PropertyConstants {
 	public static final String START_LINE_JOBS = "start.line.jobs";
 	public static final String START_LINE_MODES = "start.line.modes";
 	public static final String START_LINE_RESOURCES_AVAILABILITIES = "start.line.resourceAvailabilities";
-	
-	public static final String MODE_JOBS = "mode.jobs";
-	
+
 	public static final String RCL_SIZE = "RCL_SIZE";
 	
 	public static final String JOB_PRIORITY_RULE = "job.priority.rule";
 	
 	public static final Integer INSTANCE_MAKESPAN_ERROR = -999;
+
+    //############# MODES  ###############
+    public static final String MODE_JOBS = "mode.jobs";
+    public static final String MODE_SHORTER_NEAR_TO_LOWER_NR_PERCENTAGE = "mode.shorter_near_to_lower_nr.percentage";
+    public static final String MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT = "mode.shorter_near_to_lower_nr.unit";
 	
 	//############# MRCPSP - EXECUTION  #################
 	public static final String EXECUTION_TYPE = "execution.type";
