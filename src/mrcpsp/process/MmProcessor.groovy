@@ -316,7 +316,7 @@ class MmProcessor {
 		
 		// setting the project makespan
 		success = setProjectMakespan()
-		
+
 		return project		
 	}
 	

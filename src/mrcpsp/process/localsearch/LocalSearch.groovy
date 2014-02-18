@@ -6,6 +6,7 @@ import mrcpsp.process.MmProcessor
 import mrcpsp.utils.PropertyConstants
 import mrcpsp.utils.UrlUtils
 import org.apache.commons.lang.StringUtils
+import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
 class LocalSearch {
@@ -22,14 +23,26 @@ class LocalSearch {
 	}
 	
 	def Project executeLocalSearch(Project project) {
-		if (StringUtils.equals(UrlUtils.instance.localSearch, EnumLocalSearch.LNRC.name)) {
-			lowerNonRenewableComsumption(project)
-			if (bestProject) {
-				return bestProject				
-			} else {
-				return null
-			}
-		}
+		def localSearch = UrlUtils.instance.localSearch
+
+        log.info("LOCAL SEARCH: " + localSearch)
+        switch (localSearch) {
+            case EnumLocalSearch.LNRC.name:
+                lowerNonRenewableComsumption(project)
+                if (bestProject) {
+                    return bestProject
+                } else {
+                    return null
+                }
+                break
+            case EnumLocalSearch.LNRCCP.name:
+
+                break
+            default:
+                log.log(Level.ERROR, "LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
+                throw new IllegalArgumentException("LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
+                break
+        }
 		
 		null
 	}

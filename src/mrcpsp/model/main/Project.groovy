@@ -11,18 +11,19 @@ import mrcpsp.model.instance.ProjectInformation;
  */
 class Project {
 	
-	InstanceInformation instanceInformation;
-	ProjectInformation projectInformation;
-	ResourceAvailabilities resourceAvailabilities;
-	List<Job> jobs;
-	List<Job> staggeredJobs;
-	Integer makespan;
+	InstanceInformation instanceInformation
+	ProjectInformation projectInformation
+	ResourceAvailabilities resourceAvailabilities
+	List<Job> jobs
+	List<Job> staggeredJobs
+    List<Job> criticalPath
+	Integer makespan
 	
-	String fileName;
-	String instanceResultStatus;
+	String fileName
+	String instanceResultStatus
 
 	public Project() {
-		instanceResultStatus = "";
+		instanceResultStatus = ""
 	}
 
 }
