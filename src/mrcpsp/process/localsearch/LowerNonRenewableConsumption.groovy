@@ -25,8 +25,7 @@ class LowerNonRenewableConsumption {
 	 */
 	def checkNonRenewableResourcesRestriction(Project project, Integer jobPosition) {
 		def job = project.staggeredJobs[jobPosition]
-		def shorterModePosition = job.modesInformation.shorter - 1
-		Mode shorterMode = job.availableModes[shorterModePosition]
+		Mode shorterMode = job.availableModes.find{ it.id == job.modesInformation.shorter}
 		ResourceAvailabilities ra = CloneUtils.cloneResourceAvailabilities(project.resourceAvailabilities)
 		
 		def count = 0	

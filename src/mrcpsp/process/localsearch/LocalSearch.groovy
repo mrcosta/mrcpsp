@@ -17,35 +17,67 @@ class LocalSearch {
 	Project bestNeighbor
 	boolean checkSolution
 	MmProcessor mmProcessor
+    LowerNonRenewableConsumption lnrc
 
     LocalSearch() {
 		mmProcessor = new MmProcessor()
+        lnrc = new LowerNonRenewableConsumption();
 	}
 	
 	def Project executeLocalSearch(Project project) {
 		def localSearch = UrlUtils.instance.localSearch
+        bestProject = project
+        checkSolution = true
 
         log.info("LOCAL SEARCH: " + localSearch)
         switch (localSearch) {
             case EnumLocalSearch.LNRC.name:
                 lowerNonRenewableComsumption(project)
-                if (bestProject) {
-                    return bestProject
-                } else {
-                    return null
-                }
                 break
             case EnumLocalSearch.LNRCCP.name:
-
+                criticalPathlowerNonRenewableComsumption(project)
                 break
             default:
                 log.log(Level.ERROR, "LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
                 throw new IllegalArgumentException("LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
                 break
         }
-		
-		null
+
+        if (bestProject) {
+            return bestProject
+        } else {
+            return null
+        }
 	}
+
+    /**
+     * while i have better neighbors, i should do a new local search
+     * for each job in the critical path i changed it's mode and check what is the best
+     * @param project
+     */
+    private void criticalPathlowerNonRenewableComsumption(Project project) {
+        while (checkSolution) {
+            def count = 0
+
+            project.criticalPath.each { job ->
+                def neighborProject = lnrc.changeExecutionModeJob(bestProject, project.staggeredJobs.findIndexOf {it.id == job.id});
+
+                if (neighborProject) {
+                    mmProcessor.executeCheckRestrictionsAndGetJobTimes(neighborProject)
+                    mmProcessor.setProjectMakespan()
+                    mmProcessor.getCriticalPath()
+                }
+
+                if (neighborProject) {
+                    checkBestNeighbor(neighborProject);
+                }
+
+                count++
+            }
+
+            checkBestSolution(bestNeighbor, project)
+        }
+    }
 	
 	/**
 	 * while i have better neighbors, i should do a new local search
@@ -53,20 +85,14 @@ class LocalSearch {
 	 * @param project
 	 */
 	private void lowerNonRenewableComsumption(Project project) {
-		def jobsAmount = project.getInstanceInformation().getJobsAmount();
-		LowerNonRenewableConsumption lnrc = new LowerNonRenewableConsumption();
-		
-		// before start, the best project is the actual one
-		bestProject = project;
-		checkSolution = true;
-		
 		while (checkSolution) {
-			for (int i = 0; i < jobsAmount; i++) {
+			for (int i = 0; i < project.staggeredJobs.size(); i++) {
 				def neighborProject = lnrc.changeExecutionModeJob(bestProject, i);
 				
 				if (neighborProject) {
 					mmProcessor.executeCheckRestrictionsAndGetJobTimes(neighborProject)
 					mmProcessor.setProjectMakespan()
+                    mmProcessor.getCriticalPath()
 				} 
 				
 				if (neighborProject) {

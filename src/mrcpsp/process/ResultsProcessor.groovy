@@ -110,4 +110,23 @@ public class ResultsProcessor {
 	public Project getLowerMakespan() {
 		return this.lowerProjectMakespan
 	}
+
+    def getCriticalPath(Project project) {
+        def lastJob = project.staggeredJobs.last()
+        project.criticalPath = []
+        project.criticalPath.add(lastJob)
+
+        while(lastJob.id != 1 || !lastJob.predecessors.isEmpty()) {
+            def predecessorsJobList = []
+
+            lastJob.predecessors.each { predecessor ->
+                predecessorsJobList.add(project.staggeredJobs.find{it.id == predecessor})
+            }
+
+            lastJob = predecessorsJobList.max { it.endTime }
+            project.criticalPath.add(lastJob)
+        }
+
+        return project.criticalPath
+    }
 }

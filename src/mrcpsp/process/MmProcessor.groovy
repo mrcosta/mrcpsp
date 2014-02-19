@@ -182,7 +182,7 @@ class MmProcessor {
 		success
 	}
 
-	private boolean executeCheckRestrictionsAndGetJobTimes(Project project) {
+	public boolean executeCheckRestrictionsAndGetJobTimes(Project project) {
 		if (success) {			
 			try {
                 this.project = project
@@ -248,7 +248,6 @@ class MmProcessor {
 			log.info("FILE: " + project.getFileName() + " - MAKESPAN: " + project.getMakespan())
 						
 			log.info("Setting the project makespan. . .DONE \n")
-			
 			true
 		} catch (Exception e) {
 			log.error(e.toString() + " --- " + e.getMessage())
@@ -256,6 +255,23 @@ class MmProcessor {
 
         success
 	}
+
+    def boolean getCriticalPath() {
+        if (success) {
+            try {
+                log.info("Getting the critical path. . .")
+
+                success = resultsProcessor.getCriticalPath(project)
+                log.info(LogUtils.generateJobsIDListLog(project.criticalPath, EnumLogUtils.CRITICAL_PATH_JOBS))
+
+                log.info("Getting the critical path. . .DONE \n")
+                true
+            } catch (Exception e) {
+                log.error(e.toString() + " --- " + e.getMessage())
+            }
+        }
+        return success
+    }
 
     boolean generateDiagram(Project project) {
         if (success) {
@@ -316,6 +332,9 @@ class MmProcessor {
 		
 		// setting the project makespan
 		success = setProjectMakespan()
+
+        // getting the critical path
+        success = getCriticalPath()
 
 		return project		
 	}

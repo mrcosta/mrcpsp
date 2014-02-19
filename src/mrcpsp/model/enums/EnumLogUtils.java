@@ -10,7 +10,8 @@ public enum EnumLogUtils {
 	LIST_JOBS("LIST_JOBS", "The JOBS list has this index: ", "The JOBS list is empty: {}", 6),
 	REMAINING_JOBS_RENEWABLE("REMAINING_JOBS_RENEWABLE", "The remaining jobs list using renewable resources has this index: ", "The Remaining jobs using renewable resources list is empty: {}", 7),
 	PREDECESSORS_JOBS("PREDECESSORS_JOBS", "The PREDECESSORS JOBS list has this index: ", "The PREDECESSORS JOBS list is empty: {}", 8),
-	JOBS_MODE_LIST("JOBS_MODE_LIST", "The JOBS MODES list has this index: ", "The JOBS MODES list is empty: {}", 9);
+	JOBS_MODE_LIST("JOBS_MODE_LIST", "The JOBS MODES list has this index: ", "The JOBS MODES list is empty: {}", 9),
+    CRITICAL_PATH_JOBS("CRITICAL_PATH_JOBS", "The CRITICAL PATH have the given jobs: ", "The CRITICAL PATH list is empty: {}", 10);
 	
 	private String name;
 	private String listString;
