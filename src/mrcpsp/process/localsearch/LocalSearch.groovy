@@ -27,6 +27,7 @@ class LocalSearch {
 	def Project executeLocalSearch(Project project) {
 		def localSearch = UrlUtils.instance.localSearch
         bestProject = project
+        bestNeighbor = project
         checkSolution = true
 
         log.info("LOCAL SEARCH: " + localSearch)
@@ -35,7 +36,7 @@ class LocalSearch {
                 lowerNonRenewableComsumption(project)
                 break
             case EnumLocalSearch.LNRCCP.name:
-                criticalPathlowerNonRenewableComsumption(project)
+                criticalPathLowerNonRenewableComsumption(project)
                 break
             default:
                 log.log(Level.ERROR, "LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
@@ -55,7 +56,7 @@ class LocalSearch {
      * for each job in the critical path i changed it's mode and check what is the best
      * @param project
      */
-    private void criticalPathlowerNonRenewableComsumption(Project project) {
+    private void criticalPathLowerNonRenewableComsumption(Project project) {
         while (checkSolution) {
             def count = 0
 
@@ -118,8 +119,8 @@ class LocalSearch {
 		if (bestNeighbor.makespan < bestProject.makespan) {
 			bestProject = bestNeighbor
 			log.info("LOOKING FOR A BETTER SOLUTION")
-			log.info("FILE: " + project.getFileName() + " - INITIAL SOLUTION MAKESPAN: " + project.getMakespan())
-			log.info("FILE: " + bestProject.getFileName() + " - NEIGHBOR MAKESPAN: " + bestProject.getMakespan())
+			log.info("FILE: " + project.fileName + " - INITIAL SOLUTION MAKESPAN: " + project.makespan)
+			log.info("FILE: " + bestProject.fileName + " - NEIGHBOR MAKESPAN: " + bestProject.makespan)
 		} else  {
 			checkSolution = false
 		}
