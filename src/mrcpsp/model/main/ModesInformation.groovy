@@ -19,6 +19,8 @@ class ModesInformation {
 	Integer bestRatioComsumption;
 
     Integer shorterNearToLowerNonRenewableComsumption
+
+    List<Integer> modesByOrderDuration
 	
 	public ModesInformation() {
 		this.longer = 0;
@@ -50,6 +52,7 @@ class ModesInformation {
 				   greaterNonRenewableConsumption: $greaterNonRenewableConsumption,
                    higherSumComsuption: $higherSumComsuption,
                    lowerSumComsuption: $lowerSumComsuption,
-                   shorterNearToLowerNonRenewableComsumption: $shorterNearToLowerNonRenewableComsumption}""";
+                   shorterNearToLowerNonRenewableComsumption: $shorterNearToLowerNonRenewableComsumption,
+                   modesByOrderDuration: $modesByOrderDuration}""";
 	}
 }

@@ -4,6 +4,7 @@ import mrcpsp.diagram.GanttDiagram
 import mrcpsp.model.enums.EnumLogUtils
 import mrcpsp.model.main.Project
 import mrcpsp.process.initialsolution.GenerateInitialSolutionGRASP
+import mrcpsp.process.initialsolution.LowerBoundProcessor
 import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.localsearch.LocalSearch
 import mrcpsp.utils.LogUtils
@@ -26,6 +27,7 @@ class MmProcessor {
 	RestrictionsProcessor restrictionsProcessor
 	JobTimeProcessor jobTimeProcessor
 	ResultsProcessor resultsProcessor
+    LowerBoundProcessor lowerBoundProcessor
 	LocalSearch localSearch
     GanttDiagram ganttDiagram
 	Project project
@@ -163,6 +165,25 @@ class MmProcessor {
 		
 		success
 	}
+
+    private boolean executeGetLowerBound() {
+        if (success) {
+            try {
+                log.info("==========================================================================")
+                log.info("Getting the solution's lower bound. . .")
+
+                lowerBoundProcessor = new LowerBoundProcessor()
+                success = lowerBoundProcessor.getLowerBoundFromSolution(project)
+                log.info("FILE: " + project.getFileName() + " - MAKESPAN'S LOWER BOUND: " + project.lowerBound)
+                log.info("Getting the solution's lower bound. . .DONE \n")
+            } catch (Exception e) {
+                log.error(e.toString() + " --- " + e.getMessage())
+                return success = false
+            }
+        }
+
+        success
+    }
 	
 	private boolean executeGetJobTimes() {
 		if (success) {			
@@ -172,7 +193,7 @@ class MmProcessor {
 				
 				jobTimeProcessor = new JobTimeProcessor()
 				success = jobTimeProcessor.getJobTimes(project.getResourceAvailabilities(), project.getStaggeredJobs())
-				log.info("Getting Initial and Finish Time for Jobs . . .DONE \n")	
+				log.info("Getting Initial and Finish Time for Jobs . . .DONE \n")
 			} catch (Exception e) {
 				log.error(e.toString() + " --- " + e.getMessage())
 				return success = false
@@ -326,6 +347,9 @@ class MmProcessor {
 		
 		// generating the initial solution
 		success = executeGenerateInitialSolution()
+
+        // getting the lower bound
+        success = executeGetLowerBound()
 
         //getting initial and finish time for jobs and checking the R resources restrictions
         success = executeGetJobTimes()

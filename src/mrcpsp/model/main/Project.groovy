@@ -18,6 +18,7 @@ class Project {
 	List<Job> staggeredJobs
     List<Job> criticalPath
 	Integer makespan
+    Integer lowerBound
 	
 	String fileName
 	String instanceResultStatus

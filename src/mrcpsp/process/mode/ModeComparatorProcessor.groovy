@@ -88,6 +88,7 @@ class ModeComparatorProcessor {
 		
 		def indexShorter = cloneModeList[PropertyConstants.INDEX_START].id
 		modesInformation.shorter = indexShorter
+        modesInformation.modesByOrderDuration = cloneModeList.id
 		
 		def indexLonger = Iterables.getLast(cloneModeList).id
 		modesInformation.longer = indexLonger
