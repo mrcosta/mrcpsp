@@ -2,6 +2,8 @@ package mrcpsp.process
 
 import mrcpsp.model.enums.EnumJobsMode
 import mrcpsp.model.main.Job
+import mrcpsp.model.main.Project
+import mrcpsp.process.mode.ShortestFeasibleMode
 import mrcpsp.utils.UrlUtils
 import org.apache.commons.lang.StringUtils
 import org.apache.log4j.Level
@@ -20,31 +22,32 @@ public class JobsModeSelectProcessor {
      * @param jobs
      * @return
      */
-	def setJobsMode(List<Job> jobs) {
+	def setJobsMode(Project project) {
 		def jobsMode = UrlUtils.getInstance().getJobsMode()
-		def jobsWithMode = []
 
         log.info("MODE SELECTION: " + jobsMode)
         switch (jobsMode) {
             case EnumJobsMode.LESS_DURATION.description:
-                jobsWithMode = setShorterDurationMode(jobs)
+                project.staggeredJobs = setShorterDurationMode(project.jobs)
                 break
             case EnumJobsMode.MINIMUM_NON_RENEWABLE_RESOURCES.description:
-                jobsWithMode = setJobsLowerNonRenewableConsumption(jobs)
+                project.staggeredJobs = setJobsLowerNonRenewableConsumption(project.jobs)
                 break
             case EnumJobsMode.MINIMUM_RESOURCES.description:
-                jobsWithMode = setJobsLowerSumComsuption(jobs)
+                project.staggeredJobs = setJobsLowerSumComsuption(project.jobs)
                 break
             case EnumJobsMode.SHORTER_NEAR_TO_LOWER_NON_RENEWABLE_RESOURCES.description:
-                jobsWithMode = setJobsShorterNearToMinimumNonRenewableResources(jobs)
+                project.staggeredJobs = setJobsShorterNearToMinimumNonRenewableResources(project.jobs)
+                break
+            case EnumJobsMode.SHORTEST_FEASIBLE_MODE.description:
+                def shortestFeasibleMode = new ShortestFeasibleMode()
+                project.staggeredJobs = shortestFeasibleMode.setJobsMode(project)
                 break
             default:
                 log.log(Level.ERROR, "MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
                 throw new IllegalArgumentException("MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
                 break
         }
-		
-		jobsWithMode;
 	}
 	
 	/**
@@ -112,5 +115,4 @@ public class JobsModeSelectProcessor {
 
         return jobs;
     }
-
 }

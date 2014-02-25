@@ -77,7 +77,14 @@ public class ResultsProcessor {
 	public void writeResultsAllFile(Project project) {
 		String pathFile = UrlUtils.instance.urlForResultsFileToAllInstances
 		boolean append = true
-		String data = project.fileName +  " MAKESPAN: " + Integer.toString(project.makespan) + project.instanceResultStatus + "\n"
+        Integer writeLowerBoundForAllInstances = UrlUtils.instance.writeLowerBoundForAllInstances
+        String data
+
+        if (writeLowerBoundForAllInstances) {
+            data = "$project.fileName MAKESPAN: $project.makespan $project.instanceResultStatus LOWERBOUND: $project.lowerBound\n"
+        } else {
+            data = "$project.fileName MAKESPAN: $project.makespan $project.instanceResultStatus\n"
+        }
 		
 		FileUtils.writeToFile(new File(pathFile), data, append)		
 	}

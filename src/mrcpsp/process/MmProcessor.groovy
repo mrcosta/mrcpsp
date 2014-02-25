@@ -129,7 +129,7 @@ class MmProcessor {
 				log.info("Executing jobs mode select . . .")
 				
 				jobsModeSelectProcessor = new JobsModeSelectProcessor()
-				project.setStaggeredJobs(jobsModeSelectProcessor.setJobsMode(project.getJobs()))
+				jobsModeSelectProcessor.setJobsMode(project)
 				
 				log.info(LogUtils.generateJobsModeIDListLog(project.getStaggeredJobs(), EnumLogUtils.JOBS_MODE_LIST))
 				
