@@ -2,6 +2,7 @@ package mrcpsp.process
 
 import mrcpsp.model.enums.EnumJobsMode
 import mrcpsp.model.main.Job
+import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
 import mrcpsp.process.mode.ShortestFeasibleMode
 import mrcpsp.utils.UrlUtils
@@ -123,17 +124,14 @@ public class JobsModeSelectProcessor {
         ShortestFeasibleMode shortestFeasibleMode = new ShortestFeasibleMode()
         Map<String, String> jobsMode = shortestFeasibleMode.setJobsMode(project)
 
-        jobsMode.each {
+        jobsMode.each { jobMode ->
+            Job job = project.jobs.find { job ->  job.id == jobMode.key}
+            Mode mode = job.availableModes.find { it.id == jobMode.value}
 
-        }
-
-
-        /*jobs.each { job ->
-            def index = job.modesInformation.shorterNearToLowerNonRenewableComsumption
-            job.mode = job.availableModes.find { it.id == index}
+            job.mode = mode
 
             log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Duration: " + job.mode.duration + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
-        }*/
+        }
 
         return project.jobs;
     }

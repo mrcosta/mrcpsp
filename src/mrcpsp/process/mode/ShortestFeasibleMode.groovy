@@ -4,11 +4,14 @@ import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
 import mrcpsp.model.main.ResourceAvailabilities
+import org.apache.log4j.Logger
 
 /**
  * Created by mateus on 2/24/14.
  */
 class ShortestFeasibleMode {
+
+    private static final Logger log = Logger.getLogger(ShortestFeasibleMode.class);
 
     Map<String, String> jobModes
 
@@ -65,6 +68,7 @@ class ShortestFeasibleMode {
     def sfm(Map<String, String> jobModes, ResourceAvailabilities ra, List<Job> jobs, boolean firstSolutionFound) {
 
         if (jobModes.size() == jobs.size()) {
+            log.info("SHORTEST FEASIBLE MODE --- Map with the job ids (key) and the mode id that was selected (value): $jobModes")
             this.jobModes = new HashMap<String, String>(jobModes)
             return true
         } else {
