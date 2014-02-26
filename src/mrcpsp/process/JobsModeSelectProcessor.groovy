@@ -40,8 +40,7 @@ public class JobsModeSelectProcessor {
                 project.staggeredJobs = setJobsShorterNearToMinimumNonRenewableResources(project.jobs)
                 break
             case EnumJobsMode.SHORTEST_FEASIBLE_MODE.description:
-                def shortestFeasibleMode = new ShortestFeasibleMode()
-                project.staggeredJobs = shortestFeasibleMode.setJobsMode(project)
+                project.staggeredJobs = setJobsModeShortestFeasbileMode(project)
                 break
             default:
                 log.log(Level.ERROR, "MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
@@ -114,5 +113,28 @@ public class JobsModeSelectProcessor {
         }
 
         return jobs;
+    }
+
+    /**
+     * get a mode to each job, choosing the shortest feasible mode
+     * @return
+     */
+    def List<Job> setJobsModeShortestFeasbileMode(Project project) {
+        ShortestFeasibleMode shortestFeasibleMode = new ShortestFeasibleMode()
+        Map<String, String> jobsMode = shortestFeasibleMode.setJobsMode(project)
+
+        jobsMode.each {
+
+        }
+
+
+        /*jobs.each { job ->
+            def index = job.modesInformation.shorterNearToLowerNonRenewableComsumption
+            job.mode = job.availableModes.find { it.id == index}
+
+            log.info("JOB: " + job.id + " - Selected mode: " + job.mode.id + " - Duration: " + job.mode.duration + " - Values NR: " + job.mode.nonRenewable + " - Values R: " + job.mode.renewable)
+        }*/
+
+        return project.jobs;
     }
 }

@@ -1,5 +1,6 @@
 package mrcpsp.process.mode
 
+import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
 import mrcpsp.model.main.ResourceAvailabilities
@@ -9,21 +10,14 @@ import mrcpsp.model.main.ResourceAvailabilities
  */
 class ShortestFeasibleMode {
 
+    Map<String, String> jobModes
+
     def setJobsMode(Project project) {
 
+        sfm([:], project.resourceAvailabilities, project.jobs, false)
 
-
-        return project.jobs
+        return this.jobModes
     }
-
-
-    /*def checkSolution(Project project) {
-
-        if (checkResources(project.resourceAvailabilities, mode)) {
-            updateResources(ra, mode)
-            job.mode = mode
-        }
-    }*/
 
     boolean checkResources(ResourceAvailabilities ra, Mode mode) {
         Integer count = 0
@@ -46,7 +40,7 @@ class ShortestFeasibleMode {
         return checkAmount
     }
 
-    def updateResources(ResourceAvailabilities ra, Mode mode) {
+    def addingResources(ResourceAvailabilities ra, Mode mode) {
         Integer count = 0
 
         mode.nonRenewable.each { amount ->
@@ -57,40 +51,47 @@ class ShortestFeasibleMode {
         }
     }
 
-    def test() {
-        perm([1], [1, 2, 3])
+    def removingResources(ResourceAvailabilities ra, Mode mode) {
+        Integer count = 0
+
+        mode.nonRenewable.each { amount ->
+            ra.nonRenewableConsumedAmount[count] = ra.nonRenewableConsumedAmount[count] - amount
+            ra.remainingNonRenewableAmount[count] = ra.remainingNonRenewableAmount[count] + amount
+
+            count++
+        }
     }
 
-    def perm(List<Integer> x, List<Integer> a) {
+    def sfm(Map<String, String> jobModes, ResourceAvailabilities ra, List<Job> jobs, boolean firstSolutionFound) {
 
-        if (x.size() == a.size()) {
-            println x
+        if (jobModes.size() == jobs.size()) {
+            this.jobModes = new HashMap<String, String>(jobModes)
+            return true
         } else {
-            a.each {
-                x.add(it)
-                if (valid(x, it)) {
-                    perm(x, a)
+
+            for (int i = 0; i < jobs.size(); i++) {
+                Job job = jobs[i]
+
+                for (int j = 0; j < job.modesInformation.modesByOrderDuration.size(); j++) {
+                    def index = job.modesInformation.modesByOrderDuration[j]
+                    Mode mode = job.availableModes.find { it.id == index }
+
+                    if (!jobModes.containsKey(job.id) && checkResources(ra, mode)) {
+                        addingResources(ra, mode)
+                        jobModes.putAt(job.id, mode.id)
+
+                        firstSolutionFound = sfm(jobModes, ra, jobs, firstSolutionFound)
+
+                        jobModes.remove(job.id)
+                        removingResources(ra, mode)
+
+                        if (firstSolutionFound) {
+                            return firstSolutionFound
+                        }
+                    }
                 }
             }
         }
     }
 
-    def valid(List<Integer> list, def valueToAdd) {
-
-        list.each {
-            if (it == valueToAdd) {
-                return false
-            }
-        }
-
-        return true
-
-        /*for(int j = 0; j < list.size() - 1; j++) {
-            if (list[j] == list[j + 1]) {
-                list.remove(j + 1)
-                return false
-            }
-        }
-        return true*/
-    }
 }
