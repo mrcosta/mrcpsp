@@ -91,7 +91,7 @@ class ShortestFeasibleModeSpec extends Specification {
         ResourceAvailabilities ra = new ResourceAvailabilities(remainingNonRenewableAmount : [29, 30], nonRenewableConsumedAmount: [0, 0], nonRenewableInitialAmount: [29, 30])
 
         when:
-        def result = sfm.sfm([:], ra, jobs, false)
+        def result = sfm.sfm([:], ra, jobs, false, 0)
 
         then:
         result != null

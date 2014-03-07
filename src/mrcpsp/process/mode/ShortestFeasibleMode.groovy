@@ -17,7 +17,7 @@ class ShortestFeasibleMode {
 
     def setJobsMode(Project project) {
 
-        sfm([:], project.resourceAvailabilities, project.jobs, false)
+        sfm([:], project.resourceAvailabilities, project.jobs, false, 0)
 
         return this.jobModes
     }
@@ -65,7 +65,7 @@ class ShortestFeasibleMode {
         }
     }
 
-    def sfm(Map<String, String> jobModes, ResourceAvailabilities ra, List<Job> jobs, boolean firstSolutionFound) {
+    def sfm(Map<String, String> jobModes, ResourceAvailabilities ra, List<Job> jobs, boolean firstSolutionFound, int countJob) {
 
         if (jobModes.size() == jobs.size()) {
             log.info("SHORTEST FEASIBLE MODE --- Map with the job ids (key) and the mode id that was selected (value): $jobModes")
@@ -73,7 +73,7 @@ class ShortestFeasibleMode {
             return true
         } else {
 
-            for (int i = 0; i < jobs.size(); i++) {
+            for (int i = countJob; i < jobs.size(); i++) {
                 Job job = jobs[i]
 
                 for (int j = 0; j < job.modesInformation.modesByOrderDuration.size(); j++) {
@@ -84,7 +84,7 @@ class ShortestFeasibleMode {
                         addingResources(ra, mode)
                         jobModes.putAt(job.id, mode.id)
 
-                        firstSolutionFound = sfm(jobModes, ra, jobs, firstSolutionFound)
+                        firstSolutionFound = sfm(jobModes, ra, jobs, firstSolutionFound, i)
 
                         jobModes.remove(job.id)
                         removingResources(ra, mode)
