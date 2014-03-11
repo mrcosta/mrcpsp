@@ -191,4 +191,21 @@ class ModeComparatorProcessor {
         return modes = cloneModeList
     }
 
+    def getMinNonRenewableResourceConsumption(Job job) {
+        job.modesInformation.minNonRenewableResourcesConsumption = []
+
+        job.availableModes.each { mode ->
+            int countNR = 0
+
+            mode.nonRenewable.each {
+                if ( !job.modesInformation.minNonRenewableResourcesConsumption[countNR] || (it < job.modesInformation.minNonRenewableResourcesConsumption[countNR]) ) {
+                    job.modesInformation.minNonRenewableResourcesConsumption[countNR] = it
+                }
+                countNR++
+            }
+        }
+
+        return job.modesInformation
+    }
+
 }

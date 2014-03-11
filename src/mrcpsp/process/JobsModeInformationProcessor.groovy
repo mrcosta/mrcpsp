@@ -5,8 +5,6 @@ import mrcpsp.model.main.ResourceAvailabilities;
 import mrcpsp.process.mode.ModeComparatorProcessor;
 import org.apache.log4j.Logger;
 
-import java.util.List;
-
 class JobsModeInformationProcessor {
 	
 	static final Logger log = Logger.getLogger(JobsModeInformationProcessor.class);
@@ -34,6 +32,8 @@ class JobsModeInformationProcessor {
 
             // check if exists a mode near lower non renewable resources (its consumption is near the lower mode) that's shorter
             job.modesInformation = modeComparatorProcessor.checkModeNearLowerNRConsumption(job)
+
+            job.modesInformation = modeComparatorProcessor.getMinNonRenewableResourceConsumption(job)
 
             log.info("JOB ID: " + job.getId() + " - MODES INFORMATION: " + job.getModesInformation().toString())
         }

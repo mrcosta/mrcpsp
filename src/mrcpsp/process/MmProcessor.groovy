@@ -54,7 +54,7 @@ class MmProcessor {
 				success = true
 				log.info("Loading instance's data . . . DONE \n")	
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeGetInstanceData phase", e)
 				success = false
 			}			
 		}		
@@ -72,7 +72,7 @@ class MmProcessor {
 				success = true
 				log.info("Getting job modes information . . . DONE \n")	
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeGetJobModesInformation phase", e)
 				success = false
 			}			
 		}
@@ -91,7 +91,7 @@ class MmProcessor {
 				success = true
 				log.info("Executing Job Priority Rules . . .DONE \n")	
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeJobsPriorityRules phase", e)
 				success = false
 			}			
 		}
@@ -114,7 +114,7 @@ class MmProcessor {
 				success = true
 				log.info("Generating the Initial Solution with GRASP . . .DONE \n")
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeGenerateInitialSolution phase", e)
 				success = false
 			}			
 		}
@@ -136,7 +136,7 @@ class MmProcessor {
 				success = true
 				log.info("Executing jobs mode select . . .DONE \n")
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeJobsModeSelect phase", e)
 				success = false
 			}			
 		}	
@@ -158,7 +158,7 @@ class MmProcessor {
                 }
 				log.info("Executing Restrictions Verification . . .DONE \n")	
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeCheckRestrictions phase", e)
 				return success = false
 			}			
 		}	
@@ -177,7 +177,7 @@ class MmProcessor {
                 log.info("FILE: " + project.getFileName() + " - MAKESPAN'S LOWER BOUND: " + project.lowerBound)
                 log.info("Getting the solution's lower bound. . .DONE \n")
             } catch (Exception e) {
-                log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeGetLowerBound phase", e)
                 return success = false
             }
         }
@@ -195,7 +195,7 @@ class MmProcessor {
 				success = jobTimeProcessor.getJobTimes(project.getResourceAvailabilities(), project.getStaggeredJobs())
 				log.info("Getting Initial and Finish Time for Jobs . . .DONE \n")
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeGetJobTimes phase", e)
 				return success = false
 			}			
 		}	
@@ -214,7 +214,7 @@ class MmProcessor {
 				// getting initial and finish time for jobs
 				success = executeGetJobTimes()					
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeCheckRestrictionsAndGetJobTimes phase", e)
 				return success = false
 			}			
 		}	
@@ -238,7 +238,7 @@ class MmProcessor {
 				
 				log.info("Executing Local Search . . .DONE \n")	
 			} catch (Exception e) {
-				log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the executeLocalSearch phase", e)
 				return success = false
 			}			
 		}	
@@ -255,7 +255,7 @@ class MmProcessor {
 						
 			log.info("Writing the results . . .DONE \n")
 		} catch (Exception e) {
-			log.error(e.toString() + " --- " + e.getMessage())
+            log.error("Exception during the executeWriteResults phase", e)
 		}
 	}
 	
@@ -271,7 +271,7 @@ class MmProcessor {
 			log.info("Setting the project makespan. . .DONE \n")
 			true
 		} catch (Exception e) {
-			log.error(e.toString() + " --- " + e.getMessage())
+            log.error("Exception during the setProjectMakespan phase", e)
 		}
 
         success
@@ -288,7 +288,7 @@ class MmProcessor {
                 log.info("Getting the critical path. . .DONE \n")
                 true
             } catch (Exception e) {
-                log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the getCriticalPath phase", e)
             }
         }
         return success
@@ -313,7 +313,7 @@ class MmProcessor {
 
                 true
             } catch (Exception e) {
-                log.error(e.toString() + " --- " + e.getMessage())
+                log.error("Exception during the generateDiagram phase", e)
             }
         }
 

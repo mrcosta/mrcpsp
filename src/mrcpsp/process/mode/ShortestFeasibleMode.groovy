@@ -43,6 +43,29 @@ class ShortestFeasibleMode {
         return checkAmount
     }
 
+    boolean checkMinimumResourcesRemainingJobs(ResourceAvailabilities ra, Mode mode, List<Job> jobs, int countJob) {
+        List<Integer> nonRenewableConsumption = new ArrayList<>(mode.nonRenewable)
+
+        for (int i = countJob; i < jobs.size(); i++) {
+            Job job = jobs[i]
+
+            for (int j = 0; j < nonRenewableConsumption.size(); j++) {
+                nonRenewableConsumption[j]+= job.modesInformation.minNonRenewableResourcesConsumption[j]
+            }
+        }
+
+        def checkAmount = true
+        for (int i = 0; i < nonRenewableConsumption.size(); i++) {
+            if (nonRenewableConsumption[i] > ra.remainingNonRenewableAmount[i]) {
+                checkAmount = false
+            }
+        }
+
+        println "modeID: $mode.id -- mode: $mode.nonRenewable -- checkAmount: $checkAmount -- countJob: $countJob -- nonRenewableConsumption: $nonRenewableConsumption -- remainingNonRenewable: $ra.remainingNonRenewableAmount"
+
+        return checkAmount
+    }
+
     def addingResources(ResourceAvailabilities ra, Mode mode) {
         Integer count = 0
 
@@ -80,11 +103,11 @@ class ShortestFeasibleMode {
                     def index = job.modesInformation.modesByOrderDuration[j]
                     Mode mode = job.availableModes.find { it.id == index }
 
-                    if (!jobModes.containsKey(job.id) && checkResources(ra, mode)) {
+                    if (!jobModes.containsKey(job.id) && checkResources(ra, mode) && checkMinimumResourcesRemainingJobs(ra, mode, jobs, i + 1)) {
                         addingResources(ra, mode)
                         jobModes.putAt(job.id, mode.id)
 
-                        firstSolutionFound = sfm(jobModes, ra, jobs, firstSolutionFound, i)
+                        firstSolutionFound = sfm(jobModes, ra, jobs, firstSolutionFound, i + 1)
 
                         jobModes.remove(job.id)
                         removingResources(ra, mode)
