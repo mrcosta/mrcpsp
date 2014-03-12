@@ -198,7 +198,7 @@ class ModeComparatorProcessor {
             int countNR = 0
 
             mode.nonRenewable.each {
-                if ( !job.modesInformation.minNonRenewableResourcesConsumption[countNR] || (it < job.modesInformation.minNonRenewableResourcesConsumption[countNR]) ) {
+                if (job.modesInformation.minNonRenewableResourcesConsumption[countNR] == null || (it < job.modesInformation.minNonRenewableResourcesConsumption[countNR]) ) {
                     job.modesInformation.minNonRenewableResourcesConsumption[countNR] = it
                 }
                 countNR++

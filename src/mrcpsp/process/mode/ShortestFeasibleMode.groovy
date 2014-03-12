@@ -45,9 +45,13 @@ class ShortestFeasibleMode {
 
     boolean checkMinimumResourcesRemainingJobs(ResourceAvailabilities ra, Mode mode, List<Job> jobs, int countJob) {
         List<Integer> nonRenewableConsumption = new ArrayList<>(mode.nonRenewable)
+        def modes = ""
 
         for (int i = countJob; i < jobs.size(); i++) {
             Job job = jobs[i]
+
+            modes+= job.modesInformation.minNonRenewableResourcesConsumption
+            modes+= ","
 
             for (int j = 0; j < nonRenewableConsumption.size(); j++) {
                 nonRenewableConsumption[j]+= job.modesInformation.minNonRenewableResourcesConsumption[j]
@@ -60,8 +64,6 @@ class ShortestFeasibleMode {
                 checkAmount = false
             }
         }
-
-        println "modeID: $mode.id -- mode: $mode.nonRenewable -- checkAmount: $checkAmount -- countJob: $countJob -- nonRenewableConsumption: $nonRenewableConsumption -- remainingNonRenewable: $ra.remainingNonRenewableAmount"
 
         return checkAmount
     }
