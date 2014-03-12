@@ -8,20 +8,20 @@ import java.io.File;
 import java.util.concurrent.*;
 
 
-public class MrcpspWorkerPool {
+class MrcpspWorkerPool {
 	
-	private static final Logger log = Logger.getLogger(MrcpspWorkerPool.class);
+	static final Logger log = Logger.getLogger(MrcpspWorkerPool.class);
 	
-	private MrcpspMonitorThread monitor;
-	private BlockingQueue<Runnable> worksQueue;
-	private RejectedExecutionHandlerImpl rejectionHandler;
-	private ThreadFactory threadFactory;
-	private ThreadPoolExecutor tpe;
-	private Thread monitorThread;
+	MrcpspMonitorThread monitor;
+	BlockingQueue<Runnable> worksQueue;
+	RejectedExecutionHandlerImpl rejectionHandler;
+	ThreadFactory threadFactory;
+	ThreadPoolExecutor tpe;
+	Thread monitorThread;
 	
-	private Integer poolSize;
-	private Integer timeWait;
-	private Integer totalFile;
+	Integer poolSize;
+	Integer timeWait;
+	Integer totalFile;
 	
 	public void executeAllFilesConcurrent() throws InterruptedException {   
 		ChronoWatch watch = ChronoWatch.getInstance("MRCPSP Execution").start();		

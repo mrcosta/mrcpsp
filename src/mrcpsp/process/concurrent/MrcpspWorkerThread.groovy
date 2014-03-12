@@ -2,6 +2,8 @@ package mrcpsp.process.concurrent;
 
 import mrcpsp.process.MmProcessor;
 import mrcpsp.process.ResultsProcessor;
+import mrcpsp.utils.PropertyConstants;
+import mrcpsp.utils.PropertyManager;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -35,8 +37,15 @@ public class MrcpspWorkerThread implements Runnable {
 
     private void processCommand() {
         try {
-        	MmProcessor mmProcessor = new MmProcessor();
+            MmProcessor mmProcessor = new MmProcessor();
         	mmProcessor.initialSolutionWithGrasp(fileName);
+
+            Integer executeLocalSearchEverySolution = UrlUtils.getInstance().getExecuteLocalSearchEverySolution()
+            if (executeLocalSearchEverySolution == PropertyConstants.TRUE) {
+                mmProcessor.localSearchDescentUphillMethod()
+            }
+
+            mmProcessor.executeWriteResults();
         } catch (Exception e) {
             log.error("Somethin wrong with the threads!");
         	e.printStackTrace();
@@ -52,9 +61,16 @@ public class MrcpspWorkerThread implements Runnable {
         	LogUtils.setINSTANCE_STATUS("");
         	
         	for (int i = 0; i < timesToRun; i++) {
-				resultsProcessor.checkLowerMakespan(mmProcessor.initialSolutionWithGrasp(fileName));
-			}	
-			
+                mmProcessor.initialSolutionWithGrasp(fileName);
+
+                Integer executeLocalSearchEverySolution = UrlUtils.getInstance().getExecuteLocalSearchEverySolution()
+                if (executeLocalSearchEverySolution == PropertyConstants.TRUE) {
+                    mmProcessor.localSearchDescentUphillMethod()
+                }
+
+                resultsProcessor.checkLowerMakespan(mmProcessor.project)
+			}
+
 			resultsProcessor.writeLowerMakespanToAllInstances(fileName);
 			resultsProcessor.setLowerMakespan(null);
         } catch (Exception e) {

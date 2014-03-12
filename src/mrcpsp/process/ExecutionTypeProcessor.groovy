@@ -36,7 +36,7 @@ class ExecutionTypeProcessor {
 			executeOneFile()
 		} else if (checkOneFileTimesExecution()) {
 			executeOneFileTimes()
-		} else if (StringUtils.equals(executionType, EnumExecutionTypes.ALL.getName())) {
+		} else if (executionType == EnumExecutionTypes.ALL.name) {
 			
 			if (hasThread == PropertyConstants.TRUE) {
 				executeAllFilesConcurrent()
@@ -44,7 +44,7 @@ class ExecutionTypeProcessor {
 				executeAllFiles()
 			}
 			
-		} else if (StringUtils.equals(executionType, EnumExecutionTypes.ALL_TIMES.getName())) {
+		} else if (executionType == EnumExecutionTypes.ALL_TIMES.name) {
 			
 			if (hasThread == PropertyConstants.TRUE) {
 				executeAllFilesConcurrent()
@@ -102,14 +102,25 @@ class ExecutionTypeProcessor {
 		printResultAndTimeToFileAllInstances(watch)
 	}
 
-	public void executeAllFilesTimes() {
+    public void executeAllFilesConcurrent() {
+        log.info("======== Executing in CONCURRENT MODE")
+        MrcpspWorkerPool pool = new MrcpspWorkerPool()
+        try {
+            pool.executeAllFilesConcurrent()
+        } catch (InterruptedException e) {
+            e.printStackTrace()
+        }
+    }
+
+    public void executeAllFilesTimes() {
 		Integer timesToRun = Integer.parseInt(UrlUtils.getInstance().getExecutionTimes())
 				
 		for (File file: FileUtils.getAllFilesInstances()) {	
 			LogUtils.setINSTANCE_STATUS("")			
 			
 			for (int i = 0; i < timesToRun; i++) {
-				resultsProcessor.checkLowerMakespan(mmProcessor.initialSolutionWithGrasp(file.getName()))
+                executeAll(file.getName())
+                resultsProcessor.checkLowerMakespan(mmProcessor.project)
 			}	
 			
 			resultsProcessor.writeLowerMakespanToAllInstances(file.getName())
@@ -175,15 +186,5 @@ class ExecutionTypeProcessor {
 	private void removeOldResultFiles() {
 		FileUtils.removeAllFilesFromFolder(PropertyConstants.RESULTS_PATH)
 	}
-
-	public void executeAllFilesConcurrent() {
-		log.info("======== Executing in CONCURRENT MODE")
-		MrcpspWorkerPool pool = new MrcpspWorkerPool()
-		try {
-			pool.executeAllFilesConcurrent()
-		} catch (InterruptedException e) {					
-			e.printStackTrace()
-		}
-	}	
 
 }
