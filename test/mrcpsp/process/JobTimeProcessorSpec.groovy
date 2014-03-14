@@ -27,7 +27,7 @@ class JobTimeProcessorSpec extends Specification {
         job10 = new Job(id: 10, mode: new Mode(renewable: [7, 0]))
         job11 = new Job(id: 11, mode: new Mode(renewable: [0, 10]))
         job12 = new Job(id: 12, mode: new Mode(renewable: [0, 0]))
-        // scheduling order: { 1, 3, 4, 2, 9, 5, 6, 8, 7, 11, 10, 12 }
+        // scheduling order: { 1, 3, 4, 2, 9, 5, 6, 8, 7, 11, 10, 12 } --
 
         jobs = [job1, job3, job4, job2, job9, job5, job6, job8, job7, job11, job10, job12]
 
