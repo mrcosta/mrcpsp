@@ -72,7 +72,8 @@ public final class LogUtils {
 	}
 	
 	public static String generateJobRenewableResourcesAndTimeLog(ResourceAvailabilities ra, Job job) {
-		return "JOB " + job.getId() 
+		return "JOB " + job.getId()
+                + " - Mode: " + job.getMode().getId()
 				+ " - Duration: " + job.getMode().getDuration()
 				+ " - Renew: " + job.getMode().getRenewable()
 				+ " - Total: " + ra.getRenewableInitialAmount() 

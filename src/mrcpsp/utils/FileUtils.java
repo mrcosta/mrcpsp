@@ -314,7 +314,7 @@ public final class FileUtils {
 		return jobs;
 	}
 	
-	private File loadFile(String fileName) {
+	public File loadFile(String fileName) {
 		String filePath = UrlUtils.getInstance().getUrlForInstanceFile();
 		return new File(filePath + fileName);		
 	}
@@ -326,7 +326,7 @@ public final class FileUtils {
 			lineContent = (String) org.apache.commons.io.FileUtils.readLines(file).get(lineNumber);
 			return lineContent;
 		} catch (IOException e) {
-			log.error(e.getMessage());
+            log.error("Some problem with the file: " + file.getAbsolutePath(), e);
 			return null;
 		}
 	}

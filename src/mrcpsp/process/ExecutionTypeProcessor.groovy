@@ -2,8 +2,8 @@ package mrcpsp.process
 
 import mrcpsp.model.enums.EnumExecutionTypes
 import mrcpsp.process.concurrent.MrcpspWorkerPool
+import mrcpsp.results.PsplibProcessor
 import mrcpsp.utils.*
-import org.apache.commons.lang.StringUtils
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
@@ -32,9 +32,9 @@ class ExecutionTypeProcessor {
 		SystemUtils.getSystemInformation()
 		watch = ChronoWatch.getInstance("MRCPSP Execution").start()
 		
-		if (checkOneFileExecution()) {
+		if (executionType == EnumExecutionTypes.ONE_FILE.name) {
 			executeOneFile()
-		} else if (checkOneFileTimesExecution()) {
+		} else if (executionType == EnumExecutionTypes.ONE_FILE_TIMES.name) {
 			executeOneFileTimes()
 		} else if (executionType == EnumExecutionTypes.ALL.name) {
 			
@@ -52,20 +52,14 @@ class ExecutionTypeProcessor {
 				executeAllFilesTimes()
 			}
 			
-		} else {
+		} else if (executionType == EnumExecutionTypes.READ_PSPLIB_INSTANCE.name) {
+            readResultsFromPsplibFile()
+        } else {
 			log.log(Level.ERROR, "Argument not supported!" + LogUtils.generateErrorLog(Thread.currentThread().getStackTrace()))
 			throw new IllegalArgumentException("Argument not supported!" + LogUtils.generateErrorLog(Thread.currentThread().getStackTrace()))
 		}	
 		
 	}
-
-    private boolean checkOneFileTimesExecution() {
-        StringUtils.equals(executionType, EnumExecutionTypes.ONE_FILE_TIMES.getName())
-    }
-
-    private boolean checkOneFileExecution() {
-        StringUtils.equals(executionType, EnumExecutionTypes.ONE_FILE.getName())
-    }
 
     public void executeOneFile() {
 		String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
@@ -161,9 +155,9 @@ class ExecutionTypeProcessor {
         Integer generateDiagram = UrlUtils.instance.generateDiagram
 
         if (generateDiagram == PropertyConstants.TRUE) {
-            if (checkOneFileExecution()) {
+            if (executionType == EnumExecutionTypes.ONE_FILE.name) {
                 mmProcessor.generateDiagram(mmProcessor.project)
-            } else if (checkOneFileTimesExecution()) {
+            } else if (executionType == EnumExecutionTypes.ONE_FILE_TIMES.name) {
                 mmProcessor.generateDiagram(resultsProcessor.getLowerMakespan())
             }
         }
@@ -187,4 +181,10 @@ class ExecutionTypeProcessor {
 		FileUtils.removeAllFilesFromFolder(PropertyConstants.RESULTS_PATH)
 	}
 
+    def readResultsFromPsplibFile() {
+        String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
+
+        PsplibProcessor pp = new PsplibProcessor()
+        pp.readResultsFromFile(fileName)
+    }
 }

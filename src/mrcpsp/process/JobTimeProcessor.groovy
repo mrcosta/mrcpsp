@@ -13,13 +13,13 @@ import org.apache.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobTimeProcessor {
+class JobTimeProcessor {
 
-	private static final Logger log = Logger.getLogger(JobTimeProcessor.class);
+	static final Logger log = Logger.getLogger(JobTimeProcessor.class);
 	
-	private RestrictionsProcessor restrictionsProcessor;
-	private JobOperations jobOperations;
-	private JobPriorityRulesOperations jprOperations;
+	RestrictionsProcessor restrictionsProcessor;
+	JobOperations jobOperations;
+	JobPriorityRulesOperations jprOperations;
 	
 	public JobTimeProcessor() {
 		restrictionsProcessor = new RestrictionsProcessor();
@@ -27,13 +27,13 @@ public class JobTimeProcessor {
 		jprOperations = new JobPriorityRulesOperations();
 	}
 	
-	public boolean getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
+	boolean getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
 		boolean checkResources = false;
 		
-		for (Job job: jobs) {
-			log.debug("Getting start and finish time - JOB: " + job.getId());
+		jobs.each { job ->
+			log.debug("Getting start and finish time - JOB: $job.id")
 			
-			if (job.getPredecessors().isEmpty() && ra.getJobsUsingRenewableResources().isEmpty()) {				
+			if (job.predecessors.isEmpty() && ra.jobsUsingRenewableResources.isEmpty()) {
 				checkResources = setTimeJobWithoutPredecessors(ra, job);				
 			} else {				
 				checkResources = setTimeJobWithPredecessor(ra, job, jobs);				
@@ -51,10 +51,10 @@ public class JobTimeProcessor {
 		job.setStartTime(0);
 		job.setEndTime(0);
 		
-		checkResourcesAmount = restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, job.getMode(), PropertyConstants.ADD);
-		ra.getJobsUsingRenewableResources().add(CloneUtils.cloneJob(job));
-		log.debug("JOB " + job.getId() + " was added in the 'using renewable resources list'.");
-		log.debug("SET RENEWABLE OPERATION: ADD - " + ra.toStringRenewable());
+		checkResourcesAmount = restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, job.mode, PropertyConstants.ADD);
+		ra.jobsUsingRenewableResources.add(CloneUtils.cloneJob(job));
+		log.debug("JOB $job.id was added in the 'using renewable resources list'.");
+		log.debug("SET RENEWABLE OPERATION: ADD " + ra.toStringRenewable())
 		
 		return checkResourcesAmount;
 	}
@@ -64,6 +64,7 @@ public class JobTimeProcessor {
 		boolean checkResourcesAmount = false;
 		
 		predecessors = getPredecessorsList(ra, job, jobs);
+        log.debug("JOBS using renewable resources after the Job $job.id had his predecessors removed: $ra.jobsUsingRenewableResources");
 		
 		checkResourcesAmount = restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, job.getMode(), PropertyConstants.ADD);
 		
@@ -79,11 +80,11 @@ public class JobTimeProcessor {
 	}
 	
 	private void subtractRenewableResourcesAmount(ResourceAvailabilities ra, List<Job> predecessorsRemoved) {
-		
-		for (Job job: predecessorsRemoved) {
-			restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, job.getMode(), PropertyConstants.SUBTRACT);
-			log.debug("SET RENEWABLE OPERATION: SUBTRACT - " + ra.toStringRenewable());
-		}
+
+        predecessorsRemoved.each { job ->
+            restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, job.getMode(), PropertyConstants.SUBTRACT);
+            log.debug("SET RENEWABLE OPERATION: SUBTRACT - " + ra.toStringRenewable())
+        }
 	}
 	
 	/**
@@ -102,16 +103,16 @@ public class JobTimeProcessor {
 		 * means that we need to remove only just one job, or remove the jobs until we have the required amount to schedule the job 
 		 */
 		if (betterJobToRemove != null) {
-			restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, betterJobToRemove.getMode(), PropertyConstants.SUBTRACT);
-			jobsToRemove.add(betterJobToRemove);
-			log.debug("SET RENEWABLE OPERATION: SUBTRACT - " + ra.toStringRenewable() + " - only one job was removed: " + betterJobToRemove.getId());
+			restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, betterJobToRemove.mode, PropertyConstants.SUBTRACT)
+			jobsToRemove.add(betterJobToRemove)
+			log.debug("SET RENEWABLE OPERATION: SUBTRACT - " + ra.toStringRenewable() + " - only one job was removed: $betterJobToRemove.id")
 		} else {
 			Integer count = 0;
 			boolean checkAmount = false;
 			
 			while (!checkAmount && count < predecessorsRemoved.size()) {
-				restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, predecessorsRemoved.get(count).getMode(), PropertyConstants.SUBTRACT);
-				log.debug("SET RENEWABLE OPERATION: SUBTRACT - " + ra.toStringRenewable() + " - removing " + predecessorsRemoved.get(count).getId());
+				restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, predecessorsRemoved[count].mode, PropertyConstants.SUBTRACT);
+				log.debug("SET RENEWABLE OPERATION: SUBTRACT - " + ra.toStringRenewable() + " - removing $predecessorsRemoved[count].id");
 								
 				checkAmount = checkExistingAmount(jobToScheduled, ra);			
 				
@@ -132,16 +133,19 @@ public class JobTimeProcessor {
 	private List<Job> getPredecessorsList(ResourceAvailabilities ra, Job job, List<Job> jobs) {
 		List<Job> predecessors = null;
 		
-		predecessors = jobOperations.removeJobsFromListByIndexList(ra.getJobsUsingRenewableResources(), job.getPredecessors());
+		predecessors = jobOperations.removeJobsFromListByIndexList(ra.jobsUsingRenewableResources, job.predecessors);
 			
 		// updating the renewable resources
 		if (!predecessors.isEmpty()) {				
-			subtractRenewableResourcesAmount(ra, predecessors);				
-		} else {
-			predecessors = jobOperations.getJobsCopyListByIndexList(jobs, job.getPredecessors());
-		} 
-		
-		return predecessors;
+			subtractRenewableResourcesAmount(ra, predecessors)
+		}
+
+        // means that predecessors doesn't have all job's predecessors yet
+        if (predecessors.size() != job.predecessors.size()) {
+            predecessors = jobOperations.getJobsCopyListByIndexList(jobs, job.predecessors)
+        }
+
+        return predecessors
 	}
 	
 	/**
@@ -149,12 +153,13 @@ public class JobTimeProcessor {
 	 */
 	private void setTimeUsingPredecessors(ResourceAvailabilities ra, List<Job> predecessors, Job job) {		
 		jprOperations.getJobListOrderByEndTime(predecessors);
+
+        System.out.println("JOB: $job.id -- PREDECESSORS ORDER BY END TIME: $predecessors")
+        Job jobLatestEndTime = predecessors.get(PropertyConstants.INDEX_START)
 		
-		Job jobLatestEndTime = predecessors.get(PropertyConstants.INDEX_START);
-		
-		job.setStartTime(jobLatestEndTime.getEndTime());
-		job.setEndTime(job.getStartTime() + job.getMode().getDuration());
-		ra.getJobsUsingRenewableResources().add(CloneUtils.cloneJob(job));		
+		job.startTime = jobLatestEndTime.endTime
+		job.endTime = job.startTime + job.mode.duration
+		ra.jobsUsingRenewableResources.add(CloneUtils.cloneJob(job))
 	}
 	
 	/**
@@ -165,24 +170,24 @@ public class JobTimeProcessor {
 		List<Job> jobsToRemove;
 		boolean checkResourcesAmount = false;
 		
-		jobsToRemove = subtractRRACheckingAmount(ra, ra.getJobsUsingRenewableResources(), job);
+		jobsToRemove = subtractRRACheckingAmount(ra, ra.jobsUsingRenewableResources, job);
 						
 		// adding the jobs that we are not using the resources anymore
 		predecessors.addAll(jobsToRemove);
 		
 		// updating the job list that are using the resources
-		ra.getJobsUsingRenewableResources().removeAll(jobsToRemove);		
+		ra.jobsUsingRenewableResources.removeAll(jobsToRemove);
 		
-		checkResourcesAmount = restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, job.getMode(), PropertyConstants.ADD);
+		checkResourcesAmount = restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, job.mode, PropertyConstants.ADD);
 		
 		if (checkResourcesAmount) {
 			jprOperations.getJobListOrderByEndTime(predecessors);
 			
 			Job jobLatestEndTime = predecessors.get(PropertyConstants.INDEX_START);
 			
-			job.setStartTime(jobLatestEndTime.getEndTime());
-			job.setEndTime(job.getStartTime() + job.getMode().getDuration());
-			ra.getJobsUsingRenewableResources().add(CloneUtils.cloneJob(job));
+			job.startTime = jobLatestEndTime.endTime
+			job.endTime = job.startTime + job.mode.duration
+			ra.jobsUsingRenewableResources.add(CloneUtils.cloneJob(job));
 		} else {
 			return checkResourcesAmount = false;
 		}
@@ -196,10 +201,10 @@ public class JobTimeProcessor {
 		boolean checkAmount = false;
 		boolean checkExecution = true;
 		
-		while (countMode < jobToScheduled.getMode().getRenewable().size() && checkExecution) {
-			amount  = jobToScheduled.getMode().getRenewable().get(countMode);
+		while (countMode < jobToScheduled.mode.renewable.size() && checkExecution) {
+			amount  = jobToScheduled.mode.renewable[countMode]
 			
-			if (amount <= ra.getRemainingRenewableAmount().get(countMode)) {
+			if (amount <= ra.remainingRenewableAmount[countMode]) {
 				checkAmount = true;
 			} else {
 				checkAmount = false;
