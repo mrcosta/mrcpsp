@@ -11,7 +11,7 @@ import spock.lang.Specification
  */
 class JobTimeProcessorSpec extends Specification {
 
-    def ra = new ResourceAvailabilities()
+    def ra
     @Shared job1, job2, job3, job4, job5, job6, job7, job8, job9, job10, job11, job12
     @Shared def jobs
     JobTimeProcessor jobTimeProcessor
@@ -19,23 +19,23 @@ class JobTimeProcessorSpec extends Specification {
     def setup() {
         jobTimeProcessor = new JobTimeProcessor()
 
-        job1 = new Job(id: 1, mode: new Mode(renewable: [0, 0]))
-        job2 = new Job(id: 2, mode: new Mode(renewable: [0, 3]))
-        job3 = new Job(id: 3, mode: new Mode(renewable: [0, 8]))
-        job4 = new Job(id: 4, mode: new Mode(renewable: [5, 0]))
-        job5 = new Job(id: 5, mode: new Mode(renewable: [0, 7]))
-        job6 = new Job(id: 6, mode: new Mode(renewable: [0, 6]))
-        job7 = new Job(id: 7, mode: new Mode(renewable: [9, 0]))
-        job8 = new Job(id: 8, mode: new Mode(renewable: [10, 0]))
-        job9 = new Job(id: 9, mode: new Mode(renewable: [0, 2]))
-        job10 = new Job(id: 10, mode: new Mode(renewable: [7, 0]))
-        job11 = new Job(id: 11, mode: new Mode(renewable: [0, 10]))
-        job12 = new Job(id: 12, mode: new Mode(renewable: [0, 0]))
+        job1 = new Job(id: 1, mode: new Mode(duration: 0, renewable: [0, 0]), predecessors: [])
+        job2 = new Job(id: 2, mode: new Mode(duration: 5, renewable: [0, 3]), predecessors: [1])
+        job3 = new Job(id: 3, mode: new Mode(duration: 4, renewable: [0, 8]), predecessors: [1])
+        job4 = new Job(id: 4, mode: new Mode(duration: 6, renewable: [5, 0]), predecessors: [1])
+        job5 = new Job(id: 5, mode: new Mode(duration: 5, renewable: [0, 7]), predecessors: [3])
+        job6 = new Job(id: 6, mode: new Mode(duration: 4, renewable: [0, 6]), predecessors: [5])
+        job7 = new Job(id: 7, mode: new Mode(duration: 2, renewable: [9, 0]), predecessors: [6, 4])
+        job8 = new Job(id: 8, mode: new Mode(duration: 2, renewable: [10, 0]), predecessors: [6])
+        job9 = new Job(id: 9, mode: new Mode(duration: 2, renewable: [0, 2]), predecessors: [3])
+        job10 = new Job(id: 10, mode: new Mode(duration: 9, renewable: [7, 0]), predecessors: [8, 4, 2])
+        job11 = new Job(id: 11, mode: new Mode(duration: 4, renewable: [0, 10]), predecessors: [8, 2])
+        job12 = new Job(id: 12, mode: new Mode(duration: 0, renewable: [0, 0]), predecessors: [11, 10, 9])
         // scheduling order: { 1, 3, 4, 2, 9, 5, 6, 8, 7, 11, 10, 12 } --
 
         jobs = [job1, job3, job4, job2, job9, job5, job6, job8, job7, job11, job10, job12]
 
-        ra.remainingRenewableAmount = [1, 8]
+        ra = new ResourceAvailabilities(remainingRenewableAmount : [10, 13], renewableConsumedAmount: [0, 0], renewableInitialAmount: [10, 13])
     }
 
     def "should return the jobs between the interval of the job that was choosen to be scheduled"() {
@@ -257,6 +257,18 @@ class JobTimeProcessorSpec extends Specification {
         scheduledJob != null
         scheduledJob.startTime == 3
         scheduledJob.endTime == 8
+        ra.scheduledJobs.isEmpty()
+        ra.scheduledJobs.size() == 0
+        ra.renewableConsumedAmount == [0, 0]
+        ra.remainingRenewableAmount == ra.renewableInitialAmount
+    }
+
+    def "should scheduling all jobs"() {
+        when:
+        def jobs = jobTimeProcessor.getJobTimes(ra, jobs)
+
+        then:
+        jobs.size() == 12
         ra.scheduledJobs.isEmpty()
         ra.scheduledJobs.size() == 0
         ra.renewableConsumedAmount == [0, 0]

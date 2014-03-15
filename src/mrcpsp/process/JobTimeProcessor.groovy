@@ -21,7 +21,7 @@ class JobTimeProcessor {
         jobPriorityRulesOperations = new JobPriorityRulesOperations()
     }
 
-	boolean getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
+	List<Job> getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
 		boolean checkResources = false
 		
 		jobs.each { job ->
@@ -35,10 +35,10 @@ class JobTimeProcessor {
 				checkResources = setTimeJobWithPredecessors(ra, job, jobs);
 			}
 			
-			log.info(LogUtils.generateJobRenewableResourcesAndTimeLog(ra, job))
+			//log.info(LogUtils.generateJobRenewableResourcesAndTimeLog(ra, job))
 		}
 		
-		return checkResources;
+		return jobs;
 	}
 	
 	Job setTimeJobWithoutPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
@@ -65,24 +65,24 @@ class JobTimeProcessor {
         List<Job> jobPredecessors = getJobPredecessors(jobToSchedule, jobs)
         jobPredecessors = jobPriorityRulesOperations.getJobListOrderByEndTime(jobPredecessors)
 
+        Job latestJob = jobPredecessors.last()
+        jobToSchedule.startTime = latestJob.endTime
+        jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
+
         //get all the jobs that was already scheduled
         ra.scheduledJobs = getJobsBetweenInterval(jobToSchedule, jobs)
 
         ra.scheduledJobs?.each {
-            modeOperations.addingRenewableResources(ra, it)
+            modeOperations.addingRenewableResources(ra, it.mode)
         }
 
-        // so we can use the latest predecessor to set the time
-        if (modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
-            Job latestJob = jobPredecessors.last()
-            jobToSchedule.startTime = latestJob.endTime
-            jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
-
+        // we need to remove the jobs to schedule the one that we want and change its time (start and end)
+        if (!modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
+            jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule)
+        } else {
+            // just reseting the resources and cleaning the list
             resetResources(ra)
             ra.scheduledJobs.clear()
-        } else {
-            // or we need to remove the jobs to schedule the one that we want and change its time (start and end)
-            jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule)
         }
 
         log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}")
