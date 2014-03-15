@@ -72,7 +72,6 @@ class LowerNonRenewableConsumption {
 			count++
 		}
 		
-		ra.jobsUsingRenewableResources = []
-		return ra		
+		return ra
 	}
 }
