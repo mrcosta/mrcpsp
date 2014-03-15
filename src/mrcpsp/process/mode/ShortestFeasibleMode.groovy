@@ -14,33 +14,17 @@ class ShortestFeasibleMode {
     private static final Logger log = Logger.getLogger(ShortestFeasibleMode.class);
 
     Map<String, String> jobModes
+    ModeOperations mo
+
+    ShortestFeasibleMode() {
+        mo = new ModeOperations()
+    }
 
     def setJobsMode(Project project) {
 
         sfm([:], project.resourceAvailabilities, project.jobs, false, 0)
 
         return this.jobModes
-    }
-
-    boolean checkResources(ResourceAvailabilities ra, Mode mode) {
-        Integer count = 0
-        boolean checkAmount = true
-
-        mode.nonRenewable.each { amount ->
-            def nrConsumedAmount = ra.nonRenewableConsumedAmount[count]
-            def remainingResources
-
-            nrConsumedAmount+= amount
-            remainingResources = ra.nonRenewableInitialAmount[count] - nrConsumedAmount
-
-            if (remainingResources < 0) {
-                checkAmount = false
-            }
-
-            count++
-        }
-
-        return checkAmount
     }
 
     boolean checkMinimumResourcesRemainingJobs(ResourceAvailabilities ra, Mode mode, List<Job> jobs, int countJob) {
@@ -68,28 +52,6 @@ class ShortestFeasibleMode {
         return checkAmount
     }
 
-    def addingResources(ResourceAvailabilities ra, Mode mode) {
-        Integer count = 0
-
-        mode.nonRenewable.each { amount ->
-            ra.nonRenewableConsumedAmount[count] = ra.nonRenewableConsumedAmount[count] + amount
-            ra.remainingNonRenewableAmount[count] = ra.nonRenewableInitialAmount[count] - ra.nonRenewableConsumedAmount[count]
-
-            count++
-        }
-    }
-
-    def removingResources(ResourceAvailabilities ra, Mode mode) {
-        Integer count = 0
-
-        mode.nonRenewable.each { amount ->
-            ra.nonRenewableConsumedAmount[count] = ra.nonRenewableConsumedAmount[count] - amount
-            ra.remainingNonRenewableAmount[count] = ra.remainingNonRenewableAmount[count] + amount
-
-            count++
-        }
-    }
-
     def sfm(Map<String, String> jobModes, ResourceAvailabilities ra, List<Job> jobs, boolean firstSolutionFound, int countJob) {
 
         if (jobModes.size() == jobs.size()) {
@@ -105,14 +67,14 @@ class ShortestFeasibleMode {
                     def index = job.modesInformation.modesByOrderDuration[j]
                     Mode mode = job.availableModes.find { it.id == index }
 
-                    if (!jobModes.containsKey(job.id) && checkResources(ra, mode) && checkMinimumResourcesRemainingJobs(ra, mode, jobs, i + 1)) {
-                        addingResources(ra, mode)
+                    if (!jobModes.containsKey(job.id) && mo.checkNonRenewableResources(ra, mode) && checkMinimumResourcesRemainingJobs(ra, mode, jobs, i + 1)) {
+                        mo.addingNonRenewableResources(ra, mode)
                         jobModes.putAt(job.id, mode.id)
 
                         firstSolutionFound = sfm(jobModes, ra, jobs, firstSolutionFound, i + 1)
 
                         jobModes.remove(job.id)
-                        removingResources(ra, mode)
+                        mo.removingNonRenewableResources(ra, mode)
 
                         if (firstSolutionFound) {
                             return firstSolutionFound

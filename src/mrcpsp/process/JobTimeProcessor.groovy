@@ -1,65 +1,143 @@
-package mrcpsp.process;
+package mrcpsp.process
 
-import mrcpsp.model.enums.EnumLogUtils;
 import mrcpsp.model.main.Job;
-import mrcpsp.model.main.ResourceAvailabilities;
-import mrcpsp.process.job.JobOperations;
-import mrcpsp.process.job.JobPriorityRulesOperations;
+import mrcpsp.model.main.ResourceAvailabilities
+import mrcpsp.process.job.JobPriorityRulesOperations
+import mrcpsp.process.mode.ModeOperations;
 import mrcpsp.utils.CloneUtils;
 import mrcpsp.utils.LogUtils;
 import mrcpsp.utils.PropertyConstants;
-import org.apache.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.log4j.Logger
 
 class JobTimeProcessor {
 
 	static final Logger log = Logger.getLogger(JobTimeProcessor.class);
-	
-	RestrictionsProcessor restrictionsProcessor;
-	JobOperations jobOperations;
-	JobPriorityRulesOperations jprOperations;
-	
-	public JobTimeProcessor() {
-		restrictionsProcessor = new RestrictionsProcessor();
-		jobOperations = new JobOperations();
-		jprOperations = new JobPriorityRulesOperations();
-	}
-	
+
+    ModeOperations modeOperations
+    JobPriorityRulesOperations jobPriorityRulesOperations
+
+    JobTimeProcessor() {
+        modeOperations = new ModeOperations()
+        jobPriorityRulesOperations = new JobPriorityRulesOperations()
+    }
+
 	boolean getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
-		boolean checkResources = false;
+		boolean checkResources = false
 		
 		jobs.each { job ->
 			log.debug("Getting start and finish time - JOB: $job.id")
-			
-			if (job.predecessors.isEmpty() && ra.jobsUsingRenewableResources.isEmpty()) {
-				checkResources = setTimeJobWithoutPredecessors(ra, job);				
+
+            job.resetTime()
+
+			if (job.predecessors.isEmpty()) {
+				checkResources = setTimeJobWithoutPredecessors(ra, job, jobs)
 			} else {				
-				checkResources = setTimeJobWithPredecessor(ra, job, jobs);				
+				checkResources = setTimeJobWithPredecessors(ra, job, jobs);
 			}
 			
-			log.info(LogUtils.generateJobRenewableResourcesAndTimeLog(ra, job));
-			log.debug(LogUtils.generateJobsIDListLog(ra.getJobsUsingRenewableResources(), EnumLogUtils.REMAINING_JOBS_RENEWABLE));
+			log.info(LogUtils.generateJobRenewableResourcesAndTimeLog(ra, job))
 		}
 		
 		return checkResources;
 	}
 	
-	private boolean setTimeJobWithoutPredecessors(ResourceAvailabilities ra, Job job) {
-		boolean checkResourcesAmount = false;
-		job.setStartTime(0);
-		job.setEndTime(0);
-		
-		checkResourcesAmount = restrictionsProcessor.setRenewableResourcesConsumedAmount(ra, job.mode, PropertyConstants.ADD);
-		ra.jobsUsingRenewableResources.add(CloneUtils.cloneJob(job));
-		log.debug("JOB $job.id was added in the 'using renewable resources list'.");
-		log.debug("SET RENEWABLE OPERATION: ADD " + ra.toStringRenewable())
-		
-		return checkResourcesAmount;
+	Job setTimeJobWithoutPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
+        jobToSchedule.startTime = 0
+        jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
+
+        //get all the jobs that was already scheduled
+        ra.scheduledJobs = getJobsBetweenInterval(jobToSchedule, jobs)
+
+        ra.scheduledJobs?.each {
+            modeOperations.addingRenewableResources(ra, it.mode)
+        }
+
+        // then we need to remove the jobs to schedule the one that we want and change its time (start and end)
+        if (!modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
+            jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule)
+        }
+
+        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}")
+        return jobToSchedule
 	}
+
+    Job setTimeJobWithPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
+        List<Job> jobPredecessors = getJobPredecessors(jobToSchedule, jobs)
+        jobPredecessors = jobPriorityRulesOperations.getJobListOrderByEndTime(jobPredecessors)
+
+        //get all the jobs that was already scheduled
+        ra.scheduledJobs = getJobsBetweenInterval(jobToSchedule, jobs)
+
+        ra.scheduledJobs?.each {
+            modeOperations.addingRenewableResources(ra, it)
+        }
+
+        // so we can use the latest predecessor to set the time
+        if (modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
+            Job latestJob = jobPredecessors.last()
+            jobToSchedule.startTime = latestJob.endTime
+            jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
+
+            resetResources(ra)
+            ra.scheduledJobs.clear()
+        } else {
+            // or we need to remove the jobs to schedule the one that we want and change its time (start and end)
+            jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule)
+        }
+
+        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}")
+        return jobToSchedule
+    }
+
+    List<Job> getJobsBetweenInterval(Job jobToSchedule, List<Job> jobs) {
+        return jobs.findAll{ job ->
+            (job.id != jobToSchedule.id) && (job.startTime < jobToSchedule.endTime) && (job.endTime > jobToSchedule.startTime) && (job.endTime > 0)
+        }
+    }
+
+    /**
+     * the second criteria is the job's order in the list
+     */
+    List<Job> getJobPredecessors(Job jobToSchedule, List<Job> jobs) {
+        return jobs.findAll{ job ->
+            jobToSchedule.predecessors.contains(job.id)
+        }
+    }
+
+    Job setJobTimeUsingScheduledJobs(ResourceAvailabilities ra, Job jobToSchedule) {
+        // order jobs by endTime (from earliest end to the latest end)
+        ra.scheduledJobs = jobPriorityRulesOperations.getJobListOrderByEndTime(ra.scheduledJobs)
+
+        boolean checkJobScheduled = false
+        while (!ra.scheduledJobs.isEmpty() && !checkJobScheduled) {
+            Job jobToRemove = ra.scheduledJobs[0]
+
+            modeOperations.removingRenewableResources(ra, jobToRemove.mode)
+
+            if (modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
+                jobToSchedule.startTime = jobToRemove.endTime
+                jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
+                checkJobScheduled = true
+            }
+
+            ra.scheduledJobs.remove(0)
+        }
+
+        resetResources(ra)
+        ra.scheduledJobs.clear()
+
+        return jobToSchedule
+    }
+
+    List<Job> resetResources(ResourceAvailabilities ra) {
+        if (!ra.scheduledJobs.isEmpty()) {
+            ra.scheduledJobs.each { scheduledJob ->
+                modeOperations.removingRenewableResources(ra, scheduledJob.mode)
+            }
+        }
+    }
 	
-	private boolean setTimeJobWithPredecessor(ResourceAvailabilities ra, Job job, List<Job> jobs) {
+	/*private boolean setTimeJobWithPredecessor(ResourceAvailabilities ra, Job job, List<Job> jobs) {
 		List<Job> predecessors = null;
 		boolean checkResourcesAmount = false;
 		
@@ -78,7 +156,7 @@ class JobTimeProcessor {
 		
 		return checkResourcesAmount;
 	}
-	
+	*/
 	private void subtractRenewableResourcesAmount(ResourceAvailabilities ra, List<Job> predecessorsRemoved) {
 
         predecessorsRemoved.each { job ->

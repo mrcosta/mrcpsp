@@ -177,7 +177,10 @@ public class JobPriorityRulesOperations {
 		JobComparator jobComparator = new JobComparator();
 		
 		jobComparator.setComparatorType(EnumJobPriorityRules.BY_END_TIME);
-		Collections.sort(jobs, Collections.reverseOrder(jobComparator));		
+
+        // the second criteria ir the job's order in the list
+        Collections.sort(jobs, jobComparator);
+		//Collections.sort(jobs, Collections.reverseOrder(jobComparator));
 		
 		return jobs;
 	}	

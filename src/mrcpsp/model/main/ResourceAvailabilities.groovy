@@ -13,9 +13,9 @@ class ResourceAvailabilities {
 	
 	List<Integer> remainingRenewableAmount
 	List<Integer> remainingNonRenewableAmount
-	
-	List<Job> jobsUsingRenewableResources
-	
+
+    List<Job> scheduledJobs
+
 	public ResourceAvailabilities() {
 		renewableInitialAmount = []
 		nonRenewableInitialAmount = []
@@ -25,9 +25,9 @@ class ResourceAvailabilities {
 		
 		remainingRenewableAmount = []
 		remainingNonRenewableAmount = []
-		
-		jobsUsingRenewableResources = []
-	}	
+
+        scheduledJobs = []
+	}
 
 	@Override
 	public String toString() {
