@@ -8,6 +8,7 @@ import mrcpsp.process.initialsolution.LowerBoundProcessor
 import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.localsearch.LocalSearch
 import mrcpsp.utils.LogUtils
+import mrcpsp.utils.PropertyConstants
 import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Logger
 
@@ -169,13 +170,17 @@ class MmProcessor {
     private boolean executeGetLowerBound() {
         if (success) {
             try {
-                log.info("==========================================================================")
-                log.info("Getting the solution's lower bound. . .")
+                def showLowerBound = UrlUtils.instance.showLowerBound
 
-                lowerBoundProcessor = new LowerBoundProcessor()
-                success = lowerBoundProcessor.getLowerBoundFromSolution(project)
-                log.info("FILE: " + project.getFileName() + " - MAKESPAN'S LOWER BOUND: " + project.lowerBound)
-                log.info("Getting the solution's lower bound. . .DONE \n")
+                if (showLowerBound == PropertyConstants.TRUE) {
+                    log.info("==========================================================================")
+                    log.info("Getting the solution's lower bound. . .")
+
+                    lowerBoundProcessor = new LowerBoundProcessor()
+                    success = lowerBoundProcessor.getLowerBoundFromSolution(project)
+                    log.info("FILE: " + project.getFileName() + " - MAKESPAN'S LOWER BOUND: " + project.lowerBound)
+                    log.info("Getting the solution's lower bound. . .DONE \n")
+                }
             } catch (Exception e) {
                 log.error("Exception during the executeGetLowerBound phase", e)
                 return success = false
@@ -185,7 +190,7 @@ class MmProcessor {
         success
     }
 	
-	private boolean executeGetJobTimes() {
+	boolean executeGetJobTimes() {
 		if (success) {			
 			try {	
 				log.info("==========================================================================")
@@ -200,24 +205,6 @@ class MmProcessor {
 			}			
 		}	
 			
-		success
-	}
-
-	public boolean executeCheckRestrictionsAndGetJobTimes(Project project) {
-		if (success) {			
-			try {
-                this.project = project
-
-				// checking if the restrictions are OK
-				success = executeCheckRestrictions()
-				
-				// getting initial and finish time for jobs
-				success = executeGetJobTimes()					
-			} catch (Exception e) {
-                log.error("Exception during the executeCheckRestrictionsAndGetJobTimes phase", e)
-				return success = false
-			}			
-		}	
 		success
 	}
 	
@@ -280,13 +267,17 @@ class MmProcessor {
     def boolean getCriticalPath() {
         if (success) {
             try {
-                log.info("Getting the critical path. . .")
+                def showCriticalPath = UrlUtils.instance.showCriticalPath
 
-                success = resultsProcessor.getCriticalPath(project)
-                log.info(LogUtils.generateJobsIDListLog(project.criticalPath, EnumLogUtils.CRITICAL_PATH_JOBS))
+                if (showCriticalPath == PropertyConstants.TRUE) {
+                    log.info("Getting the critical path. . .")
 
-                log.info("Getting the critical path. . .DONE \n")
-                true
+                    success = resultsProcessor.getCriticalPath(project)
+                    log.info(LogUtils.generateJobsIDListLog(project.criticalPath, EnumLogUtils.CRITICAL_PATH_JOBS))
+
+                    log.info("Getting the critical path. . .DONE \n")
+                    true
+                }
             } catch (Exception e) {
                 log.error("Exception during the getCriticalPath phase", e)
             }

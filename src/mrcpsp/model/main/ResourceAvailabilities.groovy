@@ -38,4 +38,8 @@ class ResourceAvailabilities {
 		 return	"""Total: $renewableInitialAmount - Usage: $renewableConsumedAmount - Remaining: $remainingRenewableAmount"""
 	}
 
+    public String toStringNonRenewable() {
+        return	"""Total: $nonRenewableInitialAmount - Usage: $nonRenewableConsumedAmount - Remaining: $remainingNonRenewableAmount"""
+    }
+
 }

@@ -41,6 +41,8 @@ public interface PropertyConstants {
 	public static final String CONCURRENT_POOLSIZE = "concurrent.poolSize";
     public static final String GENERATE_DIAGRAM = "generate.diagram";
     public static final String WRITE_LOWERBOUND = "write.lowerbound.for.all.instances";
+    public static final String SHOW_CRITICAL_PATH = "show.critical.path";
+    public static final String SHOW_LOWER_BOUND = "show.lower.bound";
 	
 	//############# MRCPSP - TYPE - LOCALSEARCH  #################
 	public static final String LOCAL_SEARCH = "type.localSearch";

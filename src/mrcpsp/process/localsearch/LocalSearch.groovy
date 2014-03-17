@@ -1,11 +1,11 @@
 package mrcpsp.process.localsearch
 
 import mrcpsp.model.enums.EnumLocalSearch
+import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
 import mrcpsp.process.MmProcessor
 import mrcpsp.utils.PropertyConstants
 import mrcpsp.utils.UrlUtils
-import org.apache.commons.lang.StringUtils
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
@@ -64,9 +64,9 @@ class LocalSearch {
                 def neighborProject = lnrc.changeExecutionModeJob(bestProject, project.staggeredJobs.findIndexOf {it.id == job.id});
 
                 if (neighborProject) {
-                    mmProcessor.executeCheckRestrictionsAndGetJobTimes(neighborProject)
+                    mmProcessor.project = neighborProject
+                    mmProcessor.executeGetJobTimes()
                     mmProcessor.setProjectMakespan()
-                    mmProcessor.getCriticalPath()
                 }
 
                 if (neighborProject) {
@@ -87,15 +87,18 @@ class LocalSearch {
 	 */
 	private void lowerNonRenewableComsumption(Project project) {
 		while (checkSolution) {
-			for (int i = 0; i < project.staggeredJobs.size(); i++) {
-				def neighborProject = lnrc.changeExecutionModeJob(bestProject, i);
+			def realJobs = getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+
+            realJobs.each { job ->
+				def neighborProject = lnrc.changeExecutionModeJob(bestProject, job.id);
 				
 				if (neighborProject) {
-					mmProcessor.executeCheckRestrictionsAndGetJobTimes(neighborProject)
+                    println "Changing the job " + job.id + " mode: " + neighborProject.staggeredJobs.find{it.id == job.id}.mode.id + " makespan: " + neighborProject.makespan + " best makespan: " + bestProject.makespan
+                    mmProcessor.project = neighborProject
+                    mmProcessor.executeGetJobTimes()
 					mmProcessor.setProjectMakespan()
-                    mmProcessor.getCriticalPath()
-				} 
-				
+				}
+
 				if (neighborProject) {
 					checkBestNeighbor(neighborProject);
 				}
@@ -125,5 +128,9 @@ class LocalSearch {
 			checkSolution = false
 		}
 	}
+
+    private List<Job> getOnlyRealJobs(List<Job> jobs, Integer lastJobId) {
+        return jobs.findAll{ job -> ![1, lastJobId].contains(job.id) }
+    }
 
 }

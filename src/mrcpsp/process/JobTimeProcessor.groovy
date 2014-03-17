@@ -34,8 +34,6 @@ class JobTimeProcessor {
 			} else {				
 				checkResources = setTimeJobWithPredecessors(ra, job, jobs);
 			}
-			
-			//log.info(LogUtils.generateJobRenewableResourcesAndTimeLog(ra, job))
 		}
 		
 		return jobs;
@@ -52,12 +50,14 @@ class JobTimeProcessor {
             modeOperations.addingRenewableResources(ra, it.mode)
         }
 
+        log.info("Scheduling job $jobToSchedule.id - Mode $jobToSchedule.mode.id RR: $jobToSchedule.mode.renewable - Jobs in interval: " + ra.scheduledJobs?.id + " - Resources usage: " + ra.toStringRenewable())
+
         // then we need to remove the jobs to schedule the one that we want and change its time (start and end)
         if (!modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
             jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule)
         }
 
-        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}")
+        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}\n")
         return jobToSchedule
 	}
 
@@ -76,6 +76,8 @@ class JobTimeProcessor {
             modeOperations.addingRenewableResources(ra, it.mode)
         }
 
+        log.info("Scheduling job $jobToSchedule.id - Mode $jobToSchedule.mode.id RR: $jobToSchedule.mode.renewable - Jobs in interval: " + ra.scheduledJobs?.id + " - Resources usage: " + ra.toStringRenewable())
+
         // we need to remove the jobs to schedule the one that we want and change its time (start and end)
         if (!modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
             jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule)
@@ -85,7 +87,7 @@ class JobTimeProcessor {
             ra.scheduledJobs.clear()
         }
 
-        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}")
+        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}\n")
         return jobToSchedule
     }
 

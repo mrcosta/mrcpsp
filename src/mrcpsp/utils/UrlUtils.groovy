@@ -117,4 +117,12 @@ public final class UrlUtils {
     public Integer getWriteLowerBoundForAllInstances() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.WRITE_LOWERBOUND))
     }
+
+    public Integer getShowCriticalPath() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_CRITICAL_PATH))
+    }
+
+    public Integer getShowLowerBound() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_LOWER_BOUND))
+    }
 }

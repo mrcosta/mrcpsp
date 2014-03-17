@@ -8,10 +8,10 @@ import mrcpsp.utils.CloneUtils;
 
 class LowerNonRenewableConsumption {
 	
-	def Project changeExecutionModeJob(project, jobPosition) {
+	def Project changeExecutionModeJob(Project project, jobId) {
 		Project neighborProject = CloneUtils.cloneProject(project)
 		
-		if (checkNonRenewableResourcesRestriction(neighborProject, jobPosition)) {
+		if (checkNonRenewableResourcesRestriction(neighborProject, jobId)) {
 			return neighborProject
 		} else {
 			return null
@@ -23,23 +23,28 @@ class LowerNonRenewableConsumption {
 	 * @param project
 	 * @return
 	 */
-	def checkNonRenewableResourcesRestriction(Project project, Integer jobPosition) {
-		def job = project.staggeredJobs[jobPosition]
+	def checkNonRenewableResourcesRestriction(Project project, Integer jobId) {
+		def job = project.staggeredJobs.find { it.id == jobId }
 		Mode shorterMode = job.availableModes.find{ it.id == job.modesInformation.shorter}
 		ResourceAvailabilities ra = CloneUtils.cloneResourceAvailabilities(project.resourceAvailabilities)
 		
 		def count = 0	
-		def checkResources = true	
-		job.mode.nonRenewable.each {
+		def checkResources = true
+        println "Doidera: " + ra.toStringNonRenewable()
+        job.mode.nonRenewable.each {
 			ra.remainingNonRenewableAmount[count]+= it
 			ra.nonRenewableConsumedAmount[count]-= it
 			
 			def remainingResources = ra.remainingNonRenewableAmount[count] - shorterMode.nonRenewable[count]
-			
+
 			if (remainingResources < 0) {
 				checkResources = false
-			} 
-			
+			} else {
+                ra.remainingNonRenewableAmount[count] = remainingResources
+                ra.nonRenewableConsumedAmount[count]+= shorterMode.nonRenewable[count]
+            }
+
+            println "Loucura que eu acho que to fazendo errado: " + ra.toStringNonRenewable()
 			count++ 
 		}
 		
@@ -62,13 +67,6 @@ class LowerNonRenewableConsumption {
 		job.mode.nonRenewable.each {
 			ra.remainingNonRenewableAmount[count] = ra.nonRenewableInitialAmount[count]
 			ra.nonRenewableConsumedAmount[count] = 0
-			count++
-		}
-		
-		count = 0
-		job.mode.renewable.each {
-			ra.remainingRenewableAmount[count] = ra.renewableInitialAmount[count]
-			ra.renewableConsumedAmount[count] = 0
 			count++
 		}
 		
