@@ -58,9 +58,9 @@ class LocalSearch {
      */
     private void criticalPathLowerNonRenewableComsumption(Project project) {
         while (checkSolution) {
-            def count = 0
+            def realJobs = getOnlyRealJobs(project.criticalPath, project.instanceInformation.jobsAmount)
 
-            project.criticalPath.each { job ->
+            realJobs.each { job ->
                 def neighborProject = lnrc.changeExecutionModeJob(bestProject, project.staggeredJobs.findIndexOf {it.id == job.id});
 
                 if (neighborProject) {
@@ -72,8 +72,6 @@ class LocalSearch {
                 if (neighborProject) {
                     checkBestNeighbor(neighborProject);
                 }
-
-                count++
             }
 
             checkBestSolution(bestNeighbor, project)
@@ -96,7 +94,6 @@ class LocalSearch {
                     mmProcessor.project = neighborProject
                     mmProcessor.executeGetJobTimes()
 					mmProcessor.setProjectMakespan()
-                    println "Changing the job " + job.id + " mode: " + neighborProject.staggeredJobs.find{it.id == job.id}.mode.id + " makespan: " + neighborProject.makespan + " best makespan: " + bestProject.makespan
 				}
 
 				if (neighborProject) {

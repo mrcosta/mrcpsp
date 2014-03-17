@@ -34,19 +34,14 @@ class LowerNonRenewableConsumption {
 		def job = project.staggeredJobs.find { it.id == jobId }
 		Mode shorterMode = job.availableModes.find{ it.id == job.modesInformation.shorter}
 
-        println "Doidera antes: " + project.resourceAvailabilities.toStringNonRenewable()
         modeOperations.removingNonRenewableResources(project.resourceAvailabilities, job.mode)
-
-        println "Doidera depois de remover: " + project.resourceAvailabilities.toStringNonRenewable()
 
         def checkResources = modeOperations.checkNonRenewableResources(project.resourceAvailabilities, shorterMode)
         if (checkResources) {
             modeOperations.addingNonRenewableResources(project.resourceAvailabilities, shorterMode)
             job.mode = shorterMode
-            println "Doidera depois de adicionar shorter: " + project.resourceAvailabilities.toStringNonRenewable()
         } else {
             modeOperations.addingNonRenewableResources(project.resourceAvailabilities, job.mode)
-            println "Doidera depois de adicionar o mesmo: " + project.resourceAvailabilities.toStringNonRenewable()
         }
 		
 		return checkResources
