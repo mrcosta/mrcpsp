@@ -3,11 +3,18 @@ package mrcpsp.process.localsearch
 import mrcpsp.model.main.Job;
 import mrcpsp.model.main.Mode;
 import mrcpsp.model.main.Project;
-import mrcpsp.model.main.ResourceAvailabilities;
+import mrcpsp.model.main.ResourceAvailabilities
+import mrcpsp.process.mode.ModeOperations;
 import mrcpsp.utils.CloneUtils;
 
 class LowerNonRenewableConsumption {
-	
+
+    ModeOperations modeOperations
+
+    LowerNonRenewableConsumption() {
+        modeOperations = new ModeOperations()
+    }
+
 	def Project changeExecutionModeJob(Project project, jobId) {
 		Project neighborProject = CloneUtils.cloneProject(project)
 		
@@ -26,50 +33,22 @@ class LowerNonRenewableConsumption {
 	def checkNonRenewableResourcesRestriction(Project project, Integer jobId) {
 		def job = project.staggeredJobs.find { it.id == jobId }
 		Mode shorterMode = job.availableModes.find{ it.id == job.modesInformation.shorter}
-		ResourceAvailabilities ra = CloneUtils.cloneResourceAvailabilities(project.resourceAvailabilities)
-		
-		def count = 0	
-		def checkResources = true
-        println "Doidera: " + ra.toStringNonRenewable()
-        job.mode.nonRenewable.each {
-			ra.remainingNonRenewableAmount[count]+= it
-			ra.nonRenewableConsumedAmount[count]-= it
-			
-			def remainingResources = ra.remainingNonRenewableAmount[count] - shorterMode.nonRenewable[count]
 
-			if (remainingResources < 0) {
-				checkResources = false
-			} else {
-                ra.remainingNonRenewableAmount[count] = remainingResources
-                ra.nonRenewableConsumedAmount[count]+= shorterMode.nonRenewable[count]
-            }
+        println "Doidera antes: " + project.resourceAvailabilities.toStringNonRenewable()
+        modeOperations.removingNonRenewableResources(project.resourceAvailabilities, job.mode)
 
-            println "Loucura que eu acho que to fazendo errado: " + ra.toStringNonRenewable()
-			count++ 
-		}
-		
-		if (checkResources) {
-			job.mode = shorterMode			
-			project.resourceAvailabilities = resetProjectResourceAvailabilities(job, ra)
-		}		
+        println "Doidera depois de remover: " + project.resourceAvailabilities.toStringNonRenewable()
+
+        def checkResources = modeOperations.checkNonRenewableResources(project.resourceAvailabilities, shorterMode)
+        if (checkResources) {
+            modeOperations.addingNonRenewableResources(project.resourceAvailabilities, shorterMode)
+            job.mode = shorterMode
+            println "Doidera depois de adicionar shorter: " + project.resourceAvailabilities.toStringNonRenewable()
+        } else {
+            modeOperations.addingNonRenewableResources(project.resourceAvailabilities, job.mode)
+            println "Doidera depois de adicionar o mesmo: " + project.resourceAvailabilities.toStringNonRenewable()
+        }
 		
 		return checkResources
-	}
-	
-	/**
-	 * reseting the resource amounts to check the NR restrictions again
-	 * @param job
-	 * @param ra
-	 */
-	def resetProjectResourceAvailabilities(Job job, ResourceAvailabilities ra) {
-		def count = 0
-		
-		job.mode.nonRenewable.each {
-			ra.remainingNonRenewableAmount[count] = ra.nonRenewableInitialAmount[count]
-			ra.nonRenewableConsumedAmount[count] = 0
-			count++
-		}
-		
-		return ra
 	}
 }

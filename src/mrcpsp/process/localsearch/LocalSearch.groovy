@@ -93,10 +93,10 @@ class LocalSearch {
 				def neighborProject = lnrc.changeExecutionModeJob(bestProject, job.id);
 				
 				if (neighborProject) {
-                    println "Changing the job " + job.id + " mode: " + neighborProject.staggeredJobs.find{it.id == job.id}.mode.id + " makespan: " + neighborProject.makespan + " best makespan: " + bestProject.makespan
                     mmProcessor.project = neighborProject
                     mmProcessor.executeGetJobTimes()
 					mmProcessor.setProjectMakespan()
+                    println "Changing the job " + job.id + " mode: " + neighborProject.staggeredJobs.find{it.id == job.id}.mode.id + " makespan: " + neighborProject.makespan + " best makespan: " + bestProject.makespan
 				}
 
 				if (neighborProject) {
