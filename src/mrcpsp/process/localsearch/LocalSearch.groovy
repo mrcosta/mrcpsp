@@ -4,6 +4,7 @@ import mrcpsp.model.enums.EnumLocalSearch
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
 import mrcpsp.process.MmProcessor
+import mrcpsp.process.job.JobOperations
 import mrcpsp.utils.PropertyConstants
 import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Level
@@ -18,10 +19,12 @@ class LocalSearch {
 	boolean checkSolution
 	MmProcessor mmProcessor
     LowerNonRenewableConsumption lnrc
+    JobOperations jobOperations
 
     LocalSearch() {
 		mmProcessor = new MmProcessor()
-        lnrc = new LowerNonRenewableConsumption();
+        lnrc = new LowerNonRenewableConsumption()
+        jobOperations = new JobOperations()
 	}
 	
 	def Project executeLocalSearch(Project project) {
@@ -33,10 +36,16 @@ class LocalSearch {
         log.info("LOCAL SEARCH: " + localSearch)
         switch (localSearch) {
             case EnumLocalSearch.LNRC.name:
-                lowerNonRenewableComsumption(project)
+                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+                lowerNonRenewableComsumption(project, realJobs)
                 break
             case EnumLocalSearch.LNRCCP.name:
-                criticalPathLowerNonRenewableComsumption(project)
+                def realJobs = jobOperations.getOnlyRealJobs(project.criticalPath, project.instanceInformation.jobsAmount)
+                lowerNonRenewableComsumption(project, realJobs)
+                break
+            case EnumLocalSearch.BSFM.name:
+                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+                jobsBlockSFM(project, realJobs)
                 break
             default:
                 log.log(Level.ERROR, "LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
@@ -50,44 +59,16 @@ class LocalSearch {
             return null
         }
 	}
-
-    /**
-     * while i have better neighbors, i should do a new local search
-     * for each job in the critical path i changed it's mode and check what is the best
-     * @param project
-     */
-    private void criticalPathLowerNonRenewableComsumption(Project project) {
-        while (checkSolution) {
-            def realJobs = getOnlyRealJobs(project.criticalPath, project.instanceInformation.jobsAmount)
-
-            realJobs.each { job ->
-                def neighborProject = lnrc.changeExecutionModeJob(bestProject, project.staggeredJobs.findIndexOf {it.id == job.id});
-
-                if (neighborProject) {
-                    mmProcessor.project = neighborProject
-                    mmProcessor.executeGetJobTimes()
-                    mmProcessor.setProjectMakespan()
-                }
-
-                if (neighborProject) {
-                    checkBestNeighbor(neighborProject);
-                }
-            }
-
-            checkBestSolution(bestNeighbor, project)
-        }
-    }
 	
 	/**
 	 * while i have better neighbors, i should do a new local search
 	 * for each job in the project i changed it's mode and check what is the best
 	 * @param project
 	 */
-	private void lowerNonRenewableComsumption(Project project) {
+	private void lowerNonRenewableComsumption(Project project, List<Job> jobs) {
 		while (checkSolution) {
-			def realJobs = getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
 
-            realJobs.each { job ->
+            jobs.each { job ->
 				def neighborProject = lnrc.changeExecutionModeJob(bestProject, job.id);
 				
 				if (neighborProject) {
@@ -104,6 +85,15 @@ class LocalSearch {
 			checkBestSolution(bestNeighbor, project)
 		}		
 	}
+
+    private void jobsBlockSFM(Project project, List<Job> jobs) {
+        while (checkSolution) {
+
+            jobs.each { job ->
+
+            }
+        }
+    }
 	
 	private void checkBestNeighbor(Project project) {
 		if (!bestNeighbor || bestNeighbor.makespan == PropertyConstants.INSTANCE_MAKESPAN_ERROR) {
@@ -118,16 +108,11 @@ class LocalSearch {
 	private void checkBestSolution(Project bestNeighbor, Project project) {
 		if (bestNeighbor.makespan < bestProject.makespan) {
 			bestProject = bestNeighbor
-			log.info("LOOKING FOR A BETTER SOLUTION")
-			log.info("FILE: " + project.fileName + " - INITIAL SOLUTION MAKESPAN: " + project.makespan)
-			log.info("FILE: " + bestProject.fileName + " - NEIGHBOR MAKESPAN: " + bestProject.makespan)
+			log.info("LOOKING FOR A BETTER SOLUTION - FILE: " + project.fileName + " - INITIAL SOLUTION MAKESPAN: " + project.makespan)
+			log.info("LOOKING FOR A BETTER SOLUTION - FILE: " + bestProject.fileName + " - NEIGHBOR MAKESPAN: " + bestProject.makespan)
 		} else  {
 			checkSolution = false
 		}
 	}
-
-    private List<Job> getOnlyRealJobs(List<Job> jobs, Integer lastJobId) {
-        return jobs.findAll{ job -> ![1, lastJobId].contains(job.id) }
-    }
 
 }

@@ -1,12 +1,11 @@
 package mrcpsp.process.localsearch
 
-import mrcpsp.process.localsearch.LowerNonRenewableConsumption
-import spock.lang.Specification
-
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
+import mrcpsp.model.main.ModesInformation
 import mrcpsp.model.main.Project
 import mrcpsp.model.main.ResourceAvailabilities
+import spock.lang.Specification
 
 class LowerNonRenewableConsumptionSpec extends Specification {
 	
@@ -17,15 +16,15 @@ class LowerNonRenewableConsumptionSpec extends Specification {
 	def setup() {
 		job1 = new Job(id: 1, mode: new Mode(nonRenewable: [0, 0]), availableModes: [new Mode(nonRenewable: [0, 0])])
 		job3 = new Job(id: 3, mode: new Mode(nonRenewable: [3, 0]), availableModes: [new Mode(nonRenewable: [0, 8])])
-		job5 = new Job(id: 5, mode: new Mode(nonRenewable: [6, 0]), availableModes: [new Mode(nonRenewable: [0, 10])])
+		job5 = new Job(id: 5, mode: new Mode(nonRenewable: [6, 0]), availableModes: [new Mode(id: 1, nonRenewable: [0, 10])], modesInformation: new ModesInformation(shorter: 1))
 		job2 = new Job(id: 2, mode: new Mode(nonRenewable: [0, 4]), availableModes: [new Mode(nonRenewable: [9, 0])])
 		job9 = new Job(id: 9, mode: new Mode(nonRenewable: [0, 1]), availableModes: [new Mode(nonRenewable: [0, 2])])
-		job4 = new Job(id: 4, mode: new Mode(nonRenewable: [2, 0]), availableModes: [new Mode(nonRenewable: [0, 5])])
+		job4 = new Job(id: 4, mode: new Mode(nonRenewable: [2, 0]), availableModes: [new Mode(id: 1, nonRenewable: [0, 5])], modesInformation: new ModesInformation(shorter: 1))
 		job6 = new Job(id: 6, mode: new Mode(nonRenewable: [4, 0]), availableModes: [new Mode(nonRenewable: [4, 0])])
-		job8 = new Job(id: 8, mode: new Mode(nonRenewable: [0, 6]), availableModes: [new Mode(nonRenewable: [7, 0])])
+		job8 = new Job(id: 8, mode: new Mode(nonRenewable: [0, 6]), availableModes: [new Mode(id: 1, nonRenewable: [7, 0])], modesInformation: new ModesInformation(shorter: 1))
 		job7 = new Job(id: 7, mode: new Mode(nonRenewable: [0, 5]), availableModes: [new Mode(nonRenewable: [0, 5])])
-		job11 = new Job(id: 11, mode: new Mode(nonRenewable: [0, 7]), availableModes: [new Mode(nonRenewable: [8, 0])])
-		job10 = new Job(id: 10, mode: new Mode(nonRenewable: [2, 0]), availableModes: [new Mode(nonRenewable: [0, 9])])
+		job11 = new Job(id: 11, mode: new Mode(nonRenewable: [0, 7]), availableModes: [new Mode(id: 1, nonRenewable: [8, 0])], modesInformation: new ModesInformation(shorter: 1))
+		job10 = new Job(id: 10, mode: new Mode(nonRenewable: [2, 0]), availableModes: [new Mode(id: 1, nonRenewable: [0, 9])], modesInformation: new ModesInformation(shorter: 1))
 		job12 = new Job(id: 12, mode: new Mode(nonRenewable: [0, 0]), availableModes: [new Mode(nonRenewable: [0, 0])])
 		
 		jobs = [job1, job3, job5, job2, job9, job4, job6, job8, job7, job11, job10, job12]
@@ -38,20 +37,20 @@ class LowerNonRenewableConsumptionSpec extends Specification {
 		def lnrr = new LowerNonRenewableConsumption()
 		
 		when:
-		def result = lnrr.checkNonRenewableResourcesRestriction(project, jobPosition)
+		def result = lnrr.checkNonRenewableResourcesRestriction(project, jobId)
 		
 		then:
 		result == check
 		project.resourceAvailabilities.remainingNonRenewableAmount == remainingNonRenewableAmount
 		project.resourceAvailabilities.nonRenewableConsumedAmount == nonRenewableConsumedAmount
-		project.staggeredJobs[jobPosition].mode.nonRenewable == modeNonRenewable
+		project.staggeredJobs.find{ it.id == jobId}.mode.nonRenewable == modeNonRenewable
 		
-		where:                                                                                
-		jobPosition		| remainingNonRenewableAmount | nonRenewableConsumedAmount  | check  | modeNonRenewable
-		2				| [12, 7]               	  |	[17, 23]					| false  | [6, 0]
-		5				| [29, 30]             	      | [0, 0]  					| true   | [0, 5]
-		7				| [29, 30] 			  		  |	[0, 0]	    				| true   | [7, 0]
-		9				| [29, 30] 			  		  | [0, 0]  					| true   | [8, 0]
+		where:
+        jobId		    | remainingNonRenewableAmount | nonRenewableConsumedAmount  | check  | modeNonRenewable
+		5				| [12, 7]               	  |	[17, 23]					| false  | [6, 0]
+		4				| [14, 2]             	      | [15, 28]  					| true   | [0, 5]
+		8				| [5, 13] 			  		  |	[24, 17]	    			| true   | [7, 0]
+		11				| [4, 14] 			  		  | [25, 16]  					| true   | [8, 0]
 		10				| [12, 7]            		  |	[17, 23]					| false  | [2, 0]
 	}
 

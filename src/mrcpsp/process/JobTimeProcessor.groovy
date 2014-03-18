@@ -2,6 +2,7 @@ package mrcpsp.process
 
 import mrcpsp.model.main.Job;
 import mrcpsp.model.main.ResourceAvailabilities
+import mrcpsp.process.job.JobOperations
 import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.mode.ModeOperations;
 import mrcpsp.utils.CloneUtils;
@@ -15,10 +16,12 @@ class JobTimeProcessor {
 
     ModeOperations modeOperations
     JobPriorityRulesOperations jobPriorityRulesOperations
+    JobOperations jobOperations
 
     JobTimeProcessor() {
         modeOperations = new ModeOperations()
         jobPriorityRulesOperations = new JobPriorityRulesOperations()
+        jobOperations = new JobOperations()
     }
 
 	List<Job> getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
@@ -44,7 +47,7 @@ class JobTimeProcessor {
         jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
 
         //get all the jobs that was already scheduled
-        ra.scheduledJobs = getJobsBetweenInterval(jobToSchedule, jobs)
+        ra.scheduledJobs = jobOperations.getJobsBetweenInterval(jobToSchedule, jobs)
 
         ra.scheduledJobs?.each {
             modeOperations.addingRenewableResources(ra, it.mode)
@@ -62,7 +65,7 @@ class JobTimeProcessor {
 	}
 
     Job setTimeJobWithPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
-        List<Job> jobPredecessors = getJobPredecessors(jobToSchedule, jobs)
+        List<Job> jobPredecessors = jobOperations.getJobPredecessors(jobToSchedule, jobs)
         jobPredecessors = jobPriorityRulesOperations.getJobListOrderByEndTime(jobPredecessors)
 
         Job latestJob = jobPredecessors.last()
@@ -70,7 +73,7 @@ class JobTimeProcessor {
         jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
 
         //get all the jobs that was already scheduled
-        ra.scheduledJobs = getJobsBetweenInterval(jobToSchedule, jobs)
+        ra.scheduledJobs = jobOperations.getJobsBetweenInterval(jobToSchedule, jobs)
 
         ra.scheduledJobs?.each {
             modeOperations.addingRenewableResources(ra, it.mode)
@@ -89,21 +92,6 @@ class JobTimeProcessor {
 
         log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}\n")
         return jobToSchedule
-    }
-
-    List<Job> getJobsBetweenInterval(Job jobToSchedule, List<Job> jobs) {
-        return jobs.findAll{ job ->
-            (job.id != jobToSchedule.id) && (job.startTime < jobToSchedule.endTime) && (job.endTime > jobToSchedule.startTime) && (job.endTime > 0)
-        }
-    }
-
-    /**
-     * the second criteria is the job's order in the list
-     */
-    List<Job> getJobPredecessors(Job jobToSchedule, List<Job> jobs) {
-        return jobs.findAll{ job ->
-            jobToSchedule.predecessors.contains(job.id)
-        }
     }
 
     Job setJobTimeUsingScheduledJobs(ResourceAvailabilities ra, Job jobToSchedule) {

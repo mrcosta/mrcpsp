@@ -31,8 +31,6 @@ class LocalSearchSpec extends Specification {
         staggeredJobs = [job1, job2, job3, job4, job5, job6, job7, job8, job9, job10, job11, job12]
         criticalPath = [job12, job10, job8, job6, job5, job3, job1]
         project = new Project(staggeredJobs: staggeredJobs, criticalPath: criticalPath, makespan: 37, fileName: "test.txt")
-
-
     }
 
     def "Should try to change the job's mode only for the ones that are in the critical path"() {
@@ -45,16 +43,14 @@ class LocalSearchSpec extends Specification {
         localSearch.lnrc = Mock(LowerNonRenewableConsumption)
 
         when:
-        localSearch.criticalPathLowerNonRenewableComsumption(project)
+        localSearch.lowerNonRenewableComsumption(project, project.criticalPath)
 
         then:
-        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 11) >> null
-        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 9) >> null
-        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 7)  >> null
+        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 10) >> null
+        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 8)  >> null
+        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 6)  >> null
         1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 5)  >> null
-        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 4)  >> null
-        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 2)  >> null
-        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 0)  >> null
+        1 * localSearch.lnrc.changeExecutionModeJob(localSearch.bestProject, 3)  >> null
     }
 
 
