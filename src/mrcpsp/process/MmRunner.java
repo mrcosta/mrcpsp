@@ -1,7 +1,5 @@
 package mrcpsp.process;
 
-import mrcpsp.process.ExecutionTypeProcessor;
-
 /**
  * @author mrcosta
  * 

@@ -26,7 +26,9 @@ class JobTimeProcessor {
 
 	List<Job> getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
 		boolean checkResources = false
-		
+
+        ra.resetRenewableResources()
+
 		jobs.each { job ->
 			log.debug("Getting start and finish time - JOB: $job.id")
 

@@ -2,6 +2,7 @@ package mrcpsp.process.localsearch
 
 import mrcpsp.model.enums.EnumLocalSearch
 import mrcpsp.model.main.Job
+import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
 import mrcpsp.process.MmProcessor
 import mrcpsp.process.job.JobOperations
@@ -65,7 +66,7 @@ class LocalSearch {
 	 * for each job in the project i changed it's mode and check what is the best
 	 * @param project
 	 */
-	private void lowerNonRenewableComsumption(Project project, List<Job> jobs) {
+	void lowerNonRenewableComsumption(Project project, List<Job> jobs) {
 		while (checkSolution) {
 
             jobs.each { job ->
@@ -86,12 +87,26 @@ class LocalSearch {
 		}		
 	}
 
-    private void jobsBlockSFM(Project project, List<Job> jobs) {
+    void jobsBlockSFM(Project project, List<Job> jobs) {
+        ShortestFeasibleModeLS sfmLS = new ShortestFeasibleModeLS()
+
         while (checkSolution) {
 
             jobs.each { job ->
+                def neighborProject = sfmLS.changeExecutionModeBlockJob(bestProject, job.id)
 
+                if (neighborProject) {
+                    mmProcessor.project = neighborProject
+                    mmProcessor.executeGetJobTimes()
+                    mmProcessor.setProjectMakespan()
+                }
+
+                if (neighborProject) {
+                    checkBestNeighbor(neighborProject);
+                }
             }
+
+            checkBestSolution(bestNeighbor, project)
         }
     }
 	

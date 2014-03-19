@@ -29,6 +29,14 @@ class ResourceAvailabilities {
         scheduledJobs = []
 	}
 
+    def resetRenewableResources() {
+        this.renewableConsumedAmount.each {
+            it = 0
+        }
+
+        this.remainingRenewableAmount = this.renewableInitialAmount
+    }
+
 	@Override
 	public String toString() {
 		return """ResourceAvailabilities [renewableInitialAmount: $renewableInitialAmount, nonRenewableInitialAmount: $nonRenewableInitialAmount, renewableConsumedAmount: $renewableConsumedAmount, nonRenewableConsumedAmount: $nonRenewableConsumedAmount] """
