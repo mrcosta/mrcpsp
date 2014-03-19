@@ -34,7 +34,13 @@ class ResourceAvailabilities {
             it = 0
         }
 
-        this.remainingRenewableAmount = this.renewableInitialAmount
+        def count = 0
+        this.remainingRenewableAmount.each {
+            it = this.renewableInitialAmount[count]
+            count++
+        }
+
+        this.scheduledJobs = []
     }
 
 	@Override

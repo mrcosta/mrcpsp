@@ -47,11 +47,6 @@ class Job {
 		endTime = 0;
 	}
 
-    def resetTime() {
-        this.startTime = 0
-        this.endTime = 0
-    }
-
 	@Override
 	public String toString() {
 		return """Job [id: $id, modesAmount: $modesAmount, successorsAmount: $successorsAmount, predecessorsAmount: $predecessorsAmount, successors: $successors, predecessors: $predecessors, staggeredPredecessors: $runningJobInformation.staggeredPredecessors, {Start, End} =  { $startTime, $endTime }"""
