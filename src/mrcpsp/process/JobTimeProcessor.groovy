@@ -28,10 +28,8 @@ class JobTimeProcessor {
 		boolean checkResources = false
 
         ra.resetRenewableResources()
-        jobs.each {
-            it.startTime = 0
-            it.endTime = 0
-        }
+        jobs*.startTime = 0
+        jobs*.endTime = 0
 
 		jobs.each { job ->
 			log.debug("Getting start and finish time - JOB: $job.id")

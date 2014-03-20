@@ -30,15 +30,10 @@ class ResourceAvailabilities {
 	}
 
     def resetRenewableResources() {
-        this.renewableConsumedAmount.each {
-            it = 0
-        }
+        this.renewableConsumedAmount.each { it = 0 }
 
-        def count = 0
-        this.remainingRenewableAmount.each {
-            it = this.renewableInitialAmount[count]
-            count++
-        }
+        this.remainingRenewableAmount.clear()
+        this.remainingRenewableAmount.addAll(this.renewableInitialAmount)
 
         this.scheduledJobs = []
     }
