@@ -38,21 +38,25 @@ class ShortestFeasibleModeLS {
         def jobsBetweenInterval = jobOperations.getJobsBetweenInterval(job, project.staggeredJobs)
         jobsBetweenInterval.add(0, job)
 
-        jobsBetweenInterval.each {
-            modeOperations.removingNonRenewableResources(project.resourceAvailabilities, it.mode)
-        }
+        def checkModes = jobsBetweenInterval.findAll { it.mode.id == it.modesInformation.shorter }.size() == jobsBetweenInterval.size()
 
-        sfm.sfm([:], project.resourceAvailabilities, jobsBetweenInterval, false, 0)
+        if (!checkModes) {
+            jobsBetweenInterval.each {
+                modeOperations.removingNonRenewableResources(project.resourceAvailabilities, it.mode)
+            }
 
-        sfm.jobModes.each { key, value ->
-            Job jobToChange = jobsBetweenInterval.find { it.id == key}
-            Mode mode = jobToChange.availableModes.find { it.id == value}
+            sfm.sfm([:], project.resourceAvailabilities, jobsBetweenInterval, false, 0)
 
-            jobToChange.mode = mode
-        }
+            sfm.jobModes.each { key, value ->
+                Job jobToChange = jobsBetweenInterval.find { it.id == key}
+                Mode mode = jobToChange.availableModes.find { it.id == value}
 
-        jobsBetweenInterval.each {
-            modeOperations.addingNonRenewableResources(project.resourceAvailabilities, it.mode)
+                jobToChange.mode = mode
+            }
+
+            jobsBetweenInterval.each {
+                modeOperations.addingNonRenewableResources(project.resourceAvailabilities, it.mode)
+            }
         }
     }
 
