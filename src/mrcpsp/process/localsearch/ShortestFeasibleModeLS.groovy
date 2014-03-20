@@ -6,6 +6,7 @@ import mrcpsp.model.main.Project
 import mrcpsp.process.job.JobOperations
 import mrcpsp.process.mode.ModeOperations
 import mrcpsp.process.mode.ShortestFeasibleMode
+import mrcpsp.utils.ChronoWatch
 import mrcpsp.utils.CloneUtils
 
 /**
@@ -24,7 +25,9 @@ class ShortestFeasibleModeLS {
     }
 
     def Project changeExecutionModeBlockJob(Project project, jobId) {
+        ChronoWatch.instance.pauseSolutionTime()
         Project neighborProject = CloneUtils.cloneProject(project)
+        ChronoWatch.instance.startSolutionTime()
 
         if (checkShortestFeasibleMode(neighborProject, jobId)) {
             return neighborProject

@@ -5,6 +5,7 @@ import mrcpsp.model.enums.EnumLogUtils;
 import mrcpsp.model.main.Job;
 import mrcpsp.model.main.RunningJobInformation;
 import mrcpsp.process.job.JobPriorityRulesOperations;
+import mrcpsp.utils.ChronoWatch;
 import mrcpsp.utils.CloneUtils;
 import mrcpsp.utils.LogUtils;
 import mrcpsp.utils.UrlUtils;
@@ -36,9 +37,11 @@ public class InitialSolutionsOperations {
 
 			if (job.getPredecessors().size() == job.getRunningJobInformation().getStaggeredPredecessors().size() &&
 			    !job.getRunningJobInformation().isEligible()) {
-				
+
+                ChronoWatch.getInstance().pauseSolutionTime();
 				eligibleJobsList.add(CloneUtils.cloneJob(job));
 				job.getRunningJobInformation().setEligible(true);
+                ChronoWatch.getInstance().startSolutionTime();
 
 				log.debug("The job with id " + job.getId() + " was included in the Eligible Jobs List.");
 			}

@@ -15,114 +15,122 @@ public final class UrlUtils {
 		return instance
 	}
 	
-	public static UrlUtils getInstance() {
+	static UrlUtils getInstance() {
 		if (instance == null) {
 			createNewInstance()
 		}
 		return instance
 	}
 	
-	public String getUrlForInstanceFile() {
+	String getUrlForInstanceFile() {
 		return PropertyConstants.INSTANCE_BASE_URL + 
 			   PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCES_FOLDER)
 	}
 	
-	public Integer getStartLineJobs() {
+	Integer getStartLineJobs() {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.START_LINE_JOBS))
 	}
 	
-	public Integer getStartLineModes() {
+	Integer getStartLineModes() {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.START_LINE_MODES))
 	}
 	
-	public Integer getStartLineResourceAvailabilities() {
+	Integer getStartLineResourceAvailabilities() {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.START_LINE_RESOURCES_AVAILABILITIES))
 	}
 	
-	public Integer getRCLSize() {
+	Integer getRCLSize() {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.RCL_SIZE))
 	}
 	
-	public String getJobsMode() {
+	String getJobsMode() {
 		return PropertyManager.getInstance().getProperty(PropertyConstants.MODE_JOBS)
 	}
 	
-	public String getJobPriorityRule() {
+	String getJobPriorityRule() {
 		return PropertyManager.getInstance().getProperty(PropertyConstants.JOB_PRIORITY_RULE)
 	}
 	
-	def String getExecutionType() {
+	String getExecutionType() {
 		return PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTION_TYPE)
 	}
 	
-	public String getExecutionTimes() {
+	String getExecutionTimes() {
 		return PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTION_TIMES)
 	}
 	
-	public Integer getHasThread() {
+	Integer getHasThread() {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.HAS_THREAD))
 	}
 	
-	public String getLocalSearch() {
+	String getLocalSearch() {
 		return PropertyManager.getInstance().getProperty(PropertyConstants.LOCAL_SEARCH)
 	}
 	
-	public Integer getExecuteLocalSearch() {
+	Integer getExecuteLocalSearch() {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTE_LOCAL_SEARCH))
 	}
 	
-	public String getUrlForResultsFileToOneInstance(String fileName) {
+	String getUrlForResultsFileToOneInstance(String fileName) {
 		String pathFolder = PropertyConstants.RESULTS_PATH
-		String nameFile = fileName + "_results.txt"
+		String nameFile = fileName
 		
 		return FileUtils.createDirectory(pathFolder) + "/" + nameFile
 	}
 	
-	public String getUrlForInstance() {
+	String getUrlForInstance() {
 		return PropertyConstants.INSTANCE_BASE_URL + 
 			   PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCES_FOLDER)
 	}
 	
-	public String getUrlForResultsFileToAllInstances() {
+	String getUrlForResultsFileToAllInstances() {
 		String pathFolder = PropertyConstants.RESULTS_PATH
 		String nameFile = "results.txt"
 		
 		return FileUtils.createDirectory(pathFolder) + "/" + nameFile
 	}
 	
-	public Integer getExecuteLocalSearchEverySolution() {
+	Integer getExecuteLocalSearchEverySolution() {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.LOCAL_SEARCH_EVERY_SOLUTION))
 	}
 
-    public Integer getGenerateDiagram() {
+    Integer getGenerateDiagram() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.GENERATE_DIAGRAM))
     }
 
-    public String getDiagramPath() {
+    String getDiagramPath() {
         return PropertyManager.getInstance().getProperty(PropertyConstants.DIAGRAM_PATH)
     }
 
-    public Integer getShowPredecessors() {
+    Integer getShowPredecessors() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_PREDECESSORS))
     }
 
-    public Integer getModeShorterNearToLowerNrPercentage() {
+    Integer getModeShorterNearToLowerNrPercentage() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODE_SHORTER_NEAR_TO_LOWER_NR_PERCENTAGE))
     }
 
-    public Integer getModeShorterNearToLowerNrUnit() {
+    Integer getModeShorterNearToLowerNrUnit() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT))
     }
 
-    public Integer getWriteLowerBoundForAllInstances() {
+    Integer getWriteLowerBoundForAllInstances() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.WRITE_LOWERBOUND))
     }
 
-    public Integer getShowCriticalPath() {
+    Integer getShowCriticalPath() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_CRITICAL_PATH))
     }
 
-    public Integer getShowLowerBound() {
+    Integer getShowLowerBound() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_LOWER_BOUND))
+    }
+
+    public String getTestName() {
+        return PropertyManager.getInstance().getProperty(PropertyConstants.TEST_NAME)
+    }
+
+    public String getTestDescription() {
+        return PropertyManager.getInstance().getProperty(PropertyConstants.TEST_DESCRIPTION)
     }
 }

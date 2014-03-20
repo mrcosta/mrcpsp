@@ -14,36 +14,54 @@ class ChronoWatch {
 	long start;
 	long finish;
 	long time;
-	String name;
-	
-	private ChronoWatch(String name) {
-		this.name = name;
-	}
-	
-	public static ChronoWatch getInstance(String name) {
+
+    long startSolution
+    long finishSolution
+    long timeSolution
+    long totalTimeSolution
+    String totalTimeSolutionFormated
+
+	static ChronoWatch getInstance() {
 		
 		if (instance == null) {
-			instance = new ChronoWatch(name);
-		}
-		
-		instance.name = name;
-		return instance;
+			return instance = new ChronoWatch();
+		} else {
+            return instance
+        }
 	}
 	
-	public ChronoWatch start() {
-		this.start = System.currentTimeMillis();
-		this.finish = 0;
-		this.time = 0;		
-		return this;
+	def start() {
+		start = System.currentTimeMillis();
+		finish = 0;
+		time = 0;
 	}
 	
-	public String time() {
-		this.finish = System.currentTimeMillis()
-		this.time = finish - start
+	def String getTime() {
+		finish = System.currentTimeMillis()
+		time = finish - start
         def sfm
 
         sfm = new SimpleDateFormat("mm:ss:SSS").format(new Date(time))
 
-		return "$name DONE($time ms) - TIME: $sfm"
+		return "$time--$sfm"
 	}
+
+    def startSolutionTime() {
+        startSolution = System.currentTimeMillis();
+        finishSolution = 0;
+        timeSolution = 0;
+    }
+
+    def pauseSolutionTime() {
+        finishSolution = System.currentTimeMillis()
+        timeSolution = finishSolution - startSolution
+        totalTimeSolution+= timeSolution
+
+        def sfm
+
+        sfm = new SimpleDateFormat("mm:ss:SSS").format(new Date(totalTimeSolution))
+        totalTimeSolutionFormated = "$totalTimeSolution--$sfm"
+
+        return totalTimeSolutionFormated
+    }
 }

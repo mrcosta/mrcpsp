@@ -13,7 +13,6 @@ class ExecutionTypeProcessor {
 	static final Logger log = Logger.getLogger(MmProcessor.class)
 	ResultsProcessor resultsProcessor
 	MmProcessor mmProcessor
-	ChronoWatch watch
     def executionType;
     def hasThread;
 
@@ -31,7 +30,7 @@ class ExecutionTypeProcessor {
 		
 		removeOldResultFiles()
 		SystemUtils.getSystemInformation()
-		watch = ChronoWatch.getInstance("MRCPSP Execution").start()
+		ChronoWatch.instance.start()
 		
 		if (executionType == EnumExecutionTypes.ONE_FILE.name) {
 			executeOneFile()
@@ -67,8 +66,8 @@ class ExecutionTypeProcessor {
 		
 		executeAll(fileName)
         checkGenerateDiagram()
-		
-		printResultAndTimeToFile(watch, fileName)
+        println ChronoWatch.instance.time
+        println ChronoWatch.instance.totalTimeSolutionFormated
 	}
 
 	public void executeOneFileTimes() {
@@ -84,7 +83,7 @@ class ExecutionTypeProcessor {
 		executeLocalSearch()
 		
 		resultsProcessor.writeLowerMakespanToOneInstance(fileName)
-		printResultAndTimeToFile(watch, fileName)
+		//printResultAndTimeToFile(watch, fileName)
 	}
 
 	public void executeAllFiles() {
@@ -128,7 +127,7 @@ class ExecutionTypeProcessor {
 	private void executeAll(String fileName) {
 		mmProcessor.initialSolutionWithGrasp(fileName)	
 		checkLocalSearchExecutionEverySolution();
-		mmProcessor.executeWriteResults()
+        mmProcessor.executeWriteResults()
 	}
 	
 	private void executeLocalSearch() {
@@ -163,13 +162,6 @@ class ExecutionTypeProcessor {
             }
         }
     }
-	
-	private void printResultAndTimeToFile(ChronoWatch watch, String fileName) {
-		// finish
-		String timeString = watch.time()
-		resultsProcessor.writeRunningTimeToResultFile(timeString, fileName)
-		log.info(timeString)
-	}
 
 	private void printResultAndTimeToFileAllInstances(ChronoWatch watch) {
 		// finish

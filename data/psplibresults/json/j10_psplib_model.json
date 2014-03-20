@@ -1,6 +1,6 @@
 {
     "executionType": "READ_PSPLIB_INSTANCE",
-    "instance.folder": "/data/j10.mm",
+    "instanceFolder": "/data/j10.mm",
     "localSearchType": "BSFM",
     "instance": "j10",
     "testName": "teste do mateus",

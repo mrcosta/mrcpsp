@@ -5,7 +5,6 @@ import java.util.List;
 import mrcpsp.model.main.Job;
 import mrcpsp.model.main.Mode;
 import mrcpsp.model.main.Project;
-import mrcpsp.model.main.ResourceAvailabilities;
 import com.esotericsoftware.kryo.Kryo;
 
 /**
@@ -33,13 +32,6 @@ public final class CloneUtils {
 		List<Mode> modeListCloned = kryo.copy(modeListToClone);
 		
 		return modeListCloned;
-	}
-	
-	public static ResourceAvailabilities cloneResourceAvailabilities(ResourceAvailabilities raToClone) {
-		Kryo kryo = new Kryo();	    
-		ResourceAvailabilities raCloned = kryo.copy(raToClone);
-		
-		return raCloned;
 	}
 
 }

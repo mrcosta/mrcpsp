@@ -4,7 +4,8 @@ import mrcpsp.model.main.Job;
 import mrcpsp.model.main.Mode;
 import mrcpsp.model.main.Project;
 import mrcpsp.model.main.ResourceAvailabilities
-import mrcpsp.process.mode.ModeOperations;
+import mrcpsp.process.mode.ModeOperations
+import mrcpsp.utils.ChronoWatch;
 import mrcpsp.utils.CloneUtils;
 
 class LowerNonRenewableConsumption {
@@ -16,7 +17,9 @@ class LowerNonRenewableConsumption {
     }
 
 	def Project changeExecutionModeJob(Project project, jobId) {
-		Project neighborProject = CloneUtils.cloneProject(project)
+        ChronoWatch.instance.pauseSolutionTime()
+        Project neighborProject = CloneUtils.cloneProject(project)
+        ChronoWatch.instance.startSolutionTime()
 		
 		if (checkNonRenewableResourcesRestriction(neighborProject, jobId)) {
 			return neighborProject

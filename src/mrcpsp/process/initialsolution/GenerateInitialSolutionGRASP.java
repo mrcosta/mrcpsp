@@ -5,10 +5,7 @@ import mrcpsp.model.main.Job;
 import mrcpsp.model.main.Project;
 import mrcpsp.process.job.JobOperations;
 import mrcpsp.process.job.JobPriorityRulesOperations;
-import mrcpsp.utils.CloneUtils;
-import mrcpsp.utils.LogUtils;
-import mrcpsp.utils.PropertyConstants;
-import mrcpsp.utils.UrlUtils;
+import mrcpsp.utils.*;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -61,7 +58,9 @@ public class GenerateInitialSolutionGRASP {
 			if (!rcl.isEmpty()) {				
 				// randomize a job to be scheduled
 				randomizedJob = initialSolutionOperations.getRandomJobFromRCL(rcl);
-				staggeredJobs.add(CloneUtils.cloneJob(randomizedJob));
+                ChronoWatch.getInstance().pauseSolutionTime();
+                staggeredJobs.add(CloneUtils.cloneJob(randomizedJob));
+                ChronoWatch.getInstance().startSolutionTime();
 				
 				// update the staggered predecessors jobs list of the remaining jobs
 				initialSolutionOperations.updateRunningJobInformation(jobs, randomizedJob);
@@ -88,10 +87,12 @@ public class GenerateInitialSolutionGRASP {
 				
 		// add all the eligible jobs to the rclJobsList and doesn't need to order
 		if (rclSize >= sumRCLEligibleJobsList) {
-			
+
+            ChronoWatch.getInstance().pauseSolutionTime();
 			for(Job job : elegibleJobsList) {
 				rclJobsList.add(CloneUtils.cloneJob(job));
 			}
+            ChronoWatch.getInstance().startSolutionTime();
 			
 			log.debug("Was not necessary to order - The RCL SIZE is bigger or equals than the ELIGIBLES JOBS SIZE LIST");
 		} else {
@@ -103,12 +104,14 @@ public class GenerateInitialSolutionGRASP {
 			log.debug(LogUtils.generateJobsIDListLog(eligibleJobs, EnumLogUtils.ELIGIBLE_JOBS));
 			
 			// order the jobs by the criteria (mrcpsp.properties) and add the first ones until the rclJobsList size is equals to rclSize
-			Integer count = PropertyConstants.INDEX_START;
+            ChronoWatch.getInstance().pauseSolutionTime();
+            Integer count = PropertyConstants.INDEX_START;
 			while(rclJobsList.size() != rclSize) {
 				Job job = elegibleJobsList.get(count++);
 				
 				rclJobsList.add(CloneUtils.cloneJob(job));
 			}
+            ChronoWatch.getInstance().startSolutionTime();
 			
 			// back the jobs to the natural order - by the index
 			jprOperations.backOrderEligibleJobsList(elegibleJobsList);

@@ -7,6 +7,7 @@ import mrcpsp.process.initialsolution.GenerateInitialSolutionGRASP
 import mrcpsp.process.initialsolution.LowerBoundProcessor
 import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.localsearch.LocalSearch
+import mrcpsp.utils.ChronoWatch
 import mrcpsp.utils.LogUtils
 import mrcpsp.utils.PropertyConstants
 import mrcpsp.utils.UrlUtils
@@ -213,9 +214,11 @@ class MmProcessor {
 			try {	
 				log.info("==========================================================================")
 				log.info("Executing Local Search . . .")
-				
+
+                ChronoWatch.instance.startSolutionTime()
 				localSearch = new LocalSearch()
 				project = localSearch.executeLocalSearch(project)
+                ChronoWatch.instance.pauseSolutionTime()
 				
 				if (project) {
 					success = true
@@ -328,22 +331,28 @@ class MmProcessor {
 		success = executeGetJobModesInformation()
 
         // getting a mode for each job
+        ChronoWatch.instance.startSolutionTime()
         success = executeJobsModeSelect()
 
         // checking if the restrictions for the NR resources are OK
         success = executeCheckRestrictions()
+        ChronoWatch.instance.pauseSolutionTime()
 
 		// some priority rules can run without runtime information update (like NIS)
 		success = executeJobsPriorityRules()
 		
 		// generating the initial solution
+        ChronoWatch.instance.startSolutionTime()
 		success = executeGenerateInitialSolution()
+        ChronoWatch.instance.pauseSolutionTime()
 
         // getting the lower bound
         success = executeGetLowerBound()
 
+        ChronoWatch.instance.startSolutionTime()
         //getting initial and finish time for jobs and checking the R resources restrictions
         success = executeGetJobTimes()
+        ChronoWatch.instance.pauseSolutionTime()
 		
 		// setting the project makespan
 		success = setProjectMakespan()

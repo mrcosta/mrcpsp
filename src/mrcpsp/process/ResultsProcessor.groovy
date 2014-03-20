@@ -16,7 +16,7 @@ public class ResultsProcessor {
 	private Project lowerProjectMakespan	
 		
 	public void writeResultsToOneInstance(Project project) {
-		String pathFile = UrlUtils.instance.getUrlForResultsFileToOneInstance(project.fileName)
+		String pathFile = UrlUtils.instance.getUrlForResultsFileToOneInstance(UrlUtils.instance.testName)
 		boolean append = true
 		String data = project.fileName +  " MAKESPAN: " + Integer.toString(project.makespan) + LogUtils.getINSTANCE_STATUS() + "\n"
 		

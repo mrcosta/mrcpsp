@@ -43,6 +43,8 @@ public interface PropertyConstants {
     public static final String WRITE_LOWERBOUND = "write.lowerbound.for.all.instances";
     public static final String SHOW_CRITICAL_PATH = "show.critical.path";
     public static final String SHOW_LOWER_BOUND = "show.lower.bound";
+    public static final String TEST_NAME = "test.name";
+    public static final String TEST_DESCRIPTION = "test.description";
 	
 	//############# MRCPSP - TYPE - LOCALSEARCH  #################
 	public static final String LOCAL_SEARCH = "type.localSearch";
