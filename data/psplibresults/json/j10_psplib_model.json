@@ -1,0 +1,38 @@
+{
+    "executionType": "READ_PSPLIB_INSTANCE",
+    "instance.folder": "/data/j10.mm",
+    "localSearchType": "BSFM",
+    "instance": "j10",
+    "testName": "teste do mateus",
+    "totalExecutionTime": "12:30:58",
+    "generalConfig": {
+        "executionTimes" : "should appears only if is ALL_TIMES",
+        "thread": 0,
+        "concurrentPoolSize": 8,
+        "instanceFile": "should appears only if is ONE_FILE or ONE_FILE_TIMES",
+        "executeLocalSearch": 0,
+        "executeLocalSearchEveryInitialSolution": 1,
+        "generateDiagram": 0,
+        "diagramPath": "diagrams",
+        "showPredecessorsInDiagram": 0,
+        "writeLowerBoundForAllInstances": 0,
+        "showCriticalPath": 0,
+        "showLowerBound": 0
+    },
+    "instanceConfig": {
+        "startLineJobs": 18,
+        "startLineModes": 34,
+        "startLineResourceAvailabilities": 69,
+        "rclSize": 3,
+        "jobsMode": "minimum_non_renewable_resources",
+        "shorterModeNearToLowerNRPercentage": 25,
+        "shorterModeNearToLowerNRUnit": 1,
+        "jobPriorityRule": "MAX_NIS"
+    },
+    "results": [
+        {"file": "j1012_1.mm", "makespan": 9, "jobsId": [1, 4, 2, 3, 7, 8, 5, 9], "modesId": [1, 1, 2, 1, 3, 1, 2, 1], "executionTime": "00:01:55" },
+        {"file": "j1012_2.mm", "makespan": 9, "jobsId": [1, 4, 2, 3, 7, 8, 5, 9], "modesId": [1, 1, 2, 1, 3, 1, 2, 1], "executionTime": "00:01:55"  },
+        {"file": "j1012_3.mm", "makespan": 9, "jobsId": [1, 4, 2, 3, 7, 8, 5, 9], "modesId": [1, 1, 2, 1, 3, 1, 2, 1], "executionTime": "00:01:55"  },
+        {"file": "j1012_10.mm", "makespan": 9, "jobsId": [1, 4, 2, 3, 7, 8, 5, 9], "modesId": [1, 1, 2, 1, 3, 1, 2, 1], "executionTime": "00:01:55"  }
+    ]
+}

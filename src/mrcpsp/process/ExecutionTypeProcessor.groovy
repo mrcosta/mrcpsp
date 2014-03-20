@@ -2,6 +2,7 @@ package mrcpsp.process
 
 import mrcpsp.model.enums.EnumExecutionTypes
 import mrcpsp.process.concurrent.MrcpspWorkerPool
+import mrcpsp.results.J30PsplibProcessor
 import mrcpsp.results.PsplibProcessor
 import mrcpsp.utils.*
 import org.apache.log4j.Level
@@ -184,7 +185,12 @@ class ExecutionTypeProcessor {
     def readResultsFromPsplibFile() {
         String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
 
-        PsplibProcessor pp = new PsplibProcessor()
-        pp.readResultsFromFile(fileName)
+        if (fileName != "j30hrs.mm") {
+            PsplibProcessor pp = new PsplibProcessor()
+            pp.readResultsFromFile(fileName)
+        } else {
+            J30PsplibProcessor jpp = new J30PsplibProcessor()
+            jpp.readResultsFromFile(fileName)
+        }
     }
 }

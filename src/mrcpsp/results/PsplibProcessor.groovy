@@ -1,6 +1,9 @@
 package mrcpsp.results
 
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
 import mrcpsp.utils.FileUtils
+import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Logger
 
 /**
@@ -12,25 +15,41 @@ class PsplibProcessor {
 
     static final Integer FIRST_LINE_RESULTS = 26;
     static final Integer LAST_LINE_RESULTS = 666;
+    static final Integer INSTANCE_SET_LINE = 3;
+
+    def resultMap
 
     def readResultsFromFile(String fileName) {
+        resultMap = [:]
         FileUtils fu = new FileUtils()
-        File file = fu.loadFile(fileName)
+        File results = fu.loadFile(fileName)
 
-        log.info("File name: " + file.getName());
+        def instance = fu.getLine(results, INSTANCE_SET_LINE).split(":")[1]
+        addConfigurationToJson(instance)
 
+        log.info("File name: $results.name -- Instance Set: $instance");
+
+        def filesResult = []
         for (int i = FIRST_LINE_RESULTS; i < LAST_LINE_RESULTS; i++) {
-            String line = fu.getLine(file, i)
+            String line = fu.getLine(results, i)
             def lineValues = line.split(",")
 
-            def instanceName = createFileName(fileName, lineValues[0].trim(), lineValues[1].trim())
-            def result = lineValues[2].trim()
+            def file = createFileName(fileName, lineValues[0].trim(), lineValues[1].trim())
+            def makespan = lineValues[2].trim()
 
-            println "instanceName: $instanceName - result: $result"
+            def instanceResult = [:]
+            instanceResult.file = file
+            instanceResult.makespan = makespan
+            instanceResult.executionTime = lineValues[3].trim()
+
+            filesResult.add(instanceResult)
         }
 
+        resultMap.results = filesResult
 
-
+        def jsonText = new JsonBuilder(resultMap).toPrettyString()
+        def allResultFile = new File("data/psplibresults/json" , instance + ".json")
+        FileUtils.writeToFile(allResultFile, jsonText, false)
     }
 
     def createFileName(String fileName, String instance, String parameter) {
@@ -38,5 +57,14 @@ class PsplibProcessor {
         return instanceName+= instance + "_" + parameter + ".mm"
     }
 
+    def addConfigurationToJson(String instance) {
+        resultMap.instanceSet = instance
+        resultMap.executionType = UrlUtils.instance.executionType
+        resultMap.testName = "reading the results from psplib"
 
+        resultMap.instanceConfig = [:]
+        resultMap.instanceConfig.firstLineResults = FIRST_LINE_RESULTS
+        resultMap.instanceConfig.lastLineResults = LAST_LINE_RESULTS
+        resultMap.instanceConfig.instanceSetLine = INSTANCE_SET_LINE
+    }
 }
