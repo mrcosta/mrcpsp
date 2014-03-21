@@ -71,18 +71,10 @@ final class LogUtils {
 		return logString;
 	}
 	
-	String generateErrorLog(stackTraceElement) {
+	def generateErrorLog(def stackTraceElement) {
 		return "\nFile name: " + stackTraceElement[1].fileName
 				+ " - Method: " + stackTraceElement[1].methodName
 				+ " - Line number: " + stackTraceElement[1].lineNumber
-	}
-
-	static String getINSTANCE_STATUS() {
-		return INSTANCE_STATUS;
-	}
-
-	static void setINSTANCE_STATUS(String iNSTANCE_STATUS) {
-		INSTANCE_STATUS = iNSTANCE_STATUS;
 	}
 
 }

@@ -40,7 +40,7 @@ class PsplibProcessor {
 
             def instanceResult = [:]
             resultMap.results."$file" = [:]
-            instanceResult.makespan = makespan
+            instanceResult.makespan = Integer.parseInt(makespan)
             instanceResult.executionTime = lineValues[3].trim()
             resultMap.results."$file" = instanceResult
 

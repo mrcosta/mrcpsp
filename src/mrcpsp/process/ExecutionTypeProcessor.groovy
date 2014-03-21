@@ -1,8 +1,8 @@
 package mrcpsp.process
 
+import mrcpsp.analytics.CompareResults
 import mrcpsp.model.enums.EnumExecutionTypes
 import mrcpsp.model.main.Project
-import mrcpsp.process.concurrent.MrcpspWorkerPool
 import mrcpsp.results.J30PsplibProcessor
 import mrcpsp.results.PsplibProcessor
 import mrcpsp.results.ResultJsonBuilder
@@ -54,6 +54,8 @@ class ExecutionTypeProcessor {
 			
 		} else if (executionType == EnumExecutionTypes.READ_PSPLIB_INSTANCE.name) {
             readResultsFromPsplibFile()
+        } else if (executionType == EnumExecutionTypes.ANALYTICS.name) {
+            generateResults()
         } else {
 			log.log(Level.ERROR, "Argument not supported!" + LogUtils.generateErrorLog(Thread.currentThread().getStackTrace()))
 			throw new IllegalArgumentException("Argument not supported!" + LogUtils.generateErrorLog(Thread.currentThread().getStackTrace()))
@@ -180,5 +182,11 @@ class ExecutionTypeProcessor {
     def printTimeExecution() {
         println "Total time execution: $ChronoWatch.instance.totalTimeExecutionFormated"
         println "Total time to find the solution: $ChronoWatch.instance.totalTimeSolutionFormated"
+    }
+
+    def generateResults() {
+        CompareResults compareResults = new CompareResults()
+
+        compareResults.compareInstances()
     }
 }
