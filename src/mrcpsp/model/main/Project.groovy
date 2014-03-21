@@ -22,6 +22,7 @@ class Project {
 	
 	String fileName
 	String instanceResultStatus
+    String totalTimeSolutionFormated
 
 	public Project() {
 		instanceResultStatus = ""

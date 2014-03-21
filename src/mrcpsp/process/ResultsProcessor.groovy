@@ -1,27 +1,15 @@
 package mrcpsp.process
 
-import org.apache.commons.lang.StringUtils
-
-import mrcpsp.model.enums.EnumExecutionTypes
+import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
-
 import mrcpsp.utils.FileUtils
 import mrcpsp.utils.LogUtils
 import mrcpsp.utils.PropertyConstants
-import mrcpsp.utils.PropertyManager
 import mrcpsp.utils.UrlUtils
 
 public class ResultsProcessor {
 	
-	private Project lowerProjectMakespan	
-		
-	public void writeResultsToOneInstance(Project project) {
-		String pathFile = UrlUtils.instance.getUrlForResultsFileToOneInstance(UrlUtils.instance.testName)
-		boolean append = true
-		String data = project.fileName +  " MAKESPAN: " + Integer.toString(project.makespan) + LogUtils.getINSTANCE_STATUS() + "\n"
-		
-		FileUtils.writeToFile(new File(pathFile), data, append)
-	}
+	Project lowerProjectMakespan
 
 	def boolean getMakespanFromScheduledJobs(Project project, boolean success) {
 		if (success) {
@@ -48,78 +36,8 @@ public class ResultsProcessor {
 		}
 	}
 
-	public void writeLowerMakespanToOneInstance(String fileName) {
-		String pathFile = UrlUtils.getInstance().getUrlForResultsFileToOneInstance(fileName)
-		boolean append = true
-		String data = PropertyManager.instance.getProperty(PropertyConstants.INSTANCE_FILE) + " LOWER MAKESPAN: " + Integer.toString(lowerProjectMakespan.makespan) + LogUtils.getINSTANCE_STATUS() + "\n"
-		
-		FileUtils.writeToFile(new File(pathFile), data, append)		
-	}
-
-	public void writeRunningTimeToResultFile(String data, String fileName) {
-		String pathFile = UrlUtils.instance.getUrlForResultsFileToOneInstance(fileName)
-		boolean append = true
-		
-		FileUtils.writeToFile(new File(pathFile), data, append)	
-	}
-
-	public void checkExecutionTypeToGenerateResults(Project project) {
-		String executionType = UrlUtils.instance.executionType
-				
-		if (StringUtils.equals(executionType, EnumExecutionTypes.ONE_FILE.getName())) {		
-			writeResultsToOneInstance(project)
-		} else if (StringUtils.equals(executionType, EnumExecutionTypes.ALL.getName())) {
-			writeResultsAllFile(project)
-		} 
-		
-	}
-
-	public void writeResultsAllFile(Project project) {
-		String pathFile = UrlUtils.instance.urlForResultsFileToAllInstances
-		boolean append = true
-        Integer writeLowerBoundForAllInstances = UrlUtils.instance.writeLowerBoundForAllInstances
-        String data
-
-        if (writeLowerBoundForAllInstances) {
-            data = "$project.fileName MAKESPAN: $project.makespan $project.instanceResultStatus LOWERBOUND: $project.lowerBound\n"
-        } else {
-            data = "$project.fileName MAKESPAN: $project.makespan $project.instanceResultStatus\n"
-        }
-		
-		FileUtils.writeToFile(new File(pathFile), data, append)		
-	}
-
-	public void writeRunningTimeToResultFileAllInstances(String data) {
-		String pathFile = UrlUtils.instance.urlForResultsFileToAllInstances
-		boolean append = true
-		
-		FileUtils.writeToFile(new File(pathFile), data, append)		
-	}
-
-	public void writeLowerMakespanToAllInstances(String fileName) {
-		String pathFile = UrlUtils.instance.urlForResultsFileToAllInstances
-		boolean append = true
-		String instanceResultStatus = ""
-		
-		if (lowerProjectMakespan.makespan == PropertyConstants.INSTANCE_MAKESPAN_ERROR) {
-			instanceResultStatus = " - Check results."
-		}
-		
-		String data = fileName + " LOWER MAKESPAN: " + Integer.toString(lowerProjectMakespan.makespan) + instanceResultStatus + "\n"
-		
-		FileUtils.writeToFile(new File(pathFile), data, append)			
-	}
-	
-	public void setLowerMakespan(Project lowerProjectMakespan) {
-		this.lowerProjectMakespan = lowerProjectMakespan
-	}
-	
-	public Project getLowerMakespan() {
-		return this.lowerProjectMakespan
-	}
-
     def getCriticalPath(Project project) {
-        def lastJob = project.staggeredJobs.last()
+        Job lastJob = project.staggeredJobs.last()
         project.criticalPath = []
         project.criticalPath.add(lastJob)
 

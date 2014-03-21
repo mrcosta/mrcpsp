@@ -14,6 +14,7 @@ class ChronoWatch {
 	long start;
 	long finish;
 	long time;
+    String totalTimeExecutionFormated
 
     long startSolution
     long finishSolution
@@ -36,12 +37,13 @@ class ChronoWatch {
 		time = 0;
 	}
 	
-	def String getTime() {
+	def String getTimeExecution() {
 		finish = System.currentTimeMillis()
 		time = finish - start
         def sfm
 
         sfm = new SimpleDateFormat("mm:ss:SSS").format(new Date(time))
+        totalTimeExecutionFormated = "$time--$sfm"
 
 		return "$time--$sfm"
 	}

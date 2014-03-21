@@ -1,9 +1,11 @@
 package mrcpsp.process
 
 import mrcpsp.model.enums.EnumExecutionTypes
+import mrcpsp.model.main.Project
 import mrcpsp.process.concurrent.MrcpspWorkerPool
 import mrcpsp.results.J30PsplibProcessor
 import mrcpsp.results.PsplibProcessor
+import mrcpsp.results.ResultJsonBuilder
 import mrcpsp.utils.*
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
@@ -12,6 +14,7 @@ class ExecutionTypeProcessor {
 
 	static final Logger log = Logger.getLogger(MmProcessor.class)
 	ResultsProcessor resultsProcessor
+    ResultJsonBuilder resultJsonBuilder
 	MmProcessor mmProcessor
     def executionType;
     def hasThread;
@@ -21,6 +24,7 @@ class ExecutionTypeProcessor {
 		super()
 		mmProcessor = new MmProcessor()
 		resultsProcessor = new ResultsProcessor()
+        resultJsonBuilder = new ResultJsonBuilder()
 	}
 	
 	public void execute() {
@@ -28,29 +32,25 @@ class ExecutionTypeProcessor {
 		executionType = UrlUtils.instance.executionType
 		hasThread = UrlUtils.instance.hasThread
 		
-		removeOldResultFiles()
-		SystemUtils.getSystemInformation()
-		ChronoWatch.instance.start()
-		
 		if (executionType == EnumExecutionTypes.ONE_FILE.name) {
 			executeOneFile()
 		} else if (executionType == EnumExecutionTypes.ONE_FILE_TIMES.name) {
 			executeOneFileTimes()
 		} else if (executionType == EnumExecutionTypes.ALL.name) {
 			
-			if (hasThread == PropertyConstants.TRUE) {
+			/*if (hasThread == PropertyConstants.TRUE) {
 				executeAllFilesConcurrent()
-			} else {
+			} else {*/
 				executeAllFiles()
-			}
+			/*}*/
 			
 		} else if (executionType == EnumExecutionTypes.ALL_TIMES.name) {
 			
-			if (hasThread == PropertyConstants.TRUE) {
+			/*if (hasThread == PropertyConstants.TRUE) {
 				executeAllFilesConcurrent()
-			} else {
+			} else {*/
 				executeAllFilesTimes()
-			}
+			/*}*/
 			
 		} else if (executionType == EnumExecutionTypes.READ_PSPLIB_INSTANCE.name) {
             readResultsFromPsplibFile()
@@ -66,8 +66,7 @@ class ExecutionTypeProcessor {
 		
 		executeAll(fileName)
         checkGenerateDiagram()
-        println ChronoWatch.instance.time
-        println ChronoWatch.instance.totalTimeSolutionFormated
+        printTimeExecution()
 	}
 
 	public void executeOneFileTimes() {
@@ -80,10 +79,9 @@ class ExecutionTypeProcessor {
 		}
 
         checkGenerateDiagram()
-		executeLocalSearch()
-		
-		resultsProcessor.writeLowerMakespanToOneInstance(fileName)
-		//printResultAndTimeToFile(watch, fileName)
+
+        writeResult(resultsProcessor.lowerProjectMakespan)
+        printTimeExecution()
 	}
 
 	public void executeAllFiles() {
@@ -92,11 +90,11 @@ class ExecutionTypeProcessor {
 			LogUtils.setINSTANCE_STATUS("")			
 			executeAll(file.getName())	
 		}
-		
-		printResultAndTimeToFileAllInstances(watch)
+
+        printTimeExecution()
 	}
 
-    public void executeAllFilesConcurrent() {
+    /*public void executeAllFilesConcurrent() {
         log.info("======== Executing in CONCURRENT MODE")
         MrcpspWorkerPool pool = new MrcpspWorkerPool()
         try {
@@ -104,7 +102,7 @@ class ExecutionTypeProcessor {
         } catch (InterruptedException e) {
             e.printStackTrace()
         }
-    }
+    }*/
 
     public void executeAllFilesTimes() {
 		Integer timesToRun = Integer.parseInt(UrlUtils.getInstance().getExecutionTimes())
@@ -115,38 +113,29 @@ class ExecutionTypeProcessor {
 			for (int i = 0; i < timesToRun; i++) {
                 executeAll(file.getName())
                 resultsProcessor.checkLowerMakespan(mmProcessor.project)
-			}	
-			
-			resultsProcessor.writeLowerMakespanToAllInstances(file.getName())
-			resultsProcessor.setLowerMakespan(null)
+			}
+
+            writeResult(resultsProcessor.lowerProjectMakespan)
+			resultsProcessor.lowerProjectMakespan = null
 		}
-		
-		printResultAndTimeToFileAllInstances(watch)
+
+        printTimeExecution()
 	}
 	
 	private void executeAll(String fileName) {
-		mmProcessor.initialSolutionWithGrasp(fileName)	
-		checkLocalSearchExecutionEverySolution();
-        mmProcessor.executeWriteResults()
-	}
-	
-	private void executeLocalSearch() {
-		checkLocalSearchExecution()
-		mmProcessor.executeWriteResults()		
+		mmProcessor.initialSolutionWithGrasp(fileName)
+        checkLocalSearchExecution();
+        ChronoWatch.instance.totalTimeSolution = 0
+
+        if (executionType == EnumExecutionTypes.ONE_FILE.name || executionType == EnumExecutionTypes.ALL.name) {
+            writeResult(mmProcessor.project)
+        }
 	}
 	
 	private void checkLocalSearchExecution() {
-		Integer executeLocalSearch = UrlUtils.getInstance().getExecuteLocalSearch()
+		Integer executeLocalSearch = UrlUtils.getInstance().executeLocalSearch
 		
 		if (executeLocalSearch == PropertyConstants.TRUE) {
-			mmProcessor.localSearchDescentUphillMethod(resultsProcessor.getLowerMakespan())
-		}
-	}
-	
-	private void checkLocalSearchExecutionEverySolution() {
-		Integer executeLocalSearchEverySolution = UrlUtils.getInstance().getExecuteLocalSearchEverySolution()
-		
-		if (executeLocalSearchEverySolution == PropertyConstants.TRUE) {
 			mmProcessor.localSearchDescentUphillMethod()
 		}
 	}
@@ -161,21 +150,14 @@ class ExecutionTypeProcessor {
                 mmProcessor.generateDiagram(resultsProcessor.getLowerMakespan())
             }
         }
-    }
-
-	private void printResultAndTimeToFileAllInstances(ChronoWatch watch) {
-		// finish
-		String timeString = watch.time()
-		resultsProcessor.writeRunningTimeToResultFileAllInstances(timeString)
-		log.info(timeString)
 	}
-	
-	private void removeOldResultFiles() {
+
+	def removeOldResultFiles() {
 		FileUtils.removeAllFilesFromFolder(PropertyConstants.RESULTS_PATH)
 	}
 
     def readResultsFromPsplibFile() {
-        String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
+        String fileName = PropertyManager.instance.getProperty(PropertyConstants.INSTANCE_FILE)
 
         if (fileName != "j30hrs.mm") {
             PsplibProcessor pp = new PsplibProcessor()
@@ -184,5 +166,19 @@ class ExecutionTypeProcessor {
             J30PsplibProcessor jpp = new J30PsplibProcessor()
             jpp.readResultsFromFile(fileName)
         }
+    }
+
+    def writeResult(Project project) {
+        resultJsonBuilder.buildInstanceResultJson(project)
+
+        String pathFile = UrlUtils.instance.getUrlForResultsFileToOneInstance(UrlUtils.instance.testName)
+        String data = resultJsonBuilder.mergeConfigurationAndResults()
+
+        FileUtils.writeToFile(new File(pathFile), data, false)
+    }
+
+    def printTimeExecution() {
+        println "Total time execution: $ChronoWatch.instance.totalTimeExecutionFormated"
+        println "Total time to find the solution: $ChronoWatch.instance.totalTimeSolutionFormated"
     }
 }

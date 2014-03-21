@@ -16,41 +16,39 @@ public interface PropertyConstants {
 	
 	//############# MRCPSP #################
 	public static final String INSTANCE_BASE_URL = System.getProperty("user.dir");	
-	public static final String INSTANCES_FOLDER = "instance.folder";
-	public static final String INSTANCE_FILE = "instance.file";
+	public static final String INSTANCES_FOLDER = "instanceFolder";
+	public static final String INSTANCE_FILE = "instanceFile";
 	
-	public static final String START_LINE_JOBS = "start.line.jobs";
-	public static final String START_LINE_MODES = "start.line.modes";
-	public static final String START_LINE_RESOURCES_AVAILABILITIES = "start.line.resourceAvailabilities";
+	public static final String START_LINE_JOBS = "startLineJobs";
+	public static final String START_LINE_MODES = "startLineModes";
+	public static final String START_LINE_RESOURCES_AVAILABILITIES = "startLineResourceAvailabilities";
 
-	public static final String RCL_SIZE = "RCL_SIZE";
+	public static final String RCL_SIZE = "rclSize";
 	
-	public static final String JOB_PRIORITY_RULE = "job.priority.rule";
+	public static final String JOB_PRIORITY_RULE = "jobPriorityRule";
 	
 	public static final Integer INSTANCE_MAKESPAN_ERROR = -999;
 
     //############# MODES  ###############
     public static final String MODE_JOBS = "mode.jobs";
-    public static final String MODE_SHORTER_NEAR_TO_LOWER_NR_PERCENTAGE = "mode.shorter_near_to_lower_nr.percentage";
-    public static final String MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT = "mode.shorter_near_to_lower_nr.unit";
+    public static final String MODE_SHORTER_NEAR_TO_LOWER_NR_PERCENTAGE = "modeShorterNearToLowerNrPercentage";
+    public static final String MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT = "modeShorterNearToLowerNrUnit";
 	
 	//############# MRCPSP - EXECUTION  #################
-	public static final String EXECUTION_TYPE = "execution.type";
+	public static final String EXECUTION_TYPE = "executionType";
 	public static final String HAS_THREAD = "thread";
-	public static final String EXECUTION_TIMES = "execution.times";
-	public static final String CONCURRENT_POOLSIZE = "concurrent.poolSize";
-    public static final String GENERATE_DIAGRAM = "generate.diagram";
-    public static final String WRITE_LOWERBOUND = "write.lowerbound.for.all.instances";
-    public static final String SHOW_CRITICAL_PATH = "show.critical.path";
-    public static final String SHOW_LOWER_BOUND = "show.lower.bound";
-    public static final String TEST_NAME = "test.name";
-    public static final String TEST_DESCRIPTION = "test.description";
+	public static final String EXECUTION_TIMES = "executionTimes";
+	public static final String CONCURRENT_POOLSIZE = "concurrentPoolSize";
+    public static final String GENERATE_DIAGRAM = "generateDiagram";
+    public static final String WRITE_LOWERBOUND = "writeLowerboundForAllInstances";
+    public static final String SHOW_CRITICAL_PATH = "showCriticalPath";
+    public static final String SHOW_LOWER_BOUND = "showLowerBound";
+    public static final String TEST_NAME = "testName";
+    public static final String TEST_DESCRIPTION = "testDescription";
 	
 	//############# MRCPSP - TYPE - LOCALSEARCH  #################
-	public static final String LOCAL_SEARCH = "type.localSearch";
-	public static final String EXECUTE_LOCAL_SEARCH = "execute.localSearch";
-	public static final String LOCAL_SEARCH_EVERY_SOLUTION = "execute.localSearch.everyInitialSolution";
-	
+	public static final String LOCAL_SEARCH = "typeLocalSearch";
+	public static final String EXECUTE_LOCAL_SEARCH = "executeLocalSearch";
 	
 	//############# OPERATIONS #################
 	public static final Integer SUBTRACT = 0;
@@ -60,6 +58,6 @@ public interface PropertyConstants {
 	public static final String RESULTS_PATH = System.getProperty("user.home") + "/mrcpsp/results";
 
     //############# DIAGRAM #################
-    public static final String DIAGRAM_PATH = "diagram.path";
-    public static final String SHOW_PREDECESSORS = "show.predecessors";
+    public static final String DIAGRAM_PATH = "diagramPath";
+    public static final String SHOW_PREDECESSORS = "showPredecessors";
 }

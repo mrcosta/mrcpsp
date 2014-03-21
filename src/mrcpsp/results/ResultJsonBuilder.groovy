@@ -1,5 +1,8 @@
 package mrcpsp.results
 
+import groovy.json.JsonBuilder
+import mrcpsp.model.main.Project
+import mrcpsp.utils.ChronoWatch
 import mrcpsp.utils.PropertyConstants
 import mrcpsp.utils.PropertyManager
 import mrcpsp.utils.UrlUtils
@@ -9,19 +12,72 @@ import mrcpsp.utils.UrlUtils
  */
 class ResultJsonBuilder {
 
+    def resultMap
+    def instanceResultAllFiles
 
+    ResultJsonBuilder() {
+        resultMap = [:]
+        instanceResultAllFiles = [:]
+    }
+
+    def buildInstanceResultJson(Project project) {
+        def instanceResult = addResults(project)
+
+        instanceResultAllFiles."$project.fileName" = [:]
+        instanceResultAllFiles."$project.fileName" = instanceResult
+    }
+
+    def mergeConfigurationAndResults() {
+        resultMap = addConfigurationProperties()
+        resultMap.results = instanceResultAllFiles
+
+        return new JsonBuilder(resultMap).toPrettyString()
+    }
+
+    def addResults(Project project) {
+        def instanceResult = [:]
+
+        instanceResult.makespan = project.makespan
+        instanceResult.jobsId = project.staggeredJobs.id.toString()
+        instanceResult.modesId = project.staggeredJobs.mode.id.toString()
+        instanceResult.executionTime = ChronoWatch.instance.totalTimeSolutionFormated
+
+        return instanceResult
+    }
 
     def addConfigurationProperties() {
-        def resultMap = [:]
-
-        /*resultMap.executioType = UrlUtils.instance.executionType
-
-
+        resultMap.executionType = UrlUtils.instance.executionType
         resultMap.instanceFolder = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCES_FOLDER)
         resultMap.localSearchType = UrlUtils.instance.localSearch
-        resultMap.testName = "test mateus"
-        resultMap.totalExecutionTime = "12:30:58",*/
+        resultMap.testName = UrlUtils.instance.testName
+        resultMap.testDescription = UrlUtils.instance.testDescription
 
-        return null
+        ChronoWatch.instance.getTimeExecution()
+        resultMap.totalExecutionTime = ChronoWatch.instance.totalTimeExecutionFormated
+
+        resultMap.generalConfig = [:]
+        resultMap.generalConfig.executionTimes = UrlUtils.instance.executionTimes
+        resultMap.generalConfig.thread = UrlUtils.instance.hasThread
+        resultMap.generalConfig.concurrentPoolSize = PropertyManager.instance.getProperty(PropertyConstants.CONCURRENT_POOLSIZE)
+        resultMap.generalConfig.instanceFile = PropertyManager.instance.getProperty(PropertyConstants.INSTANCE_FILE)
+        resultMap.generalConfig.executeLocalSearch = UrlUtils.instance.executeLocalSearch
+        resultMap.generalConfig.generateDiagram = UrlUtils.instance.generateDiagram
+        resultMap.generalConfig.diagramPath = UrlUtils.instance.diagramPath
+        resultMap.generalConfig.showPredecessorsInDiagram = UrlUtils.instance.showPredecessors
+        resultMap.generalConfig.writeLowerBoundForAllInstances = UrlUtils.instance.writeLowerBoundForAllInstances
+        resultMap.generalConfig.showCriticalPath = UrlUtils.instance.showCriticalPath
+        resultMap.generalConfig.showLowerBound = UrlUtils.instance.showLowerBound
+
+        resultMap.instanceConfig = [:]
+        resultMap.instanceConfig.starLineJobs = UrlUtils.instance.startLineJobs
+        resultMap.instanceConfig.starLineModes = UrlUtils.instance.startLineModes
+        resultMap.instanceConfig.startLineResourceAvailabilities = UrlUtils.instance.startLineResourceAvailabilities
+        resultMap.instanceConfig.rclSize = UrlUtils.instance.RCLSize
+        resultMap.instanceConfig.jobsMode = UrlUtils.instance.jobsMode
+        resultMap.instanceConfig.shorterModeNeartToLowerNRPercentage = UrlUtils.instance.modeShorterNearToLowerNrPercentage
+        resultMap.instanceConfig.shorterModeNeartToLowerNRUnit = UrlUtils.instance.modeShorterNearToLowerNrUnit
+        resultMap.instanceConfig.jobPriorityRule = UrlUtils.instance.jobPriorityRule
+
+        return resultMap
     }
 }

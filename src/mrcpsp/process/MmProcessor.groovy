@@ -218,8 +218,12 @@ class MmProcessor {
                 ChronoWatch.instance.startSolutionTime()
 				localSearch = new LocalSearch()
 				project = localSearch.executeLocalSearch(project)
+                /**
+                 * Finish here
+                 */
                 ChronoWatch.instance.pauseSolutionTime()
-				
+                project.totalTimeSolutionFormated = ChronoWatch.instance.totalTimeSolutionFormated
+
 				if (project) {
 					success = true
 				} else {
@@ -233,20 +237,6 @@ class MmProcessor {
 			}			
 		}	
 		success
-	}
-	
-	def void executeWriteResults() {
-		try {
-			log.info("==========================================================================")
-			log.info("Writing the results. . .")
-			
-			resultsProcessor.checkExecutionTypeToGenerateResults(project)
-			log.info("FILE: " + project.getFileName() + " - MAKESPAN: " + project.getMakespan())
-						
-			log.info("Writing the results . . .DONE \n")
-		} catch (Exception e) {
-            log.error("Exception during the executeWriteResults phase", e)
-		}
 	}
 	
 	public boolean setProjectMakespan() {

@@ -24,6 +24,7 @@ class J30PsplibProcessor {
 
         def instance = fileName.split("hrs")[0].capitalize()
         addConfigurationToJson(instance)
+        resultMap.results = [:]
 
         log.info("File name: $results.name -- Instance Set: $instance");
 
@@ -36,13 +37,12 @@ class J30PsplibProcessor {
             def makespan = lineValues[2].trim()
 
             def instanceResult = [:]
-            instanceResult.file = file
+            resultMap.results."$file" = [:]
             instanceResult.makespan = makespan
+            resultMap.results."$file" = instanceResult
 
             filesResult.add(instanceResult)
         }
-
-        resultMap.results = filesResult
 
         def jsonText = new JsonBuilder(resultMap).toPrettyString()
         def allResultFile = new File("data/psplibresults/json" , instance + ".json")

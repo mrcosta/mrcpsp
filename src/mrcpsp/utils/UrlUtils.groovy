@@ -82,17 +82,6 @@ public final class UrlUtils {
 		return PropertyConstants.INSTANCE_BASE_URL + 
 			   PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCES_FOLDER)
 	}
-	
-	String getUrlForResultsFileToAllInstances() {
-		String pathFolder = PropertyConstants.RESULTS_PATH
-		String nameFile = "results.txt"
-		
-		return FileUtils.createDirectory(pathFolder) + "/" + nameFile
-	}
-	
-	Integer getExecuteLocalSearchEverySolution() {
-		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.LOCAL_SEARCH_EVERY_SOLUTION))
-	}
 
     Integer getGenerateDiagram() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.GENERATE_DIAGRAM))

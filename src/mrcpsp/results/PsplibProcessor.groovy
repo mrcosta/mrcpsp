@@ -26,6 +26,7 @@ class PsplibProcessor {
 
         def instance = fu.getLine(results, INSTANCE_SET_LINE).split(":")[1]
         addConfigurationToJson(instance)
+        resultMap.results = [:]
 
         log.info("File name: $results.name -- Instance Set: $instance");
 
@@ -38,14 +39,13 @@ class PsplibProcessor {
             def makespan = lineValues[2].trim()
 
             def instanceResult = [:]
-            instanceResult.file = file
+            resultMap.results."$file" = [:]
             instanceResult.makespan = makespan
             instanceResult.executionTime = lineValues[3].trim()
+            resultMap.results."$file" = instanceResult
 
             filesResult.add(instanceResult)
         }
-
-        resultMap.results = filesResult
 
         def jsonText = new JsonBuilder(resultMap).toPrettyString()
         def allResultFile = new File("data/psplibresults/json" , instance + ".json")
