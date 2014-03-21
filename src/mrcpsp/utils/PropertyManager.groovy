@@ -63,7 +63,7 @@ public class PropertyManager {
     }
 	
 	private void loadProperties() {
-		loadPropertiesFromConfigFile();
+        loadPropertiesFromConfigFile();
 		loadPropertiesFromInstanceConfigFile();
 	}
 	

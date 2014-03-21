@@ -28,7 +28,6 @@ class ExecutionTypeProcessor {
 	}
 	
 	public void execute() {
-		PropertyManager.getInstance()		
 		executionType = UrlUtils.instance.executionType
 		hasThread = UrlUtils.instance.hasThread
 		
