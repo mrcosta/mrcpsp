@@ -88,7 +88,6 @@ class ExecutionTypeProcessor {
 	public void executeAllFiles() {
 						
 		for (File file: FileUtils.getAllFilesInstances()) {
-			LogUtils.setINSTANCE_STATUS("")			
 			executeAll(file.getName())	
 		}
 
@@ -108,8 +107,7 @@ class ExecutionTypeProcessor {
     public void executeAllFilesTimes() {
 		Integer timesToRun = Integer.parseInt(UrlUtils.getInstance().getExecutionTimes())
 				
-		for (File file: FileUtils.getAllFilesInstances()) {	
-			LogUtils.setINSTANCE_STATUS("")			
+		for (File file: FileUtils.getAllFilesInstances()) {
 			
 			for (int i = 0; i < timesToRun; i++) {
                 executeAll(file.getName())
@@ -148,7 +146,7 @@ class ExecutionTypeProcessor {
             if (executionType == EnumExecutionTypes.ONE_FILE.name) {
                 mmProcessor.generateDiagram(mmProcessor.project)
             } else if (executionType == EnumExecutionTypes.ONE_FILE_TIMES.name) {
-                mmProcessor.generateDiagram(resultsProcessor.getLowerMakespan())
+                mmProcessor.generateDiagram(resultsProcessor.lowerProjectMakespan)
             }
         }
 	}

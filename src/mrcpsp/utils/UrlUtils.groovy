@@ -103,7 +103,7 @@ public final class UrlUtils {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT))
     }
 
-    Integer getWriteLowerBoundForAllInstances() {
+    Integer getWriteLowerboundForAllInstances() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.WRITE_LOWERBOUND))
     }
 

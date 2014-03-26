@@ -30,7 +30,7 @@ public interface PropertyConstants {
 	public static final Integer INSTANCE_MAKESPAN_ERROR = -999;
 
     //############# MODES  ###############
-    public static final String MODE_JOBS = "mode.jobs";
+    public static final String MODE_JOBS = "jobsMode";
     public static final String MODE_SHORTER_NEAR_TO_LOWER_NR_PERCENTAGE = "modeShorterNearToLowerNrPercentage";
     public static final String MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT = "modeShorterNearToLowerNrUnit";
 	
@@ -47,7 +47,7 @@ public interface PropertyConstants {
     public static final String TEST_DESCRIPTION = "testDescription";
 	
 	//############# MRCPSP - TYPE - LOCALSEARCH  #################
-	public static final String LOCAL_SEARCH = "typeLocalSearch";
+	public static final String LOCAL_SEARCH = "localSearchType";
 	public static final String EXECUTE_LOCAL_SEARCH = "executeLocalSearch";
 	
 	//############# OPERATIONS #################
@@ -59,5 +59,5 @@ public interface PropertyConstants {
 
     //############# DIAGRAM #################
     public static final String DIAGRAM_PATH = "diagramPath";
-    public static final String SHOW_PREDECESSORS = "showPredecessors";
+    public static final String SHOW_PREDECESSORS = "showPredecessorsInDiagram";
 }

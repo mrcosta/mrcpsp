@@ -1,10 +1,9 @@
-package mrcpsp.process;
+package mrcpsp.process
 
+import groovy.json.JsonSlurper;
 import mrcpsp.utils.ChronoWatch;
 import mrcpsp.utils.PropertyManager;
 import mrcpsp.utils.SystemUtils;
-
-import java.io.File;
 
 /**
  * @author mrcosta
@@ -13,20 +12,20 @@ import java.io.File;
 class MmRunner {
 
 	public static void main(String[] args) {
-        ExecutionTypeProcessor executionTypeProcessor = new ExecutionTypeProcessor();
-        File resultsFolder = new File(System.getProperty("user.home") + "/tests");
+        ExecutionTypeProcessor executionTypeProcessor = new ExecutionTypeProcessor()
+        File testsFolder = new File(System.getProperty("user.home") + "/tests");
 
         executionTypeProcessor.removeOldResultFiles();
         SystemUtils.getSystemInformation()
 
-        if (resultsFolder.listFiles().length > 0) {
-            resultsFolder.listFiles().each {
-                /*ChronoWatch.instance.time = 0
+        if (testsFolder.listFiles().length > 0) {
+            testsFolder.listFiles().each {
+                ChronoWatch.instance.time = 0
                 ChronoWatch.instance.start();
+                PropertyManager.getInstance(it.text)
 
-                executionTypeProcessor.execute();*/
-
-                println it.name
+                executionTypeProcessor = new ExecutionTypeProcessor()
+                executionTypeProcessor.execute();
             }
         } else {
             ChronoWatch.instance.time = 0

@@ -64,18 +64,18 @@ class ResultJsonBuilder {
         resultMap.generalConfig.generateDiagram = UrlUtils.instance.generateDiagram
         resultMap.generalConfig.diagramPath = UrlUtils.instance.diagramPath
         resultMap.generalConfig.showPredecessorsInDiagram = UrlUtils.instance.showPredecessors
-        resultMap.generalConfig.writeLowerBoundForAllInstances = UrlUtils.instance.writeLowerBoundForAllInstances
+        resultMap.generalConfig.writeLowerboundForAllInstances = UrlUtils.instance.writeLowerboundForAllInstances
         resultMap.generalConfig.showCriticalPath = UrlUtils.instance.showCriticalPath
         resultMap.generalConfig.showLowerBound = UrlUtils.instance.showLowerBound
 
         resultMap.instanceConfig = [:]
-        resultMap.instanceConfig.starLineJobs = UrlUtils.instance.startLineJobs
-        resultMap.instanceConfig.starLineModes = UrlUtils.instance.startLineModes
+        resultMap.instanceConfig.startLineJobs = UrlUtils.instance.startLineJobs
+        resultMap.instanceConfig.startLineModes = UrlUtils.instance.startLineModes
         resultMap.instanceConfig.startLineResourceAvailabilities = UrlUtils.instance.startLineResourceAvailabilities
         resultMap.instanceConfig.rclSize = UrlUtils.instance.RCLSize
         resultMap.instanceConfig.jobsMode = UrlUtils.instance.jobsMode
-        resultMap.instanceConfig.shorterModeNeartToLowerNRPercentage = UrlUtils.instance.modeShorterNearToLowerNrPercentage
-        resultMap.instanceConfig.shorterModeNeartToLowerNRUnit = UrlUtils.instance.modeShorterNearToLowerNrUnit
+        resultMap.instanceConfig.modeShorterNearToLowerNrPercentage = UrlUtils.instance.modeShorterNearToLowerNrPercentage
+        resultMap.instanceConfig.modeShorterNearToLowerNrUnit = UrlUtils.instance.modeShorterNearToLowerNrUnit
         resultMap.instanceConfig.jobPriorityRule = UrlUtils.instance.jobPriorityRule
 
         return resultMap
