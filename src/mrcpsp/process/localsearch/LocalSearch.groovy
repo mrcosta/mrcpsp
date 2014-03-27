@@ -114,7 +114,7 @@ class LocalSearch {
 		if (!bestNeighbor || bestNeighbor.makespan == PropertyConstants.INSTANCE_MAKESPAN_ERROR) {
 			bestNeighbor = project
 		} else {			
-			if (project.makespan < bestNeighbor.makespan) {
+			if ((project.makespan < bestNeighbor.makespan) && (project.makespan != PropertyConstants.INSTANCE_MAKESPAN_ERROR)) {
 				bestNeighbor = project
 			}
 		}

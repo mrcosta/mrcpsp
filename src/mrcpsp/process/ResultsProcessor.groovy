@@ -18,8 +18,7 @@ public class ResultsProcessor {
 			
 			project.makespan = makespan
 			success
-		} else {			
-			LogUtils.setINSTANCE_STATUS(" - Check results.")
+		} else {
 			project.instanceResultStatus = " - Check results."
 			project.makespan = PropertyConstants.INSTANCE_MAKESPAN_ERROR
 			false
