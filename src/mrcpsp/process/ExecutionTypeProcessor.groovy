@@ -66,6 +66,8 @@ class ExecutionTypeProcessor {
 		String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
 		
 		executeAll(fileName)
+        addInstanceResultForJson(mmProcessor.project)
+        writeResult()
         checkGenerateDiagram()
         printTimeExecution()
 	}
@@ -79,18 +81,20 @@ class ExecutionTypeProcessor {
 			resultsProcessor.checkLowerMakespan(mmProcessor.project)
 		}
 
+        addInstanceResultForJson(resultsProcessor.lowerProjectMakespan)
+        writeResult()
         checkGenerateDiagram()
-
-        writeResult(resultsProcessor.lowerProjectMakespan)
         printTimeExecution()
 	}
 
 	public void executeAllFiles() {
 						
 		for (File file: FileUtils.getAllFilesInstances()) {
-			executeAll(file.getName())	
+			executeAll(file.getName())
+            addInstanceResultForJson(mmProcessor.project)
 		}
 
+        writeResult()
         printTimeExecution()
 	}
 
@@ -105,7 +109,7 @@ class ExecutionTypeProcessor {
     }*/
 
     public void executeAllFilesTimes() {
-		Integer timesToRun = Integer.parseInt(UrlUtils.getInstance().getExecutionTimes())
+		Integer timesToRun = Integer.parseInt(UrlUtils.instance.executionTimes)
 				
 		for (File file: FileUtils.getAllFilesInstances()) {
 			
@@ -114,25 +118,22 @@ class ExecutionTypeProcessor {
                 resultsProcessor.checkLowerMakespan(mmProcessor.project)
 			}
 
-            writeResult(resultsProcessor.lowerProjectMakespan)
+            addInstanceResultForJson(resultsProcessor.lowerProjectMakespan)
 			resultsProcessor.lowerProjectMakespan = null
 		}
 
+        writeResult()
         printTimeExecution()
 	}
 	
 	private void executeAll(String fileName) {
 		mmProcessor.initialSolutionWithGrasp(fileName)
-        checkLocalSearchExecution();
+        checkLocalSearchExecution()
         ChronoWatch.instance.totalTimeSolution = 0
-
-        if (executionType == EnumExecutionTypes.ONE_FILE.name || executionType == EnumExecutionTypes.ALL.name) {
-            writeResult(mmProcessor.project)
-        }
 	}
 	
 	private void checkLocalSearchExecution() {
-		Integer executeLocalSearch = UrlUtils.getInstance().executeLocalSearch
+		Integer executeLocalSearch = UrlUtils.instance.executeLocalSearch
 		
 		if (executeLocalSearch == PropertyConstants.TRUE) {
 			mmProcessor.localSearchDescentUphillMethod()
@@ -167,9 +168,11 @@ class ExecutionTypeProcessor {
         }
     }
 
-    def writeResult(Project project) {
+    def addInstanceResultForJson(Project project) {
         resultJsonBuilder.buildInstanceResultJson(project)
+    }
 
+    def writeResult() {
         String pathFile = UrlUtils.instance.getUrlForResultsFileToOneInstance(UrlUtils.instance.testName)
         String data = resultJsonBuilder.mergeConfigurationAndResults()
 
