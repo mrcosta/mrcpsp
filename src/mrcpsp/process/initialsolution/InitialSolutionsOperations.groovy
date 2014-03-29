@@ -19,9 +19,9 @@ import java.util.List;
  * @author mateus
  * 
  */
-public class InitialSolutionsOperations {
+class InitialSolutionsOperations {
 	
-	private static final Logger log = Logger.getLogger(InitialSolutionsOperations.class);
+	static final Logger log = Logger.getLogger(InitialSolutionsOperations.class);
 
     /**
      * If the predecessors list equals to staggeredPredecessors, so the job has all its predecessor schedulled.
@@ -30,27 +30,25 @@ public class InitialSolutionsOperations {
      * @param eligibleJobsList
      * @return
      */
-	public List<Job> getEligibleJobsList(List<Job> remainingJobs, List<Job> eligibleJobsList) {
-		
+	List<Job> getEligibleJobsList(List<Job> remainingJobs, List<Job> eligibleJobsList) {
 		log.debug("Getting the list of remaining jobs to scheduling...");
-		for (Job job : remainingJobs) {
+		remainingJobs.each { job ->
 
-			if (job.getPredecessors().size() == job.getRunningJobInformation().getStaggeredPredecessors().size() &&
-			    !job.getRunningJobInformation().isEligible()) {
+			if (job.predecessors.size() == job.runningJobInformation.staggeredPredecessors.size() && !job.runningJobInformation.isEligible()) {
 
-                ChronoWatch.getInstance().pauseSolutionTime();
-				eligibleJobsList.add(CloneUtils.cloneJob(job));
-				job.getRunningJobInformation().setEligible(true);
-                ChronoWatch.getInstance().startSolutionTime();
+                ChronoWatch.instance.pauseSolutionTime()
+				eligibleJobsList.add(CloneUtils.cloneJob(job))
+				job.runningJobInformation.eligible = true
+                ChronoWatch.instance.startSolutionTime()
 
-				log.debug("The job with id " + job.getId() + " was included in the Eligible Jobs List.");
+				log.debug("The job with id " + job.id + " was included in the Eligible Jobs List.")
 			}
 		}				
 
 		// logging the eligible jobs list
-		log.info(LogUtils.generateJobsIDListLog(eligibleJobsList, EnumLogUtils.ELIGIBLE_JOBS));
+		log.info(LogUtils.generateJobsIDListLog(eligibleJobsList, EnumLogUtils.ELIGIBLE_JOBS))
 		
-		return eligibleJobsList;
+		return eligibleJobsList
 	}
 
     /**
@@ -59,19 +57,19 @@ public class InitialSolutionsOperations {
      * @param rclJobsList
      * @return
      */
-	public Job getRandomJobFromRCL(List<Job> rclJobsList) {
-		Integer randomIndex;
-		Integer rclSize = rclJobsList.size();
+	Job getRandomJobFromRCL(List<Job> rclJobsList) {
+		Integer randomIndex
+		Integer rclSize = rclJobsList.size()
 		
 		// random between rclSize and 0
 		if (rclSize < rclJobsList.size()) {
-			randomIndex = RandomUtils.nextInt(rclSize);
+			randomIndex = RandomUtils.nextInt(rclSize)
 		} else {
 			// random between 0 and rclJobsList.size
-			randomIndex = RandomUtils.nextInt(rclJobsList.size());
+			randomIndex = RandomUtils.nextInt(rclJobsList.size())
 		}
 		
-		return rclJobsList.get(randomIndex);
+		return rclJobsList[randomIndex]
 	}
 
     /**
@@ -81,36 +79,36 @@ public class InitialSolutionsOperations {
      * @param  randomizedJob
      * @return
      */
-    public List<Job> updateRunningJobInformation(List<Job> remainingJobs, Job randomizedJob) {
+    List<Job> updateRunningJobInformation(List<Job> remainingJobs, Job randomizedJob) {
 		
-		for (Job job : remainingJobs) {
-			RunningJobInformation runningJobInformation = job.getRunningJobInformation();
+		remainingJobs.each { job ->
+			RunningJobInformation runningJobInformation = job.runningJobInformation
 			
 			/* if the predecessors list of the job has the id of the randomized job
 			 * then update the staggered predecessor list of it 
 			 */
-			if (job.getPredecessors().contains(randomizedJob.getId())) {
-				runningJobInformation.getStaggeredPredecessors().add(randomizedJob.getId());
+			if (job.predecessors.contains(randomizedJob.id)) {
+				runningJobInformation.staggeredPredecessors.add(randomizedJob.id);
 			}
 			
 			log.debug(job.toString());
 		}		
 		
-		String priorityRule = UrlUtils.getInstance().getJobPriorityRule();
+		String priorityRule = UrlUtils.instance.jobPriorityRule
 		JobPriorityRulesOperations jprOperations = new JobPriorityRulesOperations();
 		
 		// TO IMPLEMENT
-		if (StringUtils.equals(priorityRule, EnumJobPriorityRules.MAX_CAN.getName())) {
+		if (priorityRule == EnumJobPriorityRules.MAX_CAN.name) {
 			
-			jprOperations.updateJobCAN(remainingJobs, randomizedJob);
+			jprOperations.updateJobCAN(remainingJobs, randomizedJob)
 			
-		} else if (StringUtils.equals(priorityRule, EnumJobPriorityRules.MAX_NISCAN.getName())) {
+		} else if (priorityRule == EnumJobPriorityRules.MAX_NISCAN.name) {
 			
-			jprOperations.updateJobNISCAN(remainingJobs, randomizedJob);
+			jprOperations.updateJobNISCAN(remainingJobs, randomizedJob)
 			
 		}
 		
-		return remainingJobs;
+		return remainingJobs
 	}
 	
 }
