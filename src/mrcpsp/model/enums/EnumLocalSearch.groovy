@@ -9,26 +9,13 @@ enum EnumLocalSearch implements Serializable {
     LNRCCP("LNRCCP", "lower non renewable consumption critical path", 5),
     BSFM("BSFM", "jobs block with shortest feasible mode", 5);
 	
-	private String name;
-	private String description;
-	private Integer value;
+	String name;
+	String description;
+	Integer value;
 	
 	EnumLocalSearch(String name, String description, Integer value) {
 		this.name = name;
 		this.description = description;
 		this.value = value;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Integer getValue() {
-		return value;
-	}
-	
 }

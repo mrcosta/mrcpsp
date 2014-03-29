@@ -9,38 +9,13 @@ public enum EnumExecutionTypes {
     READ_PSPLIB_INSTANCE("READ_PSPLIB_INSTANCE", "read the results from the psplib file", 5),
     ANALYTICS("ANALYTICS", "compare two results file", 6);
 	
-	private String name;
-	private String description;
-	private Integer value;
+	String name
+	String description
+	Integer value
 	
 	private EnumExecutionTypes(String name, String description, Integer value) {
 		this.name = name;
 		this.description = description;
 		this.value = value;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Integer getValue() {
-		return value;
-	}
-
-	public void setValue(Integer value) {
-		this.value = value;
-	}
-	
 }

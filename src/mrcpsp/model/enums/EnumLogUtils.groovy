@@ -1,6 +1,6 @@
 package mrcpsp.model.enums;
 
-public enum EnumLogUtils {
+enum EnumLogUtils {
 	
 	REMAINING_JOBS("REMAINING_JOBS", "The REMAINING JOBS list has this index: ", "The REMAINING JOBS list is empty: {}", 1),
 	RCL_JOBS("RCL_JOBS", "The RCL JOBS list has this index: ", "The RCL JOBS list is empty: {}", 2),	
@@ -13,10 +13,10 @@ public enum EnumLogUtils {
 	JOBS_MODE_LIST("JOBS_MODE_LIST", "The JOBS MODES list has this index: ", "The JOBS MODES list is empty: {}", 9),
     CRITICAL_PATH_JOBS("CRITICAL_PATH_JOBS", "The CRITICAL PATH have the given jobs: ", "The CRITICAL PATH list is empty: {}", 10);
 	
-	private String name;
-	private String listString;
-	private String emptyListString;
-	private Integer value;
+	String name;
+	String listString;
+	String emptyListString;
+	Integer value;
 
 	private EnumLogUtils(String name, String listString, String emptyListString, Integer value) {
 		this.name = name;
@@ -24,37 +24,4 @@ public enum EnumLogUtils {
 		this.emptyListString = emptyListString;
 		this.value = value;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}	
-
-	public String getListString() {
-		return listString;
-	}
-
-	public void setListString(String listString) {
-		this.listString = listString;
-	}
-
-	public String getEmptyListString() {
-		return emptyListString;
-	}
-
-	public void setEmptyListString(String emptyListString) {
-		this.emptyListString = emptyListString;
-	}
-
-	public Integer getValue() {
-		return value;
-	}
-
-	public void setValue(Integer value) {
-		this.value = value;
-	}
-
 }
