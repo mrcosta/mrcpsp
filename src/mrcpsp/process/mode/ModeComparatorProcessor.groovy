@@ -21,7 +21,7 @@ class ModeComparatorProcessor {
 	
 	ModeComparator modeComparator;
 	
-	public ModeComparatorProcessor() {
+	ModeComparatorProcessor() {
 		modeComparator = new ModeComparator();
 	}
 
