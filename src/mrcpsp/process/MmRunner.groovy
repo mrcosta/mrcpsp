@@ -26,6 +26,7 @@ class MmRunner {
 
                 executionTypeProcessor = new ExecutionTypeProcessor()
                 executionTypeProcessor.execute();
+                println "$it.name was executed"
             }
         } else {
             ChronoWatch.instance.time = 0

@@ -8,8 +8,6 @@ import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.utils.* 
 import org.apache.log4j.Logger 
 
-import java.util.ArrayList 
-import java.util.List 
 
 /**
  * @author mateus
@@ -103,7 +101,7 @@ class GenerateInitialSolutionGRASP {
 			log.debug(LogUtils.generateJobsIDListLog(eligibleJobs, EnumLogUtils.ELIGIBLE_JOBS)) 
 			
 			// order the jobs by the criteria (mrcpsp.properties) and add the first ones until the rclJobsList size is equals to rclSize
-            ChronoWatch.instance().pauseSolutionTime()
+            ChronoWatch.instance.pauseSolutionTime()
             Integer count = PropertyConstants.INDEX_START 
 			while(rclJobsList.size() != rclSize) {
 				Job job = elegibleJobsList.get(count++) 
