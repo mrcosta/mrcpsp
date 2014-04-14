@@ -80,12 +80,12 @@ class CompareResults {
 
         log.info("Difference between $lesserRa.testName and $biggerRa.testName")
 
+        dataAnalytics."$resultAnalytics.testName" = putGeneralResultsInformation(resultAnalytics)
+        dataAnalytics."$resultAnalyticsCpr.testName" = putGeneralResultsInformation(resultAnalyticsCpr)
+
         dataAnalytics.diffMakespan = [:]
         dataAnalytics.averageDiffMakespan = 0
         lesserRa.results.each { instanceResult ->
-            /*dataAnalytics.diffMakespan."$instanceResult.key" = (instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan * 100
-            dataAnalytics.averageDiffMakespan+= dataAnalytics.diffMakespan."$instanceResult.key"*/
-
             def diffMakespan = (instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan * 100
             dataAnalytics.averageDiffMakespan+= diffMakespan
         }
@@ -94,5 +94,16 @@ class CompareResults {
         dataAnalytics.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
 
         return new JsonBuilder(dataAnalytics).toPrettyString()
+    }
+
+    def putGeneralResultsInformation(generalResults) {
+        def results = [:]
+
+        results.testName = generalResults.testName
+        results.totalFiles = generalResults.totalFiles
+        results.totalWithSolution = generalResults.totalWithSolution
+        results.totalWithoutSolution = generalResults.totalWithoutSolution
+
+        return results
     }
 }
