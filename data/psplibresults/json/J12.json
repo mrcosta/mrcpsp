@@ -1,0 +1,3212 @@
+{
+    "instanceSet": "J12",
+    "executionType": "READ_PSPLIB_INSTANCE",
+    "testName": "reading the results from psplib",
+    "instanceConfig": {
+        "firstLineResults": 26,
+        "lastLineResults": 666,
+        "instanceSetLine": 3
+    },
+    "results": [
+        {
+            "file": "j121_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j121_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_8.mm",
+            "makespan": "49",
+            "executionTime": "0.50"
+        },
+        {
+            "file": "j122_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j122_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j123_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j124_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j125_9.mm",
+            "makespan": "56",
+            "executionTime": "2.82"
+        },
+        {
+            "file": "j125_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j126_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j127_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_5.mm",
+            "makespan": "29",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j128_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j128_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j129_1.mm",
+            "makespan": "22",
+            "executionTime": "0.62"
+        },
+        {
+            "file": "j129_2.mm",
+            "makespan": "28",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j129_3.mm",
+            "makespan": "24",
+            "executionTime": "1.06"
+        },
+        {
+            "file": "j129_4.mm",
+            "makespan": "23",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j129_5.mm",
+            "makespan": "34",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j129_6.mm",
+            "makespan": "30",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j129_7.mm",
+            "makespan": "24",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j129_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j129_9.mm",
+            "makespan": "15",
+            "executionTime": "0.50"
+        },
+        {
+            "file": "j129_10.mm",
+            "makespan": "19",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1210_1.mm",
+            "makespan": "20",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1210_2.mm",
+            "makespan": "21",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1210_3.mm",
+            "makespan": "15",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1210_4.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1210_5.mm",
+            "makespan": "16",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1210_6.mm",
+            "makespan": "27",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1210_7.mm",
+            "makespan": "15",
+            "executionTime": "0.35"
+        },
+        {
+            "file": "j1210_8.mm",
+            "makespan": "11",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1210_9.mm",
+            "makespan": "22",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1210_10.mm",
+            "makespan": "17",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1211_1.mm",
+            "makespan": "17",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1211_2.mm",
+            "makespan": "22",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1211_3.mm",
+            "makespan": "14",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1211_4.mm",
+            "makespan": "17",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1211_5.mm",
+            "makespan": "21",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1211_6.mm",
+            "makespan": "13",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1211_7.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1211_8.mm",
+            "makespan": "18",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1211_9.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1211_10.mm",
+            "makespan": "21",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1212_1.mm",
+            "makespan": "30",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1212_2.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1212_3.mm",
+            "makespan": "15",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1212_4.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1212_5.mm",
+            "makespan": "21",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1212_6.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1212_7.mm",
+            "makespan": "20",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1212_8.mm",
+            "makespan": "21",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1212_9.mm",
+            "makespan": "16",
+            "executionTime": "0.21"
+        },
+        {
+            "file": "j1212_10.mm",
+            "makespan": "17",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1213_1.mm",
+            "makespan": "35",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1213_2.mm",
+            "makespan": "27",
+            "executionTime": "1.85"
+        },
+        {
+            "file": "j1213_3.mm",
+            "makespan": "25",
+            "executionTime": "1.06"
+        },
+        {
+            "file": "j1213_4.mm",
+            "makespan": "21",
+            "executionTime": "0.68"
+        },
+        {
+            "file": "j1213_5.mm",
+            "makespan": "23",
+            "executionTime": "0.68"
+        },
+        {
+            "file": "j1213_6.mm",
+            "makespan": "30",
+            "executionTime": "2.78"
+        },
+        {
+            "file": "j1213_7.mm",
+            "makespan": "26",
+            "executionTime": "1.78"
+        },
+        {
+            "file": "j1213_8.mm",
+            "makespan": "26",
+            "executionTime": "1.34"
+        },
+        {
+            "file": "j1213_9.mm",
+            "makespan": "28",
+            "executionTime": "2.53"
+        },
+        {
+            "file": "j1213_10.mm",
+            "makespan": "24",
+            "executionTime": "1.81"
+        },
+        {
+            "file": "j1214_1.mm",
+            "makespan": "16",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1214_2.mm",
+            "makespan": "25",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1214_3.mm",
+            "makespan": "21",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1214_4.mm",
+            "makespan": "16",
+            "executionTime": "0.32"
+        },
+        {
+            "file": "j1214_5.mm",
+            "makespan": "19",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1214_6.mm",
+            "makespan": "16",
+            "executionTime": "1.03"
+        },
+        {
+            "file": "j1214_7.mm",
+            "makespan": "19",
+            "executionTime": "0.35"
+        },
+        {
+            "file": "j1214_8.mm",
+            "makespan": "21",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1214_9.mm",
+            "makespan": "12",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1214_10.mm",
+            "makespan": "26",
+            "executionTime": "1.53"
+        },
+        {
+            "file": "j1215_1.mm",
+            "makespan": "21",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1215_2.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1215_3.mm",
+            "makespan": "12",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1215_4.mm",
+            "makespan": "18",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1215_5.mm",
+            "makespan": "14",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1215_6.mm",
+            "makespan": "18",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1215_7.mm",
+            "makespan": "14",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1215_8.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1215_9.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1215_10.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1216_1.mm",
+            "makespan": "17",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1216_2.mm",
+            "makespan": "14",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1216_3.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1216_4.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1216_5.mm",
+            "makespan": "19",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1216_6.mm",
+            "makespan": "31",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1216_7.mm",
+            "makespan": "18",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1216_8.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1216_9.mm",
+            "makespan": "13",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1216_10.mm",
+            "makespan": "22",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1217_1.mm",
+            "makespan": "17",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1217_2.mm",
+            "makespan": "34",
+            "executionTime": "0.62"
+        },
+        {
+            "file": "j1217_3.mm",
+            "makespan": "29",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1217_4.mm",
+            "makespan": "17",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1217_5.mm",
+            "makespan": "24",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1217_6.mm",
+            "makespan": "18",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1217_7.mm",
+            "makespan": "20",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1217_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1217_9.mm",
+            "makespan": "24",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1217_10.mm",
+            "makespan": "29",
+            "executionTime": "0.21"
+        },
+        {
+            "file": "j1218_1.mm",
+            "makespan": "24",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1218_2.mm",
+            "makespan": "25",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1218_3.mm",
+            "makespan": "20",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1218_4.mm",
+            "makespan": "18",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1218_5.mm",
+            "makespan": "17",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1218_6.mm",
+            "makespan": "12",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1218_7.mm",
+            "makespan": "23",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1218_8.mm",
+            "makespan": "16",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1218_9.mm",
+            "makespan": "14",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1218_10.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1219_1.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1219_2.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1219_3.mm",
+            "makespan": "19",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1219_4.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1219_5.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1219_6.mm",
+            "makespan": "12",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1219_7.mm",
+            "makespan": "17",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1219_8.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1219_9.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1219_10.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1220_1.mm",
+            "makespan": "17",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1220_2.mm",
+            "makespan": "15",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1220_3.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1220_4.mm",
+            "makespan": "22",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1220_5.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1220_6.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1220_7.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1220_8.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1220_9.mm",
+            "makespan": "16",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1220_10.mm",
+            "makespan": "18",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1221_1.mm",
+            "makespan": "30",
+            "executionTime": "1.19"
+        },
+        {
+            "file": "j1221_2.mm",
+            "makespan": "24",
+            "executionTime": "1.22"
+        },
+        {
+            "file": "j1221_3.mm",
+            "makespan": "34",
+            "executionTime": "0.88"
+        },
+        {
+            "file": "j1221_4.mm",
+            "makespan": "21",
+            "executionTime": "1.69"
+        },
+        {
+            "file": "j1221_5.mm",
+            "makespan": "23",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1221_6.mm",
+            "makespan": "31",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1221_7.mm",
+            "makespan": "24",
+            "executionTime": "3.25"
+        },
+        {
+            "file": "j1221_8.mm",
+            "makespan": "26",
+            "executionTime": "4.59"
+        },
+        {
+            "file": "j1221_9.mm",
+            "makespan": "24",
+            "executionTime": "1.25"
+        },
+        {
+            "file": "j1221_10.mm",
+            "makespan": "24",
+            "executionTime": "1.06"
+        },
+        {
+            "file": "j1222_1.mm",
+            "makespan": "15",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1222_2.mm",
+            "makespan": "19",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1222_3.mm",
+            "makespan": "20",
+            "executionTime": "0.56"
+        },
+        {
+            "file": "j1222_4.mm",
+            "makespan": "17",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1222_5.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1222_6.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1222_7.mm",
+            "makespan": "19",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1222_8.mm",
+            "makespan": "20",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1222_9.mm",
+            "makespan": "16",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1222_10.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1223_1.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1223_2.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1223_3.mm",
+            "makespan": "23",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1223_4.mm",
+            "makespan": "17",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1223_5.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1223_6.mm",
+            "makespan": "22",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1223_7.mm",
+            "makespan": "12",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1223_8.mm",
+            "makespan": "15",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1223_9.mm",
+            "makespan": "15",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1223_10.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1224_1.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1224_2.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1224_3.mm",
+            "makespan": "20",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1224_4.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1224_5.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1224_6.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1224_7.mm",
+            "makespan": "11",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1224_8.mm",
+            "makespan": "18",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1224_9.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1224_10.mm",
+            "makespan": "20",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1225_1.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1225_2.mm",
+            "makespan": "21",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1225_3.mm",
+            "makespan": "32",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1225_4.mm",
+            "makespan": "32",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1225_5.mm",
+            "makespan": "24",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1225_6.mm",
+            "makespan": "43",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1225_7.mm",
+            "makespan": "40",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1225_8.mm",
+            "makespan": "18",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1225_9.mm",
+            "makespan": "22",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1225_10.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1226_1.mm",
+            "makespan": "21",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1226_2.mm",
+            "makespan": "20",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1226_3.mm",
+            "makespan": "13",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1226_4.mm",
+            "makespan": "19",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1226_5.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1226_6.mm",
+            "makespan": "13",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1226_7.mm",
+            "makespan": "11",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1226_8.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1226_9.mm",
+            "makespan": "20",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1226_10.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1227_1.mm",
+            "makespan": "19",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1227_2.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1227_3.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1227_4.mm",
+            "makespan": "13",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1227_5.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1227_6.mm",
+            "makespan": "18",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1227_7.mm",
+            "makespan": "17",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1227_8.mm",
+            "makespan": "18",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1227_9.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1227_10.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1228_1.mm",
+            "makespan": "11",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1228_2.mm",
+            "makespan": "14",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1228_3.mm",
+            "makespan": "12",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1228_4.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1228_5.mm",
+            "makespan": "10",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1228_6.mm",
+            "makespan": "11",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1228_7.mm",
+            "makespan": "15",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1228_8.mm",
+            "makespan": "13",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1228_9.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1228_10.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1229_1.mm",
+            "makespan": "22",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1229_2.mm",
+            "makespan": "43",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1229_3.mm",
+            "makespan": "27",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1229_4.mm",
+            "makespan": "23",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1229_5.mm",
+            "makespan": "38",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1229_6.mm",
+            "makespan": "25",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1229_7.mm",
+            "makespan": "17",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1229_8.mm",
+            "makespan": "23",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1229_9.mm",
+            "makespan": "21",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1229_10.mm",
+            "makespan": "19",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1230_1.mm",
+            "makespan": "25",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1230_2.mm",
+            "makespan": "17",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1230_3.mm",
+            "makespan": "20",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1230_4.mm",
+            "makespan": "16",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1230_5.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1230_6.mm",
+            "makespan": "24",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1230_7.mm",
+            "makespan": "22",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1230_8.mm",
+            "makespan": "24",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1230_9.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1230_10.mm",
+            "makespan": "24",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1231_1.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1231_2.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1231_3.mm",
+            "makespan": "18",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1231_4.mm",
+            "makespan": "11",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1231_5.mm",
+            "makespan": "16",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1231_6.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1231_7.mm",
+            "makespan": "13",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1231_8.mm",
+            "makespan": "20",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1231_9.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1231_10.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1232_1.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1232_2.mm",
+            "makespan": "13",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1232_3.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1232_4.mm",
+            "makespan": "17",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1232_5.mm",
+            "makespan": "18",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1232_6.mm",
+            "makespan": "14",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1232_7.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1232_8.mm",
+            "makespan": "16",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1232_9.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1232_10.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1233_1.mm",
+            "makespan": "29",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1233_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1233_3.mm",
+            "makespan": "30",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1233_4.mm",
+            "makespan": "41",
+            "executionTime": "0.81"
+        },
+        {
+            "file": "j1233_5.mm",
+            "makespan": "37",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1233_6.mm",
+            "makespan": "33",
+            "executionTime": "0.40"
+        },
+        {
+            "file": "j1233_7.mm",
+            "makespan": "38",
+            "executionTime": "0.37"
+        },
+        {
+            "file": "j1233_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1233_9.mm",
+            "makespan": "29",
+            "executionTime": "0.29"
+        },
+        {
+            "file": "j1233_10.mm",
+            "makespan": "24",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1234_1.mm",
+            "makespan": "35",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1234_2.mm",
+            "makespan": "29",
+            "executionTime": "0.40"
+        },
+        {
+            "file": "j1234_3.mm",
+            "makespan": "29",
+            "executionTime": "1.37"
+        },
+        {
+            "file": "j1234_4.mm",
+            "makespan": "31",
+            "executionTime": "1.13"
+        },
+        {
+            "file": "j1234_5.mm",
+            "makespan": "26",
+            "executionTime": "1.10"
+        },
+        {
+            "file": "j1234_6.mm",
+            "makespan": "25",
+            "executionTime": "0.40"
+        },
+        {
+            "file": "j1234_7.mm",
+            "makespan": "26",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1234_8.mm",
+            "makespan": "20",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1234_9.mm",
+            "makespan": "22",
+            "executionTime": "0.69"
+        },
+        {
+            "file": "j1234_10.mm",
+            "makespan": "29",
+            "executionTime": "0.85"
+        },
+        {
+            "file": "j1235_1.mm",
+            "makespan": "22",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1235_2.mm",
+            "makespan": "23",
+            "executionTime": "0.32"
+        },
+        {
+            "file": "j1235_3.mm",
+            "makespan": "21",
+            "executionTime": "0.87"
+        },
+        {
+            "file": "j1235_4.mm",
+            "makespan": "20",
+            "executionTime": "1.06"
+        },
+        {
+            "file": "j1235_5.mm",
+            "makespan": "22",
+            "executionTime": "1.00"
+        },
+        {
+            "file": "j1235_6.mm",
+            "makespan": "36",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1235_7.mm",
+            "makespan": "28",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1235_8.mm",
+            "makespan": "20",
+            "executionTime": "0.68"
+        },
+        {
+            "file": "j1235_9.mm",
+            "makespan": "24",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1235_10.mm",
+            "makespan": "27",
+            "executionTime": "0.32"
+        },
+        {
+            "file": "j1236_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1236_2.mm",
+            "makespan": "30",
+            "executionTime": "0.56"
+        },
+        {
+            "file": "j1236_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1236_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1236_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1236_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1236_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1236_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1236_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1236_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1237_1.mm",
+            "makespan": "33",
+            "executionTime": "3.88"
+        },
+        {
+            "file": "j1237_2.mm",
+            "makespan": "37",
+            "executionTime": "1.07"
+        },
+        {
+            "file": "j1237_3.mm",
+            "makespan": "42",
+            "executionTime": "2.28"
+        },
+        {
+            "file": "j1237_4.mm",
+            "makespan": "38",
+            "executionTime": "0.97"
+        },
+        {
+            "file": "j1237_5.mm",
+            "makespan": "31",
+            "executionTime": "1.40"
+        },
+        {
+            "file": "j1237_6.mm",
+            "makespan": "48",
+            "executionTime": "0.37"
+        },
+        {
+            "file": "j1237_7.mm",
+            "makespan": "45",
+            "executionTime": "2.00"
+        },
+        {
+            "file": "j1237_8.mm",
+            "makespan": "31",
+            "executionTime": "2.25"
+        },
+        {
+            "file": "j1237_9.mm",
+            "makespan": "26",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1237_10.mm",
+            "makespan": "42",
+            "executionTime": "0.88"
+        },
+        {
+            "file": "j1238_1.mm",
+            "makespan": "27",
+            "executionTime": "1.25"
+        },
+        {
+            "file": "j1238_2.mm",
+            "makespan": "33",
+            "executionTime": "0.53"
+        },
+        {
+            "file": "j1238_3.mm",
+            "makespan": "32",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1238_4.mm",
+            "makespan": "33",
+            "executionTime": "0.97"
+        },
+        {
+            "file": "j1238_5.mm",
+            "makespan": "21",
+            "executionTime": "0.82"
+        },
+        {
+            "file": "j1238_6.mm",
+            "makespan": "28",
+            "executionTime": "1.12"
+        },
+        {
+            "file": "j1238_7.mm",
+            "makespan": "25",
+            "executionTime": "0.84"
+        },
+        {
+            "file": "j1238_8.mm",
+            "makespan": "24",
+            "executionTime": "0.56"
+        },
+        {
+            "file": "j1238_9.mm",
+            "makespan": "28",
+            "executionTime": "0.84"
+        },
+        {
+            "file": "j1238_10.mm",
+            "makespan": "28",
+            "executionTime": "1.03"
+        },
+        {
+            "file": "j1239_1.mm",
+            "makespan": "25",
+            "executionTime": "0.37"
+        },
+        {
+            "file": "j1239_2.mm",
+            "makespan": "26",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1239_3.mm",
+            "makespan": "25",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1239_4.mm",
+            "makespan": "25",
+            "executionTime": "0.37"
+        },
+        {
+            "file": "j1239_5.mm",
+            "makespan": "29",
+            "executionTime": "0.37"
+        },
+        {
+            "file": "j1239_6.mm",
+            "makespan": "34",
+            "executionTime": "0.57"
+        },
+        {
+            "file": "j1239_7.mm",
+            "makespan": "29",
+            "executionTime": "0.53"
+        },
+        {
+            "file": "j1239_8.mm",
+            "makespan": "29",
+            "executionTime": "0.79"
+        },
+        {
+            "file": "j1239_9.mm",
+            "makespan": "29",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1239_10.mm",
+            "makespan": "26",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1240_1.mm",
+            "makespan": "24",
+            "executionTime": "0.78"
+        },
+        {
+            "file": "j1240_2.mm",
+            "makespan": "29",
+            "executionTime": "0.62"
+        },
+        {
+            "file": "j1240_3.mm",
+            "makespan": "26",
+            "executionTime": "0.69"
+        },
+        {
+            "file": "j1240_4.mm",
+            "makespan": "30",
+            "executionTime": "0.43"
+        },
+        {
+            "file": "j1240_5.mm",
+            "makespan": "24",
+            "executionTime": "0.37"
+        },
+        {
+            "file": "j1240_6.mm",
+            "makespan": "32",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1240_7.mm",
+            "makespan": "26",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1240_8.mm",
+            "makespan": "29",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1240_9.mm",
+            "makespan": "26",
+            "executionTime": "0.40"
+        },
+        {
+            "file": "j1240_10.mm",
+            "makespan": "25",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1241_1.mm",
+            "makespan": "22",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1241_2.mm",
+            "makespan": "25",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1241_3.mm",
+            "makespan": "31",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1241_4.mm",
+            "makespan": "26",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1241_5.mm",
+            "makespan": "26",
+            "executionTime": "0.69"
+        },
+        {
+            "file": "j1241_6.mm",
+            "makespan": "35",
+            "executionTime": "0.32"
+        },
+        {
+            "file": "j1241_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1241_8.mm",
+            "makespan": "21",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1241_9.mm",
+            "makespan": "23",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1241_10.mm",
+            "makespan": "25",
+            "executionTime": "1.03"
+        },
+        {
+            "file": "j1242_1.mm",
+            "makespan": "23",
+            "executionTime": "1.32"
+        },
+        {
+            "file": "j1242_2.mm",
+            "makespan": "22",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1242_3.mm",
+            "makespan": "21",
+            "executionTime": "0.50"
+        },
+        {
+            "file": "j1242_4.mm",
+            "makespan": "20",
+            "executionTime": "0.21"
+        },
+        {
+            "file": "j1242_5.mm",
+            "makespan": "18",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1242_6.mm",
+            "makespan": "24",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1242_7.mm",
+            "makespan": "22",
+            "executionTime": "1.34"
+        },
+        {
+            "file": "j1242_8.mm",
+            "makespan": "20",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1242_9.mm",
+            "makespan": "20",
+            "executionTime": "1.10"
+        },
+        {
+            "file": "j1242_10.mm",
+            "makespan": "15",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1243_1.mm",
+            "makespan": "19",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1243_2.mm",
+            "makespan": "17",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1243_3.mm",
+            "makespan": "22",
+            "executionTime": "0.69"
+        },
+        {
+            "file": "j1243_4.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1243_5.mm",
+            "makespan": "24",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1243_6.mm",
+            "makespan": "17",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1243_7.mm",
+            "makespan": "18",
+            "executionTime": "1.09"
+        },
+        {
+            "file": "j1243_8.mm",
+            "makespan": "26",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1243_9.mm",
+            "makespan": "23",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1243_10.mm",
+            "makespan": "16",
+            "executionTime": "0.68"
+        },
+        {
+            "file": "j1244_1.mm",
+            "makespan": "24",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1244_2.mm",
+            "makespan": "18",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1244_3.mm",
+            "makespan": "18",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1244_4.mm",
+            "makespan": "26",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1244_5.mm",
+            "makespan": "25",
+            "executionTime": "0.81"
+        },
+        {
+            "file": "j1244_6.mm",
+            "makespan": "20",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1244_7.mm",
+            "makespan": "20",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1244_8.mm",
+            "makespan": "23",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1244_9.mm",
+            "makespan": "21",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1244_10.mm",
+            "makespan": "27",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1245_1.mm",
+            "makespan": "26",
+            "executionTime": "3.32"
+        },
+        {
+            "file": "j1245_2.mm",
+            "makespan": "25",
+            "executionTime": "2.13"
+        },
+        {
+            "file": "j1245_3.mm",
+            "makespan": "24",
+            "executionTime": "1.22"
+        },
+        {
+            "file": "j1245_4.mm",
+            "makespan": "29",
+            "executionTime": "1.81"
+        },
+        {
+            "file": "j1245_5.mm",
+            "makespan": "29",
+            "executionTime": "9.18"
+        },
+        {
+            "file": "j1245_6.mm",
+            "makespan": "26",
+            "executionTime": "1.25"
+        },
+        {
+            "file": "j1245_7.mm",
+            "makespan": "30",
+            "executionTime": "0.94"
+        },
+        {
+            "file": "j1245_8.mm",
+            "makespan": "24",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1245_9.mm",
+            "makespan": "31",
+            "executionTime": "5.37"
+        },
+        {
+            "file": "j1245_10.mm",
+            "makespan": "25",
+            "executionTime": "0.91"
+        },
+        {
+            "file": "j1246_1.mm",
+            "makespan": "22",
+            "executionTime": "0.35"
+        },
+        {
+            "file": "j1246_2.mm",
+            "makespan": "22",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1246_3.mm",
+            "makespan": "23",
+            "executionTime": "1.62"
+        },
+        {
+            "file": "j1246_4.mm",
+            "makespan": "22",
+            "executionTime": "0.59"
+        },
+        {
+            "file": "j1246_5.mm",
+            "makespan": "21",
+            "executionTime": "0.97"
+        },
+        {
+            "file": "j1246_6.mm",
+            "makespan": "23",
+            "executionTime": "0.65"
+        },
+        {
+            "file": "j1246_7.mm",
+            "makespan": "16",
+            "executionTime": "2.53"
+        },
+        {
+            "file": "j1246_8.mm",
+            "makespan": "24",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1246_9.mm",
+            "makespan": "22",
+            "executionTime": "3.03"
+        },
+        {
+            "file": "j1246_10.mm",
+            "makespan": "23",
+            "executionTime": "2.03"
+        },
+        {
+            "file": "j1247_1.mm",
+            "makespan": "22",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1247_2.mm",
+            "makespan": "16",
+            "executionTime": "0.21"
+        },
+        {
+            "file": "j1247_3.mm",
+            "makespan": "20",
+            "executionTime": "0.53"
+        },
+        {
+            "file": "j1247_4.mm",
+            "makespan": "22",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1247_5.mm",
+            "makespan": "14",
+            "executionTime": "1.54"
+        },
+        {
+            "file": "j1247_6.mm",
+            "makespan": "22",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1247_7.mm",
+            "makespan": "22",
+            "executionTime": "0.63"
+        },
+        {
+            "file": "j1247_8.mm",
+            "makespan": "21",
+            "executionTime": "0.37"
+        },
+        {
+            "file": "j1247_9.mm",
+            "makespan": "25",
+            "executionTime": "0.46"
+        },
+        {
+            "file": "j1247_10.mm",
+            "makespan": "23",
+            "executionTime": "0.65"
+        },
+        {
+            "file": "j1248_1.mm",
+            "makespan": "17",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1248_2.mm",
+            "makespan": "20",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1248_3.mm",
+            "makespan": "23",
+            "executionTime": "1.15"
+        },
+        {
+            "file": "j1248_4.mm",
+            "makespan": "24",
+            "executionTime": "0.88"
+        },
+        {
+            "file": "j1248_5.mm",
+            "makespan": "17",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1248_6.mm",
+            "makespan": "20",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1248_7.mm",
+            "makespan": "22",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1248_8.mm",
+            "makespan": "21",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1248_9.mm",
+            "makespan": "25",
+            "executionTime": "0.90"
+        },
+        {
+            "file": "j1248_10.mm",
+            "makespan": "21",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1249_1.mm",
+            "makespan": "23",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1249_2.mm",
+            "makespan": "15",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1249_3.mm",
+            "makespan": "25",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1249_4.mm",
+            "makespan": "27",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1249_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1249_6.mm",
+            "makespan": "26",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1249_7.mm",
+            "makespan": "20",
+            "executionTime": "0.41"
+        },
+        {
+            "file": "j1249_8.mm",
+            "makespan": "28",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1249_9.mm",
+            "makespan": "26",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1249_10.mm",
+            "makespan": "23",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1250_1.mm",
+            "makespan": "20",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1250_2.mm",
+            "makespan": "18",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1250_3.mm",
+            "makespan": "16",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1250_4.mm",
+            "makespan": "16",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1250_5.mm",
+            "makespan": "17",
+            "executionTime": "0.35"
+        },
+        {
+            "file": "j1250_6.mm",
+            "makespan": "19",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1250_7.mm",
+            "makespan": "16",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1250_8.mm",
+            "makespan": "17",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1250_9.mm",
+            "makespan": "19",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1250_10.mm",
+            "makespan": "17",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1251_1.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1251_2.mm",
+            "makespan": "16",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1251_3.mm",
+            "makespan": "15",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1251_4.mm",
+            "makespan": "17",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1251_5.mm",
+            "makespan": "17",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1251_6.mm",
+            "makespan": "12",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1251_7.mm",
+            "makespan": "17",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1251_8.mm",
+            "makespan": "18",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1251_9.mm",
+            "makespan": "16",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1251_10.mm",
+            "makespan": "19",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1252_1.mm",
+            "makespan": "22",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1252_2.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1252_3.mm",
+            "makespan": "24",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1252_4.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1252_5.mm",
+            "makespan": "22",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1252_6.mm",
+            "makespan": "20",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1252_7.mm",
+            "makespan": "16",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1252_8.mm",
+            "makespan": "14",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1252_9.mm",
+            "makespan": "21",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1252_10.mm",
+            "makespan": "15",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1253_1.mm",
+            "makespan": "24",
+            "executionTime": "1.47"
+        },
+        {
+            "file": "j1253_2.mm",
+            "makespan": "34",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1253_3.mm",
+            "makespan": "28",
+            "executionTime": "3.12"
+        },
+        {
+            "file": "j1253_4.mm",
+            "makespan": "31",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1253_5.mm",
+            "makespan": "33",
+            "executionTime": "3.06"
+        },
+        {
+            "file": "j1253_6.mm",
+            "makespan": "24",
+            "executionTime": "0.94"
+        },
+        {
+            "file": "j1253_7.mm",
+            "makespan": "38",
+            "executionTime": "0.94"
+        },
+        {
+            "file": "j1253_8.mm",
+            "makespan": "26",
+            "executionTime": "1.60"
+        },
+        {
+            "file": "j1253_9.mm",
+            "makespan": "24",
+            "executionTime": "0.63"
+        },
+        {
+            "file": "j1253_10.mm",
+            "makespan": "27",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1254_1.mm",
+            "makespan": "17",
+            "executionTime": "0.90"
+        },
+        {
+            "file": "j1254_2.mm",
+            "makespan": "19",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1254_3.mm",
+            "makespan": "17",
+            "executionTime": "0.65"
+        },
+        {
+            "file": "j1254_4.mm",
+            "makespan": "16",
+            "executionTime": "0.96"
+        },
+        {
+            "file": "j1254_5.mm",
+            "makespan": "18",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1254_6.mm",
+            "makespan": "23",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1254_7.mm",
+            "makespan": "23",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1254_8.mm",
+            "makespan": "17",
+            "executionTime": "1.06"
+        },
+        {
+            "file": "j1254_9.mm",
+            "makespan": "18",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1254_10.mm",
+            "makespan": "11",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1255_1.mm",
+            "makespan": "17",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1255_2.mm",
+            "makespan": "15",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1255_3.mm",
+            "makespan": "17",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1255_4.mm",
+            "makespan": "14",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1255_5.mm",
+            "makespan": "14",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1255_6.mm",
+            "makespan": "17",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1255_7.mm",
+            "makespan": "15",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1255_8.mm",
+            "makespan": "14",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1255_9.mm",
+            "makespan": "14",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1255_10.mm",
+            "makespan": "22",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1256_1.mm",
+            "makespan": "14",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1256_2.mm",
+            "makespan": "21",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1256_3.mm",
+            "makespan": "21",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1256_4.mm",
+            "makespan": "19",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1256_5.mm",
+            "makespan": "18",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1256_6.mm",
+            "makespan": "15",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1256_7.mm",
+            "makespan": "14",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1256_8.mm",
+            "makespan": "26",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1256_9.mm",
+            "makespan": "17",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1256_10.mm",
+            "makespan": "12",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1257_1.mm",
+            "makespan": "26",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1257_2.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1257_3.mm",
+            "makespan": "15",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1257_4.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1257_5.mm",
+            "makespan": "37",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1257_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1257_7.mm",
+            "makespan": "27",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1257_8.mm",
+            "makespan": "24",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1257_9.mm",
+            "makespan": "16",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1257_10.mm",
+            "makespan": "29",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1258_1.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1258_2.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1258_3.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1258_4.mm",
+            "makespan": "18",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1258_5.mm",
+            "makespan": "11",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1258_6.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1258_7.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1258_8.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1258_9.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1258_10.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1259_1.mm",
+            "makespan": "12",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1259_2.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1259_3.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1259_4.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1259_5.mm",
+            "makespan": "18",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1259_6.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1259_7.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1259_8.mm",
+            "makespan": "13",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1259_9.mm",
+            "makespan": "26",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1259_10.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_1.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_2.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_3.mm",
+            "makespan": "11",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_4.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_5.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_6.mm",
+            "makespan": "15",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1260_7.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_8.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_9.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1260_10.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1261_1.mm",
+            "makespan": "28",
+            "executionTime": "0.41"
+        },
+        {
+            "file": "j1261_2.mm",
+            "makespan": "13",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1261_3.mm",
+            "makespan": "30",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1261_4.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1261_5.mm",
+            "makespan": "21",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1261_6.mm",
+            "makespan": "27",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1261_7.mm",
+            "makespan": "26",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1261_8.mm",
+            "makespan": "42",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1261_9.mm",
+            "makespan": "23",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1261_10.mm",
+            "makespan": "22",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1262_1.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1262_2.mm",
+            "makespan": "25",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1262_3.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1262_4.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1262_5.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1262_6.mm",
+            "makespan": "21",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1262_7.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1262_8.mm",
+            "makespan": "20",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1262_9.mm",
+            "makespan": "22",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1262_10.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1263_1.mm",
+            "makespan": "22",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1263_2.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1263_3.mm",
+            "makespan": "13",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1263_4.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1263_5.mm",
+            "makespan": "24",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1263_6.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1263_7.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1263_8.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1263_9.mm",
+            "makespan": "19",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1263_10.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1264_1.mm",
+            "makespan": "17",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1264_2.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1264_3.mm",
+            "makespan": "15",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1264_4.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1264_5.mm",
+            "makespan": "15",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1264_6.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1264_7.mm",
+            "makespan": "19",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1264_8.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1264_9.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1264_10.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        }
+    ]
+}

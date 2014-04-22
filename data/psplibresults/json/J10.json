@@ -1,0 +1,2572 @@
+{
+    "instanceSet": "J10",
+    "executionType": "READ_PSPLIB_INSTANCE",
+    "testName": "reading the results from psplib",
+    "instanceConfig": {
+        "firstLineResults": 26,
+        "lastLineResults": 666,
+        "instanceSetLine": 3
+    },
+    "results": {
+        "j101_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j101_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j102_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j102_2.mm": {
+            "makespan": 20,
+            "executionTime": "0.12"
+        },
+        "j102_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j102_4.mm": {
+            "makespan": 18,
+            "executionTime": "0.13"
+        },
+        "j102_5.mm": {
+            "makespan": 16,
+            "executionTime": "0.88"
+        },
+        "j102_6.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j102_7.mm": {
+            "makespan": 25,
+            "executionTime": "0.09"
+        },
+        "j102_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j102_9.mm": {
+            "makespan": 17,
+            "executionTime": "0.10"
+        },
+        "j102_10.mm": {
+            "makespan": 33,
+            "executionTime": "0.28"
+        },
+        "j103_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j103_2.mm": {
+            "makespan": 13,
+            "executionTime": "0.09"
+        },
+        "j103_3.mm": {
+            "makespan": 19,
+            "executionTime": "0.10"
+        },
+        "j103_4.mm": {
+            "makespan": 23,
+            "executionTime": "0.06"
+        },
+        "j103_5.mm": {
+            "makespan": 21,
+            "executionTime": "0.22"
+        },
+        "j103_6.mm": {
+            "makespan": 29,
+            "executionTime": "0.13"
+        },
+        "j103_7.mm": {
+            "makespan": 14,
+            "executionTime": "0.10"
+        },
+        "j103_8.mm": {
+            "makespan": 24,
+            "executionTime": "0.34"
+        },
+        "j103_9.mm": {
+            "makespan": 20,
+            "executionTime": "0.07"
+        },
+        "j103_10.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j104_1.mm": {
+            "makespan": 27,
+            "executionTime": "0.06"
+        },
+        "j104_2.mm": {
+            "makespan": 20,
+            "executionTime": "0.03"
+        },
+        "j104_3.mm": {
+            "makespan": 23,
+            "executionTime": "0.03"
+        },
+        "j104_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j104_5.mm": {
+            "makespan": 31,
+            "executionTime": "0.03"
+        },
+        "j104_6.mm": {
+            "makespan": 21,
+            "executionTime": "0.03"
+        },
+        "j104_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j104_8.mm": {
+            "makespan": 19,
+            "executionTime": "0.06"
+        },
+        "j104_9.mm": {
+            "makespan": 21,
+            "executionTime": "0.03"
+        },
+        "j104_10.mm": {
+            "makespan": 15,
+            "executionTime": "0.07"
+        },
+        "j105_1.mm": {
+            "makespan": 42,
+            "executionTime": "0.06"
+        },
+        "j105_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j105_3.mm": {
+            "makespan": 32,
+            "executionTime": "0.18"
+        },
+        "j105_4.mm": {
+            "makespan": 23,
+            "executionTime": "0.22"
+        },
+        "j105_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j105_6.mm": {
+            "makespan": 34,
+            "executionTime": "0.41"
+        },
+        "j105_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j105_8.mm": {
+            "makespan": 31,
+            "executionTime": "0.10"
+        },
+        "j105_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j105_10.mm": {
+            "makespan": 25,
+            "executionTime": "0.09"
+        },
+        "j106_1.mm": {
+            "makespan": 18,
+            "executionTime": "0.09"
+        },
+        "j106_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j106_3.mm": {
+            "makespan": 29,
+            "executionTime": "0.31"
+        },
+        "j106_4.mm": {
+            "makespan": 23,
+            "executionTime": "0.56"
+        },
+        "j106_5.mm": {
+            "makespan": 37,
+            "executionTime": "0.12"
+        },
+        "j106_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j106_7.mm": {
+            "makespan": 23,
+            "executionTime": "0.16"
+        },
+        "j106_8.mm": {
+            "makespan": 23,
+            "executionTime": "0.07"
+        },
+        "j106_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j106_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j107_1.mm": {
+            "makespan": 14,
+            "executionTime": "0.10"
+        },
+        "j107_2.mm": {
+            "makespan": 24,
+            "executionTime": "0.12"
+        },
+        "j107_3.mm": {
+            "makespan": 23,
+            "executionTime": "0.09"
+        },
+        "j107_4.mm": {
+            "makespan": 19,
+            "executionTime": "0.10"
+        },
+        "j107_5.mm": {
+            "makespan": 24,
+            "executionTime": "0.09"
+        },
+        "j107_6.mm": {
+            "makespan": 36,
+            "executionTime": "0.37"
+        },
+        "j107_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j107_8.mm": {
+            "makespan": 31,
+            "executionTime": "0.10"
+        },
+        "j107_9.mm": {
+            "makespan": 28,
+            "executionTime": "0.22"
+        },
+        "j107_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j108_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j108_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j108_3.mm": {
+            "makespan": 17,
+            "executionTime": "0.04"
+        },
+        "j108_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j108_5.mm": {
+            "makespan": 25,
+            "executionTime": "0.03"
+        },
+        "j108_6.mm": {
+            "makespan": 23,
+            "executionTime": "0.07"
+        },
+        "j108_7.mm": {
+            "makespan": 20,
+            "executionTime": "0.06"
+        },
+        "j108_8.mm": {
+            "makespan": 14,
+            "executionTime": "0.04"
+        },
+        "j108_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j108_10.mm": {
+            "makespan": 23,
+            "executionTime": "0.06"
+        },
+        "j109_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j109_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1010_1.mm": {
+            "makespan": 17,
+            "executionTime": "0.04"
+        },
+        "j1010_2.mm": {
+            "makespan": 24,
+            "executionTime": "0.06"
+        },
+        "j1010_3.mm": {
+            "makespan": 21,
+            "executionTime": "0.04"
+        },
+        "j1010_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1010_5.mm": {
+            "makespan": 24,
+            "executionTime": "0.16"
+        },
+        "j1010_6.mm": {
+            "makespan": 18,
+            "executionTime": "0.19"
+        },
+        "j1010_7.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1010_8.mm": {
+            "makespan": 15,
+            "executionTime": "0.15"
+        },
+        "j1010_9.mm": {
+            "makespan": 10,
+            "executionTime": "0.06"
+        },
+        "j1010_10.mm": {
+            "makespan": 17,
+            "executionTime": "0.28"
+        },
+        "j1011_1.mm": {
+            "makespan": 20,
+            "executionTime": "0.03"
+        },
+        "j1011_2.mm": {
+            "makespan": 11,
+            "executionTime": "0.00"
+        },
+        "j1011_3.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1011_4.mm": {
+            "makespan": 23,
+            "executionTime": "0.04"
+        },
+        "j1011_5.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1011_6.mm": {
+            "makespan": 15,
+            "executionTime": "0.07"
+        },
+        "j1011_7.mm": {
+            "makespan": 11,
+            "executionTime": "0.04"
+        },
+        "j1011_8.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1011_9.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1011_10.mm": {
+            "makespan": 21,
+            "executionTime": "0.03"
+        },
+        "j1012_1.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1012_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1012_3.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1012_4.mm": {
+            "makespan": 17,
+            "executionTime": "0.04"
+        },
+        "j1012_5.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1012_6.mm": {
+            "makespan": 22,
+            "executionTime": "0.03"
+        },
+        "j1012_7.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1012_8.mm": {
+            "makespan": 19,
+            "executionTime": "0.00"
+        },
+        "j1012_9.mm": {
+            "makespan": 21,
+            "executionTime": "0.03"
+        },
+        "j1012_10.mm": {
+            "makespan": 9,
+            "executionTime": "0.03"
+        },
+        "j1013_1.mm": {
+            "makespan": 24,
+            "executionTime": "0.16"
+        },
+        "j1013_2.mm": {
+            "makespan": 21,
+            "executionTime": "0.16"
+        },
+        "j1013_3.mm": {
+            "makespan": 27,
+            "executionTime": "0.19"
+        },
+        "j1013_4.mm": {
+            "makespan": 27,
+            "executionTime": "0.12"
+        },
+        "j1013_5.mm": {
+            "makespan": 24,
+            "executionTime": "0.25"
+        },
+        "j1013_6.mm": {
+            "makespan": 23,
+            "executionTime": "0.15"
+        },
+        "j1013_7.mm": {
+            "makespan": 24,
+            "executionTime": "0.18"
+        },
+        "j1013_8.mm": {
+            "makespan": 19,
+            "executionTime": "0.22"
+        },
+        "j1013_9.mm": {
+            "makespan": 24,
+            "executionTime": "0.09"
+        },
+        "j1013_10.mm": {
+            "makespan": 33,
+            "executionTime": "0.22"
+        },
+        "j1014_1.mm": {
+            "makespan": 16,
+            "executionTime": "0.18"
+        },
+        "j1014_2.mm": {
+            "makespan": 19,
+            "executionTime": "0.21"
+        },
+        "j1014_3.mm": {
+            "makespan": 22,
+            "executionTime": "0.15"
+        },
+        "j1014_4.mm": {
+            "makespan": 19,
+            "executionTime": "0.21"
+        },
+        "j1014_5.mm": {
+            "makespan": 19,
+            "executionTime": "0.03"
+        },
+        "j1014_6.mm": {
+            "makespan": 16,
+            "executionTime": "0.22"
+        },
+        "j1014_7.mm": {
+            "makespan": 21,
+            "executionTime": "0.25"
+        },
+        "j1014_8.mm": {
+            "makespan": 24,
+            "executionTime": "0.09"
+        },
+        "j1014_9.mm": {
+            "makespan": 22,
+            "executionTime": "0.07"
+        },
+        "j1014_10.mm": {
+            "makespan": 15,
+            "executionTime": "0.37"
+        },
+        "j1015_1.mm": {
+            "makespan": 13,
+            "executionTime": "0.06"
+        },
+        "j1015_2.mm": {
+            "makespan": 25,
+            "executionTime": "0.06"
+        },
+        "j1015_3.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1015_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.16"
+        },
+        "j1015_5.mm": {
+            "makespan": 11,
+            "executionTime": "0.34"
+        },
+        "j1015_6.mm": {
+            "makespan": 19,
+            "executionTime": "0.06"
+        },
+        "j1015_7.mm": {
+            "makespan": 10,
+            "executionTime": "0.13"
+        },
+        "j1015_8.mm": {
+            "makespan": 11,
+            "executionTime": "0.06"
+        },
+        "j1015_9.mm": {
+            "makespan": 14,
+            "executionTime": "0.06"
+        },
+        "j1015_10.mm": {
+            "makespan": 18,
+            "executionTime": "0.03"
+        },
+        "j1016_1.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1016_2.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1016_3.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1016_4.mm": {
+            "makespan": 21,
+            "executionTime": "0.00"
+        },
+        "j1016_5.mm": {
+            "makespan": 25,
+            "executionTime": "0.03"
+        },
+        "j1016_6.mm": {
+            "makespan": 21,
+            "executionTime": "0.07"
+        },
+        "j1016_7.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1016_8.mm": {
+            "makespan": 9,
+            "executionTime": "0.03"
+        },
+        "j1016_9.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1016_10.mm": {
+            "makespan": 26,
+            "executionTime": "0.03"
+        },
+        "j1017_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1017_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1018_1.mm": {
+            "makespan": 15,
+            "executionTime": "0.25"
+        },
+        "j1018_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.09"
+        },
+        "j1018_3.mm": {
+            "makespan": 17,
+            "executionTime": "0.10"
+        },
+        "j1018_4.mm": {
+            "makespan": 19,
+            "executionTime": "0.06"
+        },
+        "j1018_5.mm": {
+            "makespan": 14,
+            "executionTime": "0.07"
+        },
+        "j1018_6.mm": {
+            "makespan": 15,
+            "executionTime": "0.09"
+        },
+        "j1018_7.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1018_8.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j1018_9.mm": {
+            "makespan": 14,
+            "executionTime": "0.07"
+        },
+        "j1018_10.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j1019_1.mm": {
+            "makespan": 13,
+            "executionTime": "0.04"
+        },
+        "j1019_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1019_3.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1019_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1019_5.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1019_6.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1019_7.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1019_8.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1019_9.mm": {
+            "makespan": 12,
+            "executionTime": "0.06"
+        },
+        "j1019_10.mm": {
+            "makespan": 11,
+            "executionTime": "0.03"
+        },
+        "j1020_1.mm": {
+            "makespan": 12,
+            "executionTime": "0.00"
+        },
+        "j1020_2.mm": {
+            "makespan": 18,
+            "executionTime": "0.03"
+        },
+        "j1020_3.mm": {
+            "makespan": 21,
+            "executionTime": "0.03"
+        },
+        "j1020_4.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1020_5.mm": {
+            "makespan": 12,
+            "executionTime": "0.00"
+        },
+        "j1020_6.mm": {
+            "makespan": 20,
+            "executionTime": "0.03"
+        },
+        "j1020_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1020_8.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1020_9.mm": {
+            "makespan": 9,
+            "executionTime": "0.03"
+        },
+        "j1020_10.mm": {
+            "makespan": 10,
+            "executionTime": "0.03"
+        },
+        "j1021_1.mm": {
+            "makespan": 27,
+            "executionTime": "0.22"
+        },
+        "j1021_2.mm": {
+            "makespan": 23,
+            "executionTime": "0.13"
+        },
+        "j1021_3.mm": {
+            "makespan": 37,
+            "executionTime": "0.09"
+        },
+        "j1021_4.mm": {
+            "makespan": 23,
+            "executionTime": "0.13"
+        },
+        "j1021_5.mm": {
+            "makespan": 35,
+            "executionTime": "0.13"
+        },
+        "j1021_6.mm": {
+            "makespan": 29,
+            "executionTime": "0.13"
+        },
+        "j1021_7.mm": {
+            "makespan": 24,
+            "executionTime": "0.25"
+        },
+        "j1021_8.mm": {
+            "makespan": 23,
+            "executionTime": "0.16"
+        },
+        "j1021_9.mm": {
+            "makespan": 25,
+            "executionTime": "0.06"
+        },
+        "j1021_10.mm": {
+            "makespan": 26,
+            "executionTime": "0.34"
+        },
+        "j1022_1.mm": {
+            "makespan": 21,
+            "executionTime": "0.16"
+        },
+        "j1022_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.25"
+        },
+        "j1022_3.mm": {
+            "makespan": 23,
+            "executionTime": "0.10"
+        },
+        "j1022_4.mm": {
+            "makespan": 16,
+            "executionTime": "0.25"
+        },
+        "j1022_5.mm": {
+            "makespan": 15,
+            "executionTime": "0.12"
+        },
+        "j1022_6.mm": {
+            "makespan": 16,
+            "executionTime": "0.07"
+        },
+        "j1022_7.mm": {
+            "makespan": 12,
+            "executionTime": "0.06"
+        },
+        "j1022_8.mm": {
+            "makespan": 19,
+            "executionTime": "0.60"
+        },
+        "j1022_9.mm": {
+            "makespan": 19,
+            "executionTime": "0.10"
+        },
+        "j1022_10.mm": {
+            "makespan": 19,
+            "executionTime": "0.44"
+        },
+        "j1023_1.mm": {
+            "makespan": 15,
+            "executionTime": "0.65"
+        },
+        "j1023_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1023_3.mm": {
+            "makespan": 16,
+            "executionTime": "0.16"
+        },
+        "j1023_4.mm": {
+            "makespan": 21,
+            "executionTime": "0.16"
+        },
+        "j1023_5.mm": {
+            "makespan": 14,
+            "executionTime": "0.09"
+        },
+        "j1023_6.mm": {
+            "makespan": 19,
+            "executionTime": "0.06"
+        },
+        "j1023_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1023_8.mm": {
+            "makespan": 18,
+            "executionTime": "0.06"
+        },
+        "j1023_9.mm": {
+            "makespan": 13,
+            "executionTime": "0.15"
+        },
+        "j1023_10.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j1024_1.mm": {
+            "makespan": 8,
+            "executionTime": "0.03"
+        },
+        "j1024_2.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1024_3.mm": {
+            "makespan": 10,
+            "executionTime": "0.00"
+        },
+        "j1024_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1024_5.mm": {
+            "makespan": 14,
+            "executionTime": "0.00"
+        },
+        "j1024_6.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1024_7.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1024_8.mm": {
+            "makespan": 25,
+            "executionTime": "0.03"
+        },
+        "j1024_9.mm": {
+            "makespan": 10,
+            "executionTime": "0.03"
+        },
+        "j1024_10.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1025_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1025_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1026_1.mm": {
+            "makespan": 14,
+            "executionTime": "0.09"
+        },
+        "j1026_2.mm": {
+            "makespan": 12,
+            "executionTime": "0.07"
+        },
+        "j1026_3.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1026_4.mm": {
+            "makespan": 16,
+            "executionTime": "0.07"
+        },
+        "j1026_5.mm": {
+            "makespan": 18,
+            "executionTime": "0.16"
+        },
+        "j1026_6.mm": {
+            "makespan": 18,
+            "executionTime": "0.06"
+        },
+        "j1026_7.mm": {
+            "makespan": 14,
+            "executionTime": "0.07"
+        },
+        "j1026_8.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1026_9.mm": {
+            "makespan": 11,
+            "executionTime": "0.07"
+        },
+        "j1026_10.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j1027_1.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1027_2.mm": {
+            "makespan": 12,
+            "executionTime": "0.12"
+        },
+        "j1027_3.mm": {
+            "makespan": 15,
+            "executionTime": "0.04"
+        },
+        "j1027_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1027_5.mm": {
+            "makespan": 18,
+            "executionTime": "0.16"
+        },
+        "j1027_6.mm": {
+            "makespan": 14,
+            "executionTime": "0.19"
+        },
+        "j1027_7.mm": {
+            "makespan": 10,
+            "executionTime": "0.06"
+        },
+        "j1027_8.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1027_9.mm": {
+            "makespan": 15,
+            "executionTime": "0.07"
+        },
+        "j1027_10.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1028_1.mm": {
+            "makespan": 19,
+            "executionTime": "0.03"
+        },
+        "j1028_2.mm": {
+            "makespan": 24,
+            "executionTime": "0.03"
+        },
+        "j1028_3.mm": {
+            "makespan": 20,
+            "executionTime": "0.00"
+        },
+        "j1028_4.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1028_5.mm": {
+            "makespan": 18,
+            "executionTime": "0.00"
+        },
+        "j1028_6.mm": {
+            "makespan": 9,
+            "executionTime": "0.00"
+        },
+        "j1028_7.mm": {
+            "makespan": 15,
+            "executionTime": "0.04"
+        },
+        "j1028_8.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1028_9.mm": {
+            "makespan": 12,
+            "executionTime": "0.00"
+        },
+        "j1028_10.mm": {
+            "makespan": 18,
+            "executionTime": "0.04"
+        },
+        "j1029_1.mm": {
+            "makespan": 20,
+            "executionTime": "0.12"
+        },
+        "j1029_2.mm": {
+            "makespan": 19,
+            "executionTime": "0.09"
+        },
+        "j1029_3.mm": {
+            "makespan": 24,
+            "executionTime": "0.22"
+        },
+        "j1029_4.mm": {
+            "makespan": 23,
+            "executionTime": "0.09"
+        },
+        "j1029_5.mm": {
+            "makespan": 25,
+            "executionTime": "0.10"
+        },
+        "j1029_6.mm": {
+            "makespan": 27,
+            "executionTime": "0.12"
+        },
+        "j1029_7.mm": {
+            "makespan": 28,
+            "executionTime": "0.15"
+        },
+        "j1029_8.mm": {
+            "makespan": 23,
+            "executionTime": "0.19"
+        },
+        "j1029_9.mm": {
+            "makespan": 23,
+            "executionTime": "0.16"
+        },
+        "j1029_10.mm": {
+            "makespan": 28,
+            "executionTime": "0.10"
+        },
+        "j1030_1.mm": {
+            "makespan": 16,
+            "executionTime": "0.09"
+        },
+        "j1030_2.mm": {
+            "makespan": 17,
+            "executionTime": "0.15"
+        },
+        "j1030_3.mm": {
+            "makespan": 17,
+            "executionTime": "0.12"
+        },
+        "j1030_4.mm": {
+            "makespan": 12,
+            "executionTime": "0.06"
+        },
+        "j1030_5.mm": {
+            "makespan": 28,
+            "executionTime": "0.19"
+        },
+        "j1030_6.mm": {
+            "makespan": 22,
+            "executionTime": "0.13"
+        },
+        "j1030_7.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1030_8.mm": {
+            "makespan": 14,
+            "executionTime": "0.19"
+        },
+        "j1030_9.mm": {
+            "makespan": 15,
+            "executionTime": "0.25"
+        },
+        "j1030_10.mm": {
+            "makespan": 17,
+            "executionTime": "0.06"
+        },
+        "j1031_1.mm": {
+            "makespan": 17,
+            "executionTime": "0.06"
+        },
+        "j1031_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1031_3.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1031_4.mm": {
+            "makespan": 18,
+            "executionTime": "0.10"
+        },
+        "j1031_5.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1031_6.mm": {
+            "makespan": 20,
+            "executionTime": "0.03"
+        },
+        "j1031_7.mm": {
+            "makespan": 14,
+            "executionTime": "0.09"
+        },
+        "j1031_8.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j1031_9.mm": {
+            "makespan": 15,
+            "executionTime": "0.07"
+        },
+        "j1031_10.mm": {
+            "makespan": 13,
+            "executionTime": "0.12"
+        },
+        "j1032_1.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1032_2.mm": {
+            "makespan": 12,
+            "executionTime": "0.00"
+        },
+        "j1032_3.mm": {
+            "makespan": 19,
+            "executionTime": "0.04"
+        },
+        "j1032_4.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1032_5.mm": {
+            "makespan": 11,
+            "executionTime": "0.00"
+        },
+        "j1032_6.mm": {
+            "makespan": 17,
+            "executionTime": "0.04"
+        },
+        "j1032_7.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1032_8.mm": {
+            "makespan": 12,
+            "executionTime": "0.00"
+        },
+        "j1032_9.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1032_10.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1033_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1033_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1034_1.mm": {
+            "makespan": 23,
+            "executionTime": "0.25"
+        },
+        "j1034_2.mm": {
+            "makespan": 12,
+            "executionTime": "0.13"
+        },
+        "j1034_3.mm": {
+            "makespan": 25,
+            "executionTime": "0.60"
+        },
+        "j1034_4.mm": {
+            "makespan": 23,
+            "executionTime": "1.31"
+        },
+        "j1034_5.mm": {
+            "makespan": 22,
+            "executionTime": "0.28"
+        },
+        "j1034_6.mm": {
+            "makespan": 30,
+            "executionTime": "2.31"
+        },
+        "j1034_7.mm": {
+            "makespan": 26,
+            "executionTime": "0.22"
+        },
+        "j1034_8.mm": {
+            "makespan": 19,
+            "executionTime": "0.29"
+        },
+        "j1034_9.mm": {
+            "makespan": 26,
+            "executionTime": "0.22"
+        },
+        "j1034_10.mm": {
+            "makespan": 18,
+            "executionTime": "0.53"
+        },
+        "j1035_1.mm": {
+            "makespan": 28,
+            "executionTime": "0.40"
+        },
+        "j1035_2.mm": {
+            "makespan": 32,
+            "executionTime": "0.34"
+        },
+        "j1035_3.mm": {
+            "makespan": 34,
+            "executionTime": "0.53"
+        },
+        "j1035_4.mm": {
+            "makespan": 23,
+            "executionTime": "0.18"
+        },
+        "j1035_5.mm": {
+            "makespan": 24,
+            "executionTime": "0.40"
+        },
+        "j1035_6.mm": {
+            "makespan": 19,
+            "executionTime": "0.09"
+        },
+        "j1035_7.mm": {
+            "makespan": 22,
+            "executionTime": "0.22"
+        },
+        "j1035_8.mm": {
+            "makespan": 28,
+            "executionTime": "0.50"
+        },
+        "j1035_9.mm": {
+            "makespan": 18,
+            "executionTime": "0.12"
+        },
+        "j1035_10.mm": {
+            "makespan": 20,
+            "executionTime": "0.90"
+        },
+        "j1036_1.mm": {
+            "makespan": 32,
+            "executionTime": "0.06"
+        },
+        "j1036_2.mm": {
+            "makespan": 26,
+            "executionTime": "0.06"
+        },
+        "j1036_3.mm": {
+            "makespan": 17,
+            "executionTime": "0.09"
+        },
+        "j1036_4.mm": {
+            "makespan": 22,
+            "executionTime": "0.06"
+        },
+        "j1036_5.mm": {
+            "makespan": 23,
+            "executionTime": "0.12"
+        },
+        "j1036_6.mm": {
+            "makespan": 21,
+            "executionTime": "0.10"
+        },
+        "j1036_7.mm": {
+            "makespan": 25,
+            "executionTime": "0.09"
+        },
+        "j1036_8.mm": {
+            "makespan": 23,
+            "executionTime": "0.12"
+        },
+        "j1036_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1036_10.mm": {
+            "makespan": 33,
+            "executionTime": "0.06"
+        },
+        "j1037_1.mm": {
+            "makespan": 36,
+            "executionTime": "0.10"
+        },
+        "j1037_2.mm": {
+            "makespan": 27,
+            "executionTime": "0.31"
+        },
+        "j1037_3.mm": {
+            "makespan": 29,
+            "executionTime": "0.25"
+        },
+        "j1037_4.mm": {
+            "makespan": 33,
+            "executionTime": "0.44"
+        },
+        "j1037_5.mm": {
+            "makespan": 38,
+            "executionTime": "0.47"
+        },
+        "j1037_6.mm": {
+            "makespan": 28,
+            "executionTime": "0.25"
+        },
+        "j1037_7.mm": {
+            "makespan": 30,
+            "executionTime": "0.85"
+        },
+        "j1037_8.mm": {
+            "makespan": 42,
+            "executionTime": "0.22"
+        },
+        "j1037_9.mm": {
+            "makespan": 31,
+            "executionTime": "0.60"
+        },
+        "j1037_10.mm": {
+            "makespan": 40,
+            "executionTime": "0.40"
+        },
+        "j1038_1.mm": {
+            "makespan": 28,
+            "executionTime": "0.12"
+        },
+        "j1038_2.mm": {
+            "makespan": 25,
+            "executionTime": "1.57"
+        },
+        "j1038_3.mm": {
+            "makespan": 25,
+            "executionTime": "0.66"
+        },
+        "j1038_4.mm": {
+            "makespan": 27,
+            "executionTime": "0.56"
+        },
+        "j1038_5.mm": {
+            "makespan": 22,
+            "executionTime": "0.65"
+        },
+        "j1038_6.mm": {
+            "makespan": 24,
+            "executionTime": "0.78"
+        },
+        "j1038_7.mm": {
+            "makespan": 32,
+            "executionTime": "0.59"
+        },
+        "j1038_8.mm": {
+            "makespan": 31,
+            "executionTime": "0.22"
+        },
+        "j1038_9.mm": {
+            "makespan": 31,
+            "executionTime": "0.47"
+        },
+        "j1038_10.mm": {
+            "makespan": 22,
+            "executionTime": "0.31"
+        },
+        "j1039_1.mm": {
+            "makespan": 21,
+            "executionTime": "1.34"
+        },
+        "j1039_2.mm": {
+            "makespan": 18,
+            "executionTime": "0.53"
+        },
+        "j1039_3.mm": {
+            "makespan": 28,
+            "executionTime": "0.31"
+        },
+        "j1039_4.mm": {
+            "makespan": 17,
+            "executionTime": "0.16"
+        },
+        "j1039_5.mm": {
+            "makespan": 30,
+            "executionTime": "0.41"
+        },
+        "j1039_6.mm": {
+            "makespan": 24,
+            "executionTime": "0.31"
+        },
+        "j1039_7.mm": {
+            "makespan": 17,
+            "executionTime": "0.16"
+        },
+        "j1039_8.mm": {
+            "makespan": 23,
+            "executionTime": "0.28"
+        },
+        "j1039_9.mm": {
+            "makespan": 24,
+            "executionTime": "1.21"
+        },
+        "j1039_10.mm": {
+            "makespan": 31,
+            "executionTime": "0.22"
+        },
+        "j1040_1.mm": {
+            "makespan": 19,
+            "executionTime": "0.06"
+        },
+        "j1040_2.mm": {
+            "makespan": 32,
+            "executionTime": "0.12"
+        },
+        "j1040_3.mm": {
+            "makespan": 25,
+            "executionTime": "0.03"
+        },
+        "j1040_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1040_5.mm": {
+            "makespan": 21,
+            "executionTime": "0.06"
+        },
+        "j1040_6.mm": {
+            "makespan": 18,
+            "executionTime": "0.07"
+        },
+        "j1040_7.mm": {
+            "makespan": 28,
+            "executionTime": "0.03"
+        },
+        "j1040_8.mm": {
+            "makespan": 29,
+            "executionTime": "0.10"
+        },
+        "j1040_9.mm": {
+            "makespan": 19,
+            "executionTime": "0.06"
+        },
+        "j1040_10.mm": {
+            "makespan": 16,
+            "executionTime": "0.10"
+        },
+        "j1041_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1041_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1042_1.mm": {
+            "makespan": 17,
+            "executionTime": "0.16"
+        },
+        "j1042_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.09"
+        },
+        "j1042_3.mm": {
+            "makespan": 25,
+            "executionTime": "0.06"
+        },
+        "j1042_4.mm": {
+            "makespan": 14,
+            "executionTime": "0.13"
+        },
+        "j1042_5.mm": {
+            "makespan": 20,
+            "executionTime": "0.06"
+        },
+        "j1042_6.mm": {
+            "makespan": 12,
+            "executionTime": "0.15"
+        },
+        "j1042_7.mm": {
+            "makespan": 26,
+            "executionTime": "0.09"
+        },
+        "j1042_8.mm": {
+            "makespan": 18,
+            "executionTime": "0.06"
+        },
+        "j1042_9.mm": {
+            "makespan": 12,
+            "executionTime": "0.06"
+        },
+        "j1042_10.mm": {
+            "makespan": 12,
+            "executionTime": "0.13"
+        },
+        "j1043_1.mm": {
+            "makespan": 18,
+            "executionTime": "0.06"
+        },
+        "j1043_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1043_3.mm": {
+            "makespan": 17,
+            "executionTime": "0.13"
+        },
+        "j1043_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1043_5.mm": {
+            "makespan": 19,
+            "executionTime": "0.13"
+        },
+        "j1043_6.mm": {
+            "makespan": 16,
+            "executionTime": "0.10"
+        },
+        "j1043_7.mm": {
+            "makespan": 12,
+            "executionTime": "0.09"
+        },
+        "j1043_8.mm": {
+            "makespan": 21,
+            "executionTime": "0.07"
+        },
+        "j1043_9.mm": {
+            "makespan": 11,
+            "executionTime": "0.03"
+        },
+        "j1043_10.mm": {
+            "makespan": 16,
+            "executionTime": "0.28"
+        },
+        "j1044_1.mm": {
+            "makespan": 18,
+            "executionTime": "0.03"
+        },
+        "j1044_2.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1044_3.mm": {
+            "makespan": 20,
+            "executionTime": "0.03"
+        },
+        "j1044_4.mm": {
+            "makespan": 24,
+            "executionTime": "0.06"
+        },
+        "j1044_5.mm": {
+            "makespan": 24,
+            "executionTime": "0.06"
+        },
+        "j1044_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1044_7.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1044_8.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j1044_9.mm": {
+            "makespan": 17,
+            "executionTime": "0.06"
+        },
+        "j1044_10.mm": {
+            "makespan": 13,
+            "executionTime": "0.00"
+        },
+        "j1045_1.mm": {
+            "makespan": 27,
+            "executionTime": "0.19"
+        },
+        "j1045_2.mm": {
+            "makespan": 20,
+            "executionTime": "0.06"
+        },
+        "j1045_3.mm": {
+            "makespan": 18,
+            "executionTime": "0.25"
+        },
+        "j1045_4.mm": {
+            "makespan": 19,
+            "executionTime": "0.28"
+        },
+        "j1045_5.mm": {
+            "makespan": 28,
+            "executionTime": "0.19"
+        },
+        "j1045_6.mm": {
+            "makespan": 23,
+            "executionTime": "0.25"
+        },
+        "j1045_7.mm": {
+            "makespan": 31,
+            "executionTime": "0.29"
+        },
+        "j1045_8.mm": {
+            "makespan": 23,
+            "executionTime": "0.28"
+        },
+        "j1045_9.mm": {
+            "makespan": 24,
+            "executionTime": "0.28"
+        },
+        "j1045_10.mm": {
+            "makespan": 25,
+            "executionTime": "0.15"
+        },
+        "j1046_1.mm": {
+            "makespan": 24,
+            "executionTime": "0.47"
+        },
+        "j1046_2.mm": {
+            "makespan": 14,
+            "executionTime": "0.25"
+        },
+        "j1046_3.mm": {
+            "makespan": 15,
+            "executionTime": "0.19"
+        },
+        "j1046_4.mm": {
+            "makespan": 18,
+            "executionTime": "0.22"
+        },
+        "j1046_5.mm": {
+            "makespan": 18,
+            "executionTime": "0.28"
+        },
+        "j1046_6.mm": {
+            "makespan": 23,
+            "executionTime": "1.32"
+        },
+        "j1046_7.mm": {
+            "makespan": 21,
+            "executionTime": "1.03"
+        },
+        "j1046_8.mm": {
+            "makespan": 21,
+            "executionTime": "0.35"
+        },
+        "j1046_9.mm": {
+            "makespan": 16,
+            "executionTime": "0.22"
+        },
+        "j1046_10.mm": {
+            "makespan": 20,
+            "executionTime": "0.06"
+        },
+        "j1047_1.mm": {
+            "makespan": 20,
+            "executionTime": "0.15"
+        },
+        "j1047_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1047_3.mm": {
+            "makespan": 19,
+            "executionTime": "0.22"
+        },
+        "j1047_4.mm": {
+            "makespan": 25,
+            "executionTime": "0.18"
+        },
+        "j1047_5.mm": {
+            "makespan": 16,
+            "executionTime": "0.12"
+        },
+        "j1047_6.mm": {
+            "makespan": 19,
+            "executionTime": "0.10"
+        },
+        "j1047_7.mm": {
+            "makespan": 18,
+            "executionTime": "0.19"
+        },
+        "j1047_8.mm": {
+            "makespan": 21,
+            "executionTime": "0.47"
+        },
+        "j1047_9.mm": {
+            "makespan": 16,
+            "executionTime": "0.38"
+        },
+        "j1047_10.mm": {
+            "makespan": 29,
+            "executionTime": "0.72"
+        },
+        "j1048_1.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1048_2.mm": {
+            "makespan": 16,
+            "executionTime": "0.07"
+        },
+        "j1048_3.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1048_4.mm": {
+            "makespan": 10,
+            "executionTime": "0.00"
+        },
+        "j1048_5.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1048_6.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1048_7.mm": {
+            "makespan": 14,
+            "executionTime": "0.07"
+        },
+        "j1048_8.mm": {
+            "makespan": 24,
+            "executionTime": "0.06"
+        },
+        "j1048_9.mm": {
+            "makespan": 16,
+            "executionTime": "0.04"
+        },
+        "j1048_10.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j1049_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1049_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1050_1.mm": {
+            "makespan": 13,
+            "executionTime": "0.10"
+        },
+        "j1050_2.mm": {
+            "makespan": 20,
+            "executionTime": "0.06"
+        },
+        "j1050_3.mm": {
+            "makespan": 17,
+            "executionTime": "0.07"
+        },
+        "j1050_4.mm": {
+            "makespan": 20,
+            "executionTime": "0.22"
+        },
+        "j1050_5.mm": {
+            "makespan": 10,
+            "executionTime": "0.06"
+        },
+        "j1050_6.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1050_7.mm": {
+            "makespan": 26,
+            "executionTime": "0.06"
+        },
+        "j1050_8.mm": {
+            "makespan": 11,
+            "executionTime": "0.07"
+        },
+        "j1050_9.mm": {
+            "makespan": 20,
+            "executionTime": "0.06"
+        },
+        "j1050_10.mm": {
+            "makespan": 17,
+            "executionTime": "0.25"
+        },
+        "j1051_1.mm": {
+            "makespan": 23,
+            "executionTime": "0.03"
+        },
+        "j1051_2.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1051_3.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1051_4.mm": {
+            "makespan": 17,
+            "executionTime": "0.06"
+        },
+        "j1051_5.mm": {
+            "makespan": 29,
+            "executionTime": "0.03"
+        },
+        "j1051_6.mm": {
+            "makespan": 9,
+            "executionTime": "0.03"
+        },
+        "j1051_7.mm": {
+            "makespan": 21,
+            "executionTime": "0.03"
+        },
+        "j1051_8.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1051_9.mm": {
+            "makespan": 19,
+            "executionTime": "0.03"
+        },
+        "j1051_10.mm": {
+            "makespan": 12,
+            "executionTime": "0.04"
+        },
+        "j1052_1.mm": {
+            "makespan": 11,
+            "executionTime": "0.03"
+        },
+        "j1052_2.mm": {
+            "makespan": 18,
+            "executionTime": "0.03"
+        },
+        "j1052_3.mm": {
+            "makespan": 8,
+            "executionTime": "0.03"
+        },
+        "j1052_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1052_5.mm": {
+            "makespan": 19,
+            "executionTime": "0.03"
+        },
+        "j1052_6.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1052_7.mm": {
+            "makespan": 16,
+            "executionTime": "0.04"
+        },
+        "j1052_8.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1052_9.mm": {
+            "makespan": 17,
+            "executionTime": "0.00"
+        },
+        "j1052_10.mm": {
+            "makespan": 10,
+            "executionTime": "0.03"
+        },
+        "j1053_1.mm": {
+            "makespan": 28,
+            "executionTime": "0.18"
+        },
+        "j1053_2.mm": {
+            "makespan": 33,
+            "executionTime": "0.25"
+        },
+        "j1053_3.mm": {
+            "makespan": 26,
+            "executionTime": "0.09"
+        },
+        "j1053_4.mm": {
+            "makespan": 23,
+            "executionTime": "0.12"
+        },
+        "j1053_5.mm": {
+            "makespan": 26,
+            "executionTime": "0.07"
+        },
+        "j1053_6.mm": {
+            "makespan": 29,
+            "executionTime": "0.06"
+        },
+        "j1053_7.mm": {
+            "makespan": 18,
+            "executionTime": "0.09"
+        },
+        "j1053_8.mm": {
+            "makespan": 25,
+            "executionTime": "0.16"
+        },
+        "j1053_9.mm": {
+            "makespan": 29,
+            "executionTime": "0.38"
+        },
+        "j1053_10.mm": {
+            "makespan": 30,
+            "executionTime": "0.09"
+        },
+        "j1054_1.mm": {
+            "makespan": 18,
+            "executionTime": "0.54"
+        },
+        "j1054_2.mm": {
+            "makespan": 22,
+            "executionTime": "0.06"
+        },
+        "j1054_3.mm": {
+            "makespan": 23,
+            "executionTime": "0.16"
+        },
+        "j1054_4.mm": {
+            "makespan": 18,
+            "executionTime": "0.44"
+        },
+        "j1054_5.mm": {
+            "makespan": 14,
+            "executionTime": "0.13"
+        },
+        "j1054_6.mm": {
+            "makespan": 14,
+            "executionTime": "0.12"
+        },
+        "j1054_7.mm": {
+            "makespan": 21,
+            "executionTime": "0.18"
+        },
+        "j1054_8.mm": {
+            "makespan": 18,
+            "executionTime": "0.28"
+        },
+        "j1054_9.mm": {
+            "makespan": 22,
+            "executionTime": "0.16"
+        },
+        "j1054_10.mm": {
+            "makespan": 19,
+            "executionTime": "0.19"
+        },
+        "j1055_1.mm": {
+            "makespan": 18,
+            "executionTime": "0.03"
+        },
+        "j1055_2.mm": {
+            "makespan": 14,
+            "executionTime": "0.12"
+        },
+        "j1055_3.mm": {
+            "makespan": 13,
+            "executionTime": "0.04"
+        },
+        "j1055_4.mm": {
+            "makespan": 24,
+            "executionTime": "0.03"
+        },
+        "j1055_5.mm": {
+            "makespan": 13,
+            "executionTime": "0.07"
+        },
+        "j1055_6.mm": {
+            "makespan": 19,
+            "executionTime": "0.19"
+        },
+        "j1055_7.mm": {
+            "makespan": 16,
+            "executionTime": "0.06"
+        },
+        "j1055_8.mm": {
+            "makespan": 20,
+            "executionTime": "0.63"
+        },
+        "j1055_9.mm": {
+            "makespan": 13,
+            "executionTime": "0.13"
+        },
+        "j1055_10.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1056_1.mm": {
+            "makespan": 14,
+            "executionTime": "0.00"
+        },
+        "j1056_2.mm": {
+            "makespan": 13,
+            "executionTime": "0.00"
+        },
+        "j1056_3.mm": {
+            "makespan": 23,
+            "executionTime": "0.03"
+        },
+        "j1056_4.mm": {
+            "makespan": 10,
+            "executionTime": "0.03"
+        },
+        "j1056_5.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1056_6.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1056_7.mm": {
+            "makespan": 18,
+            "executionTime": "0.04"
+        },
+        "j1056_8.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1056_9.mm": {
+            "makespan": 14,
+            "executionTime": "0.04"
+        },
+        "j1056_10.mm": {
+            "makespan": 14,
+            "executionTime": "0.00"
+        },
+        "j1057_1.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_2.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_3.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_4.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_5.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_6.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_7.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_8.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_9.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1057_10.mm": {
+            "makespan": 16384,
+            "executionTime": "0.00"
+        },
+        "j1058_1.mm": {
+            "makespan": 19,
+            "executionTime": "0.06"
+        },
+        "j1058_2.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1058_3.mm": {
+            "makespan": 19,
+            "executionTime": "0.16"
+        },
+        "j1058_4.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1058_5.mm": {
+            "makespan": 16,
+            "executionTime": "0.13"
+        },
+        "j1058_6.mm": {
+            "makespan": 14,
+            "executionTime": "0.25"
+        },
+        "j1058_7.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1058_8.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1058_9.mm": {
+            "makespan": 11,
+            "executionTime": "0.06"
+        },
+        "j1058_10.mm": {
+            "makespan": 15,
+            "executionTime": "0.09"
+        },
+        "j1059_1.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1059_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1059_3.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1059_4.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1059_5.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1059_6.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1059_7.mm": {
+            "makespan": 11,
+            "executionTime": "0.03"
+        },
+        "j1059_8.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1059_9.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1059_10.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1060_1.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1060_2.mm": {
+            "makespan": 19,
+            "executionTime": "0.04"
+        },
+        "j1060_3.mm": {
+            "makespan": 9,
+            "executionTime": "0.03"
+        },
+        "j1060_4.mm": {
+            "makespan": 13,
+            "executionTime": "0.00"
+        },
+        "j1060_5.mm": {
+            "makespan": 18,
+            "executionTime": "0.00"
+        },
+        "j1060_6.mm": {
+            "makespan": 10,
+            "executionTime": "0.00"
+        },
+        "j1060_7.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1060_8.mm": {
+            "makespan": 13,
+            "executionTime": "0.03"
+        },
+        "j1060_9.mm": {
+            "makespan": 15,
+            "executionTime": "0.00"
+        },
+        "j1060_10.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1061_1.mm": {
+            "makespan": 24,
+            "executionTime": "0.31"
+        },
+        "j1061_2.mm": {
+            "makespan": 24,
+            "executionTime": "0.10"
+        },
+        "j1061_3.mm": {
+            "makespan": 32,
+            "executionTime": "0.19"
+        },
+        "j1061_4.mm": {
+            "makespan": 27,
+            "executionTime": "0.09"
+        },
+        "j1061_5.mm": {
+            "makespan": 23,
+            "executionTime": "0.09"
+        },
+        "j1061_6.mm": {
+            "makespan": 30,
+            "executionTime": "0.06"
+        },
+        "j1061_7.mm": {
+            "makespan": 23,
+            "executionTime": "0.09"
+        },
+        "j1061_8.mm": {
+            "makespan": 33,
+            "executionTime": "0.15"
+        },
+        "j1061_9.mm": {
+            "makespan": 26,
+            "executionTime": "0.09"
+        },
+        "j1061_10.mm": {
+            "makespan": 41,
+            "executionTime": "0.06"
+        },
+        "j1062_1.mm": {
+            "makespan": 15,
+            "executionTime": "0.12"
+        },
+        "j1062_2.mm": {
+            "makespan": 23,
+            "executionTime": "0.44"
+        },
+        "j1062_3.mm": {
+            "makespan": 16,
+            "executionTime": "0.79"
+        },
+        "j1062_4.mm": {
+            "makespan": 15,
+            "executionTime": "0.31"
+        },
+        "j1062_5.mm": {
+            "makespan": 18,
+            "executionTime": "0.03"
+        },
+        "j1062_6.mm": {
+            "makespan": 20,
+            "executionTime": "0.15"
+        },
+        "j1062_7.mm": {
+            "makespan": 14,
+            "executionTime": "0.15"
+        },
+        "j1062_8.mm": {
+            "makespan": 19,
+            "executionTime": "0.13"
+        },
+        "j1062_9.mm": {
+            "makespan": 18,
+            "executionTime": "0.13"
+        },
+        "j1062_10.mm": {
+            "makespan": 20,
+            "executionTime": "0.31"
+        },
+        "j1063_1.mm": {
+            "makespan": 17,
+            "executionTime": "0.06"
+        },
+        "j1063_2.mm": {
+            "makespan": 17,
+            "executionTime": "0.03"
+        },
+        "j1063_3.mm": {
+            "makespan": 17,
+            "executionTime": "0.06"
+        },
+        "j1063_4.mm": {
+            "makespan": 12,
+            "executionTime": "0.06"
+        },
+        "j1063_5.mm": {
+            "makespan": 12,
+            "executionTime": "0.12"
+        },
+        "j1063_6.mm": {
+            "makespan": 15,
+            "executionTime": "0.13"
+        },
+        "j1063_7.mm": {
+            "makespan": 15,
+            "executionTime": "0.06"
+        },
+        "j1063_8.mm": {
+            "makespan": 10,
+            "executionTime": "0.06"
+        },
+        "j1063_9.mm": {
+            "makespan": 14,
+            "executionTime": "0.16"
+        },
+        "j1063_10.mm": {
+            "makespan": 10,
+            "executionTime": "0.13"
+        },
+        "j1064_1.mm": {
+            "makespan": 16,
+            "executionTime": "0.03"
+        },
+        "j1064_2.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        },
+        "j1064_3.mm": {
+            "makespan": 14,
+            "executionTime": "0.03"
+        },
+        "j1064_4.mm": {
+            "makespan": 13,
+            "executionTime": "0.00"
+        },
+        "j1064_5.mm": {
+            "makespan": 16,
+            "executionTime": "0.00"
+        },
+        "j1064_6.mm": {
+            "makespan": 11,
+            "executionTime": "0.03"
+        },
+        "j1064_7.mm": {
+            "makespan": 12,
+            "executionTime": "0.03"
+        },
+        "j1064_8.mm": {
+            "makespan": 14,
+            "executionTime": "0.04"
+        },
+        "j1064_9.mm": {
+            "makespan": 17,
+            "executionTime": "0.00"
+        },
+        "j1064_10.mm": {
+            "makespan": 15,
+            "executionTime": "0.03"
+        }
+    }
+}

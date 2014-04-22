@@ -1,0 +1,3212 @@
+{
+    "instanceSet": "J16",
+    "executionType": "READ_PSPLIB_INSTANCE",
+    "testName": "reading the results from psplib",
+    "instanceConfig": {
+        "firstLineResults": 26,
+        "lastLineResults": 666,
+        "instanceSetLine": 3
+    },
+    "results": [
+        {
+            "file": "j161_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j161_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j162_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j162_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j162_3.mm",
+            "makespan": "45",
+            "executionTime": "1.75"
+        },
+        {
+            "file": "j162_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j162_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j162_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j162_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j162_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j162_9.mm",
+            "makespan": "37",
+            "executionTime": "12.00"
+        },
+        {
+            "file": "j162_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j163_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j164_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j165_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_2.mm",
+            "makespan": "35",
+            "executionTime": "25.72"
+        },
+        {
+            "file": "j166_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j166_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j167_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_8.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j168_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j169_1.mm",
+            "makespan": "23",
+            "executionTime": "1.38"
+        },
+        {
+            "file": "j169_2.mm",
+            "makespan": "24",
+            "executionTime": "3.38"
+        },
+        {
+            "file": "j169_3.mm",
+            "makespan": "31",
+            "executionTime": "9.53"
+        },
+        {
+            "file": "j169_4.mm",
+            "makespan": "28",
+            "executionTime": "4.59"
+        },
+        {
+            "file": "j169_5.mm",
+            "makespan": "28",
+            "executionTime": "4.19"
+        },
+        {
+            "file": "j169_6.mm",
+            "makespan": "19",
+            "executionTime": "0.41"
+        },
+        {
+            "file": "j169_7.mm",
+            "makespan": "25",
+            "executionTime": "0.88"
+        },
+        {
+            "file": "j169_8.mm",
+            "makespan": "26",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j169_9.mm",
+            "makespan": "20",
+            "executionTime": "1.22"
+        },
+        {
+            "file": "j169_10.mm",
+            "makespan": "20",
+            "executionTime": "0.59"
+        },
+        {
+            "file": "j1610_1.mm",
+            "makespan": "22",
+            "executionTime": "0.59"
+        },
+        {
+            "file": "j1610_2.mm",
+            "makespan": "21",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1610_3.mm",
+            "makespan": "26",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1610_4.mm",
+            "makespan": "20",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1610_5.mm",
+            "makespan": "28",
+            "executionTime": "1.06"
+        },
+        {
+            "file": "j1610_6.mm",
+            "makespan": "29",
+            "executionTime": "0.85"
+        },
+        {
+            "file": "j1610_7.mm",
+            "makespan": "21",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1610_8.mm",
+            "makespan": "20",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1610_9.mm",
+            "makespan": "24",
+            "executionTime": "0.40"
+        },
+        {
+            "file": "j1610_10.mm",
+            "makespan": "17",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1611_1.mm",
+            "makespan": "25",
+            "executionTime": "0.82"
+        },
+        {
+            "file": "j1611_2.mm",
+            "makespan": "26",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1611_3.mm",
+            "makespan": "23",
+            "executionTime": "0.32"
+        },
+        {
+            "file": "j1611_4.mm",
+            "makespan": "22",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1611_5.mm",
+            "makespan": "15",
+            "executionTime": "0.53"
+        },
+        {
+            "file": "j1611_6.mm",
+            "makespan": "24",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1611_7.mm",
+            "makespan": "17",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1611_8.mm",
+            "makespan": "20",
+            "executionTime": "1.15"
+        },
+        {
+            "file": "j1611_9.mm",
+            "makespan": "18",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1611_10.mm",
+            "makespan": "20",
+            "executionTime": "0.41"
+        },
+        {
+            "file": "j1612_1.mm",
+            "makespan": "20",
+            "executionTime": "0.29"
+        },
+        {
+            "file": "j1612_2.mm",
+            "makespan": "27",
+            "executionTime": "0.66"
+        },
+        {
+            "file": "j1612_3.mm",
+            "makespan": "28",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1612_4.mm",
+            "makespan": "15",
+            "executionTime": "0.91"
+        },
+        {
+            "file": "j1612_5.mm",
+            "makespan": "19",
+            "executionTime": "2.41"
+        },
+        {
+            "file": "j1612_6.mm",
+            "makespan": "24",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1612_7.mm",
+            "makespan": "20",
+            "executionTime": "3.41"
+        },
+        {
+            "file": "j1612_8.mm",
+            "makespan": "27",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1612_9.mm",
+            "makespan": "22",
+            "executionTime": "4.47"
+        },
+        {
+            "file": "j1612_10.mm",
+            "makespan": "21",
+            "executionTime": "0.56"
+        },
+        {
+            "file": "j1613_1.mm",
+            "makespan": "30",
+            "executionTime": "5.97"
+        },
+        {
+            "file": "j1613_2.mm",
+            "makespan": "31",
+            "executionTime": "28.25"
+        },
+        {
+            "file": "j1613_3.mm",
+            "makespan": "39",
+            "executionTime": "2.25"
+        },
+        {
+            "file": "j1613_4.mm",
+            "makespan": "35",
+            "executionTime": "11.75"
+        },
+        {
+            "file": "j1613_5.mm",
+            "makespan": "31",
+            "executionTime": "19.13"
+        },
+        {
+            "file": "j1613_6.mm",
+            "makespan": "20",
+            "executionTime": "102.94"
+        },
+        {
+            "file": "j1613_7.mm",
+            "makespan": "31",
+            "executionTime": "125.72"
+        },
+        {
+            "file": "j1613_8.mm",
+            "makespan": "35",
+            "executionTime": "9.66"
+        },
+        {
+            "file": "j1613_9.mm",
+            "makespan": "34",
+            "executionTime": "6.72"
+        },
+        {
+            "file": "j1613_10.mm",
+            "makespan": "28",
+            "executionTime": "33.72"
+        },
+        {
+            "file": "j1614_1.mm",
+            "makespan": "21",
+            "executionTime": "2.09"
+        },
+        {
+            "file": "j1614_2.mm",
+            "makespan": "17",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1614_3.mm",
+            "makespan": "16",
+            "executionTime": "0.59"
+        },
+        {
+            "file": "j1614_4.mm",
+            "makespan": "21",
+            "executionTime": "0.43"
+        },
+        {
+            "file": "j1614_5.mm",
+            "makespan": "26",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1614_6.mm",
+            "makespan": "19",
+            "executionTime": "4.90"
+        },
+        {
+            "file": "j1614_7.mm",
+            "makespan": "18",
+            "executionTime": "0.56"
+        },
+        {
+            "file": "j1614_8.mm",
+            "makespan": "22",
+            "executionTime": "5.97"
+        },
+        {
+            "file": "j1614_9.mm",
+            "makespan": "43",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1614_10.mm",
+            "makespan": "20",
+            "executionTime": "2.28"
+        },
+        {
+            "file": "j1615_1.mm",
+            "makespan": "23",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1615_2.mm",
+            "makespan": "26",
+            "executionTime": "2.44"
+        },
+        {
+            "file": "j1615_3.mm",
+            "makespan": "17",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1615_4.mm",
+            "makespan": "19",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1615_5.mm",
+            "makespan": "19",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1615_6.mm",
+            "makespan": "20",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1615_7.mm",
+            "makespan": "24",
+            "executionTime": "6.00"
+        },
+        {
+            "file": "j1615_8.mm",
+            "makespan": "32",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1615_9.mm",
+            "makespan": "29",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1615_10.mm",
+            "makespan": "31",
+            "executionTime": "2.09"
+        },
+        {
+            "file": "j1616_1.mm",
+            "makespan": "24",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1616_2.mm",
+            "makespan": "15",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1616_3.mm",
+            "makespan": "22",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1616_4.mm",
+            "makespan": "19",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1616_5.mm",
+            "makespan": "18",
+            "executionTime": "0.62"
+        },
+        {
+            "file": "j1616_6.mm",
+            "makespan": "22",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1616_7.mm",
+            "makespan": "20",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1616_8.mm",
+            "makespan": "18",
+            "executionTime": "4.22"
+        },
+        {
+            "file": "j1616_9.mm",
+            "makespan": "14",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1616_10.mm",
+            "makespan": "24",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1617_1.mm",
+            "makespan": "19",
+            "executionTime": "0.53"
+        },
+        {
+            "file": "j1617_2.mm",
+            "makespan": "29",
+            "executionTime": "0.88"
+        },
+        {
+            "file": "j1617_3.mm",
+            "makespan": "23",
+            "executionTime": "1.56"
+        },
+        {
+            "file": "j1617_4.mm",
+            "makespan": "25",
+            "executionTime": "21.07"
+        },
+        {
+            "file": "j1617_5.mm",
+            "makespan": "18",
+            "executionTime": "1.13"
+        },
+        {
+            "file": "j1617_6.mm",
+            "makespan": "20",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1617_7.mm",
+            "makespan": "20",
+            "executionTime": "0.88"
+        },
+        {
+            "file": "j1617_8.mm",
+            "makespan": "27",
+            "executionTime": "0.50"
+        },
+        {
+            "file": "j1617_9.mm",
+            "makespan": "23",
+            "executionTime": "2.00"
+        },
+        {
+            "file": "j1617_10.mm",
+            "makespan": "26",
+            "executionTime": "0.37"
+        },
+        {
+            "file": "j1618_1.mm",
+            "makespan": "27",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1618_2.mm",
+            "makespan": "23",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1618_3.mm",
+            "makespan": "23",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1618_4.mm",
+            "makespan": "21",
+            "executionTime": "0.53"
+        },
+        {
+            "file": "j1618_5.mm",
+            "makespan": "24",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1618_6.mm",
+            "makespan": "29",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1618_7.mm",
+            "makespan": "21",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1618_8.mm",
+            "makespan": "17",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1618_9.mm",
+            "makespan": "19",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1618_10.mm",
+            "makespan": "26",
+            "executionTime": "0.97"
+        },
+        {
+            "file": "j1619_1.mm",
+            "makespan": "22",
+            "executionTime": "0.21"
+        },
+        {
+            "file": "j1619_2.mm",
+            "makespan": "22",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1619_3.mm",
+            "makespan": "21",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1619_4.mm",
+            "makespan": "25",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1619_5.mm",
+            "makespan": "17",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1619_6.mm",
+            "makespan": "23",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1619_7.mm",
+            "makespan": "24",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1619_8.mm",
+            "makespan": "17",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1619_9.mm",
+            "makespan": "25",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1619_10.mm",
+            "makespan": "30",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1620_1.mm",
+            "makespan": "20",
+            "executionTime": "0.62"
+        },
+        {
+            "file": "j1620_2.mm",
+            "makespan": "23",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1620_3.mm",
+            "makespan": "28",
+            "executionTime": "1.90"
+        },
+        {
+            "file": "j1620_4.mm",
+            "makespan": "24",
+            "executionTime": "1.06"
+        },
+        {
+            "file": "j1620_5.mm",
+            "makespan": "24",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1620_6.mm",
+            "makespan": "23",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1620_7.mm",
+            "makespan": "32",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1620_8.mm",
+            "makespan": "31",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1620_9.mm",
+            "makespan": "17",
+            "executionTime": "0.78"
+        },
+        {
+            "file": "j1620_10.mm",
+            "makespan": "23",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1621_1.mm",
+            "makespan": "31",
+            "executionTime": "27.81"
+        },
+        {
+            "file": "j1621_2.mm",
+            "makespan": "30",
+            "executionTime": "18.03"
+        },
+        {
+            "file": "j1621_3.mm",
+            "makespan": "27",
+            "executionTime": "2.62"
+        },
+        {
+            "file": "j1621_4.mm",
+            "makespan": "32",
+            "executionTime": "9.56"
+        },
+        {
+            "file": "j1621_5.mm",
+            "makespan": "28",
+            "executionTime": "11.72"
+        },
+        {
+            "file": "j1621_6.mm",
+            "makespan": "23",
+            "executionTime": "1.12"
+        },
+        {
+            "file": "j1621_7.mm",
+            "makespan": "29",
+            "executionTime": "33.34"
+        },
+        {
+            "file": "j1621_8.mm",
+            "makespan": "26",
+            "executionTime": "5.88"
+        },
+        {
+            "file": "j1621_9.mm",
+            "makespan": "25",
+            "executionTime": "3.13"
+        },
+        {
+            "file": "j1621_10.mm",
+            "makespan": "29",
+            "executionTime": "8.84"
+        },
+        {
+            "file": "j1622_1.mm",
+            "makespan": "26",
+            "executionTime": "2.93"
+        },
+        {
+            "file": "j1622_2.mm",
+            "makespan": "24",
+            "executionTime": "13.53"
+        },
+        {
+            "file": "j1622_3.mm",
+            "makespan": "21",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1622_4.mm",
+            "makespan": "28",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1622_5.mm",
+            "makespan": "29",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1622_6.mm",
+            "makespan": "21",
+            "executionTime": "0.54"
+        },
+        {
+            "file": "j1622_7.mm",
+            "makespan": "22",
+            "executionTime": "4.78"
+        },
+        {
+            "file": "j1622_8.mm",
+            "makespan": "24",
+            "executionTime": "6.50"
+        },
+        {
+            "file": "j1622_9.mm",
+            "makespan": "25",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1622_10.mm",
+            "makespan": "27",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1623_1.mm",
+            "makespan": "18",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1623_2.mm",
+            "makespan": "22",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1623_3.mm",
+            "makespan": "24",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1623_4.mm",
+            "makespan": "23",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1623_5.mm",
+            "makespan": "25",
+            "executionTime": "0.65"
+        },
+        {
+            "file": "j1623_6.mm",
+            "makespan": "26",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1623_7.mm",
+            "makespan": "29",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1623_8.mm",
+            "makespan": "18",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1623_9.mm",
+            "makespan": "23",
+            "executionTime": "1.72"
+        },
+        {
+            "file": "j1623_10.mm",
+            "makespan": "31",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1624_1.mm",
+            "makespan": "26",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1624_2.mm",
+            "makespan": "19",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1624_3.mm",
+            "makespan": "22",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1624_4.mm",
+            "makespan": "20",
+            "executionTime": "0.35"
+        },
+        {
+            "file": "j1624_5.mm",
+            "makespan": "17",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1624_6.mm",
+            "makespan": "18",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1624_7.mm",
+            "makespan": "25",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1624_8.mm",
+            "makespan": "13",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1624_9.mm",
+            "makespan": "25",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1624_10.mm",
+            "makespan": "22",
+            "executionTime": "0.53"
+        },
+        {
+            "file": "j1625_1.mm",
+            "makespan": "17",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1625_2.mm",
+            "makespan": "33",
+            "executionTime": "0.53"
+        },
+        {
+            "file": "j1625_3.mm",
+            "makespan": "29",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1625_4.mm",
+            "makespan": "18",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1625_5.mm",
+            "makespan": "22",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1625_6.mm",
+            "makespan": "24",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1625_7.mm",
+            "makespan": "17",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1625_8.mm",
+            "makespan": "20",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1625_9.mm",
+            "makespan": "25",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1625_10.mm",
+            "makespan": "33",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1626_1.mm",
+            "makespan": "22",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1626_2.mm",
+            "makespan": "35",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1626_3.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1626_4.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1626_5.mm",
+            "makespan": "23",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1626_6.mm",
+            "makespan": "26",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1626_7.mm",
+            "makespan": "23",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1626_8.mm",
+            "makespan": "25",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1626_9.mm",
+            "makespan": "26",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1626_10.mm",
+            "makespan": "21",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1627_1.mm",
+            "makespan": "21",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1627_2.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1627_3.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1627_4.mm",
+            "makespan": "23",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1627_5.mm",
+            "makespan": "23",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1627_6.mm",
+            "makespan": "21",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1627_7.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1627_8.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1627_9.mm",
+            "makespan": "29",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1627_10.mm",
+            "makespan": "29",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1628_1.mm",
+            "makespan": "30",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1628_2.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1628_3.mm",
+            "makespan": "25",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1628_4.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1628_5.mm",
+            "makespan": "15",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1628_6.mm",
+            "makespan": "18",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1628_7.mm",
+            "makespan": "22",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1628_8.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1628_9.mm",
+            "makespan": "21",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1628_10.mm",
+            "makespan": "23",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1629_1.mm",
+            "makespan": "24",
+            "executionTime": "1.10"
+        },
+        {
+            "file": "j1629_2.mm",
+            "makespan": "23",
+            "executionTime": "2.41"
+        },
+        {
+            "file": "j1629_3.mm",
+            "makespan": "29",
+            "executionTime": "5.10"
+        },
+        {
+            "file": "j1629_4.mm",
+            "makespan": "39",
+            "executionTime": "0.62"
+        },
+        {
+            "file": "j1629_5.mm",
+            "makespan": "30",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1629_6.mm",
+            "makespan": "34",
+            "executionTime": "0.32"
+        },
+        {
+            "file": "j1629_7.mm",
+            "makespan": "34",
+            "executionTime": "1.78"
+        },
+        {
+            "file": "j1629_8.mm",
+            "makespan": "32",
+            "executionTime": "1.91"
+        },
+        {
+            "file": "j1629_9.mm",
+            "makespan": "27",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1629_10.mm",
+            "makespan": "27",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1630_1.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1630_2.mm",
+            "makespan": "27",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1630_3.mm",
+            "makespan": "27",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1630_4.mm",
+            "makespan": "27",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1630_5.mm",
+            "makespan": "20",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1630_6.mm",
+            "makespan": "23",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1630_7.mm",
+            "makespan": "15",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1630_8.mm",
+            "makespan": "23",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1630_9.mm",
+            "makespan": "28",
+            "executionTime": "0.59"
+        },
+        {
+            "file": "j1630_10.mm",
+            "makespan": "26",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1631_1.mm",
+            "makespan": "30",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1631_2.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1631_3.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1631_4.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1631_5.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1631_6.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1631_7.mm",
+            "makespan": "20",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1631_8.mm",
+            "makespan": "21",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1631_9.mm",
+            "makespan": "24",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1631_10.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1632_1.mm",
+            "makespan": "26",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1632_2.mm",
+            "makespan": "16",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1632_3.mm",
+            "makespan": "18",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1632_4.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1632_5.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1632_6.mm",
+            "makespan": "22",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1632_7.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1632_8.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1632_9.mm",
+            "makespan": "18",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1632_10.mm",
+            "makespan": "27",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1633_1.mm",
+            "makespan": "39",
+            "executionTime": "29.69"
+        },
+        {
+            "file": "j1633_2.mm",
+            "makespan": "39",
+            "executionTime": "0.88"
+        },
+        {
+            "file": "j1633_3.mm",
+            "makespan": "37",
+            "executionTime": "30.07"
+        },
+        {
+            "file": "j1633_4.mm",
+            "makespan": "39",
+            "executionTime": "1.37"
+        },
+        {
+            "file": "j1633_5.mm",
+            "makespan": "34",
+            "executionTime": "4.93"
+        },
+        {
+            "file": "j1633_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1633_7.mm",
+            "makespan": "49",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1633_8.mm",
+            "makespan": "32",
+            "executionTime": "37.28"
+        },
+        {
+            "file": "j1633_9.mm",
+            "makespan": "38",
+            "executionTime": "1.31"
+        },
+        {
+            "file": "j1633_10.mm",
+            "makespan": "38",
+            "executionTime": "2.56"
+        },
+        {
+            "file": "j1634_1.mm",
+            "makespan": "34",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1634_2.mm",
+            "makespan": "29",
+            "executionTime": "7.16"
+        },
+        {
+            "file": "j1634_3.mm",
+            "makespan": "29",
+            "executionTime": "8.34"
+        },
+        {
+            "file": "j1634_4.mm",
+            "makespan": "30",
+            "executionTime": "2.97"
+        },
+        {
+            "file": "j1634_5.mm",
+            "makespan": "28",
+            "executionTime": "3.25"
+        },
+        {
+            "file": "j1634_6.mm",
+            "makespan": "33",
+            "executionTime": "7.12"
+        },
+        {
+            "file": "j1634_7.mm",
+            "makespan": "28",
+            "executionTime": "4.28"
+        },
+        {
+            "file": "j1634_8.mm",
+            "makespan": "27",
+            "executionTime": "17.50"
+        },
+        {
+            "file": "j1634_9.mm",
+            "makespan": "28",
+            "executionTime": "6.25"
+        },
+        {
+            "file": "j1634_10.mm",
+            "makespan": "32",
+            "executionTime": "15.09"
+        },
+        {
+            "file": "j1635_1.mm",
+            "makespan": "36",
+            "executionTime": "3.50"
+        },
+        {
+            "file": "j1635_2.mm",
+            "makespan": "30",
+            "executionTime": "6.31"
+        },
+        {
+            "file": "j1635_3.mm",
+            "makespan": "29",
+            "executionTime": "2.50"
+        },
+        {
+            "file": "j1635_4.mm",
+            "makespan": "36",
+            "executionTime": "4.47"
+        },
+        {
+            "file": "j1635_5.mm",
+            "makespan": "30",
+            "executionTime": "3.32"
+        },
+        {
+            "file": "j1635_6.mm",
+            "makespan": "37",
+            "executionTime": "2.16"
+        },
+        {
+            "file": "j1635_7.mm",
+            "makespan": "33",
+            "executionTime": "13.78"
+        },
+        {
+            "file": "j1635_8.mm",
+            "makespan": "29",
+            "executionTime": "14.82"
+        },
+        {
+            "file": "j1635_9.mm",
+            "makespan": "30",
+            "executionTime": "3.56"
+        },
+        {
+            "file": "j1635_10.mm",
+            "makespan": "36",
+            "executionTime": "3.43"
+        },
+        {
+            "file": "j1636_1.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1636_2.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1636_3.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1636_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1636_5.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1636_6.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1636_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1636_8.mm",
+            "makespan": "41",
+            "executionTime": "5.19"
+        },
+        {
+            "file": "j1636_9.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1636_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1637_1.mm",
+            "makespan": "37",
+            "executionTime": "200.25"
+        },
+        {
+            "file": "j1637_2.mm",
+            "makespan": "33",
+            "executionTime": "19.94"
+        },
+        {
+            "file": "j1637_3.mm",
+            "makespan": "37",
+            "executionTime": "145.60"
+        },
+        {
+            "file": "j1637_4.mm",
+            "makespan": "32",
+            "executionTime": "50.25"
+        },
+        {
+            "file": "j1637_5.mm",
+            "makespan": "41",
+            "executionTime": "49.25"
+        },
+        {
+            "file": "j1637_6.mm",
+            "makespan": "36",
+            "executionTime": "7.75"
+        },
+        {
+            "file": "j1637_7.mm",
+            "makespan": "36",
+            "executionTime": "65.66"
+        },
+        {
+            "file": "j1637_8.mm",
+            "makespan": "40",
+            "executionTime": "35.78"
+        },
+        {
+            "file": "j1637_9.mm",
+            "makespan": "39",
+            "executionTime": "63.87"
+        },
+        {
+            "file": "j1637_10.mm",
+            "makespan": "36",
+            "executionTime": "20.25"
+        },
+        {
+            "file": "j1638_1.mm",
+            "makespan": "33",
+            "executionTime": "26.78"
+        },
+        {
+            "file": "j1638_2.mm",
+            "makespan": "32",
+            "executionTime": "31.78"
+        },
+        {
+            "file": "j1638_3.mm",
+            "makespan": "31",
+            "executionTime": "14.46"
+        },
+        {
+            "file": "j1638_4.mm",
+            "makespan": "35",
+            "executionTime": "41.50"
+        },
+        {
+            "file": "j1638_5.mm",
+            "makespan": "27",
+            "executionTime": "16.85"
+        },
+        {
+            "file": "j1638_6.mm",
+            "makespan": "25",
+            "executionTime": "11.78"
+        },
+        {
+            "file": "j1638_7.mm",
+            "makespan": "34",
+            "executionTime": "19.25"
+        },
+        {
+            "file": "j1638_8.mm",
+            "makespan": "32",
+            "executionTime": "4.34"
+        },
+        {
+            "file": "j1638_9.mm",
+            "makespan": "32",
+            "executionTime": "6.85"
+        },
+        {
+            "file": "j1638_10.mm",
+            "makespan": "31",
+            "executionTime": "38.16"
+        },
+        {
+            "file": "j1639_1.mm",
+            "makespan": "28",
+            "executionTime": "4.41"
+        },
+        {
+            "file": "j1639_2.mm",
+            "makespan": "27",
+            "executionTime": "3.00"
+        },
+        {
+            "file": "j1639_3.mm",
+            "makespan": "34",
+            "executionTime": "79.75"
+        },
+        {
+            "file": "j1639_4.mm",
+            "makespan": "31",
+            "executionTime": "30.15"
+        },
+        {
+            "file": "j1639_5.mm",
+            "makespan": "31",
+            "executionTime": "16.03"
+        },
+        {
+            "file": "j1639_6.mm",
+            "makespan": "27",
+            "executionTime": "1.63"
+        },
+        {
+            "file": "j1639_7.mm",
+            "makespan": "23",
+            "executionTime": "2.75"
+        },
+        {
+            "file": "j1639_8.mm",
+            "makespan": "32",
+            "executionTime": "21.35"
+        },
+        {
+            "file": "j1639_9.mm",
+            "makespan": "30",
+            "executionTime": "6.91"
+        },
+        {
+            "file": "j1639_10.mm",
+            "makespan": "31",
+            "executionTime": "17.28"
+        },
+        {
+            "file": "j1640_1.mm",
+            "makespan": "29",
+            "executionTime": "9.04"
+        },
+        {
+            "file": "j1640_2.mm",
+            "makespan": "29",
+            "executionTime": "5.16"
+        },
+        {
+            "file": "j1640_3.mm",
+            "makespan": "30",
+            "executionTime": "6.62"
+        },
+        {
+            "file": "j1640_4.mm",
+            "makespan": "27",
+            "executionTime": "3.81"
+        },
+        {
+            "file": "j1640_5.mm",
+            "makespan": "44",
+            "executionTime": "0.47"
+        },
+        {
+            "file": "j1640_6.mm",
+            "makespan": "25",
+            "executionTime": "5.97"
+        },
+        {
+            "file": "j1640_7.mm",
+            "makespan": "26",
+            "executionTime": "6.21"
+        },
+        {
+            "file": "j1640_8.mm",
+            "makespan": "38",
+            "executionTime": "2.22"
+        },
+        {
+            "file": "j1640_9.mm",
+            "makespan": "29",
+            "executionTime": "2.13"
+        },
+        {
+            "file": "j1640_10.mm",
+            "makespan": "37",
+            "executionTime": "2.56"
+        },
+        {
+            "file": "j1641_1.mm",
+            "makespan": "22",
+            "executionTime": "25.97"
+        },
+        {
+            "file": "j1641_2.mm",
+            "makespan": "23",
+            "executionTime": "5.59"
+        },
+        {
+            "file": "j1641_3.mm",
+            "makespan": "36",
+            "executionTime": "3.85"
+        },
+        {
+            "file": "j1641_4.mm",
+            "makespan": "25",
+            "executionTime": "11.50"
+        },
+        {
+            "file": "j1641_5.mm",
+            "makespan": "36",
+            "executionTime": "1.81"
+        },
+        {
+            "file": "j1641_6.mm",
+            "makespan": "28",
+            "executionTime": "3.97"
+        },
+        {
+            "file": "j1641_7.mm",
+            "makespan": "26",
+            "executionTime": "6.31"
+        },
+        {
+            "file": "j1641_8.mm",
+            "makespan": "30",
+            "executionTime": "6.31"
+        },
+        {
+            "file": "j1641_9.mm",
+            "makespan": "33",
+            "executionTime": "4.22"
+        },
+        {
+            "file": "j1641_10.mm",
+            "makespan": "20",
+            "executionTime": "3.41"
+        },
+        {
+            "file": "j1642_1.mm",
+            "makespan": "27",
+            "executionTime": "7.60"
+        },
+        {
+            "file": "j1642_2.mm",
+            "makespan": "29",
+            "executionTime": "1.44"
+        },
+        {
+            "file": "j1642_3.mm",
+            "makespan": "30",
+            "executionTime": "17.72"
+        },
+        {
+            "file": "j1642_4.mm",
+            "makespan": "19",
+            "executionTime": "2.46"
+        },
+        {
+            "file": "j1642_5.mm",
+            "makespan": "22",
+            "executionTime": "5.34"
+        },
+        {
+            "file": "j1642_6.mm",
+            "makespan": "26",
+            "executionTime": "1.56"
+        },
+        {
+            "file": "j1642_7.mm",
+            "makespan": "34",
+            "executionTime": "4.34"
+        },
+        {
+            "file": "j1642_8.mm",
+            "makespan": "22",
+            "executionTime": "8.97"
+        },
+        {
+            "file": "j1642_9.mm",
+            "makespan": "30",
+            "executionTime": "10.44"
+        },
+        {
+            "file": "j1642_10.mm",
+            "makespan": "23",
+            "executionTime": "2.82"
+        },
+        {
+            "file": "j1643_1.mm",
+            "makespan": "23",
+            "executionTime": "3.59"
+        },
+        {
+            "file": "j1643_2.mm",
+            "makespan": "25",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1643_3.mm",
+            "makespan": "25",
+            "executionTime": "3.66"
+        },
+        {
+            "file": "j1643_4.mm",
+            "makespan": "30",
+            "executionTime": "2.09"
+        },
+        {
+            "file": "j1643_5.mm",
+            "makespan": "25",
+            "executionTime": "1.97"
+        },
+        {
+            "file": "j1643_6.mm",
+            "makespan": "23",
+            "executionTime": "5.60"
+        },
+        {
+            "file": "j1643_7.mm",
+            "makespan": "29",
+            "executionTime": "6.19"
+        },
+        {
+            "file": "j1643_8.mm",
+            "makespan": "20",
+            "executionTime": "4.72"
+        },
+        {
+            "file": "j1643_9.mm",
+            "makespan": "25",
+            "executionTime": "1.47"
+        },
+        {
+            "file": "j1643_10.mm",
+            "makespan": "20",
+            "executionTime": "1.03"
+        },
+        {
+            "file": "j1644_1.mm",
+            "makespan": "29",
+            "executionTime": "1.25"
+        },
+        {
+            "file": "j1644_2.mm",
+            "makespan": "20",
+            "executionTime": "2.22"
+        },
+        {
+            "file": "j1644_3.mm",
+            "makespan": "26",
+            "executionTime": "8.62"
+        },
+        {
+            "file": "j1644_4.mm",
+            "makespan": "30",
+            "executionTime": "10.03"
+        },
+        {
+            "file": "j1644_5.mm",
+            "makespan": "22",
+            "executionTime": "0.81"
+        },
+        {
+            "file": "j1644_6.mm",
+            "makespan": "20",
+            "executionTime": "7.25"
+        },
+        {
+            "file": "j1644_7.mm",
+            "makespan": "23",
+            "executionTime": "1.56"
+        },
+        {
+            "file": "j1644_8.mm",
+            "makespan": "23",
+            "executionTime": "0.97"
+        },
+        {
+            "file": "j1644_9.mm",
+            "makespan": "24",
+            "executionTime": "12.87"
+        },
+        {
+            "file": "j1644_10.mm",
+            "makespan": "21",
+            "executionTime": "4.13"
+        },
+        {
+            "file": "j1645_1.mm",
+            "makespan": "28",
+            "executionTime": "4.06"
+        },
+        {
+            "file": "j1645_2.mm",
+            "makespan": "27",
+            "executionTime": "70.50"
+        },
+        {
+            "file": "j1645_3.mm",
+            "makespan": "36",
+            "executionTime": "272.97"
+        },
+        {
+            "file": "j1645_4.mm",
+            "makespan": "37",
+            "executionTime": "45.66"
+        },
+        {
+            "file": "j1645_5.mm",
+            "makespan": "34",
+            "executionTime": "89.35"
+        },
+        {
+            "file": "j1645_6.mm",
+            "makespan": "34",
+            "executionTime": "50.28"
+        },
+        {
+            "file": "j1645_7.mm",
+            "makespan": "32",
+            "executionTime": "113.75"
+        },
+        {
+            "file": "j1645_8.mm",
+            "makespan": "27",
+            "executionTime": "95.31"
+        },
+        {
+            "file": "j1645_9.mm",
+            "makespan": "31",
+            "executionTime": "63.09"
+        },
+        {
+            "file": "j1645_10.mm",
+            "makespan": "32",
+            "executionTime": "45.19"
+        },
+        {
+            "file": "j1646_1.mm",
+            "makespan": "21",
+            "executionTime": "22.88"
+        },
+        {
+            "file": "j1646_2.mm",
+            "makespan": "29",
+            "executionTime": "21.94"
+        },
+        {
+            "file": "j1646_3.mm",
+            "makespan": "31",
+            "executionTime": "156.06"
+        },
+        {
+            "file": "j1646_4.mm",
+            "makespan": "22",
+            "executionTime": "23.81"
+        },
+        {
+            "file": "j1646_5.mm",
+            "makespan": "22",
+            "executionTime": "28.46"
+        },
+        {
+            "file": "j1646_6.mm",
+            "makespan": "26",
+            "executionTime": "6.03"
+        },
+        {
+            "file": "j1646_7.mm",
+            "makespan": "24",
+            "executionTime": "44.69"
+        },
+        {
+            "file": "j1646_8.mm",
+            "makespan": "27",
+            "executionTime": "13.44"
+        },
+        {
+            "file": "j1646_9.mm",
+            "makespan": "19",
+            "executionTime": "1.81"
+        },
+        {
+            "file": "j1646_10.mm",
+            "makespan": "27",
+            "executionTime": "143.19"
+        },
+        {
+            "file": "j1647_1.mm",
+            "makespan": "39",
+            "executionTime": "1.25"
+        },
+        {
+            "file": "j1647_2.mm",
+            "makespan": "23",
+            "executionTime": "10.97"
+        },
+        {
+            "file": "j1647_3.mm",
+            "makespan": "28",
+            "executionTime": "1.09"
+        },
+        {
+            "file": "j1647_4.mm",
+            "makespan": "26",
+            "executionTime": "12.18"
+        },
+        {
+            "file": "j1647_5.mm",
+            "makespan": "22",
+            "executionTime": "8.81"
+        },
+        {
+            "file": "j1647_6.mm",
+            "makespan": "21",
+            "executionTime": "26.12"
+        },
+        {
+            "file": "j1647_7.mm",
+            "makespan": "27",
+            "executionTime": "1.37"
+        },
+        {
+            "file": "j1647_8.mm",
+            "makespan": "21",
+            "executionTime": "10.07"
+        },
+        {
+            "file": "j1647_9.mm",
+            "makespan": "26",
+            "executionTime": "18.41"
+        },
+        {
+            "file": "j1647_10.mm",
+            "makespan": "33",
+            "executionTime": "12.13"
+        },
+        {
+            "file": "j1648_1.mm",
+            "makespan": "26",
+            "executionTime": "3.53"
+        },
+        {
+            "file": "j1648_2.mm",
+            "makespan": "25",
+            "executionTime": "19.69"
+        },
+        {
+            "file": "j1648_3.mm",
+            "makespan": "27",
+            "executionTime": "4.50"
+        },
+        {
+            "file": "j1648_4.mm",
+            "makespan": "23",
+            "executionTime": "2.72"
+        },
+        {
+            "file": "j1648_5.mm",
+            "makespan": "22",
+            "executionTime": "5.63"
+        },
+        {
+            "file": "j1648_6.mm",
+            "makespan": "21",
+            "executionTime": "13.12"
+        },
+        {
+            "file": "j1648_7.mm",
+            "makespan": "21",
+            "executionTime": "1.47"
+        },
+        {
+            "file": "j1648_8.mm",
+            "makespan": "24",
+            "executionTime": "6.87"
+        },
+        {
+            "file": "j1648_9.mm",
+            "makespan": "25",
+            "executionTime": "3.62"
+        },
+        {
+            "file": "j1648_10.mm",
+            "makespan": "21",
+            "executionTime": "2.84"
+        },
+        {
+            "file": "j1649_1.mm",
+            "makespan": "25",
+            "executionTime": "2.04"
+        },
+        {
+            "file": "j1649_2.mm",
+            "makespan": "26",
+            "executionTime": "4.50"
+        },
+        {
+            "file": "j1649_3.mm",
+            "makespan": "33",
+            "executionTime": "39.72"
+        },
+        {
+            "file": "j1649_4.mm",
+            "makespan": "23",
+            "executionTime": "2.79"
+        },
+        {
+            "file": "j1649_5.mm",
+            "makespan": "18",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1649_6.mm",
+            "makespan": "24",
+            "executionTime": "0.60"
+        },
+        {
+            "file": "j1649_7.mm",
+            "makespan": "23",
+            "executionTime": "1.53"
+        },
+        {
+            "file": "j1649_8.mm",
+            "makespan": "20",
+            "executionTime": "0.57"
+        },
+        {
+            "file": "j1649_9.mm",
+            "makespan": "23",
+            "executionTime": "0.41"
+        },
+        {
+            "file": "j1649_10.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1650_1.mm",
+            "makespan": "30",
+            "executionTime": "0.78"
+        },
+        {
+            "file": "j1650_2.mm",
+            "makespan": "21",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1650_3.mm",
+            "makespan": "21",
+            "executionTime": "0.57"
+        },
+        {
+            "file": "j1650_4.mm",
+            "makespan": "20",
+            "executionTime": "0.81"
+        },
+        {
+            "file": "j1650_5.mm",
+            "makespan": "21",
+            "executionTime": "1.00"
+        },
+        {
+            "file": "j1650_6.mm",
+            "makespan": "29",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1650_7.mm",
+            "makespan": "18",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1650_8.mm",
+            "makespan": "20",
+            "executionTime": "2.69"
+        },
+        {
+            "file": "j1650_9.mm",
+            "makespan": "24",
+            "executionTime": "0.57"
+        },
+        {
+            "file": "j1650_10.mm",
+            "makespan": "29",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1651_1.mm",
+            "makespan": "18",
+            "executionTime": "0.94"
+        },
+        {
+            "file": "j1651_2.mm",
+            "makespan": "27",
+            "executionTime": "0.13"
+        },
+        {
+            "file": "j1651_3.mm",
+            "makespan": "23",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1651_4.mm",
+            "makespan": "27",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1651_5.mm",
+            "makespan": "16",
+            "executionTime": "0.35"
+        },
+        {
+            "file": "j1651_6.mm",
+            "makespan": "16",
+            "executionTime": "0.69"
+        },
+        {
+            "file": "j1651_7.mm",
+            "makespan": "21",
+            "executionTime": "1.44"
+        },
+        {
+            "file": "j1651_8.mm",
+            "makespan": "20",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1651_9.mm",
+            "makespan": "23",
+            "executionTime": "0.35"
+        },
+        {
+            "file": "j1651_10.mm",
+            "makespan": "23",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1652_1.mm",
+            "makespan": "25",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1652_2.mm",
+            "makespan": "14",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1652_3.mm",
+            "makespan": "23",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1652_4.mm",
+            "makespan": "21",
+            "executionTime": "0.15"
+        },
+        {
+            "file": "j1652_5.mm",
+            "makespan": "20",
+            "executionTime": "0.40"
+        },
+        {
+            "file": "j1652_6.mm",
+            "makespan": "15",
+            "executionTime": "1.00"
+        },
+        {
+            "file": "j1652_7.mm",
+            "makespan": "16",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1652_8.mm",
+            "makespan": "26",
+            "executionTime": "0.63"
+        },
+        {
+            "file": "j1652_9.mm",
+            "makespan": "14",
+            "executionTime": "0.60"
+        },
+        {
+            "file": "j1652_10.mm",
+            "makespan": "21",
+            "executionTime": "2.03"
+        },
+        {
+            "file": "j1653_1.mm",
+            "makespan": "22",
+            "executionTime": "23.04"
+        },
+        {
+            "file": "j1653_2.mm",
+            "makespan": "29",
+            "executionTime": "11.84"
+        },
+        {
+            "file": "j1653_3.mm",
+            "makespan": "39",
+            "executionTime": "37.59"
+        },
+        {
+            "file": "j1653_4.mm",
+            "makespan": "27",
+            "executionTime": "8.10"
+        },
+        {
+            "file": "j1653_5.mm",
+            "makespan": "25",
+            "executionTime": "4.10"
+        },
+        {
+            "file": "j1653_6.mm",
+            "makespan": "30",
+            "executionTime": "18.41"
+        },
+        {
+            "file": "j1653_7.mm",
+            "makespan": "37",
+            "executionTime": "8.25"
+        },
+        {
+            "file": "j1653_8.mm",
+            "makespan": "25",
+            "executionTime": "7.44"
+        },
+        {
+            "file": "j1653_9.mm",
+            "makespan": "34",
+            "executionTime": "38.38"
+        },
+        {
+            "file": "j1653_10.mm",
+            "makespan": "29",
+            "executionTime": "2.38"
+        },
+        {
+            "file": "j1654_1.mm",
+            "makespan": "23",
+            "executionTime": "6.13"
+        },
+        {
+            "file": "j1654_2.mm",
+            "makespan": "24",
+            "executionTime": "0.59"
+        },
+        {
+            "file": "j1654_3.mm",
+            "makespan": "22",
+            "executionTime": "1.28"
+        },
+        {
+            "file": "j1654_4.mm",
+            "makespan": "33",
+            "executionTime": "0.75"
+        },
+        {
+            "file": "j1654_5.mm",
+            "makespan": "27",
+            "executionTime": "1.57"
+        },
+        {
+            "file": "j1654_6.mm",
+            "makespan": "22",
+            "executionTime": "12.53"
+        },
+        {
+            "file": "j1654_7.mm",
+            "makespan": "33",
+            "executionTime": "0.50"
+        },
+        {
+            "file": "j1654_8.mm",
+            "makespan": "23",
+            "executionTime": "28.12"
+        },
+        {
+            "file": "j1654_9.mm",
+            "makespan": "23",
+            "executionTime": "4.50"
+        },
+        {
+            "file": "j1654_10.mm",
+            "makespan": "21",
+            "executionTime": "1.47"
+        },
+        {
+            "file": "j1655_1.mm",
+            "makespan": "17",
+            "executionTime": "3.60"
+        },
+        {
+            "file": "j1655_2.mm",
+            "makespan": "18",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1655_3.mm",
+            "makespan": "31",
+            "executionTime": "0.19"
+        },
+        {
+            "file": "j1655_4.mm",
+            "makespan": "22",
+            "executionTime": "4.07"
+        },
+        {
+            "file": "j1655_5.mm",
+            "makespan": "28",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1655_6.mm",
+            "makespan": "20",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1655_7.mm",
+            "makespan": "20",
+            "executionTime": "5.19"
+        },
+        {
+            "file": "j1655_8.mm",
+            "makespan": "25",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1655_9.mm",
+            "makespan": "28",
+            "executionTime": "0.22"
+        },
+        {
+            "file": "j1655_10.mm",
+            "makespan": "22",
+            "executionTime": "3.69"
+        },
+        {
+            "file": "j1656_1.mm",
+            "makespan": "27",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1656_2.mm",
+            "makespan": "19",
+            "executionTime": "0.85"
+        },
+        {
+            "file": "j1656_3.mm",
+            "makespan": "17",
+            "executionTime": "1.75"
+        },
+        {
+            "file": "j1656_4.mm",
+            "makespan": "16",
+            "executionTime": "0.69"
+        },
+        {
+            "file": "j1656_5.mm",
+            "makespan": "19",
+            "executionTime": "2.59"
+        },
+        {
+            "file": "j1656_6.mm",
+            "makespan": "23",
+            "executionTime": "0.44"
+        },
+        {
+            "file": "j1656_7.mm",
+            "makespan": "22",
+            "executionTime": "0.60"
+        },
+        {
+            "file": "j1656_8.mm",
+            "makespan": "15",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1656_9.mm",
+            "makespan": "25",
+            "executionTime": "0.32"
+        },
+        {
+            "file": "j1656_10.mm",
+            "makespan": "17",
+            "executionTime": "3.44"
+        },
+        {
+            "file": "j1657_1.mm",
+            "makespan": "18",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1657_2.mm",
+            "makespan": "25",
+            "executionTime": "0.28"
+        },
+        {
+            "file": "j1657_3.mm",
+            "makespan": "27",
+            "executionTime": "0.56"
+        },
+        {
+            "file": "j1657_4.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1657_5.mm",
+            "makespan": "26",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1657_6.mm",
+            "makespan": "28",
+            "executionTime": "0.38"
+        },
+        {
+            "file": "j1657_7.mm",
+            "makespan": "16384",
+            "executionTime": "0.00"
+        },
+        {
+            "file": "j1657_8.mm",
+            "makespan": "25",
+            "executionTime": "0.16"
+        },
+        {
+            "file": "j1657_9.mm",
+            "makespan": "26",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1657_10.mm",
+            "makespan": "28",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1658_1.mm",
+            "makespan": "24",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1658_2.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1658_3.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1658_4.mm",
+            "makespan": "21",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1658_5.mm",
+            "makespan": "25",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1658_6.mm",
+            "makespan": "26",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1658_7.mm",
+            "makespan": "24",
+            "executionTime": "0.69"
+        },
+        {
+            "file": "j1658_8.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1658_9.mm",
+            "makespan": "25",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1658_10.mm",
+            "makespan": "23",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1659_1.mm",
+            "makespan": "15",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1659_2.mm",
+            "makespan": "15",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1659_3.mm",
+            "makespan": "14",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1659_4.mm",
+            "makespan": "27",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1659_5.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1659_6.mm",
+            "makespan": "21",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1659_7.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1659_8.mm",
+            "makespan": "24",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1659_9.mm",
+            "makespan": "14",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1659_10.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1660_1.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1660_2.mm",
+            "makespan": "20",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1660_3.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1660_4.mm",
+            "makespan": "20",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1660_5.mm",
+            "makespan": "14",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1660_6.mm",
+            "makespan": "36",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1660_7.mm",
+            "makespan": "19",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1660_8.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1660_9.mm",
+            "makespan": "14",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1660_10.mm",
+            "makespan": "22",
+            "executionTime": "0.10"
+        },
+        {
+            "file": "j1661_1.mm",
+            "makespan": "27",
+            "executionTime": "0.25"
+        },
+        {
+            "file": "j1661_2.mm",
+            "makespan": "24",
+            "executionTime": "0.78"
+        },
+        {
+            "file": "j1661_3.mm",
+            "makespan": "25",
+            "executionTime": "12.78"
+        },
+        {
+            "file": "j1661_4.mm",
+            "makespan": "25",
+            "executionTime": "3.53"
+        },
+        {
+            "file": "j1661_5.mm",
+            "makespan": "29",
+            "executionTime": "0.31"
+        },
+        {
+            "file": "j1661_6.mm",
+            "makespan": "30",
+            "executionTime": "0.29"
+        },
+        {
+            "file": "j1661_7.mm",
+            "makespan": "29",
+            "executionTime": "3.19"
+        },
+        {
+            "file": "j1661_8.mm",
+            "makespan": "26",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1661_9.mm",
+            "makespan": "38",
+            "executionTime": "0.72"
+        },
+        {
+            "file": "j1661_10.mm",
+            "makespan": "28",
+            "executionTime": "0.18"
+        },
+        {
+            "file": "j1662_1.mm",
+            "makespan": "28",
+            "executionTime": "1.09"
+        },
+        {
+            "file": "j1662_2.mm",
+            "makespan": "20",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1662_3.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1662_4.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1662_5.mm",
+            "makespan": "18",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1662_6.mm",
+            "makespan": "21",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1662_7.mm",
+            "makespan": "18",
+            "executionTime": "0.34"
+        },
+        {
+            "file": "j1662_8.mm",
+            "makespan": "22",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1662_9.mm",
+            "makespan": "27",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1662_10.mm",
+            "makespan": "15",
+            "executionTime": "0.12"
+        },
+        {
+            "file": "j1663_1.mm",
+            "makespan": "24",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1663_2.mm",
+            "makespan": "24",
+            "executionTime": "0.09"
+        },
+        {
+            "file": "j1663_3.mm",
+            "makespan": "16",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1663_4.mm",
+            "makespan": "17",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1663_5.mm",
+            "makespan": "15",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1663_6.mm",
+            "makespan": "23",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1663_7.mm",
+            "makespan": "19",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1663_8.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1663_9.mm",
+            "makespan": "23",
+            "executionTime": "0.59"
+        },
+        {
+            "file": "j1663_10.mm",
+            "makespan": "14",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1664_1.mm",
+            "makespan": "19",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1664_2.mm",
+            "makespan": "21",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1664_3.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1664_4.mm",
+            "makespan": "31",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1664_5.mm",
+            "makespan": "22",
+            "executionTime": "0.06"
+        },
+        {
+            "file": "j1664_6.mm",
+            "makespan": "19",
+            "executionTime": "0.04"
+        },
+        {
+            "file": "j1664_7.mm",
+            "makespan": "22",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1664_8.mm",
+            "makespan": "24",
+            "executionTime": "0.07"
+        },
+        {
+            "file": "j1664_9.mm",
+            "makespan": "18",
+            "executionTime": "0.03"
+        },
+        {
+            "file": "j1664_10.mm",
+            "makespan": "21",
+            "executionTime": "0.03"
+        }
+    ]
+}
