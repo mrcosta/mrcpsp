@@ -4,7 +4,6 @@ import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
 import mrcpsp.process.MmProcessor
 import mrcpsp.utils.FileUtils
-import mrcpsp.utils.LogUtils
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
@@ -74,8 +73,8 @@ class CompareResults {
     }
 
     def compareResult(resultAnalytics, resultAnalyticsCpr) {
-        def lesserRa = resultAnalytics.totalFiles <= resultAnalyticsCpr.totalFiles ? resultAnalytics : resultAnalyticsCpr
-        def biggerRa = resultAnalytics.totalFiles > resultAnalyticsCpr.totalFiles ? resultAnalytics : resultAnalyticsCpr
+        def lesserRa = resultAnalytics.totalWithSolution <= resultAnalyticsCpr.totalWithSolution ? resultAnalytics : resultAnalyticsCpr
+        def biggerRa = resultAnalytics.totalWithSolution > resultAnalyticsCpr.totalWithSolution ? resultAnalytics : resultAnalyticsCpr
         dataAnalytics = [:]
 
         log.info("Difference between $lesserRa.testName and $biggerRa.testName")

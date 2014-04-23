@@ -13,7 +13,7 @@ class J30PsplibProcessor {
     private static final Logger log = Logger.getLogger(FileUtils.class);
 
     static final Integer FIRST_LINE_RESULTS = 4;
-    static final Integer LAST_LINE_RESULTS = 556;
+    static final Integer LAST_LINE_RESULTS = 554;
 
     def resultMap
 
@@ -38,7 +38,7 @@ class J30PsplibProcessor {
 
             def instanceResult = [:]
             resultMap.results."$file" = [:]
-            instanceResult.makespan = makespan
+            instanceResult.makespan = Integer.parseInt(makespan)
             resultMap.results."$file" = instanceResult
 
             filesResult.add(instanceResult)

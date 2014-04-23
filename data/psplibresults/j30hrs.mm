@@ -2,8 +2,6 @@ solutionlist data/j30hrs.mm
 ================================================================================
 Par     Inst    Makespan        Date                    Author
 ================================================================================
-7,	8,	47,		Fri Jan 17 10:56:32 2003  K. Nonobe and T. Ibaraki
-8,	6,	46,		Mon Feb 21 16:26:36 2000  A. Siegner
 9,	1,	31,		Sat Aug 30 04:11:36 1997  Soenke Hartmann
 9,	2,	27,		Mon Sep  8 12:00:06 1997  Soenke Hartmann
 9,	3,	34,		Mon Sep  8 12:00:11 1997  Soenke Hartmann

@@ -1,5 +1,20 @@
 apply plugin: "groovy"
 apply plugin: "idea"
+apply plugin: "sonar-runner"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.saliman:gradle-cobertura-plugin:2.1.0"
+    }
+}
+apply plugin: 'cobertura'
+
+cobertura {
+    coverageExcludes = ['.*mrcpsp.model.enum.*', '.*mrcpsp.utils.*']
+}
 
 idea.module.excludeDirs = [file('bin'), file('.idea'), file('.settings'), file('.gradle'), file('build'), file('out')]
 
@@ -41,4 +56,14 @@ task wrapper(type:Wrapper) {
 task(run, dependsOn: 'classes', type: JavaExec) {
 	main = 'mrcpsp.process.MmRunner'
 	classpath = sourceSets.main.runtimeClasspath
+}
+
+sonarRunner {
+    sonarProperties {
+        property "sonar.host.url", "http://my.server.com"
+        property "sonar.jdbc.url", "jdbc:mysql://my.server.com/sonar"
+        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+        property "sonar.jdbc.username", "Fred Flintstone"
+        property "sonar.jdbc.password", "very clever"
+    }
 }
