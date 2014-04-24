@@ -82,12 +82,28 @@ class CompareResults {
         dataAnalytics."$resultAnalytics.testName" = putGeneralResultsInformation(resultAnalytics)
         dataAnalytics."$resultAnalyticsCpr.testName" = putGeneralResultsInformation(resultAnalyticsCpr)
 
+
+        def similarResults = 0
+        def betterResults = 0
+        def worstResults = 0
         dataAnalytics.diffMakespan = [:]
         dataAnalytics.averageDiffMakespan = 0
         lesserRa.results.each { instanceResult ->
             def diffMakespan = (instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan * 100
             dataAnalytics.averageDiffMakespan+= diffMakespan
+
+            if (instanceResult.value.makespan == biggerRa.results."$instanceResult.key".makespan) {
+                similarResults++
+            } else if (instanceResult.value.makespan < biggerRa.results."$instanceResult.key".makespan) {
+                betterResults++
+            } else {
+                worstResults++
+            }
         }
+
+        dataAnalytics.diffMakespan.similarResults = similarResults
+        dataAnalytics.diffMakespan.betterResults = betterResults
+        dataAnalytics.diffMakespan.worstResults = worstResults
 
         dataAnalytics.averageDiffMakespan = dataAnalytics.averageDiffMakespan / (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
         dataAnalytics.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
