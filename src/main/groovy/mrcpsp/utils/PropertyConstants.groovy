@@ -55,7 +55,7 @@ interface PropertyConstants {
 	static final Integer ADD = 1
 		
 	//############# RESULTS #################
-	static final String RESULTS_PATH = System.getProperty("user.home") + "/mrcpsp/results"
+	static final String RESULTS_PATH = System.getProperty("user.home") + "/mrcpsp_results/results"
 
     //############# DIAGRAM #################
     static final String DIAGRAM_PATH = "diagramPath"
