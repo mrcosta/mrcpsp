@@ -14,8 +14,8 @@ class CompareResults {
 
     static final Logger log = Logger.getLogger(MmProcessor.class)
 
-    public static final Integer NR_PSPLIB = 16384
-    public static final Integer NR = -999
+    static final Integer NR_PSPLIB = 16384
+    static final Integer NR = -999
 
     def result
     def resultCpr
@@ -26,16 +26,30 @@ class CompareResults {
     }
 
     def checkResultsFolder() {
+        def resultsFolder
+
+        resultsFolder = checkFilesAmount()
+        parseJsonFiles(resultsFolder)
+
+        def resultAnalytics = generateAnalytics(result)
+        def resultAnalyticsCpr = generateAnalytics(resultCpr)
+
+        String data = compareResult(resultAnalytics, resultAnalyticsCpr)
+        FileUtils.writeToFile(new File(resultsFolder.absolutePath + "/results.json"), data, false)
+    }
+
+    def checkFilesAmount() {
         File resultsFolder = new File(System.getProperty("user.home") + "/results")
 
-        if (resultsFolder.listFiles().size() == 2 || resultsFolder.listFiles().size() == 3) {
-            parseJsonFiles(resultsFolder)
-
-            def resultAnalytics = generateAnalytics(result)
-            def resultAnalyticsCpr = generateAnalytics(resultCpr)
-
-            String data = compareResult(resultAnalytics, resultAnalyticsCpr)
-            FileUtils.writeToFile(new File(resultsFolder.absolutePath + "/results.json"), data, false)
+        if (resultsFolder.listFiles().size() == 2) {
+            return resultsFolder
+        } else if  (resultsFolder.listFiles().size() == 3) {
+            resultsFolder.listFiles().each { file ->
+                if (file.name == "results.json") {
+                    file.delete()
+                }
+            }
+            return resultsFolder
         } else {
             log.log(Level.ERROR, "Need two results files to compare")
             throw new IllegalArgumentException("Need two results files to compare")
@@ -101,9 +115,17 @@ class CompareResults {
             }
         }
 
-        dataAnalytics.diffMakespan.similarResults = similarResults
-        dataAnalytics.diffMakespan.betterResults = betterResults
-        dataAnalytics.diffMakespan.worstResults = worstResults
+        dataAnalytics.diffMakespan.similarResults = [:]
+        dataAnalytics.diffMakespan.similarResults.total = similarResults
+        dataAnalytics.diffMakespan.similarResults.percentage = similarResults / lesserRa.totalWithSolution * 100
+
+        dataAnalytics.diffMakespan.betterResults = [:]
+        dataAnalytics.diffMakespan.betterResults.total = betterResults
+        dataAnalytics.diffMakespan.betterResults.percentage = betterResults / lesserRa.totalWithSolution * 100
+
+        dataAnalytics.diffMakespan.worstResults = [:]
+        dataAnalytics.diffMakespan.worstResults.total = worstResults
+        dataAnalytics.diffMakespan.worstResults.percentage = worstResults / lesserRa.totalWithSolution * 100
 
         dataAnalytics.averageDiffMakespan = dataAnalytics.averageDiffMakespan / (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
         dataAnalytics.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)

@@ -89,7 +89,7 @@ class MmProcessor {
 				log.info("Executing Job Priority Rules . . .")
 				
 				jobPriorityRulesOperations = new JobPriorityRulesOperations()
-				project.setJobs(jobPriorityRulesOperations.setJobsPriorityRuleInformation(project.getJobs()))
+				project.setJobs(jobPriorityRulesOperations.setJobsPriorityRuleInformation(project))
 				success = true
 				log.info("Executing Job Priority Rules . . .DONE \n")	
 			} catch (Exception e) {

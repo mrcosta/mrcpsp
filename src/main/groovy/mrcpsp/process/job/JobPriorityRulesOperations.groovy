@@ -1,7 +1,10 @@
 package mrcpsp.process.job;
 
 import mrcpsp.model.enums.EnumJobPriorityRules;
-import mrcpsp.model.main.Job;
+import mrcpsp.model.main.Job
+import mrcpsp.model.main.Project
+import mrcpsp.model.main.ResourceAvailabilities
+import mrcpsp.process.JobTimeProcessor;
 import mrcpsp.utils.PropertyConstants;
 import mrcpsp.utils.UrlUtils;
 import org.apache.log4j.Level;
@@ -16,12 +19,15 @@ class JobPriorityRulesOperations {
      * @param jobs
      * @return
      */
-	List<Job> setJobsPriorityRuleInformation(List<Job> jobs) {
+	List<Job> setJobsPriorityRuleInformation(Project project) {
 		String priorityRule = UrlUtils.instance.jobPriorityRule
+        def jobs
 		
 		if (priorityRule == EnumJobPriorityRules.MAX_NIS.name) {
-			jobs = getJobsNIS(jobs)
-		} else {
+			jobs = getJobsNIS(project.jobs)
+		} else if (priorityRule == EnumJobPriorityRules.MIN_SLK.name) {
+            jobs = getJobsSLK(project.resourceAvailabilities, project.jobs)
+        } else {
 			log.log(Level.ERROR, "JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
 			throw new IllegalArgumentException("JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
 		}
@@ -39,18 +45,10 @@ class JobPriorityRulesOperations {
 		String priorityRule = UrlUtils.instance.jobPriorityRule
 		
 		if (priorityRule == EnumJobPriorityRules.MAX_NIS.name) {
-			
 			getJobListOrderByMaxNis(elegibleJobsList)
-			
-		} else if (priorityRule == EnumJobPriorityRules.MAX_CAN.name) {
-			
-			getJobListOrderByMaxCan(elegibleJobsList)
-			
-		} else if (priorityRule == EnumJobPriorityRules.MAX_NISCAN.name) {
-			
-			getJobListOrderByMaxNiscan(elegibleJobsList)
-			
-		} else {
+		} else if (priorityRule == EnumJobPriorityRules.MIN_SLK.name) {
+            getJobListOrderBySlack(elegibleJobsList)
+        } else {
 			log.log(Level.ERROR, "JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
 			throw new IllegalArgumentException("JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
 		}
@@ -72,36 +70,6 @@ class JobPriorityRulesOperations {
 		Collections.sort(elegibleJobs, Collections.reverseOrder(jobComparator))
 		
 		return elegibleJobs;
-	}
-
-    /**
-     * order the elegible Jobs by the its MAX_CAN (Maximum Number of Subsequent Candidates)
-     * Ex: 8 has 5 and 3 as your predecessors. 3 is already scheduled. so we can say that 8 is a subsequent candidate of 5,
-     * because when 5 is scheduled 8 is eligible
-     * @param elegibleJobs
-     * @return
-     */
-	List<Job> getJobListOrderByMaxCan(List<Job> elegibleJobs) {
-		JobComparator jobComparator = new JobComparator()
-		
-		jobComparator.comparatorType = EnumJobPriorityRules.MAX_CAN
-		Collections.sort(elegibleJobs, Collections.reverseOrder(jobComparator))
-		
-		return elegibleJobs
-	}
-
-    /**
-     * the combination of the MAX_NIS and MAX_CAN
-     * @param elegibleJobs
-     * @return
-     */
-	List<Job> getJobListOrderByMaxNiscan(List<Job> elegibleJobs) {
-		JobComparator jobComparator = new JobComparator();
-		
-		jobComparator.comparatorType = EnumJobPriorityRules.MAX_NISCAN
-		Collections.sort(elegibleJobs, Collections.reverseOrder(jobComparator))
-		
-		return elegibleJobs
 	}
 
     /**
@@ -142,25 +110,37 @@ class JobPriorityRulesOperations {
 		return jobs
 	}
 
-    /**
-     * Update the job CAN - Maximum Number of Subsequent Candidates
-     * @param remainingJobs
-     * @param job
-     * @return
-     */
-	List<Job> updateJobCAN(List<Job> remainingJobs, Job job) {
-		return null;
-	}
+    public List<Job> getJobsSLK(ResourceAvailabilities ra, List<Job> jobs) {
+        jobs = getJobTimes(ra, jobs)
+        jobs.each { job ->
+            job.runningJobInformation.slackAmount = getJobSlack(job, jobs)
+        }
+    }
 
-    /**
-     * updating the job NISCAN -NIS + CAN
-     * @param remainingJobs
-     * @param randomizedJob
-     * @return
-     */
-	List<Job> updateJobNISCAN(List<Job> remainingJobs, Job randomizedJob) {
-		return null;
-	}
+    def getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
+        def jobTimeProcessor = new JobTimeProcessor()
+
+        try {
+            jobs = jobTimeProcessor.getJobTimes(ra, jobs)
+            return jobs
+        } catch (Exception e) {
+            log.error("Exception during the executeGetJobTimes to get the slack for all jobs", e)
+        }
+    }
+
+    def getJobSlack(Job job, List<Job> jobs) {
+        def predecessors = jobs.findAll { job.predecessors.contains(it.id) }
+        predecessors = getJobListOrderByEndTime(predecessors)
+
+        if (!predecessors.isEmpty()) {
+            Job latestJob = predecessors.last()
+            def slackAmount = job.startTime - latestJob.endTime
+
+            return slackAmount
+        } else {
+            return 0
+        }
+    }
 
     /**
      * order the predecessor Jobs by the its end time. Used to set the start and the finish time of each job
@@ -177,6 +157,18 @@ class JobPriorityRulesOperations {
 		//Collections.sort(jobs, Collections.reverseOrder(jobComparator));
 		
 		return jobs
-	}	
+	}
+
+    List<Job> getJobListOrderBySlack(List<Job> jobs) {
+        JobComparator jobComparator = new JobComparator()
+
+        jobComparator.comparatorType = EnumJobPriorityRules.MIN_SLK
+
+        // the second criteria ir the job's order in the list
+        Collections.sort(jobs, jobComparator);
+        //Collections.sort(jobs, Collections.reverseOrder(jobComparator));  //bigger to smaller
+
+        return jobs
+    }
 
 }

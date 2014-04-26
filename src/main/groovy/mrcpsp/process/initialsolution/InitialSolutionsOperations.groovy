@@ -91,20 +91,6 @@ class InitialSolutionsOperations {
 			}
 			
 			log.debug(job.toString());
-		}		
-		
-		String priorityRule = UrlUtils.instance.jobPriorityRule
-		JobPriorityRulesOperations jprOperations = new JobPriorityRulesOperations();
-		
-		// TO IMPLEMENT
-		if (priorityRule == EnumJobPriorityRules.MAX_CAN.name) {
-			
-			jprOperations.updateJobCAN(remainingJobs, randomizedJob)
-			
-		} else if (priorityRule == EnumJobPriorityRules.MAX_NISCAN.name) {
-			
-			jprOperations.updateJobNISCAN(remainingJobs, randomizedJob)
-			
 		}
 		
 		return remainingJobs

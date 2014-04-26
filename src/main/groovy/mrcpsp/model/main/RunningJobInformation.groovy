@@ -7,21 +7,19 @@ class RunningJobInformation {
 	
 	List<Integer> staggeredPredecessors;
 	Integer nisAmount;
-	Integer canAmount;
-	Integer niscanAmount;
+	Integer slackAmount;
 	boolean eligible;
 	
 	RunningJobInformation() {
 		staggeredPredecessors = new ArrayList<Integer>();
 		this.nisAmount = 0;
-		this.canAmount = 0;
-		this.niscanAmount = 0;
+		this.slackAmount = 0;
         eligible = false;
 	}
 	
 	@Override
 	def String toString() {
-		return """{NIS: $nisAmount, CAN: $canAmount, NISCAN: $niscanAmount}""";
+		return """{NIS: $nisAmount, SLK: $slackAmount}""";
 				
 	}
 	

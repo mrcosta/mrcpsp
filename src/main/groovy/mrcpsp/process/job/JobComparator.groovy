@@ -23,12 +23,9 @@ class JobComparator implements Comparator<Job> {
 			case EnumJobPriorityRules.MAX_NIS.name:
         		result = job.runningJobInformation.nisAmount.compareTo(jobToCompare.runningJobInformation.nisAmount)
         		break
-        	case EnumJobPriorityRules.MAX_CAN.name:
-        		result = job.runningJobInformation.canAmount.compareTo(jobToCompare.runningJobInformation.canAmount)
-        		break
-        	case EnumJobPriorityRules.MAX_NISCAN.name:
-        		result = job.runningJobInformation.niscanAmount.compareTo(jobToCompare.runningJobInformation.niscanAmount)
-        		break
+            case EnumJobPriorityRules.MIN_SLK.name:
+                result = job.runningJobInformation.slackAmount.compareTo(jobToCompare.runningJobInformation.slackAmount)
+                break
         	case EnumJobPriorityRules.BY_END_TIME.name:
     			result = job.endTime.compareTo(jobToCompare.endTime)
     			break
