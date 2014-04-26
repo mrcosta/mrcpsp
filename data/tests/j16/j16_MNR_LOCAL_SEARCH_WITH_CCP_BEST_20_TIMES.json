@@ -1,0 +1,31 @@
+{
+    "executionType": "ALL_TIMES",
+    "instanceFolder": "/data/j16.mm/",
+    "localSearchType": "LNRCCP",
+    "testName": "j16_MNR_LOCAL_SEARCH_WITH_CCP_BEST_20_TIMES.json",
+    "testDescription": "local search using minimum_renewable_resources criticalpath running twenty times - choosing mode with minimum_non_renewable_resources",
+    "totalExecutionTime": "901400--15:01:400",
+    "generalConfig": {
+        "executionTimes": "20",
+        "thread": 0,
+        "concurrentPoolSize": "8",
+        "instanceFile": "j1014_10.mm",
+        "executeLocalSearch": 1,
+        "generateDiagram": 0,
+        "diagramPath": "gantt",
+        "showPredecessorsInDiagram": 0,
+        "writeLowerboundForAllInstances": 0,
+        "showCriticalPath": 0,
+        "showLowerBound": 0
+    },
+    "instanceConfig": {
+        "startLineJobs": 18,
+        "startLineModes": 40,
+        "startLineResourceAvailabilities": 93,
+        "rclSize": 5,
+        "jobsMode": "minimum_non_renewable_resources",
+        "modeShorterNearToLowerNrPercentage": 25,
+        "modeShorterNearToLowerNrUnit": 1,
+        "jobPriorityRule": "MAX_NIS"
+    }
+}

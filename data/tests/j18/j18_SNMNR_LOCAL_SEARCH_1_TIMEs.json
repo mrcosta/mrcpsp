@@ -1,0 +1,31 @@
+{
+    "executionType": "ALL",
+    "instanceFolder": "/data/j18.mm/",
+    "localSearchType": "LNRC",
+    "testName": "j18_SNMNR_LOCAL_SEARCH_1_TIMEs.json",
+    "testDescription": "local search using minimum_renewable_resources running one time - choosing mode with shorter_near_to_lower_nr",
+    "totalExecutionTime": "901400--15:01:400",
+    "generalConfig": {
+        "executionTimes": "20",
+        "thread": 0,
+        "concurrentPoolSize": "8",
+        "instanceFile": "j1014_10.mm",
+        "executeLocalSearch": 1,
+        "generateDiagram": 0,
+        "diagramPath": "gantt",
+        "showPredecessorsInDiagram": 0,
+        "writeLowerboundForAllInstances": 0,
+        "showCriticalPath": 0,
+        "showLowerBound": 0
+    },
+    "instanceConfig": {
+        "startLineJobs": 18,
+        "startLineModes": 42,
+        "startLineResourceAvailabilities": 101,
+        "rclSize": 5,
+        "jobsMode": "shorter_near_to_lower_nr",
+        "modeShorterNearToLowerNrPercentage": 25,
+        "modeShorterNearToLowerNrUnit": 1,
+        "jobPriorityRule": "MAX_NIS"
+    }
+}

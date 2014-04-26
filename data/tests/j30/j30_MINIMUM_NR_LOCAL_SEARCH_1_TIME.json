@@ -1,0 +1,31 @@
+{
+    "executionType": "ALL",
+    "instanceFolder": "/data/j30.mm/",
+    "localSearchType": "LNRC",
+    "testName": "j30_MINIMUM_NR_LOCAL_SEARCH_1_TIME.json",
+    "testDescription": "local search using lower non renewable consumption and modes minimum_non_renewable_resources l running one time",
+    "totalExecutionTime": "901400--15:01:400",
+    "generalConfig": {
+        "executionTimes": "20",
+        "thread": 0,
+        "concurrentPoolSize": "8",
+        "instanceFile": "j1014_10.mm",
+        "executeLocalSearch": 1,
+        "generateDiagram": 0,
+        "diagramPath": "gantt",
+        "showPredecessorsInDiagram": 0,
+        "writeLowerboundForAllInstances": 0,
+        "showCriticalPath": 0,
+        "showLowerBound": 0
+    },
+    "instanceConfig": {
+        "startLineJobs": 18,
+        "startLineModes": 54,
+        "startLineResourceAvailabilities": 149,
+        "rclSize": 5,
+        "jobsMode": "minimum_non_renewable_resources",
+        "modeShorterNearToLowerNrPercentage": 25,
+        "modeShorterNearToLowerNrUnit": 1,
+        "jobPriorityRule": "MAX_NIS"
+    }
+}

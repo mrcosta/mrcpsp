@@ -1,0 +1,31 @@
+{
+    "executionType": "ALL",
+    "instanceFolder": "/data/j12.mm/",
+    "localSearchType": "LNRC",
+    "testName": "j12_SFM_WITHOUT_LS.json",
+    "testDescription": "choosing mode with shortest_feasible_mode without local search",
+    "totalExecutionTime": "901400--15:01:400",
+    "generalConfig": {
+        "executionTimes": "20",
+        "thread": 0,
+        "concurrentPoolSize": "8",
+        "instanceFile": "j1014_10.mm",
+        "executeLocalSearch": 0,
+        "generateDiagram": 0,
+        "diagramPath": "gantt",
+        "showPredecessorsInDiagram": 0,
+        "writeLowerboundForAllInstances": 0,
+        "showCriticalPath": 0,
+        "showLowerBound": 0
+    },
+    "instanceConfig": {
+        "startLineJobs": 18,
+        "startLineModes": 36,
+        "startLineResourceAvailabilities": 77,
+        "rclSize": 5,
+        "jobsMode": "shortest_feasible_mode",
+        "modeShorterNearToLowerNrPercentage": 25,
+        "modeShorterNearToLowerNrUnit": 1,
+        "jobPriorityRule": "MAX_NIS"
+    }
+}
