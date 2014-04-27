@@ -11,6 +11,7 @@
         "concurrentPoolSize": "8",
         "instanceFile": "j1014_10.mm",
         "executeLocalSearch": 1,
+        "perturbation": 0,
         "generateDiagram": 0,
         "diagramPath": "gantt",
         "showPredecessorsInDiagram": 0,

@@ -1,2 +1,0 @@
-ERROR 2014-04-26 23:32:01,603 [Test worker][?:?] : Invalid Option to get interval: class mrcpsp.process.perturbation.IteratedLocalSearch
-ERROR 2014-04-26 23:32:04,836 [Test worker][?:?] : Invalid Option to get interval: class mrcpsp.process.perturbation.IteratedLocalSearch
