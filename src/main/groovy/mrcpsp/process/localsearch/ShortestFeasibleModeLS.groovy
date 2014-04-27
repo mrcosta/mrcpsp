@@ -48,6 +48,7 @@ class ShortestFeasibleModeLS {
                 modeOperations.removingNonRenewableResources(project.resourceAvailabilities, it.mode)
             }
 
+            sfm.jobModes = new HashMap<String, String>()
             sfm.sfm([:], project.resourceAvailabilities, jobsBetweenInterval, false, 0)
 
             sfm.jobModes.each { key, value ->
