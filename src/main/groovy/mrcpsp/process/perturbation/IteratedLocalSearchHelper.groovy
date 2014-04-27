@@ -1,5 +1,7 @@
 package mrcpsp.process.perturbation
 
+import mrcpsp.model.main.Job
+import mrcpsp.model.main.Mode
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
@@ -8,7 +10,7 @@ import org.apache.log4j.Logger
  */
 class IteratedLocalSearchHelper {
 
-    private static final Logger log = Logger.getLogger(IteratedLocalSearch.class)
+    private static final Logger log = Logger.getLogger(IteratedLocalSearchHelper.class)
 
     List<Integer> getJobIntervals(List<Integer> jobsId, Integer interval) {
         def intervalSize = jobsId.size().intdiv(3)
@@ -39,5 +41,18 @@ class IteratedLocalSearchHelper {
             count++
         }
         return jobsIntervalId
+    }
+
+    List<Integer> getJobsThatCanChangeItsMode(List<Integer> jobsIdInterval, List<Job> jobs) {
+        def jobsBetweenInterval = jobs.findAll { jobsIdInterval.contains(it.id) }
+        def jobsThatCanChangeItsMode = jobsBetweenInterval.findAll { it.mode.id != 3 }
+
+        return jobsThatCanChangeItsMode
+    }
+
+    List<Mode> getRemaningModesForJob(Job job) {
+        def remainingModesId = job.availableModes.findAll{ it.id != job.mode.id && it.id > job.mode.id }
+
+        return remainingModesId
     }
 }

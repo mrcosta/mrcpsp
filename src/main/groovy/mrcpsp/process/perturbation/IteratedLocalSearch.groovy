@@ -2,21 +2,29 @@ package mrcpsp.process.perturbation
 
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
+import mrcpsp.process.job.JobOperations
+import mrcpsp.process.localsearch.LocalSearch
 import mrcpsp.utils.PropertyConstants
+import org.apache.commons.lang.math.RandomUtils
+import org.apache.log4j.Logger
 
 /**
  * Created by mateus on 4/26/14.
  */
 class IteratedLocalSearch {
 
+    private static final Logger log = Logger.getLogger(IteratedLocalSearch.class)
+
     Project bestProject
     Project bestNeighbor
     boolean checkSolution
 
     IteratedLocalSearchHelper ilsHelper
+    LocalSearchForPerturbation localSearchForPerturbation
 
     IteratedLocalSearch() {
         ilsHelper = new IteratedLocalSearchHelper()
+        localSearchForPerturbation = new LocalSearchForPerturbation()
     }
 
     def ils(Project project) {
@@ -24,28 +32,36 @@ class IteratedLocalSearch {
         bestNeighbor = project
         checkSolution = true
 
-//        while (checkSolution) {
+        while (checkSolution) {
 
-            def intervalJobsIdList = getAndMergeJobIdIntervals(project.staggeredJobs)
+            def intervalJobsIdList = getAndMergeJobIdIntervals(bestProject.staggeredJobs)
 
-            println intervalJobsIdList
+            intervalJobsIdList.each { intervalJobsId ->
+                def eligibleJobs = ilsHelper.getJobsThatCanChangeItsMode(intervalJobsId, bestProject.staggeredJobs)
 
-//            def neighborProject = sfmLS.changeExecutionModeBlockJob(bestProject, job.id)
-//
-//            if (neighborProject) {
-//                mmProcessor.project = neighborProject
-//                mmProcessor.executeGetJobTimes()
-//                mmProcessor.setProjectMakespan()
-//            }
-//
-//            if (neighborProject) {
-//                checkBestNeighbor(neighborProject);
-//            }
-//
-//            checkBestSolution(bestNeighbor, project)
-//        }
+                if (!eligibleJobs.isEmpty()) {
+                    def randomIndex = RandomUtils.nextInt(eligibleJobs.size())
+                    Job randomizedJob = eligibleJobs[randomIndex]
 
+                    def remainingModes = ilsHelper.getRemaningModesForJob(randomizedJob)
 
+                    remainingModes.each { mode ->
+                        log.info("PERTURBATION - JOBS ID: " + project.staggeredJobs.id)
+                        log.info("PERTURBATION - MODES ID: " + project.staggeredJobs.mode.id)
+                        randomizedJob.mode = mode               // perturbation
+
+                        log.info("PERTURBATION - MODES ID AFTER PERTURBATION: " + project.staggeredJobs.mode.id)
+                        def neighborProject = localSearchForPerturbation.executeLocalSearchForPerturbation(project, randomizedJob)
+
+                        if (neighborProject) {
+                            checkBestNeighbor(neighborProject);
+                        }
+                    }
+                }
+            }
+
+            checkBestSolution(bestNeighbor, project)
+        }
     }
 
     private void checkBestNeighbor(Project project) {

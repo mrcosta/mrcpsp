@@ -87,7 +87,7 @@ class LocalSearch {
 		}		
 	}
 
-    void jobsBlockSFM(Project project, List<Job> jobs) {
+    def jobsBlockSFM(Project project, List<Job> jobs) {
         ShortestFeasibleModeLS sfmLS = new ShortestFeasibleModeLS()
 
         while (checkSolution) {
@@ -108,6 +108,8 @@ class LocalSearch {
 
             checkBestSolution(bestNeighbor, project)
         }
+
+        return bestProject
     }
 	
 	private void checkBestNeighbor(Project project) {
