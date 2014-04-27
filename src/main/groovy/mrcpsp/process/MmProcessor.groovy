@@ -7,6 +7,7 @@ import mrcpsp.process.initialsolution.GenerateInitialSolutionGRASP
 import mrcpsp.process.initialsolution.LowerBoundProcessor
 import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.localsearch.LocalSearch
+import mrcpsp.process.perturbation.IteratedLocalSearch
 import mrcpsp.utils.ChronoWatch
 import mrcpsp.utils.LogUtils
 import mrcpsp.utils.PropertyConstants
@@ -32,7 +33,9 @@ class MmProcessor {
     LowerBoundProcessor lowerBoundProcessor
 	LocalSearch localSearch
     GanttDiagram ganttDiagram
-	Project project
+    IteratedLocalSearch ils
+
+    Project project
 	
 	boolean success
 
@@ -278,6 +281,23 @@ class MmProcessor {
         return success
     }
 
+    def boolean perturbation() {
+        if (success) {
+            try {
+                log.info("Doing the perturbation. . .")
+
+                ils = new IteratedLocalSearch()
+                success = ils.ils(project)
+
+                log.info("Doing the perturbation. . .DONE \n")
+                return true
+            } catch (Exception e) {
+                log.error("Exception during the perturbation phase", e)
+            }
+        }
+        return success
+    }
+
     boolean generateDiagram(Project project) {
         if (success) {
             try {
@@ -343,12 +363,12 @@ class MmProcessor {
         //getting initial and finish time for jobs and checking the R resources restrictions
         success = executeGetJobTimes()
         ChronoWatch.instance.pauseSolutionTime()
-		
-		// setting the project makespan
-		success = setProjectMakespan()
 
         // getting the critical path
         success = getCriticalPath()
+
+        // setting the project makespan
+        success = setProjectMakespan()
 
 		return project		
 	}

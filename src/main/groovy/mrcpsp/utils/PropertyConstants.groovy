@@ -49,6 +49,9 @@ interface PropertyConstants {
 	//############# MRCPSP - TYPE - LOCALSEARCH  #################
 	static final String LOCAL_SEARCH = "localSearchType"
 	static final String EXECUTE_LOCAL_SEARCH = "executeLocalSearch"
+
+    //############# MRCPSP - PERTURBATION  #################
+    static final String PERTURBATION = "perturbation"
 	
 	//############# OPERATIONS #################
 	static final Integer SUBTRACT = 0

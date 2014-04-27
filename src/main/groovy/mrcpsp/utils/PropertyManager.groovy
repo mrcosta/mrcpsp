@@ -139,6 +139,7 @@ public class PropertyManager {
         prop.put("concurrentPoolSize", config.generalConfig.concurrentPoolSize)
         prop.put("instanceFile", config.generalConfig.instanceFile)
         prop.put("executeLocalSearch", Integer.toString(config.generalConfig.executeLocalSearch))
+        prop.put("perturbation", Integer.toString(config.generalConfig.perturbation))
         prop.put("generateDiagram", Integer.toString(config.generalConfig.generateDiagram))
         prop.put("diagramPath", config.generalConfig.diagramPath)
         prop.put("showPredecessorsInDiagram", Integer.toString(config.generalConfig.showPredecessorsInDiagram))

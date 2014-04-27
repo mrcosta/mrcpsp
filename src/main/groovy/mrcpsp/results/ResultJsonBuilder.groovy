@@ -61,6 +61,7 @@ class ResultJsonBuilder {
         resultMap.generalConfig.concurrentPoolSize = PropertyManager.instance.getProperty(PropertyConstants.CONCURRENT_POOLSIZE)
         resultMap.generalConfig.instanceFile = PropertyManager.instance.getProperty(PropertyConstants.INSTANCE_FILE)
         resultMap.generalConfig.executeLocalSearch = UrlUtils.instance.executeLocalSearch
+        resultMap.generalConfig.perturbation = UrlUtils.instance.perturbation
         resultMap.generalConfig.generateDiagram = UrlUtils.instance.generateDiagram
         resultMap.generalConfig.diagramPath = UrlUtils.instance.diagramPath
         resultMap.generalConfig.showPredecessorsInDiagram = UrlUtils.instance.showPredecessors

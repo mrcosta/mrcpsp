@@ -8,7 +8,7 @@ import mrcpsp.model.main.Job;
 
 class JobComparator implements Comparator<Job> {
 
-	private static final Logger log = Logger.getLogger(JobComparator.class);
+	private static final Logger log = Logger.getLogger(JobComparator.class)
 	
 	EnumJobPriorityRules comparatorType;
 	

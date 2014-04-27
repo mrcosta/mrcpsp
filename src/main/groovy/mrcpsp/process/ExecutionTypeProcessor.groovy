@@ -129,6 +129,7 @@ class ExecutionTypeProcessor {
 	private void executeAll(String fileName) {
 		mmProcessor.initialSolutionWithGrasp(fileName)
         checkLocalSearchExecution()
+        checkPerturbationExecution()
         ChronoWatch.instance.totalTimeSolution = 0
 	}
 	
@@ -139,6 +140,14 @@ class ExecutionTypeProcessor {
 			mmProcessor.localSearchDescentUphillMethod()
 		}
 	}
+
+    private void checkPerturbationExecution() {
+        Integer perturbation = UrlUtils.instance.perturbation
+
+        if (perturbation == PropertyConstants.TRUE) {
+            mmProcessor.perturbation()
+        }
+    }
 
     private void checkGenerateDiagram() {
         Integer generateDiagram = UrlUtils.instance.generateDiagram

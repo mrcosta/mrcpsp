@@ -122,4 +122,8 @@ public final class UrlUtils {
     public String getTestDescription() {
         return PropertyManager.getInstance().getProperty(PropertyConstants.TEST_DESCRIPTION)
     }
+
+    Integer getPerturbation() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.PERTURBATION))
+    }
 }
