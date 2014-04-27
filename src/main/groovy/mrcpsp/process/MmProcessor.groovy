@@ -222,7 +222,7 @@ class MmProcessor {
 				localSearch = new LocalSearch()
 				project = localSearch.executeLocalSearch(project)
                 /**
-                 * Finish here
+                 * Finish here, if the user passed the "perturbation"==0
                  */
                 ChronoWatch.instance.pauseSolutionTime()
                 project.totalTimeSolutionFormated = ChronoWatch.instance.totalTimeSolutionFormated
@@ -287,7 +287,13 @@ class MmProcessor {
                 log.info("Doing the perturbation. . .")
 
                 ils = new IteratedLocalSearch()
-                success = ils.ils(project)
+                ChronoWatch.instance.startSolutionTime()
+                project = ils.ils(project)
+                /**
+                 * Finish here, if the user passed the "perturbation"==1
+                 */
+                ChronoWatch.instance.pauseSolutionTime()
+                project.totalTimeSolutionFormated = ChronoWatch.instance.totalTimeSolutionFormated
 
                 log.info("Doing the perturbation. . .DONE \n")
                 return true

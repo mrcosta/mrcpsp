@@ -1,9 +1,14 @@
 package mrcpsp.process.perturbation
 
 import mrcpsp.model.main.Job
+import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
+import mrcpsp.model.main.ResourceAvailabilities
 import mrcpsp.process.job.JobOperations
 import mrcpsp.process.localsearch.LocalSearch
+import mrcpsp.process.mode.ModeOperations
+import mrcpsp.utils.ChronoWatch
+import mrcpsp.utils.CloneUtils
 import mrcpsp.utils.PropertyConstants
 import org.apache.commons.lang.math.RandomUtils
 import org.apache.log4j.Logger
@@ -37,7 +42,11 @@ class IteratedLocalSearch {
             def intervalJobsIdList = getAndMergeJobIdIntervals(bestProject.staggeredJobs)
 
             intervalJobsIdList.each { intervalJobsId ->
-                def eligibleJobs = ilsHelper.getJobsThatCanChangeItsMode(intervalJobsId, bestProject.staggeredJobs)
+                ChronoWatch.instance.pauseSolutionTime()
+                def clonedProject = CloneUtils.cloneProject(bestProject)
+                log.info("PERTURBATION - JOBS ID: " + clonedProject.staggeredJobs.id)
+                ChronoWatch.instance.startSolutionTime()
+                def eligibleJobs = ilsHelper.getJobsThatCanChangeItsMode(intervalJobsId, clonedProject.staggeredJobs)
 
                 if (!eligibleJobs.isEmpty()) {
                     def randomIndex = RandomUtils.nextInt(eligibleJobs.size())
@@ -46,12 +55,11 @@ class IteratedLocalSearch {
                     def remainingModes = ilsHelper.getRemaningModesForJob(randomizedJob)
 
                     remainingModes.each { mode ->
-                        log.info("PERTURBATION - JOBS ID: " + project.staggeredJobs.id)
-                        log.info("PERTURBATION - MODES ID: " + project.staggeredJobs.mode.id)
-                        randomizedJob.mode = mode               // perturbation
+                        log.info("PERTURBATION - MODES ID: " + clonedProject.staggeredJobs.mode.id)
+                        changeJobModeAndUpdateResourcesAvailabilities(clonedProject.resourceAvailabilities, randomizedJob, mode) // perturbation
 
-                        log.info("PERTURBATION - MODES ID AFTER PERTURBATION: " + project.staggeredJobs.mode.id)
-                        def neighborProject = localSearchForPerturbation.executeLocalSearchForPerturbation(project, randomizedJob)
+                        log.info("PERTURBATION - MODES ID AFTER PERTURBATION: " + clonedProject.staggeredJobs.mode.id)
+                        def neighborProject = localSearchForPerturbation.executeLocalSearchForPerturbation(clonedProject, randomizedJob)
 
                         if (neighborProject) {
                             checkBestNeighbor(neighborProject);
@@ -61,6 +69,12 @@ class IteratedLocalSearch {
             }
 
             checkBestSolution(bestNeighbor, project)
+        }
+
+        if (bestProject) {
+            return bestProject
+        } else {
+            return null
         }
     }
 
@@ -95,5 +109,13 @@ class IteratedLocalSearch {
         intervalsList.add(endIntervalIds)
 
         return intervalsList
+    }
+
+    private changeJobModeAndUpdateResourcesAvailabilities(ResourceAvailabilities ra, Job randomizedJob, Mode modeToChange) {
+        ModeOperations modeOperations = new ModeOperations()
+
+        modeOperations.removingNonRenewableResources(ra, randomizedJob.mode)
+        randomizedJob.mode = modeToChange
+        modeOperations.addingNonRenewableResources(ra, randomizedJob.mode)
     }
 }
