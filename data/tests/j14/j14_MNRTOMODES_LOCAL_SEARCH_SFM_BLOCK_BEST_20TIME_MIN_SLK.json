@@ -2,7 +2,7 @@
     "executionType": "ALL_TIMES",
     "instanceFolder": "/data/j14.mm/",
     "localSearchType": "BSFM",
-    "testName": "j14_MNRTOMODES_LOCAL_SEARCH_SFM_BLOCK_BEST_20TIME.json",
+    "testName": "j14_MNRTOMODES_LOCAL_SEARCH_SFM_BLOCK_BEST_20TIME_MINSLK.json",
     "testDescription": "local search using block shortest feasible mode running twenty times - choosing mode with minimum_non_renewable_resources and minimum slack for the job priority rules",
     "totalExecutionTime": "901400--15:01:400",
     "generalConfig": {
