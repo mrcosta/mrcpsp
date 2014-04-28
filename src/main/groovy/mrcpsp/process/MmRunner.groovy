@@ -18,6 +18,7 @@ class MmRunner {
         SystemUtils.getSystemInformation()
 
         if (testsFolder.listFiles().length > 0) {
+            println testsFolder.listFiles()*.name
             testsFolder.listFiles().each {
                 ChronoWatch.instance.time = 0
                 ChronoWatch.instance.start();
