@@ -1,0 +1,32 @@
+{
+    "executionType": "ALL_TIMES",
+    "instanceFolder": "/data/j30.mm/",
+    "localSearchType": "BSFM",
+    "testName": "j30_MNRTOMODES_LS_SFMBLOCK_PERTURBATION_100_TIMES.json",
+    "testDescription": "jobs mode shortest feasible mode running 100 times - wihtout local search, min slk for jobs and perturbation",
+    "totalExecutionTime": "901400--15:01:400",
+    "generalConfig": {
+        "executionTimes": "100",
+        "thread": 0,
+        "concurrentPoolSize": "8",
+        "instanceFile": "j1014_10.mm",
+        "executeLocalSearch": 1,
+        "perturbation": 1,
+        "generateDiagram": 0,
+        "diagramPath": "gantt",
+        "showPredecessorsInDiagram": 0,
+        "writeLowerboundForAllInstances": 0,
+        "showCriticalPath": 0,
+        "showLowerBound": 0
+    },
+    "instanceConfig": {
+        "startLineJobs": 18,
+        "startLineModes": 54,
+        "startLineResourceAvailabilities": 149,
+        "rclSize": 3,
+        "jobsMode": "minimum_non_renewable_resources",
+        "modeShorterNearToLowerNrPercentage": 25,
+        "modeShorterNearToLowerNrUnit": 1,
+        "jobPriorityRule": "MIN_SLK"
+    }
+}
