@@ -87,11 +87,21 @@ class CompareResults {
     }
 
     def compareResult(resultAnalytics, resultAnalyticsCpr) {
-        def lesserRa = resultAnalytics.totalWithSolution <= resultAnalyticsCpr.totalWithSolution ? resultAnalytics : resultAnalyticsCpr
-        def biggerRa = resultAnalytics.totalWithSolution > resultAnalyticsCpr.totalWithSolution ? resultAnalytics : resultAnalyticsCpr
+        def lesserRa = resultAnalytics.totalWithSolution < resultAnalyticsCpr.totalWithSolution ? resultAnalytics : resultAnalyticsCpr
+        def biggerRa = resultAnalytics.totalWithSolution >= resultAnalyticsCpr.totalWithSolution ? resultAnalytics : resultAnalyticsCpr
+
+        if (resultAnalytics.testName == "reading the results from psplib") {
+            lesserRa = resultAnalyticsCpr
+            biggerRa = resultAnalytics
+        } else {
+            lesserRa = resultAnalytics
+            biggerRa = resultAnalyticsCpr
+        }
+
         dataAnalytics = [:]
 
         log.info("Difference between $lesserRa.testName and $biggerRa.testName")
+        println "Difference between $lesserRa.testName and $biggerRa.testName"
 
         dataAnalytics."$resultAnalytics.testName" = putGeneralResultsInformation(resultAnalytics)
         dataAnalytics."$resultAnalyticsCpr.testName" = putGeneralResultsInformation(resultAnalyticsCpr)
