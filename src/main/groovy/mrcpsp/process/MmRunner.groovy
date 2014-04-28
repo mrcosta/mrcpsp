@@ -20,6 +20,7 @@ class MmRunner {
         if (testsFolder.listFiles().length > 0) {
             println testsFolder.listFiles()*.name
             testsFolder.listFiles().each {
+                println "$it.name will be executed"
                 ChronoWatch.instance.time = 0
                 ChronoWatch.instance.start();
                 PropertyManager.getInstance(it.text)
