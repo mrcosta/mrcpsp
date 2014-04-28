@@ -56,13 +56,15 @@ class IteratedLocalSearch {
 
                     remainingModes.each { mode ->
                         log.info("PERTURBATION - MODES ID: " + clonedProject.staggeredJobs.mode.id)
-                        changeJobModeAndUpdateResourcesAvailabilities(clonedProject.resourceAvailabilities, randomizedJob, mode) // perturbation
+                        def isModeChanged = changeJobModeAndUpdateResourcesAvailabilities(clonedProject.resourceAvailabilities, randomizedJob, mode) // perturbation
 
-                        log.info("PERTURBATION - MODES ID AFTER PERTURBATION: " + clonedProject.staggeredJobs.mode.id)
-                        def neighborProject = localSearchForPerturbation.executeLocalSearchForPerturbation(clonedProject, randomizedJob)
+                        if (isModeChanged) {
+                            log.info("PERTURBATION - MODES ID AFTER PERTURBATION: " + clonedProject.staggeredJobs.mode.id)
+                            def neighborProject = localSearchForPerturbation.executeLocalSearchForPerturbation(clonedProject, randomizedJob)
 
-                        if (neighborProject) {
-                            checkBestNeighbor(neighborProject);
+                            if (neighborProject) {
+                                checkBestNeighbor(neighborProject);
+                            }
                         }
                     }
                 }
@@ -111,11 +113,17 @@ class IteratedLocalSearch {
         return intervalsList
     }
 
-    private changeJobModeAndUpdateResourcesAvailabilities(ResourceAvailabilities ra, Job randomizedJob, Mode modeToChange) {
+    private boolean changeJobModeAndUpdateResourcesAvailabilities(ResourceAvailabilities ra, Job randomizedJob, Mode modeToChange) {
         ModeOperations modeOperations = new ModeOperations()
+        def isModeChanged = false
 
         modeOperations.removingNonRenewableResources(ra, randomizedJob.mode)
-        randomizedJob.mode = modeToChange
+        if (modeOperations.checkNonRenewableResources(ra, modeToChange)) {
+            randomizedJob.mode = modeToChange
+            isModeChanged = true
+        }
         modeOperations.addingNonRenewableResources(ra, randomizedJob.mode)
+
+        return isModeChanged
     }
 }
