@@ -6,7 +6,7 @@
     "testDescription": "jobs mode shortest feasible mode running 20 times - wihtout local search, min slk for jobs and perturbation",
     "totalExecutionTime": "901400--15:01:400",
     "generalConfig": {
-        "executionTimes": "20",
+        "executionTimes": "1",
         "thread": 0,
         "concurrentPoolSize": "8",
         "instanceFile": "j1014_10.mm",
