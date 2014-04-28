@@ -101,10 +101,14 @@ class CompareResults {
         def betterResults = 0
         def worstResults = 0
         dataAnalytics.diffMakespan = [:]
-        dataAnalytics.averageDiffMakespan = 0
+        dataAnalytics.results = [:]
+        dataAnalytics.diffMakespan.averageDiffMakespan = 0
         lesserRa.results.each { instanceResult ->
             def diffMakespan = (instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan * 100
-            dataAnalytics.averageDiffMakespan+= diffMakespan
+            dataAnalytics.diffMakespan.averageDiffMakespan+= diffMakespan
+            dataAnalytics.results."$instanceResult.key" = [:]
+            dataAnalytics.results."$instanceResult.key"."$lesserRa.testName" = instanceResult.value.makespan
+            dataAnalytics.results."$instanceResult.key"."$biggerRa.testName" = biggerRa.results."$instanceResult.key".makespan
 
             if (instanceResult.value.makespan == biggerRa.results."$instanceResult.key".makespan) {
                 similarResults++
@@ -127,8 +131,8 @@ class CompareResults {
         dataAnalytics.diffMakespan.worstResults.total = worstResults
         dataAnalytics.diffMakespan.worstResults.percentage = worstResults / lesserRa.totalWithSolution * 100
 
-        dataAnalytics.averageDiffMakespan = dataAnalytics.averageDiffMakespan / (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
-        dataAnalytics.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
+        dataAnalytics.diffMakespan.averageDiffMakespan = dataAnalytics.diffMakespan.averageDiffMakespan / (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
+        dataAnalytics.diffMakespan.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
 
         return new JsonBuilder(dataAnalytics).toPrettyString()
     }
