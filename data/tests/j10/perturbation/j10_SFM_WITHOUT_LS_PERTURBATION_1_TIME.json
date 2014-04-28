@@ -1,12 +1,12 @@
 {
     "executionType": "ALL_TIMES",
-    "instanceFolder": "/data/j18.mm/",
+    "instanceFolder": "/data/j10.mm/",
     "localSearchType": "BSFM",
-    "testName": "j18_SFM_WITHOUT_LS_PERTURBATION_100_TIMES.json",
-    "testDescription": "jobs mode shortest feasible mode running 100 times - wihtout local search, min slk for jobs and perturbation",
+    "testName": "j10_SFM_WITHOUT_LS_PERTURBATION_1_TIME.json",
+    "testDescription": "jobs mode shortest feasible mode running 20 times - wihtout local search, min slk for jobs and perturbation",
     "totalExecutionTime": "901400--15:01:400",
     "generalConfig": {
-        "executionTimes": "100",
+        "executionTimes": "1",
         "thread": 0,
         "concurrentPoolSize": "8",
         "instanceFile": "j1014_10.mm",
@@ -21,8 +21,8 @@
     },
     "instanceConfig": {
         "startLineJobs": 18,
-        "startLineModes": 42,
-        "startLineResourceAvailabilities": 101,
+        "startLineModes": 34,
+        "startLineResourceAvailabilities": 69,
         "rclSize": 3,
         "jobsMode": "shortest_feasible_mode",
         "modeShorterNearToLowerNrPercentage": 25,
