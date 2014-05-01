@@ -30,7 +30,19 @@ class ModeComparator implements Comparator<Mode> {
         		break
             case EnumModesComparator.MC_SUM_RESOURCES.name:
         		result = mode.sumResources.compareTo(modeToCompare.sumResources)
+                break
+            case EnumModesComparator.MC_AMOUNT_FIRST_NR.name:
+                result = mode.nonRenewable[0].compareTo(modeToCompare.nonRenewable[0])
         		break
+            case EnumModesComparator.MC_AMOUNT_SECOND_NR.name:
+                result = mode.nonRenewable[1].compareTo(modeToCompare.nonRenewable[1])
+                break
+            case EnumModesComparator.MC_AMOUNT_FIRST_R.name:
+                result = mode.renewable[0].compareTo(modeToCompare.renewable[0])
+                break
+            case EnumModesComparator.MC_AMOUNT_SECOND_R.name:
+                result = mode.renewable[1].compareTo(modeToCompare.renewable[1])
+                break
         	default:  
         		log.log(Level.ERROR, "Invalid Option to order the modes")
         		throw new RuntimeException("Invalid Option to order")

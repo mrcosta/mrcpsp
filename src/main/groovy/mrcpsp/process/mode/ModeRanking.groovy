@@ -33,6 +33,25 @@ class ModeRanking {
         saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_DURATION)
 
         rankPerAmountConsumed(modes)
+        saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_AMOUNT)
+
+        rankPerAmountNonRenewable(modes)
+        saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_NR_AMOUNT)
+
+        rankPerAmountRenewable(modes)
+        saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_R_AMOUNT)
+
+        rankPerAmountFirstNonRenewable(modes)
+        saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_FIRST_NR_AMOUNT)
+
+        rankPerAmountSecondNonRenewable(modes)
+        saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_SECOND_NR_AMOUNT)
+
+        rankPerAmountFirstRenewable(modes)
+        saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_FIRST_R_AMOUNT)
+
+        rankPerAmountSecondRenewable()
+        saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_SECOND_R_AMOUNT)
     }
 
     List<Job> getOnlyRealJobs(Project project) {
@@ -60,40 +79,64 @@ class ModeRanking {
     }
 
     def rankPerAmountConsumed(List<Mode> modes) {
-        modeComparator.comparatorType = EnumModesComparator.MC_DURATION
+        modeComparator.comparatorType = EnumModesComparator.MC_SUM_RESOURCES
         Collections.sort(modes, modeComparator)
 
         return modes
     }
 
     def rankPerAmountNonRenewable(List<Mode> modes) {
+        modeComparator.comparatorType = EnumModesComparator.MC_AMOUNT_NON_RENEWABLE
+        Collections.sort(modes, modeComparator)
 
+        return modes
     }
 
     def rankPerAmountRenewable(List<Mode> modes) {
+        modeComparator.comparatorType = EnumModesComparator.MC_AMOUNT_RENEWABLE
+        Collections.sort(modes, modeComparator)
 
+        return modes
     }
 
     def rankPerAmountFirstNonRenewable(List<Mode> modes) {
+        modeComparator.comparatorType = EnumModesComparator.MC_AMOUNT_FIRST_NR
+        Collections.sort(modes, modeComparator)
 
+        return modes
     }
 
     def rankPerAmountSecondNonRenewable(List<Mode> modes) {
+        modeComparator.comparatorType = EnumModesComparator.MC_AMOUNT_SECOND_NR
+        Collections.sort(modes, modeComparator)
 
+        return modes
     }
 
     def rankPerAmountFirstRenewable(List<Mode> modes) {
+        modeComparator.comparatorType = EnumModesComparator.MC_AMOUNT_FIRST_R
+        Collections.sort(modes, modeComparator)
 
+        return modes
     }
 
     def rankPerAmountSecondRenewable(List<Mode> modes) {
+        modeComparator.comparatorType = EnumModesComparator.MC_AMOUNT_SECOND_R
+        Collections.sort(modes, modeComparator)
 
+        return modes
     }
 
     def saveModesRankingHistory(List<Mode> modes, EnumOrderModesCriteria criterion) {
 
         modes.each { mode ->
             modesRankingHistory."$mode.jobId"."$criterion.name"."$mode.id" = modes.indexOf(mode) + 1
+
+            if (modesRankingHistory."$mode.jobId"."$criterion.name".total == null) {
+                modesRankingHistory."$mode.jobId"."$criterion.name".total = modes.indexOf(mode) + 1
+            } else {
+                modesRankingHistory."$mode.jobId"."$criterion.name".total+= modes.indexOf(mode) + 1
+            }
         }
 
         return modesRankingHistory

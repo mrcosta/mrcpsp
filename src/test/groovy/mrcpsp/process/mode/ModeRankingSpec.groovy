@@ -68,37 +68,121 @@ class ModeRankingSpec extends Specification {
         then:
         orderedModes.size() == 30
         orderedModes[0].jobId == 8 && orderedModes[0].id == 1
-        orderedModes[1].jobId == 11 && orderedModes[0].id == 1
+        orderedModes[1].jobId == 11 && orderedModes[1].id == 1
         orderedModes[29].jobId == 6 && orderedModes[29].id == 3
         orderedModes[28].jobId == 4 && orderedModes[28].id == 3
     }
 
     def "should rank jobs and their modes per amount of resources consumed"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def modes = modeRanking.createListWithAllModes(realJobs)
 
+        when:
+        def orderedModes = modeRanking.rankPerAmountConsumed(modes)
+
+        then:
+        orderedModes.size() == 30
+        orderedModes[0].jobId == 6 && orderedModes[0].id == 3
+        orderedModes[1].jobId == 4 && orderedModes[1].id == 2
+        orderedModes[29].jobId == 4 && orderedModes[29].id == 1
+        orderedModes[28].jobId == 3 && orderedModes[28].id == 1
     }
 
     def "should rank jobs and their modes of consumption per amount of non-renewable resources"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def modes = modeRanking.createListWithAllModes(realJobs)
 
+        when:
+        def orderedModes = modeRanking.rankPerAmountNonRenewable(modes)
+
+        then:
+        orderedModes.size() == 30
+        orderedModes[0].jobId == 4 && orderedModes[0].id == 3
+        orderedModes[1].jobId == 3 && orderedModes[1].id == 3
+        orderedModes[29].jobId == 3 && orderedModes[29].id == 1
+        orderedModes[28].jobId == 2 && orderedModes[28].id == 1
     }
 
     def "should rank jobs and their modes of consumption per amount of renewable resources"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def modes = modeRanking.createListWithAllModes(realJobs)
 
+        when:
+        def orderedModes = modeRanking.rankPerAmountRenewable(modes)
+
+        then:
+        orderedModes.size() == 30
+        orderedModes[0].jobId == 4 && orderedModes[0].id == 2
+        orderedModes[1].jobId == 11 && orderedModes[1].id == 2
+        orderedModes[29].jobId == 4 && orderedModes[29].id == 3
+        orderedModes[28].jobId == 4 && orderedModes[28].id == 1
     }
 
     def "should rank jobs and their modes of consumption per amount of the first non-renewable resources"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def modes = modeRanking.createListWithAllModes(realJobs)
 
+        when:
+        def orderedModes = modeRanking.rankPerAmountFirstNonRenewable(modes)
+
+        then:
+        orderedModes.size() == 30
+        orderedModes[0].jobId == 3 && orderedModes[0].id == 3
+        orderedModes[1].jobId == 4 && orderedModes[1].id == 3
+        orderedModes[29].jobId == 10 && orderedModes[29].id == 1
+        orderedModes[28].jobId == 7 && orderedModes[28].id == 1
     }
 
     def "should rank jobs and their modes of consumption per amount of the second non-renewable resources"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def modes = modeRanking.createListWithAllModes(realJobs)
 
+        when:
+        def orderedModes = modeRanking.rankPerAmountSecondNonRenewable(modes)
+
+        then:
+        orderedModes.size() == 30
+        orderedModes[0].jobId == 4 && orderedModes[0].id == 3
+        orderedModes[1].jobId == 5 && orderedModes[1].id == 3
+        orderedModes[29].jobId == 9 && orderedModes[29].id == 1
+        orderedModes[28].jobId == 9 && orderedModes[28].id == 3
     }
 
     def "should rank jobs and their modes of consumption per amount of the first renewable resources"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def modes = modeRanking.createListWithAllModes(realJobs)
 
+        when:
+        def orderedModes = modeRanking.rankPerAmountFirstRenewable(modes)
+
+        then:
+        orderedModes.size() == 30
+        orderedModes[0].jobId == 2 && orderedModes[0].id == 2
+        orderedModes[1].jobId == 2 && orderedModes[1].id == 3
+        orderedModes[29].jobId == 4 && orderedModes[29].id == 3
+        orderedModes[28].jobId == 4 && orderedModes[28].id == 1
     }
 
     def "should rank jobs and their modes of consumption per amount of the second renewable resources"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def modes = modeRanking.createListWithAllModes(realJobs)
 
+        when:
+        def orderedModes = modeRanking.rankPerAmountSecondRenewable(modes)
+
+        then:
+        orderedModes.size() == 30
+        orderedModes[0].jobId == 2 && orderedModes[0].id == 1
+        orderedModes[1].jobId == 3 && orderedModes[1].id == 1
+        orderedModes[29].jobId == 3 && orderedModes[29].id == 3
+        orderedModes[28].jobId == 2 && orderedModes[28].id == 3
     }
 
     def "should put the information about the specific criterion ranking in the modesRankingHistory map"() {
@@ -113,6 +197,7 @@ class ModeRankingSpec extends Specification {
         modesRankingHistory = modeRanking.saveModesRankingHistory(orderedModes, EnumOrderModesCriteria.PER_DURATION)
 
         then:
+        println modesRankingHistory
         modesRankingHistory != null
         modesRankingHistory."8"."D"."1" == 1
         modesRankingHistory."11"."D"."1" == 2
