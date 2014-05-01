@@ -1,17 +1,16 @@
-package mrcpsp.model.main;
-
-import java.util.List;
-
+package mrcpsp.model.main
 /**
  * @author mrcosta
  *
  */
 class Mode {
 	
-	Integer id;
-	Integer duration;
+	Integer id
+    Integer jobId
+
+	Integer duration
 	
-	/** The amount of each renewable resource */	
+	/** The amount of each renewable resource */
 	List<Integer> renewable;
 	
 	/** The amount of each non renewable resource */

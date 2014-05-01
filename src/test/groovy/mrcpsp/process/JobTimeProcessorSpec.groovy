@@ -80,10 +80,6 @@ class JobTimeProcessorSpec extends Specification {
         job != null
         job.startTime == 5
         job.endTime == 10
-        ra.scheduledJobs.isEmpty()
-        ra.scheduledJobs.size() == 0
-        ra.renewableConsumedAmount == [0, 0]
-        ra.remainingRenewableAmount == ra.renewableInitialAmount
     }
 
     def "should set time using the scheduled jobs - corner case"() {

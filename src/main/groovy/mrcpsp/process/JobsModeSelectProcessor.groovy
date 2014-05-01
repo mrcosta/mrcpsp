@@ -4,6 +4,7 @@ import mrcpsp.model.enums.EnumJobsMode
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
+import mrcpsp.process.mode.ModeRanking
 import mrcpsp.process.mode.ShortestFeasibleMode
 import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Level
@@ -42,14 +43,22 @@ public class JobsModeSelectProcessor {
             case EnumJobsMode.SHORTEST_FEASIBLE_MODE.description:
                 project.staggeredJobs = setJobsModeShortestFeasbileMode(project)
                 break
+            case EnumJobsMode.RANKING_SFM.description:
+                ModeRanking modeRanking = new ModeRanking()
+                modeRanking.rankJobsAndModes(project)
+                project.staggeredJobs = setJobsModeRankingSfm(project)
             default:
                 log.log(Level.ERROR, "MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
                 throw new IllegalArgumentException("MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
                 break
         }
 	}
-	
-	/**
+
+    private void setJobsModeRankingSfm(Project project) {
+        setJobsModeRankingSfm(project)
+    }
+
+    /**
 	 * get a mode to each job, choosing the mode with the minimum duration to be execute
 	 * @return
 	 */

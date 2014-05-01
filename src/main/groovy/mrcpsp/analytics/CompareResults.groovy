@@ -125,6 +125,8 @@ class CompareResults {
             } else if (instanceResult.value.makespan < biggerRa.results."$instanceResult.key".makespan) {
                 betterResults++
             } else {
+//                def psplibMakespan = biggerRa.results."$instanceResult.key".makespan
+//                println "Instance: $instanceResult.key --- psplib: $psplibMakespan --- this work: $instanceResult.value.makespan -- difference: $diffMakespan"
                 worstResults++
             }
         }

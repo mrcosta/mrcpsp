@@ -84,7 +84,7 @@ class LocalSearchSpec extends Specification {
         def result = localSearch.jobsBlockSFM(project, realJobs)
 
         then:
-        result == null
+        result != null
         localSearch.bestProject.makespan == 9
         //localSearch.bestProject.staggeredJobs*.mode.id == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     }

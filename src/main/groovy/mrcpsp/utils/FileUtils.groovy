@@ -190,15 +190,16 @@ final class FileUtils {
 		for (int i = 0; i < job.modesAmount; i++) {
 			values = getLine(file, starLineModes).replaceAll("\\s+", " ").trim().split(" ")
 			
-			modes.add(createModeFromLineValues(instanceInformation, values))
+			modes.add(createModeFromLineValues(instanceInformation, values, job))
             starLineModes++
 		}
 		
 		return modes
 	}
 	
-	Mode createModeFromLineValues(InstanceInformation instanceInformation, def values) {
+	Mode createModeFromLineValues(InstanceInformation instanceInformation, def values, Job job) {
 		Mode mode = new Mode();
+        mode.jobId = job.id
 		def modeValues = new int[PropertyConstants.PREFIX_AMOUNT_MODES_SIZE + instanceInformation.renewableAmount + instanceInformation.nonRenewableAmount];
 		Integer countValuesPosition = 0;
 		
