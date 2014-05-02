@@ -1,6 +1,8 @@
 package mrcpsp.process.mode
 
+import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
+import mrcpsp.model.main.Project
 import mrcpsp.model.main.ResourceAvailabilities
 
 /**
@@ -92,5 +94,15 @@ class ModeOperations {
         }
 
         return checkAmount
+    }
+
+    List<Job> setModeForTheDumbJobs(Project project) {
+        List<Job> dumbJobs = project.jobs.findAll { (it.id == 1) || (it.id == project.instanceInformation.jobsAmount) }
+
+        dumbJobs.each { job ->
+            job.mode = job.availableModes[0]
+        }
+
+        return project.jobs
     }
 }

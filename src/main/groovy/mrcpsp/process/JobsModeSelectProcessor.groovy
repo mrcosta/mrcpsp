@@ -4,6 +4,7 @@ import mrcpsp.model.enums.EnumJobsMode
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
+import mrcpsp.process.mode.ModeOperations
 import mrcpsp.process.mode.ModeRanking
 import mrcpsp.process.mode.ShortestFeasibleMode
 import mrcpsp.utils.UrlUtils
@@ -17,6 +18,12 @@ import org.apache.log4j.Logger
 public class JobsModeSelectProcessor {
 	
 	private static final Logger log = Logger.getLogger(JobsModeSelectProcessor.class);
+
+    ModeOperations modeOperations
+
+    JobsModeSelectProcessor() {
+        modeOperations = new ModeOperations()
+    }
 
     /**
      * each job get a mode that doesn't break the non renewable resources amount
@@ -44,9 +51,8 @@ public class JobsModeSelectProcessor {
                 project.staggeredJobs = setJobsModeShortestFeasbileMode(project)
                 break
             case EnumJobsMode.RANKING_SFM.description:
-                ModeRanking modeRanking = new ModeRanking()
-                modeRanking.rankJobsAndModes(project)
                 project.staggeredJobs = setJobsModeRankingSfm(project)
+                break
             default:
                 log.log(Level.ERROR, "MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
                 throw new IllegalArgumentException("MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
@@ -54,8 +60,27 @@ public class JobsModeSelectProcessor {
         }
 	}
 
-    private void setJobsModeRankingSfm(Project project) {
-        setJobsModeRankingSfm(project)
+    List<Job> setJobsModeRankingSfm(Project project) {
+        ModeRanking modeRanking = new ModeRanking()
+        ShortestFeasibleMode sfm = new ShortestFeasibleMode()
+        List<Job> realJobs
+
+        realJobs = modeRanking.rankJobsAndModes(project)
+        log.info("JOBS ORDERED BY SUM POSITIONS: $realJobs.id -- $realJobs.sumRanking")
+
+        sfm.jobModes = new HashMap<String, String>()
+        sfm.sfm([:], project.resourceAvailabilities, realJobs, false, 0)
+
+        sfm.jobModes.each { key, value ->
+            Job job = project.jobs.find { it.id == key}
+            Mode mode = job.availableModes.find { it.id == value}
+
+            job.mode = mode
+        }
+
+        project.jobs = modeOperations.setModeForTheDumbJobs(project)
+
+        return project.jobs
     }
 
     /**

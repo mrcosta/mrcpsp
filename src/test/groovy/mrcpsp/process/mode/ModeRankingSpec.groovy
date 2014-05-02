@@ -3,6 +3,7 @@ package mrcpsp.process.mode
 import mrcpsp.model.enums.EnumOrderModesCriteria
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
+import mrcpsp.process.job.JobComparator
 import mrcpsp.utils.FileUtils
 import spock.lang.Specification
 
@@ -197,7 +198,6 @@ class ModeRankingSpec extends Specification {
         modesRankingHistory = modeRanking.saveModesRankingHistory(orderedModes, EnumOrderModesCriteria.PER_DURATION)
 
         then:
-        println modesRankingHistory
         modesRankingHistory != null
         modesRankingHistory."8"."D"."1" == 1
         modesRankingHistory."11"."D"."1" == 2
@@ -216,5 +216,82 @@ class ModeRankingSpec extends Specification {
         then:
         modesRankingHistory != null
         modesRankingHistory."2" != null
+    }
+
+    def "should get the sum of positions for each job"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def criteria = [EnumOrderModesCriteria.PER_DURATION, EnumOrderModesCriteria.PER_AMOUNT]
+        def modesRankingHistory = modeRanking.createMapForModesRankingHistory(realJobs, criteria)
+        def modes = modeRanking.createListWithAllModes(realJobs)
+        def orderedModes = modeRanking.rankPerDuration(modes)
+        modesRankingHistory = modeRanking.saveModesRankingHistory(orderedModes, EnumOrderModesCriteria.PER_DURATION)
+        orderedModes = modeRanking.rankPerAmountConsumed(modes)
+        modesRankingHistory = modeRanking.saveModesRankingHistory(orderedModes, EnumOrderModesCriteria.PER_AMOUNT)
+
+        when:
+        realJobs = modeRanking.getJobPositionsSum(realJobs, criteria)
+
+        then:
+        modesRankingHistory != null
+    }
+
+    def "should order the jobs by the sum of positions"() {
+        given:
+        def realJobs = modeRanking.getOnlyRealJobs(project)
+        def criteria = [EnumOrderModesCriteria.PER_DURATION, EnumOrderModesCriteria.PER_AMOUNT]
+        def modesRankingHistory = modeRanking.createMapForModesRankingHistory(realJobs, criteria)
+        def modes = modeRanking.createListWithAllModes(realJobs)
+        def orderedModes = modeRanking.rankPerDuration(modes)
+        modesRankingHistory = modeRanking.saveModesRankingHistory(orderedModes, EnumOrderModesCriteria.PER_DURATION)
+        orderedModes = modeRanking.rankPerAmountConsumed(modes)
+        modesRankingHistory = modeRanking.saveModesRankingHistory(orderedModes, EnumOrderModesCriteria.PER_AMOUNT)
+        realJobs = modeRanking.getJobPositionsSum(realJobs, criteria)
+
+        when:
+        def orderedJobsBySumPositions = modeRanking.orderJobsByPositionsSums(realJobs)
+
+        then:
+        orderedJobsBySumPositions[0].id == 11
+        orderedJobsBySumPositions[0].sumRanking == 51
+        orderedJobsBySumPositions[1].id == 7
+        orderedJobsBySumPositions[1].sumRanking == 76
+        orderedJobsBySumPositions[9].id == 2
+        orderedJobsBySumPositions[9].sumRanking == 116
+    }
+
+    def "should order the all jobs by the sum of positions"() {
+        given:
+        modeRanking = Spy(ModeRanking, {
+                modeComparator: new ModeComparator()
+                jobComparator: new JobComparator()
+            }
+        )
+
+        when:
+        def realJobs = modeRanking.rankJobsAndModes(project)
+
+        then:
+        1 * modeRanking.getOnlyRealJobs(project)
+        1 * modeRanking.createListWithAllModes(_)
+        1 * modeRanking.createMapForModesRankingHistory(_, _)
+        1 * modeRanking.rankPerDuration(_)
+        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_DURATION)
+        1 * modeRanking.rankPerAmountConsumed(_)
+        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_AMOUNT)
+        1 * modeRanking.rankPerAmountNonRenewable(_)
+        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_NR_AMOUNT)
+        1 * modeRanking.rankPerAmountRenewable(_)
+        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_R_AMOUNT)
+        1 * modeRanking.rankPerAmountFirstNonRenewable(_)
+        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_FIRST_NR_AMOUNT)
+        1 * modeRanking.rankPerAmountSecondNonRenewable(_)
+        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_SECOND_NR_AMOUNT)
+        1 * modeRanking.rankPerAmountFirstRenewable(_)
+        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_FIRST_R_AMOUNT)
+        1 * modeRanking.rankPerAmountSecondRenewable(_)
+        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_SECOND_R_AMOUNT)
+        1 * modeRanking.getJobPositionsSum(_, _)
+        1 * modeRanking.orderJobsByPositionsSums(_)
     }
 }

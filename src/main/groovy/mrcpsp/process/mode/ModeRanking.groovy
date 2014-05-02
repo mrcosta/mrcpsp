@@ -1,10 +1,12 @@
 package mrcpsp.process.mode
 
+import mrcpsp.model.enums.EnumJobPriorityRules
 import mrcpsp.model.enums.EnumModesComparator
 import mrcpsp.model.enums.EnumOrderModesCriteria
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
+import mrcpsp.process.job.JobComparator
 import mrcpsp.process.job.JobOperations
 
 /**
@@ -13,21 +15,24 @@ import mrcpsp.process.job.JobOperations
 class ModeRanking {
 
     ModeComparator modeComparator
+    JobComparator jobComparator
     def modesRankingHistory
 
     ModeRanking() {
         modeComparator = new ModeComparator();
+        jobComparator = new JobComparator()
         modesRankingHistory = [:]
     }
 
-    def rankJobsAndModes(project) {
+    def rankJobsAndModes(Project project) {
         def realJobs
         def modes
+        def criteria = [EnumOrderModesCriteria.PER_DURATION, EnumOrderModesCriteria.PER_AMOUNT, EnumOrderModesCriteria.PER_NR_AMOUNT, EnumOrderModesCriteria.PER_R_AMOUNT,
+                        EnumOrderModesCriteria.PER_FIRST_NR_AMOUNT, EnumOrderModesCriteria.PER_SECOND_NR_AMOUNT, EnumOrderModesCriteria.PER_FIRST_R_AMOUNT, EnumOrderModesCriteria.PER_SECOND_R_AMOUNT]
 
         realJobs = getOnlyRealJobs(project)
         modes = createListWithAllModes(realJobs)
-        createMapForModesRankingHistory(realJobs, [EnumOrderModesCriteria.PER_DURATION, EnumOrderModesCriteria.PER_AMOUNT, EnumOrderModesCriteria.PER_NR_AMOUNT, EnumOrderModesCriteria.PER_R_AMOUNT,
-                                                   EnumOrderModesCriteria.PER_FIRST_NR_AMOUNT, EnumOrderModesCriteria.PER_SECOND_NR_AMOUNT, EnumOrderModesCriteria.PER_FIRST_R_AMOUNT, EnumOrderModesCriteria.PER_SECOND_R_AMOUNT])
+        createMapForModesRankingHistory(realJobs, criteria)
 
         rankPerDuration(modes)
         saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_DURATION)
@@ -50,8 +55,14 @@ class ModeRanking {
         rankPerAmountFirstRenewable(modes)
         saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_FIRST_R_AMOUNT)
 
-        rankPerAmountSecondRenewable()
+        rankPerAmountSecondRenewable(modes)
         saveModesRankingHistory(modes, EnumOrderModesCriteria.PER_SECOND_R_AMOUNT)
+
+        getJobPositionsSum(realJobs, criteria)
+
+        orderJobsByPositionsSums(realJobs)
+
+        return realJobs
     }
 
     List<Job> getOnlyRealJobs(Project project) {
@@ -152,5 +163,28 @@ class ModeRanking {
         }
 
         return modesRankingHistory
+    }
+
+    def getJobPositionsSum(List<Job> realJobs, List<EnumOrderModesCriteria> criteria) {
+
+        realJobs.each { job ->
+            def jobHistory = modesRankingHistory."$job.id"
+
+            def totalCriteria = 0
+            criteria.each { criterion ->
+                totalCriteria+= jobHistory."$criterion.name".total
+            }
+            job.sumRanking = totalCriteria
+        }
+
+        return realJobs
+    }
+
+    List<Job> orderJobsByPositionsSums(List<Job> realJobs) {
+        jobComparator.comparatorType = EnumJobPriorityRules.BY_SUM_POSITIONS
+        //Collections.sort(realJobs, Collections.reverseOrder(jobComparator))
+        Collections.sort(realJobs, jobComparator)
+
+        return realJobs
     }
 }

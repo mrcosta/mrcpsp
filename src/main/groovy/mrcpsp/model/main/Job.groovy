@@ -1,25 +1,23 @@
-package mrcpsp.model.main;
-
-import java.util.ArrayList;
-import java.util.List;
-
+package mrcpsp.model.main
 /**
  * @author mrcosta
  *
  */
 class Job {
 	
-	Integer id;
-	Integer modesAmount;
-	Integer successorsAmount;
-	Integer predecessorsAmount;
+	Integer id
+	Integer modesAmount
+	Integer successorsAmount
+	Integer predecessorsAmount
 	
-	List<Integer> successors;
-	List<Integer> predecessors;
-	List<Mode> availableModes;
+	List<Integer> successors
+	List<Integer> predecessors
+	List<Mode> availableModes
 	
-	Integer startTime;
-	Integer endTime;
+	Integer startTime
+	Integer endTime
+
+    Integer sumRanking
 	
 	Mode mode;
 	ModesInformation modesInformation;
@@ -32,19 +30,21 @@ class Job {
 	}
 
 	public Job() {
-		id = 0;
-		modesAmount = 0;
-		successorsAmount = 0;
-		predecessorsAmount = 0;
+		id = 0
+		modesAmount = 0
+		successorsAmount = 0
+		predecessorsAmount = 0
 		
-		successors = new ArrayList<Integer>();
-		predecessors = new ArrayList<Integer>();
-		availableModes = new ArrayList<Mode>();		
-		modesInformation = new ModesInformation();
-		runningJobInformation = new RunningJobInformation();
+		successors = new ArrayList<Integer>()
+		predecessors = new ArrayList<Integer>()
+		availableModes = new ArrayList<Mode>()
+		modesInformation = new ModesInformation()
+		runningJobInformation = new RunningJobInformation()
 		
-		startTime = 0;
-		endTime = 0;
+		startTime = 0
+		endTime = 0
+
+        sumRanking = 0
 	}
 
 	@Override
