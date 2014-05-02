@@ -29,7 +29,7 @@ class ModeRankingOrchestrator {
             case EnumRankingModesCriteria.RK_ALL.name:
                 modesSumRankingPositions = rankJobsAndModesAllCriteria(project)
                 break
-            case EnumRankingModesCriteria.RK_ALL.name:
+            case EnumRankingModesCriteria.RK_DRA.name:
                 modesSumRankingPositions = rankJobsAndModesPerDurationAndRenewableAmount(project)
                 break
             default:
