@@ -70,6 +70,8 @@ class ResultJsonBuilder {
         resultMap.generalConfig.showLowerBound = UrlUtils.instance.showLowerBound
 
         resultMap.instanceConfig = [:]
+        resultMap.instanceConfig.modesRankingCriteria = UrlUtils.instance.modesRankingCriteria
+        resultMap.instanceConfig.rankingJobsReverseOrder = UrlUtils.instance.modesRankingJobsReverseOrder
         resultMap.instanceConfig.startLineJobs = UrlUtils.instance.startLineJobs
         resultMap.instanceConfig.startLineModes = UrlUtils.instance.startLineModes
         resultMap.instanceConfig.startLineResourceAvailabilities = UrlUtils.instance.startLineResourceAvailabilities

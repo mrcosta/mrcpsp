@@ -33,6 +33,8 @@ interface PropertyConstants {
     static final String MODE_JOBS = "jobsMode"
     static final String MODE_SHORTER_NEAR_TO_LOWER_NR_PERCENTAGE = "modeShorterNearToLowerNrPercentage"
     static final String MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT = "modeShorterNearToLowerNrUnit"
+    static final String MODES_RANKING_CRITERIA = "modesRankingCriteria"
+    static final String MODES_RANKING_JOBS_REVERSE_ORDER = "rankingJobsReverseOrder"
 	
 	//############# MRCPSP - EXECUTION  #################
 	static final String EXECUTION_TYPE = "executionType"

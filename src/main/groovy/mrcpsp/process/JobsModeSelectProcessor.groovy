@@ -4,8 +4,10 @@ import mrcpsp.model.enums.EnumJobsMode
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
+import mrcpsp.process.job.JobOperations
 import mrcpsp.process.mode.ModeOperations
 import mrcpsp.process.mode.ModeRanking
+import mrcpsp.process.mode.ModeRankingOrchestrator
 import mrcpsp.process.mode.ShortestFeasibleMode
 import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Level
@@ -20,9 +22,11 @@ public class JobsModeSelectProcessor {
 	private static final Logger log = Logger.getLogger(JobsModeSelectProcessor.class);
 
     ModeOperations modeOperations
+    JobOperations jobOperations
 
     JobsModeSelectProcessor() {
         modeOperations = new ModeOperations()
+        jobOperations = new JobOperations()
     }
 
     /**
@@ -61,13 +65,18 @@ public class JobsModeSelectProcessor {
 	}
 
     List<Job> setJobsModeRankingSfm(Project project) {
-        ModeRanking modeRanking = new ModeRanking()
+        Map modesSumRankingPositions
+        ModeRankingOrchestrator modeRankingOrchestrator = new ModeRankingOrchestrator()
         ShortestFeasibleMode sfm = new ShortestFeasibleMode()
         List<Job> realJobs
 
-        realJobs = modeRanking.rankJobsAndModes(project)
-        log.info("JOBS ORDERED BY SUM POSITIONS: $realJobs.id -- $realJobs.sumRanking")
+        modesSumRankingPositions = modeRankingOrchestrator.rankJobsAndModesWithCriteria(project)
+        realJobs = jobOperations.getOnlyRealJobs(project.jobs, project.instanceInformation.jobsAmount)
+        realJobs = jobOperations.setSumRankingForTheRealJobs(realJobs, modesSumRankingPositions)
+        realJobs = jobOperations.orderJobsByPositionsSums(realJobs)
 
+        //TODO: create a new SFM for the ranking order
+        log.info("JOBS ORDERED BY SUM POSITIONS: $realJobs.id -- $realJobs.sumRanking")
         sfm.jobModes = new HashMap<String, String>()
         sfm.sfm([:], project.resourceAvailabilities, realJobs, false, 0)
 

@@ -147,6 +147,8 @@ public class PropertyManager {
         prop.put("showCriticalPath", Integer.toString(config.generalConfig.showCriticalPath))
         prop.put("showLowerBound", Integer.toString(config.generalConfig.showLowerBound))
 
+        prop.put("modesRankingCriteria", (config.instanceConfig.modesRankingCriteria ?: "empty"))
+        prop.put("rankingJobsReverseOrder", Integer.toString((config.instanceConfig.modesRankingCriteria ?: 0)))
         prop.put("startLineJobs", Integer.toString(config.instanceConfig.startLineJobs))
         prop.put("startLineModes", Integer.toString(config.instanceConfig.startLineModes))
         prop.put("startLineResourceAvailabilities", Integer.toString(config.instanceConfig.startLineResourceAvailabilities))

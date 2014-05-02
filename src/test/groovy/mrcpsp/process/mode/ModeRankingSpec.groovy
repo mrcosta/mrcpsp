@@ -233,6 +233,9 @@ class ModeRankingSpec extends Specification {
         realJobs = modeRanking.getJobPositionsSum(realJobs, criteria)
 
         then:
+        println realJobs.id
+        println realJobs.sumRanking
+        println modesRankingHistory
         modesRankingHistory != null
     }
 
@@ -246,7 +249,8 @@ class ModeRankingSpec extends Specification {
         modesRankingHistory = modeRanking.saveModesRankingHistory(orderedModes, EnumOrderModesCriteria.PER_DURATION)
         orderedModes = modeRanking.rankPerAmountConsumed(modes)
         modesRankingHistory = modeRanking.saveModesRankingHistory(orderedModes, EnumOrderModesCriteria.PER_AMOUNT)
-        realJobs = modeRanking.getJobPositionsSum(realJobs, criteria)
+        def modesSumRankingPositions = modeRanking.getJobPositionsSum(realJobs, criteria)
+        realJobs = modeRanking.setSumRankingForTheRealJobs(realJobs, modesSumRankingPositions)
 
         when:
         def orderedJobsBySumPositions = modeRanking.orderJobsByPositionsSums(realJobs)
@@ -258,40 +262,5 @@ class ModeRankingSpec extends Specification {
         orderedJobsBySumPositions[1].sumRanking == 76
         orderedJobsBySumPositions[9].id == 2
         orderedJobsBySumPositions[9].sumRanking == 116
-    }
-
-    def "should order the all jobs by the sum of positions"() {
-        given:
-        modeRanking = Spy(ModeRanking, {
-                modeComparator: new ModeComparator()
-                jobComparator: new JobComparator()
-            }
-        )
-
-        when:
-        def realJobs = modeRanking.rankJobsAndModes(project)
-
-        then:
-        1 * modeRanking.getOnlyRealJobs(project)
-        1 * modeRanking.createListWithAllModes(_)
-        1 * modeRanking.createMapForModesRankingHistory(_, _)
-        1 * modeRanking.rankPerDuration(_)
-        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_DURATION)
-        1 * modeRanking.rankPerAmountConsumed(_)
-        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_AMOUNT)
-        1 * modeRanking.rankPerAmountNonRenewable(_)
-        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_NR_AMOUNT)
-        1 * modeRanking.rankPerAmountRenewable(_)
-        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_R_AMOUNT)
-        1 * modeRanking.rankPerAmountFirstNonRenewable(_)
-        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_FIRST_NR_AMOUNT)
-        1 * modeRanking.rankPerAmountSecondNonRenewable(_)
-        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_SECOND_NR_AMOUNT)
-        1 * modeRanking.rankPerAmountFirstRenewable(_)
-        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_FIRST_R_AMOUNT)
-        1 * modeRanking.rankPerAmountSecondRenewable(_)
-        1 * modeRanking.saveModesRankingHistory(_, EnumOrderModesCriteria.PER_SECOND_R_AMOUNT)
-        1 * modeRanking.getJobPositionsSum(_, _)
-        1 * modeRanking.orderJobsByPositionsSums(_)
     }
 }

@@ -126,4 +126,12 @@ public final class UrlUtils {
     Integer getPerturbation() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.PERTURBATION))
     }
+
+    public String getModesRankingCriteria() {
+        return PropertyManager.getInstance().getProperty(PropertyConstants.MODES_RANKING_CRITERIA)
+    }
+
+    Integer getModesRankingJobsReverseOrder() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODES_RANKING_JOBS_REVERSE_ORDER))
+    }
 }
