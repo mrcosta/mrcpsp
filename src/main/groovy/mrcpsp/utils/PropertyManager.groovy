@@ -139,7 +139,7 @@ public class PropertyManager {
         prop.put("concurrentPoolSize", config.generalConfig.concurrentPoolSize)
         prop.put("instanceFile", config.generalConfig.instanceFile)
         prop.put("executeLocalSearch", Integer.toString(config.generalConfig.executeLocalSearch))
-        prop.put("perturbation", Integer.toString(config.generalConfig.perturbation))
+        prop.put("perturbation", Integer.toString((config.generalConfig.perturbation ?: 0)))
         prop.put("generateDiagram", Integer.toString(config.generalConfig.generateDiagram))
         prop.put("diagramPath", config.generalConfig.diagramPath)
         prop.put("showPredecessorsInDiagram", Integer.toString(config.generalConfig.showPredecessorsInDiagram))
@@ -148,7 +148,7 @@ public class PropertyManager {
         prop.put("showLowerBound", Integer.toString(config.generalConfig.showLowerBound))
 
         prop.put("modesRankingCriteria", (config.instanceConfig.modesRankingCriteria ?: "empty"))
-        prop.put("rankingJobsReverseOrder", Integer.toString((config.instanceConfig.modesRankingCriteria ?: 0)))
+        prop.put("rankingJobsReverseOrder", Integer.toString((config.instanceConfig.rankingJobsReverseOrder ?: 0)))
         prop.put("startLineJobs", Integer.toString(config.instanceConfig.startLineJobs))
         prop.put("startLineModes", Integer.toString(config.instanceConfig.startLineModes))
         prop.put("startLineResourceAvailabilities", Integer.toString(config.instanceConfig.startLineResourceAvailabilities))
