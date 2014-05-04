@@ -1,18 +1,19 @@
 package mrcpsp.process.mode
 
-import mrcpsp.model.enums.EnumJobPriorityRules
 import mrcpsp.model.enums.EnumModesComparator
 import mrcpsp.model.enums.EnumOrderModesCriteria
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
-import mrcpsp.process.job.JobComparator
 import mrcpsp.process.job.JobOperations
+import org.apache.log4j.Logger
 
 /**
  * Created by mateus on 5/1/14.
  */
 class ModeRanking {
+
+    static final Logger log = Logger.getLogger(ModeRanking.class)
 
     ModeComparator modeComparator
     def modesRankingHistory
@@ -129,9 +130,7 @@ class ModeRanking {
             def jobHistory = modesRankingHistory."$job.id"
             modesSumRankingPositions."$job.id" = [:]
 
-            def totalCriteria = 0
             criteria.each { criterion ->
-                totalCriteria+= jobHistory."$criterion.name".total
 
                 jobHistory."$criterion.name".each { modesRanking ->
                     if (modesSumRankingPositions."$job.id"."$modesRanking.key" == null) {
@@ -141,6 +140,9 @@ class ModeRanking {
                     }
                 }
             }
+
+            def jobModesSumRankingPosition = modesSumRankingPositions."$job.id"
+            log.info("Job $job.id has the following values for its ranking: $jobModesSumRankingPosition")
         }
 
         return modesSumRankingPositions

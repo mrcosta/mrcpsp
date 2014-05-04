@@ -5,6 +5,7 @@ import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
 import mrcpsp.process.job.JobOperations
+import mrcpsp.process.mode.FirstRankedFeasibleMode
 import mrcpsp.process.mode.ModeOperations
 import mrcpsp.process.mode.ModeRanking
 import mrcpsp.process.mode.ModeRankingOrchestrator
@@ -19,7 +20,7 @@ import org.apache.log4j.Logger
  */
 public class JobsModeSelectProcessor {
 	
-	private static final Logger log = Logger.getLogger(JobsModeSelectProcessor.class);
+	static final Logger log = Logger.getLogger(JobsModeSelectProcessor.class)
 
     ModeOperations modeOperations
     JobOperations jobOperations
@@ -67,20 +68,21 @@ public class JobsModeSelectProcessor {
     List<Job> setJobsModeRankingSfm(Project project) {
         Map modesSumRankingPositions
         ModeRankingOrchestrator modeRankingOrchestrator = new ModeRankingOrchestrator()
-        ShortestFeasibleMode sfm = new ShortestFeasibleMode()
+        FirstRankedFeasibleMode firstRankedFeasibleMode = new FirstRankedFeasibleMode()
         List<Job> realJobs
 
         modesSumRankingPositions = modeRankingOrchestrator.rankJobsAndModesWithCriteria(project)
+
         realJobs = jobOperations.getOnlyRealJobs(project.jobs, project.instanceInformation.jobsAmount)
-        realJobs = jobOperations.setSumRankingForTheRealJobs(realJobs, modesSumRankingPositions)
+        realJobs = jobOperations.setSumRankingForTheRealJobsAndUpdateModesInformation(realJobs, modesSumRankingPositions)
         realJobs = jobOperations.orderJobsByPositionsSums(realJobs)
 
         //TODO: create a new SFM for the ranking order
         log.info("JOBS ORDERED BY SUM POSITIONS: $realJobs.id -- $realJobs.sumRanking")
-        sfm.jobModes = new HashMap<String, String>()
-        sfm.sfm([:], project.resourceAvailabilities, realJobs, false, 0)
+        firstRankedFeasibleMode.jobModes = new HashMap<String, String>()
+        firstRankedFeasibleMode.firstRankedFeasibleMode([:], project.resourceAvailabilities, realJobs, false, 0)
 
-        sfm.jobModes.each { key, value ->
+        firstRankedFeasibleMode.jobModes.each { key, value ->
             Job job = project.jobs.find { it.id == key}
             Mode mode = job.availableModes.find { it.id == value}
 

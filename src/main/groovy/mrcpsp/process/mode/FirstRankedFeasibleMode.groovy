@@ -7,22 +7,22 @@ import mrcpsp.model.main.ResourceAvailabilities
 import org.apache.log4j.Logger
 
 /**
- * Created by mateus on 2/24/14.
+ * Created by mateus on 5/4/14.
  */
-class ShortestFeasibleMode {
+class FirstRankedFeasibleMode {
 
-    static final Logger log = Logger.getLogger(ShortestFeasibleMode.class);
+    static final Logger log = Logger.getLogger(FirstRankedFeasibleMode.class);
 
     Map<String, String> jobModes
     ModeOperations mo
 
-    ShortestFeasibleMode() {
+    FirstRankedFeasibleMode() {
         mo = new ModeOperations()
     }
 
     def setJobsMode(Project project) {
 
-        sfm([:], project.resourceAvailabilities, project.jobs, false, 0)
+        firstRankedFeasibleMode([:], project.resourceAvailabilities, project.jobs, false, 0)
 
         return this.jobModes
     }
@@ -48,10 +48,10 @@ class ShortestFeasibleMode {
         return checkAmount
     }
 
-    def sfm(Map<String, String> jobModes, ResourceAvailabilities ra, List<Job> jobs, boolean firstSolutionFound, int countJob) {
+    def firstRankedFeasibleMode(Map<String, String> jobModes, ResourceAvailabilities ra, List<Job> jobs, boolean firstSolutionFound, int countJob) {
 
         if (jobModes.size() == jobs.size()) {
-            log.info("SHORTEST FEASIBLE MODE --- Map with the job ids (key) and the mode id that was selected (value): $jobModes")
+            log.info("FIRST RANKED FEASIBLE MODE --- Map with the job ids (key) and the mode id that was selected (value): $jobModes")
             this.jobModes = new HashMap<String, String>(jobModes)
             return true
         } else {
@@ -59,15 +59,15 @@ class ShortestFeasibleMode {
             for (int i = countJob; i < jobs.size(); i++) {
                 Job job = jobs[i]
 
-                for (int j = 0; j < job.modesInformation.modesByOrderDuration.size(); j++) {
-                    def index = job.modesInformation.modesByOrderDuration[j]
+                for (int j = 0; j < job.modesInformation.modesOrderedByRanking.size(); j++) {
+                    def index = job.modesInformation.modesOrderedByRanking[j]
                     Mode mode = job.availableModes.find { it.id == index }
 
                     if (!jobModes.containsKey(job.id) && mo.checkNonRenewableResources(ra, mode) && checkMinimumResourcesRemainingJobs(ra, mode, jobs, i + 1)) {
                         mo.addingNonRenewableResources(ra, mode)
                         jobModes.putAt(job.id, mode.id)
 
-                        firstSolutionFound = sfm(jobModes, ra, jobs, firstSolutionFound, i + 1)
+                        firstSolutionFound = firstRankedFeasibleMode(jobModes, ra, jobs, firstSolutionFound, i + 1)
 
                         jobModes.remove(job.id)
                         mo.removingNonRenewableResources(ra, mode)

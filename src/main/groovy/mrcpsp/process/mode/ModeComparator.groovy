@@ -1,12 +1,9 @@
-package mrcpsp.process.mode;
+package mrcpsp.process.mode
 
-import java.util.Comparator;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
-import mrcpsp.model.enums.EnumModesComparator;
-import mrcpsp.model.main.Mode;
+import mrcpsp.model.enums.EnumModesComparator
+import mrcpsp.model.main.Mode
+import org.apache.log4j.Level
+import org.apache.log4j.Logger
 
 class ModeComparator implements Comparator<Mode> {
 	
@@ -42,6 +39,12 @@ class ModeComparator implements Comparator<Mode> {
                 break
             case EnumModesComparator.MC_AMOUNT_SECOND_R.name:
                 result = mode.renewable[1].compareTo(modeToCompare.renewable[1])
+                break
+            case EnumModesComparator.MC_SUM_RANKING_POSITIONS.name:
+                result = mode.sumRanking.compareTo(modeToCompare.sumRanking)
+                break
+            case EnumModesComparator.MC_ID.name:
+                result = mode.id.compareTo(modeToCompare.id)
                 break
         	default:  
         		log.log(Level.ERROR, "Invalid Option to order the modes")

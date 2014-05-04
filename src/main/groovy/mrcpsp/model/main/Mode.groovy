@@ -11,19 +11,21 @@ class Mode {
 	Integer duration
 	
 	/** The amount of each renewable resource */
-	List<Integer> renewable;
+	List<Integer> renewable
 	
 	/** The amount of each non renewable resource */
-	List<Integer> nonRenewable;
+	List<Integer> nonRenewable
 	
 	/** The sum of all renewable resources */
-	Integer amountRenewable;
+	Integer amountRenewable
 	
 	/** The sum of all non renewable resources */	
-	Integer amountNonRenewable;
+	Integer amountNonRenewable
 	
 	/** The sum of all resources */	
-	Integer sumResources;
+	Integer sumResources
+
+    Integer sumRanking
 		
 	public Mode() {	
 	}	

@@ -13,7 +13,7 @@ import org.apache.log4j.Logger
  */
 class ModeRankingOrchestrator {
 
-    private static final Logger log = Logger.getLogger(ModeRankingOrchestrator.class)
+    static final Logger log = Logger.getLogger(ModeRankingOrchestrator.class)
 
     ModeRanking modeRanking
     Map modesSumRankingPositions
@@ -37,6 +37,7 @@ class ModeRankingOrchestrator {
                 throw new RuntimeException("Invalid Option to ranking the modes: " + ModeRankingOrchestrator.class)
         }
 
+        log.info("Ranking the modes by the following criteria: $modeRankingCriteria")
         return modesSumRankingPositions
     }
 

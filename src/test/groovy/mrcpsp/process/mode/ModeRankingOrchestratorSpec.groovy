@@ -1,14 +1,10 @@
 package mrcpsp.process.mode
 
 import mrcpsp.model.enums.EnumOrderModesCriteria
-import mrcpsp.model.enums.EnumRankingModesCriteria
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
 import mrcpsp.process.job.JobComparator
 import mrcpsp.utils.FileUtils
-import mrcpsp.utils.UrlUtils
-import org.apache.log4j.Level
-import org.apache.log4j.Logger
 import spock.lang.Specification
 
 /**
@@ -23,10 +19,10 @@ class ModeRankingOrchestratorSpec extends Specification {
     def jobs
     def job, job2, job3, job4, job5, job6, job7, job8, job9, job10, job11, job12
 
-    def ModeRanking modeRanking
+    def ModeRankingOrchestrator modeRankingOrchestrator
 
     def setup() {
-        modeRanking = new ModeRanking()
+        modeRankingOrchestrator = new ModeRankingOrchestrator()
 
         job = new Job(id: 1)
         job2 = new Job(id: 2)
@@ -53,14 +49,12 @@ class ModeRankingOrchestratorSpec extends Specification {
 
     def "should order the all jobs by the sum of positions"() {
         given:
-        modeRanking = Spy(ModeRanking, {
-            modeComparator: new ModeComparator()
-            jobComparator: new JobComparator()
-        }
-        )
+        ModeRanking modeRanking = Mock(ModeRanking)
+        modeRankingOrchestrator = Spy(ModeRankingOrchestrator)
+        modeRankingOrchestrator.modeRanking = modeRanking
 
         when:
-        def realJobs = modeRanking.rankJobsAndModes(project)
+        def realJobs = modeRankingOrchestrator.rankJobsAndModesAllCriteria(project)
 
         then:
         1 * modeRanking.getOnlyRealJobs(project)

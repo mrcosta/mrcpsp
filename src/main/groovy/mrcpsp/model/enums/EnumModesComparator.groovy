@@ -9,7 +9,9 @@ enum EnumModesComparator {
     MC_AMOUNT_FIRST_NR("MC_AMOUNT_FIRST_NR", "by the first non-renewable resource amount", 5),
     MC_AMOUNT_SECOND_NR("MC_AMOUNT_SECOND_NR", "by the second non-renewable resource amount", 6),
     MC_AMOUNT_FIRST_R("MC_AMOUNT_FIRST_R", "by the first renewable resource amount", 7),
-    MC_AMOUNT_SECOND_R("MC_AMOUNT_SECOND_R", "by the second renewable resource amount", 8)
+    MC_AMOUNT_SECOND_R("MC_AMOUNT_SECOND_R", "by the second renewable resource amount", 8),
+    MC_SUM_RANKING_POSITIONS("MC_SUM_RANKING_POSITIONS", "by the sum of the ranking positions", 9),
+    MC_ID("MC_ID", "by mode id", 9)
 	
 	String name
     String description;

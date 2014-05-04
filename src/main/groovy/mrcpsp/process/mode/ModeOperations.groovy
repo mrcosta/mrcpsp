@@ -1,5 +1,6 @@
 package mrcpsp.process.mode
 
+import mrcpsp.model.enums.EnumModesComparator
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
@@ -9,6 +10,12 @@ import mrcpsp.model.main.ResourceAvailabilities
  * Created by mateus on 2/16/14.
  */
 class ModeOperations {
+
+    ModeComparator modeComparator
+
+    ModeOperations() {
+        modeComparator = new ModeComparator()
+    }
 
     boolean checkRenewableResourcesAmount(ResourceAvailabilities ra, Mode mode) {
         Integer count = 0
@@ -104,5 +111,24 @@ class ModeOperations {
         }
 
         return project.jobs
+    }
+
+    List<Integer> orderBySumRanking(List<Mode> modes) {
+        def modesIdOrdered = []
+
+        modeComparator.comparatorType = EnumModesComparator.MC_SUM_RANKING_POSITIONS
+        Collections.sort(modes, modeComparator)
+        modesIdOrdered = modes.id
+
+        orderById(modes)
+
+        return modesIdOrdered
+    }
+
+    List<Mode> orderById(List<Mode> modes) {
+        modeComparator.comparatorType = EnumModesComparator.MC_ID
+        Collections.sort(modes, modeComparator)
+
+        return modes
     }
 }

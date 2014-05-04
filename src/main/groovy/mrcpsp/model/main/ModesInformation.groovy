@@ -23,6 +23,8 @@ class ModesInformation {
     List<Integer> modesByOrderDuration
 
     List<Integer> minNonRenewableResourcesConsumption
+
+    List<Integer> modesOrderedByRanking
 	
 	public ModesInformation() {
 		this.longer = 0;
