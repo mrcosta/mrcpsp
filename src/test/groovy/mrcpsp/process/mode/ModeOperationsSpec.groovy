@@ -1,6 +1,7 @@
 package mrcpsp.process.mode
 
 import mrcpsp.model.main.Mode
+import mrcpsp.model.main.ModesInformation
 import mrcpsp.model.main.ResourceAvailabilities
 import spock.lang.Specification
 
@@ -70,6 +71,22 @@ class ModeOperationsSpec extends Specification {
         new Mode(nonRenewable: [12, 7])	   | [24, 14] 			  		 | [5, 16]
         new Mode(nonRenewable: [0, 1])	   | [12, 8] 			  		 | [17, 22]
         new Mode(nonRenewable: [5, 5])     | [17, 12]            		 | [12, 18]
+    }
+
+    def "should get the difference between the shorter mode and remaining jobs according the sum ranking"() {
+        given:
+        def mode1 = new Mode(id: 1, sumRanking: 16)
+        def mode2 = new Mode(id: 2, sumRanking: 11)
+        def mode3 = new Mode(id: 3, sumRanking: 11)
+        def modeInformation = new ModesInformation(shorter: 1)
+        def modes = [mode1, mode2, mode3]
+
+        when:
+        Map result = modeOperations.getDifferenceBetweenShorterAndRemainingModesAccordingToSumRanking(modes, modeInformation)
+
+        then:
+        result."2" == -31.25
+        result."3" == -31.25
     }
 
 }

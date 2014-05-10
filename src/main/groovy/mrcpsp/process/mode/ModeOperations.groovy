@@ -1,10 +1,9 @@
 package mrcpsp.process.mode
 
 import mrcpsp.model.enums.EnumModesComparator
-import mrcpsp.model.main.Job
-import mrcpsp.model.main.Mode
-import mrcpsp.model.main.Project
-import mrcpsp.model.main.ResourceAvailabilities
+import mrcpsp.model.main.*
+
+import java.math.RoundingMode
 
 /**
  * Created by mateus on 2/16/14.
@@ -130,5 +129,18 @@ class ModeOperations {
         Collections.sort(modes, modeComparator)
 
         return modes
+    }
+
+    def getDifferenceBetweenShorterAndRemainingModesAccordingToSumRanking(List<Mode> modes, ModesInformation modesInformation) {
+        List<Mode> modesRemaining = modes.findAll { it.id != modesInformation.shorter }
+        Mode shorterMode = modes[modesInformation.shorter - 1]
+        def differenceBetweenModes = [:]
+
+        modesRemaining.each { mode ->
+            def difference = ((mode.sumRanking - shorterMode.sumRanking) / shorterMode.sumRanking) * 100
+            differenceBetweenModes."$mode.id" = difference.setScale(2, RoundingMode.CEILING)
+        }
+
+        return differenceBetweenModes
     }
 }

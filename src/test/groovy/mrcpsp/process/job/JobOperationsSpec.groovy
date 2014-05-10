@@ -2,7 +2,6 @@ package mrcpsp.process.job
 
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
-import mrcpsp.process.JobTimeProcessor
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -80,6 +79,31 @@ class JobOperationsSpec extends Specification {
         then:
         result.size() == 3
         result[0].id == 4
+    }
+
+    def "should return the jobs between the interval of the job that was choosen to be scheduled - corner case 3"() {
+        given:
+        def dumbJob0 = new Job(id: 0, startTime: 5, endTime: 7)
+        def dumbJob1 = new Job(id: 1, startTime: 2, endTime: 3)
+        def dumbJob2 = new Job(id: 2, startTime: 8, endTime: 9)
+        def dumbJob3 = new Job(id: 3, startTime: 2, endTime: 5)
+        def dumbJob4 = new Job(id: 4, startTime: 7, endTime: 8)
+        def dumbJob5 = new Job(id: 5, startTime: 5, endTime: 7)
+        def dumbJob6 = new Job(id: 6, startTime: 2, endTime: 6)
+        def dumbJob7 = new Job(id: 7, startTime: 6, endTime: 8)
+        def dumbJob8 = new Job(id: 8, startTime: 5, endTime: 8)
+        def dumbJob9 = new Job(id: 9, startTime: 2, endTime: 8)
+        def dumbJob10 = new Job(id: 10, startTime: 5, endTime: 6)
+        def dumbJob11 = new Job(id: 11, startTime: 6, endTime: 7)
+        def dumbJob12 = new Job(id: 12, startTime: 2, endTime: 7)
+        def dumbJobs = [dumbJob9, dumbJob8, dumbJob10, dumbJob11, dumbJob0, dumbJob1, dumbJob2, dumbJob3, dumbJob4, dumbJob5, dumbJob6, dumbJob7, dumbJob12]
+
+        when:
+        def result = jobOperations.getJobsBetweenInterval(dumbJob0, dumbJobs)
+
+        then:
+        result.size() == 8
+        result[0].id == 9
     }
 
     def "should get all predecessors of a job"() {

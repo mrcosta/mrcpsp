@@ -48,7 +48,8 @@ class JobOperations {
             }
 
             job.modesInformation.modesOrderedByRanking = modeOperations.orderBySumRanking(job.availableModes)
-            log.info("JOB $job.id -- Modes natural(id) order: -- $job.availableModes.id -- Modes order by sum ranking: -- $job.modesInformation.modesOrderedByRanking")
+            def differenceBetweenModes = modeOperations.getDifferenceBetweenShorterAndRemainingModesAccordingToSumRanking(job.availableModes, job.modesInformation)
+            log.info("JOB $job.id -- Modes natural(id) order: -- $job.availableModes.id -- Modes order by sum ranking: -- $job.modesInformation.modesOrderedByRanking -- Difference from the shorter mode: $differenceBetweenModes")
         }
 
         return realJobs
