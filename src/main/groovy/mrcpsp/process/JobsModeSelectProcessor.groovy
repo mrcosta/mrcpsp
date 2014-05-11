@@ -55,7 +55,7 @@ public class JobsModeSelectProcessor {
             case EnumJobsMode.SHORTEST_FEASIBLE_MODE.description:
                 project.staggeredJobs = setJobsModeShortestFeasbileMode(project)
                 break
-            case EnumJobsMode.RANKING_SFM.description:
+            case EnumJobsMode.RANKING_FRFM.description:
                 project.staggeredJobs = setJobsModeRankingSfm(project)
                 break
             default:

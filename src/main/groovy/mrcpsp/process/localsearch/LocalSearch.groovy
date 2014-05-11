@@ -48,6 +48,10 @@ class LocalSearch {
                 def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
                 jobsBlockSFM(project, realJobs)
                 break
+            case EnumLocalSearch.BMS.name:
+                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+                bestModeToSchedule(project, realJobs)
+                break
             default:
                 log.log(Level.ERROR, "LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
                 throw new IllegalArgumentException("LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
@@ -110,6 +114,33 @@ class LocalSearch {
         }
 
         return bestProject
+    }
+
+    def bestModeToSchedule(Project project, List<Job> jobs) {
+        BestModeScheduling bms = new BestModeScheduling()
+
+        while (checkSolution) {
+
+            jobs.each { job ->
+                def remainingModes = job.availableModes.findAll { it.id != job.mode.id}
+
+                remainingModes.each { mode ->
+                    def neighborProject = bms.changeExecutionModeJob(bestProject, job.id, mode.id);
+
+                    if (neighborProject) {
+                        mmProcessor.project = neighborProject
+                        mmProcessor.executeGetJobTimes()
+                        mmProcessor.setProjectMakespan()
+                    }
+
+                    if (neighborProject) {
+                        checkBestNeighbor(neighborProject);
+                    }
+                }
+            }
+
+            checkBestSolution(bestNeighbor, project)
+        }
     }
 	
 	private void checkBestNeighbor(Project project) {

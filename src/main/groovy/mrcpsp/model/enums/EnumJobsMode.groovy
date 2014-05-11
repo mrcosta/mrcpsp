@@ -11,7 +11,7 @@ enum EnumJobsMode {
 	MINIMUM_NON_RENEWABLE_RESOURCES("minimum_non_renewable_resources"),
     SHORTER_NEAR_TO_LOWER_NON_RENEWABLE_RESOURCES("shorter_near_to_lower_nr"),
     SHORTEST_FEASIBLE_MODE("shortest_feasible_mode"),
-    RANKING_SFM("ranking_sfm")
+    RANKING_FRFM("ranking_frfm")
 	
 	String description;
 	

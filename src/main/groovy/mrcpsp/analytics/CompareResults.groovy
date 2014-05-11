@@ -112,10 +112,11 @@ class CompareResults {
         def worstResults = 0
         dataAnalytics.diffMakespan = [:]
         dataAnalytics.results = [:]
-        dataAnalytics.diffMakespan.averageDiffMakespan = 0
+        dataAnalytics.diffMakespan.averageDeviation = 0
         lesserRa.results.each { instanceResult ->
-            def diffMakespan = (instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan * 100
-            dataAnalytics.diffMakespan.averageDiffMakespan+= diffMakespan
+            def averageDeviation = (instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan
+            dataAnalytics.diffMakespan.averageDeviation+= averageDeviation
+            println averageDeviation
             dataAnalytics.results."$instanceResult.key" = [:]
             dataAnalytics.results."$instanceResult.key"."$lesserRa.testName" = instanceResult.value.makespan
             dataAnalytics.results."$instanceResult.key"."$biggerRa.testName" = biggerRa.results."$instanceResult.key".makespan
@@ -126,7 +127,7 @@ class CompareResults {
                 betterResults++
             } else {
                 def psplibMakespan = biggerRa.results."$instanceResult.key".makespan
-                println "Instance: $instanceResult.key --- psplib: $psplibMakespan --- this work: $instanceResult.value.makespan -- difference: $diffMakespan"
+                println "Instance: $instanceResult.key --- psplib: $psplibMakespan --- this work: $instanceResult.value.makespan -- difference: $averageDeviation"
                 worstResults++
             }
         }
@@ -143,7 +144,7 @@ class CompareResults {
         dataAnalytics.diffMakespan.worstResults.total = worstResults
         dataAnalytics.diffMakespan.worstResults.percentage = worstResults / lesserRa.totalWithSolution * 100
 
-        dataAnalytics.diffMakespan.averageDiffMakespan = dataAnalytics.diffMakespan.averageDiffMakespan / (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
+        dataAnalytics.diffMakespan.averageDeviation = dataAnalytics.diffMakespan.averageDeviation / (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
         dataAnalytics.diffMakespan.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
 
         return new JsonBuilder(dataAnalytics).toPrettyString()
