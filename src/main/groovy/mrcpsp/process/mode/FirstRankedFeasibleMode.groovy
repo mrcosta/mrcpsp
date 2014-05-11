@@ -60,7 +60,8 @@ class FirstRankedFeasibleMode {
                 Job job = jobs[i]
 
                 for (int j = 0; j < job.modesInformation.modesOrderedByRanking.size(); j++) {
-                    def index = job.modesInformation.modesOrderedByRanking[j]
+                    //def index = job.modesInformation.modesOrderedByRanking[j]
+                    def index = job.modesInformation.modesByOrderDuration[j]
                     Mode mode = job.availableModes.find { it.id == index }
 
                     if (!jobModes.containsKey(job.id) && mo.checkNonRenewableResources(ra, mode) && checkMinimumResourcesRemainingJobs(ra, mode, jobs, i + 1)) {
