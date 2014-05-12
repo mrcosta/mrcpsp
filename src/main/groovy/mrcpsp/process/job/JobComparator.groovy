@@ -32,6 +32,9 @@ class JobComparator implements Comparator<Job> {
             case EnumJobPriorityRules.BY_SUM_POSITIONS.name:
                 result = job.sumRanking.compareTo(jobToCompare.sumRanking)
                 break
+            case EnumJobPriorityRules.TOTAL_SUCCESSORS.name:
+                result = job.runningJobInformation.totalSuccessors.compareTo(jobToCompare.runningJobInformation.totalSuccessors)
+                break
         	default:  
         		log.log(Level.ERROR, "Invalid Option to order: " + JobComparator.class)
         		throw new RuntimeException("Invalid Option to order: " + JobComparator.class)

@@ -68,4 +68,15 @@ class JobOperations {
 
         return realJobs
     }
+
+    List<Integer> getJobTotalSuccessors(Job jobToGet, List<Job> jobs) {
+        def successors = jobs.findAll { jobToGet.successors.contains(it.id) }
+        List<Integer> allSuccessorsId = jobToGet.successors
+
+        successors.each { job ->
+            allSuccessorsId.addAll(getJobTotalSuccessors(job, jobs))
+        }
+
+        return allSuccessorsId.unique()
+    }
 }

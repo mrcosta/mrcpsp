@@ -77,7 +77,6 @@ public class JobsModeSelectProcessor {
         realJobs = jobOperations.setSumRankingForTheRealJobsAndUpdateModesInformation(realJobs, modesSumRankingPositions)
         realJobs = jobOperations.orderJobsByPositionsSums(realJobs)
 
-        //TODO: create a new SFM for the ranking order
         log.info("JOBS ORDERED BY SUM POSITIONS: $realJobs.id -- $realJobs.sumRanking")
         firstRankedFeasibleMode.jobModes = new HashMap<String, String>()
         firstRankedFeasibleMode.firstRankedFeasibleMode([:], project.resourceAvailabilities, realJobs, false, 0)

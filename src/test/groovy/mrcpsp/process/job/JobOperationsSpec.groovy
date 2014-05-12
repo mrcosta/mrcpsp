@@ -129,4 +129,42 @@ class JobOperationsSpec extends Specification {
         predecessors*.id != [2, 5, 6, 7]
     }
 
+    def "should get all the successors(direct and indirectly connected) from a given job"() {
+        given:
+        def dumbJob1 = new Job(id: 1, successors: [2, 3, 4])
+        def dumbJob2 = new Job(id: 2, successors: [6, 7])
+        def dumbJob3 = new Job(id: 3, successors: [6, 10])
+        def dumbJob4 = new Job(id: 4, successors: [5, 9, 10])
+        def dumbJob5 = new Job(id: 5, successors: [11])
+        def dumbJob6 = new Job(id: 6, successors: [8])
+        def dumbJob7 = new Job(id: 7, successors: [8, 10])
+        def dumbJob8 = new Job(id: 8, successors: [9])
+        def dumbJob9 = new Job(id: 9, successors: [12])
+        def dumbJob10 = new Job(id: 10, successors: [12])
+        def dumbJob11 = new Job(id: 11, successors: [12])
+        def dumbJob12 = new Job(id: 12, successors: [])
+        def jobs = [dumbJob1, dumbJob2, dumbJob3, dumbJob4, dumbJob5, dumbJob6, dumbJob7, dumbJob8, dumbJob9, dumbJob10, dumbJob11, dumbJob12]
+
+        when:
+        List<Integer> allSuccessorsId = jobOperations.getJobTotalSuccessors(jobToGet, jobs)
+
+        then:
+        allSuccessorsId.size() == totalSuccessorsExpected
+
+        where:
+        jobToGet                                | totalSuccessorsExpected
+        new Job(id: 1, successors: [2, 3, 4])   | 11
+        new Job(id: 2, successors: [6, 7])      | 6
+        new Job(id: 3, successors: [6, 10])     | 5
+        new Job(id: 4, successors: [5, 9, 10])  | 5
+        new Job(id: 5, successors: [11])        | 2
+        new Job(id: 6, successors: [8])         | 3
+        new Job(id: 7, successors: [8, 10])     | 4
+        new Job(id: 8, successors: [9])         | 2
+        new Job(id: 9, successors: [12])        | 1
+        new Job(id: 10, successors: [12])       | 1
+        new Job(id: 11, successors: [12])       | 1
+        new Job(id: 12, successors: [])         | 0
+    }
+
 }

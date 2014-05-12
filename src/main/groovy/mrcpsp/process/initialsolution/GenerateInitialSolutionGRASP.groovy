@@ -97,7 +97,7 @@ class GenerateInitialSolutionGRASP {
 			
 			// ordering the elegible jobs list
 			jprOperations.orderEligibleJobsList(elegibleJobsList) 
-			log.debug("The ELIGIBLE JOBS LIST was sorted - " + UrlUtils.instance.jobPriorityRule)
+			log.debug("The ELIGIBLE JOBS LIST was sorted - " + UrlUtils.instance.jobPriorityRule + " -- JOBS: " + eligibleJobs.id)
 			log.debug(LogUtils.generateJobsIDListLog(eligibleJobs, EnumLogUtils.ELIGIBLE_JOBS)) 
 			
 			// order the jobs by the criteria (mrcpsp.properties) and add the first ones until the rclJobsList size is equals to rclSize

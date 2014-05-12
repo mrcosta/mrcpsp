@@ -12,7 +12,13 @@ import org.apache.log4j.Logger;
 
 class JobPriorityRulesOperations {
 
-	private static final Logger log = Logger.getLogger(JobPriorityRulesOperations.class);
+	private static final Logger log = Logger.getLogger(JobPriorityRulesOperations.class)
+
+    JobOperations jobOperations
+
+    JobPriorityRulesOperations() {
+        jobOperations = new JobOperations()
+    }
 
     /**
      * only the priority rules that doesn't no need update information at runtime
@@ -22,16 +28,22 @@ class JobPriorityRulesOperations {
 	List<Job> setJobsPriorityRuleInformation(Project project) {
 		String priorityRule = UrlUtils.instance.jobPriorityRule
         def jobs
-		
-		if (priorityRule == EnumJobPriorityRules.MAX_NIS.name) {
-			jobs = getJobsNIS(project.jobs)
-		} else if (priorityRule == EnumJobPriorityRules.MIN_SLK.name) {
-            jobs = getJobsSLK(project.resourceAvailabilities, project.jobs)
-        } else {
-			log.log(Level.ERROR, "JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
-			throw new IllegalArgumentException("JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
-		}
-		
+
+        switch (priorityRule) {
+            case EnumJobPriorityRules.MAX_NIS.name:
+                jobs = getJobsNIS(project.jobs)
+                break
+            case EnumJobPriorityRules.MIN_SLK.name:
+                jobs = getJobsSLK(project.resourceAvailabilities, project.jobs)
+                break
+            case EnumJobPriorityRules.TOTAL_SUCCESSORS.name:
+                jobs = getJobsTotalSuccessors(project.jobs)
+                break
+            default:
+                log.log(Level.ERROR, "JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
+                throw new IllegalArgumentException("JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
+        }
+
 		return jobs
 	}
 
@@ -44,15 +56,21 @@ class JobPriorityRulesOperations {
 	List<Job> orderEligibleJobsList(List<Job> elegibleJobsList) {
 		String priorityRule = UrlUtils.instance.jobPriorityRule
 		
-		if (priorityRule == EnumJobPriorityRules.MAX_NIS.name) {
-			getJobListOrderByMaxNis(elegibleJobsList)
-		} else if (priorityRule == EnumJobPriorityRules.MIN_SLK.name) {
-            getJobListOrderBySlack(elegibleJobsList)
-        } else {
-			log.log(Level.ERROR, "JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
-			throw new IllegalArgumentException("JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
-		}
-		
+		switch (priorityRule) {
+            case EnumJobPriorityRules.MAX_NIS.name:
+                getJobListOrderByMaxNis(elegibleJobsList)
+                break
+            case EnumJobPriorityRules.MIN_SLK.name:
+                getJobListOrderBySlack(elegibleJobsList)
+                break
+            case EnumJobPriorityRules.TOTAL_SUCCESSORS.name:
+                getJobListOrderTotalSuccessors(elegibleJobsList)
+                break
+            default:
+                log.log(Level.ERROR, "JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
+                throw new IllegalArgumentException("JOB PRIORITY RULE is not valid! Please check the argument 'job.priority.rule' in mrcpsp.properties file")
+        }
+
 		return elegibleJobsList
 	}
 
@@ -117,6 +135,15 @@ class JobPriorityRulesOperations {
         }
     }
 
+    def List<Job> getJobsTotalSuccessors(List<Job> jobs) {
+        jobs.each { job ->
+            job.runningJobInformation.totalSuccessors = jobOperations.getJobTotalSuccessors(job, jobs).size()
+        }
+
+        log.info("${EnumJobPriorityRules.TOTAL_SUCCESSORS.name} was choosen. JOBS: $jobs.id -- $jobs.runningJobInformation.totalSuccessors")
+        return jobs
+    }
+
     def getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
         def jobTimeProcessor = new JobTimeProcessor()
 
@@ -167,6 +194,18 @@ class JobPriorityRulesOperations {
         // the second criteria ir the job's order in the list
         Collections.sort(jobs, jobComparator);
         //Collections.sort(jobs, Collections.reverseOrder(jobComparator));  //bigger to smaller
+
+        return jobs
+    }
+
+    List<Job> getJobListOrderTotalSuccessors(List<Job> jobs) {
+        JobComparator jobComparator = new JobComparator()
+
+        jobComparator.comparatorType = EnumJobPriorityRules.TOTAL_SUCCESSORS
+
+        // the second criteria ir the job's order in the list
+        //Collections.sort(jobs, jobComparator);
+        Collections.sort(jobs, Collections.reverseOrder(jobComparator));  //bigger to smaller
 
         return jobs
     }
