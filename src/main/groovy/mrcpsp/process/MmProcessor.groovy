@@ -319,23 +319,25 @@ class MmProcessor {
                     log.info("Something went wrong generating the gantt diagram.")
                 }
 
-                log.info("Generating the gantt diagram. . .DONE")
-
-                true
+               return true
             } catch (Exception e) {
                 log.error("Exception during the generateDiagram phase", e)
             }
         }
 
-        success
+        return success
     }
 
-    private Project callExecuteLocalSearch() {
-		// localSearch
-		success = executeLocalSearch()
-		
-		project
-	}
+    def Project localSearchDescentUphillMethod() {
+        if (success) {
+            success = executeLocalSearch()
+
+            return project
+        } else {
+            log.info("==========================================================================")
+            log.info("Some problem was previously found. Local Search won't be executed. . .")
+        }
+    }
 
     def basicOperationsInstance(String fileName) {
         success = true
@@ -380,14 +382,5 @@ class MmProcessor {
 
 		return project		
 	}
-	
-	def Project localSearchDescentUphillMethod() {
-		if (success) {
-            callExecuteLocalSearch()
-        } else {
-            log.info("==========================================================================")
-            log.info("Some problem was previously found. Local Search won't be executed. . .")
-        }
-	}	
 	
 }

@@ -41,11 +41,10 @@ class LowerNonRenewableConsumption {
 
         def checkResources = modeOperations.checkNonRenewableResources(project.resourceAvailabilities, shorterMode)
         if (checkResources) {
-            modeOperations.addingNonRenewableResources(project.resourceAvailabilities, shorterMode)
             job.mode = shorterMode
-        } else {
-            modeOperations.addingNonRenewableResources(project.resourceAvailabilities, job.mode)
         }
+
+        modeOperations.addingNonRenewableResources(project.resourceAvailabilities, job.mode)
 		
 		return checkResources
 	}
