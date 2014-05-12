@@ -65,7 +65,8 @@ class ExecutionTypeProcessor {
     public void executeOneFile() {
 		String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
 		
-		executeAll(fileName)
+		mmProcessor.basicOperationsInstance(fileName)
+        executeAll()
         addInstanceResultForJson(mmProcessor.project)
         writeResult()
         checkGenerateDiagram()
@@ -75,9 +76,11 @@ class ExecutionTypeProcessor {
 	public void executeOneFileTimes() {
 		Integer timesToRun = Integer.parseInt(UrlUtils.getInstance().getExecutionTimes())
 		String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
-		
+
+        mmProcessor.basicOperationsInstance(fileName)
 		for (int i = 0; i < timesToRun; i++) {
-			executeAll(fileName)			
+            log.info("Another execution for the file $fileName")
+            executeAll()
 			resultsProcessor.checkLowerMakespan(mmProcessor.project)
 		}
 
@@ -90,7 +93,8 @@ class ExecutionTypeProcessor {
 	public void executeAllFiles() {
 						
 		for (File file: FileUtils.getAllFilesInstances()) {
-			executeAll(file.getName())
+            mmProcessor.basicOperationsInstance(file.name)
+            executeAll()
             addInstanceResultForJson(mmProcessor.project)
 		}
 
@@ -112,9 +116,11 @@ class ExecutionTypeProcessor {
 		Integer timesToRun = Integer.parseInt(UrlUtils.instance.executionTimes)
 				
 		for (File file: FileUtils.getAllFilesInstances()) {
-			
+
+            mmProcessor.basicOperationsInstance(file.name)
 			for (int i = 0; i < timesToRun; i++) {
-                executeAll(file.getName())
+                log.info("Another execution for the file $file.name")
+                executeAll()
                 resultsProcessor.checkLowerMakespan(mmProcessor.project)
 			}
 
@@ -126,8 +132,8 @@ class ExecutionTypeProcessor {
         printTimeExecution()
 	}
 	
-	private void executeAll(String fileName) {
-		mmProcessor.initialSolutionWithGrasp(fileName)
+	private void executeAll() {
+		mmProcessor.initialSolutionWithGrasp()
         checkLocalSearchExecution()
         checkPerturbationExecution()
         ChronoWatch.instance.totalTimeSolution = 0

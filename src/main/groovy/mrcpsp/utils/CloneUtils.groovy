@@ -31,4 +31,11 @@ final class CloneUtils {
 		
 		return modeListCloned
 	}
+
+    static List<Job> cloneJobList(List<Job> jobListToClone) {
+        Kryo kryo = new Kryo()
+        List<Job> jobListCloned = kryo.copy(jobListToClone)
+
+        return jobListCloned
+    }
 }

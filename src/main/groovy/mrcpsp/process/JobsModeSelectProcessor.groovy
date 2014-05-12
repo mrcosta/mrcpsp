@@ -41,28 +41,30 @@ public class JobsModeSelectProcessor {
         log.info("MODE SELECTION: " + jobsMode)
         switch (jobsMode) {
             case EnumJobsMode.LESS_DURATION.description:
-                project.staggeredJobs = setShorterDurationMode(project.jobs)
+                project.jobs = setShorterDurationMode(project.jobs)
                 break
             case EnumJobsMode.MINIMUM_NON_RENEWABLE_RESOURCES.description:
-                project.staggeredJobs = setJobsLowerNonRenewableConsumption(project.jobs)
+                project.jobs = setJobsLowerNonRenewableConsumption(project.jobs)
                 break
             case EnumJobsMode.MINIMUM_RESOURCES.description:
-                project.staggeredJobs = setJobsLowerSumComsuption(project.jobs)
+                project.jobs = setJobsLowerSumComsuption(project.jobs)
                 break
             case EnumJobsMode.SHORTER_NEAR_TO_LOWER_NON_RENEWABLE_RESOURCES.description:
-                project.staggeredJobs = setJobsShorterNearToMinimumNonRenewableResources(project.jobs)
+                project.jobs = setJobsShorterNearToMinimumNonRenewableResources(project.jobs)
                 break
             case EnumJobsMode.SHORTEST_FEASIBLE_MODE.description:
-                project.staggeredJobs = setJobsModeShortestFeasbileMode(project)
+                project.jobs = setJobsModeShortestFeasbileMode(project)
                 break
             case EnumJobsMode.RANKING_FRFM.description:
-                project.staggeredJobs = setJobsModeRankingSfm(project)
+                project.jobs = setJobsModeRankingSfm(project)
                 break
             default:
                 log.log(Level.ERROR, "MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
                 throw new IllegalArgumentException("MODE SELECTION is not valid! Please check the argument 'mode.jobs' in mrcpsp.properties file");
                 break
         }
+
+        return project.jobs
 	}
 
     List<Job> setJobsModeRankingSfm(Project project) {

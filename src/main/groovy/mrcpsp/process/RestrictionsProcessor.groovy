@@ -22,7 +22,7 @@ public class RestrictionsProcessor {
      */
 	public boolean checkNonRenewableResourcesAmount(Project project) {
 		ResourceAvailabilities ra = project.resourceAvailabilities
-		List<Job> jobs = project.staggeredJobs
+		List<Job> jobs = project.jobs
 		boolean checkAmount = true
 		
 		log.info("Checking the Non Renewable resources amount. Initial Amount: " + ra.nonRenewableInitialAmount)

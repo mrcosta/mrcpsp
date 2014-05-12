@@ -73,7 +73,7 @@ class MmProcessor {
 				log.info("==========================================================================")
 				log.info("Getting job modes information . . .")
 				jobsModeInformationProcessor = new JobsModeInformationProcessor()
-				project.setJobs(jobsModeInformationProcessor.getJobModesInformation(project.getJobs(), project.resourceAvailabilities))
+				project.jobs = jobsModeInformationProcessor.getJobModesInformation(project.getJobs(), project.resourceAvailabilities)
 				success = true
 				log.info("Getting job modes information . . . DONE \n")	
 			} catch (Exception e) {
@@ -92,7 +92,7 @@ class MmProcessor {
 				log.info("Executing Job Priority Rules . . .")
 				
 				jobPriorityRulesOperations = new JobPriorityRulesOperations()
-				project.setJobs(jobPriorityRulesOperations.setJobsPriorityRuleInformation(project))
+				project.jobs = jobPriorityRulesOperations.setJobsPriorityRuleInformation(project)
 				success = true
 				log.info("Executing Job Priority Rules . . .DONE \n")	
 			} catch (Exception e) {
@@ -111,8 +111,8 @@ class MmProcessor {
 				log.info("Generating the Initial Solution with GRASP . . .")
 				
 				generateInitialSolutionGRASP = new GenerateInitialSolutionGRASP()
-				project.setStaggeredJobs(generateInitialSolutionGRASP.getInitialSolution(project))
-				
+                project.staggeredJobs = generateInitialSolutionGRASP.getInitialSolution(project)
+
 				log.info(LogUtils.generateJobsIDListLog(project.getJobs(), EnumLogUtils.LIST_JOBS))
 				log.info(LogUtils.generateJobsIDListLog(project.getStaggeredJobs(), EnumLogUtils.STAGGERED_JOBS))
 				
@@ -134,9 +134,9 @@ class MmProcessor {
 				log.info("Executing jobs mode select . . .")
 				
 				jobsModeSelectProcessor = new JobsModeSelectProcessor()
-				jobsModeSelectProcessor.setJobsMode(project)
+				project.jobs = jobsModeSelectProcessor.setJobsMode(project)
 				
-				log.info(LogUtils.generateJobsModeIDListLog(project.getStaggeredJobs(), EnumLogUtils.JOBS_MODE_LIST))
+				log.info(LogUtils.generateJobsModeIDListLog(project.jobs, EnumLogUtils.JOBS_MODE_LIST))
 				
 				success = true
 				log.info("Executing jobs mode select . . .DONE \n")
@@ -159,7 +159,7 @@ class MmProcessor {
 				success = restrictionsProcessor.checkNonRenewableResourcesAmount(project)
 
                 if (success) {
-                    log.info(LogUtils.generateJobsModeIDListLog(project.getStaggeredJobs(), EnumLogUtils.JOBS_MODE_LIST))
+                    log.info(LogUtils.generateJobsModeIDListLog(project.jobs, EnumLogUtils.JOBS_MODE_LIST))
                 }
 				log.info("Executing Restrictions Verification . . .DONE \n")	
 			} catch (Exception e) {
@@ -336,15 +336,15 @@ class MmProcessor {
 		
 		project
 	}
-	
-	def Project initialSolutionWithGrasp(String fileName) {
-		success = true
-		
-		// reading the file information and creating the objects
-		success = executeGetInstanceData(fileName)
-		
-		// excluding the dumb modes and getting some useful information about the modes of each job - priority rules will use this information
-		success = executeGetJobModesInformation()
+
+    def basicOperationsInstance(String fileName) {
+        success = true
+
+        // reading the file information and creating the objects
+        success = executeGetInstanceData(fileName)
+
+        // excluding the dumb modes and getting some useful information about the modes of each job - priority rules will use this information
+        success = executeGetJobModesInformation()
 
         // getting a mode for each job
         ChronoWatch.instance.startSolutionTime()
@@ -354,9 +354,11 @@ class MmProcessor {
         success = executeCheckRestrictions()
         ChronoWatch.instance.pauseSolutionTime()
 
-		// some priority rules can run without runtime information update (like NIS)
-		success = executeJobsPriorityRules()
-		
+        // some priority rules can run without runtime information update (like NIS)
+        success = executeJobsPriorityRules()
+    }
+	
+	def Project initialSolutionWithGrasp() {
 		// generating the initial solution
         ChronoWatch.instance.startSolutionTime()
 		success = executeGenerateInitialSolution()
@@ -377,13 +379,6 @@ class MmProcessor {
         success = setProjectMakespan()
 
 		return project		
-	}
-	
-	def Project localSearchDescentUphillMethod(Project project) {
-		// to set a different project if necessary
-		this.project = project
-		
-		callExecuteLocalSearch()
 	}
 	
 	def Project localSearchDescentUphillMethod() {

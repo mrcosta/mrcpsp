@@ -25,8 +25,8 @@ class GenerateInitialSolutionGRASP {
 	JobOperations jobOperations 
 	
 	List<Job> getInitialSolution(Project project) {
-		clonedJobs = new ArrayList<Job>(project.jobs) 
-		
+		clonedJobs = CloneUtils.cloneJobList(project.jobs)
+
 		executeGrasp(clonedJobs) 
 		
 		return staggeredJobs
@@ -50,7 +50,7 @@ class GenerateInitialSolutionGRASP {
 			// getting the jobs available to be schedule
             eligibleJobs = initialSolutionOperations.getEligibleJobsList(jobs, eligibleJobs)
 
-			// create/update the rclJobsList 
+			// create/update the rclJobsList
 			rcl = generateRclJobsList(rcl, eligibleJobs)
 			
 			if (!rcl.isEmpty()) {				
