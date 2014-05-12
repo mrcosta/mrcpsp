@@ -2,6 +2,7 @@ package mrcpsp.process
 
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
+import mrcpsp.utils.CloneUtils
 import mrcpsp.utils.FileUtils
 import mrcpsp.utils.LogUtils
 import mrcpsp.utils.PropertyConstants
@@ -27,10 +28,10 @@ public class ResultsProcessor {
 
 	public void checkLowerMakespan(Project project) {
 		if (lowerProjectMakespan == null || lowerProjectMakespan.makespan == PropertyConstants.INSTANCE_MAKESPAN_ERROR) {
-			lowerProjectMakespan = project
+			lowerProjectMakespan = CloneUtils.cloneProject(project)
 		} else {			
 			if (project.makespan < lowerProjectMakespan.makespan) {
-				lowerProjectMakespan = project
+				lowerProjectMakespan = CloneUtils.cloneProject(project)
 			}
 		}
 	}
