@@ -45,10 +45,6 @@ class ShortestFeasibleModeLSForPerturbation {
         def checkModes = jobsBetweenInterval.findAll { it.mode.id == it.modesInformation.shorter }.size() == jobsBetweenInterval.size()
 
         if (!checkModes) {
-            jobsBetweenInterval.each {
-                modeOperations.removingNonRenewableResources(project.resourceAvailabilities, it.mode)
-            }
-
             sfm.jobModes = new HashMap<String, String>()
             sfm.sfm([:], project.resourceAvailabilities, jobsBetweenInterval, false, 0)
 
@@ -56,11 +52,14 @@ class ShortestFeasibleModeLSForPerturbation {
                 Job jobToChange = jobsBetweenInterval.find { it.id == key}
                 Mode mode = jobToChange.availableModes.find { it.id == value}
 
-                jobToChange.mode = mode
-            }
+                modeOperations.removingNonRenewableResources(project.resourceAvailabilities, jobToChange.mode)
 
-            jobsBetweenInterval.each {
-                modeOperations.addingNonRenewableResources(project.resourceAvailabilities, it.mode)
+                def checkResources = modeOperations.checkNonRenewableResources(project.resourceAvailabilities, mode)
+                if (checkResources) {
+                    jobToChange.mode = mode
+                }
+
+                modeOperations.addingNonRenewableResources(project.resourceAvailabilities, jobToChange.mode)
             }
         }
     }

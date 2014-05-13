@@ -41,12 +41,6 @@ public class RestrictionsProcessor {
 		return checkAmount
 	}
 
-    /**
-     * Setting the RENEWABLE resources amount usage
-     * @param ra
-     * @param mode
-     * @return
-     */
 	private boolean setNonRenewableResourcesConsumedAmount(ResourceAvailabilities ra, Mode mode) {
 		Integer count = 0
 		boolean checkAmount = true

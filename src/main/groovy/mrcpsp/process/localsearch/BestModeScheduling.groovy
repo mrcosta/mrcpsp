@@ -36,17 +36,16 @@ class BestModeScheduling {
      */
     def changeModeAndCheckNonRenewableResourcesRestriction(Project project, Integer jobId, Integer modeId) {
         def job = project.staggeredJobs.find { it.id == jobId }
-        Mode newMode = job.availableModes.find{ it.id == modeId}
+        Mode newMode = job.availableModes.find{ it.id == modeId }
 
         modeOperations.removingNonRenewableResources(project.resourceAvailabilities, job.mode)
 
         def checkResources = modeOperations.checkNonRenewableResources(project.resourceAvailabilities, newMode)
         if (checkResources) {
-            modeOperations.addingNonRenewableResources(project.resourceAvailabilities, newMode)
             job.mode = newMode
-        } else {
-            modeOperations.addingNonRenewableResources(project.resourceAvailabilities, job.mode)
         }
+
+        modeOperations.addingNonRenewableResources(project.resourceAvailabilities, job.mode)
 
         return checkResources
     }

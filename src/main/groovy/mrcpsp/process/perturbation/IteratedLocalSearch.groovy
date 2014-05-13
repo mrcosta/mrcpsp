@@ -115,13 +115,14 @@ class IteratedLocalSearch {
 
     private boolean changeJobModeAndUpdateResourcesAvailabilities(ResourceAvailabilities ra, Job randomizedJob, Mode modeToChange) {
         ModeOperations modeOperations = new ModeOperations()
-        def isModeChanged = false
 
         modeOperations.removingNonRenewableResources(ra, randomizedJob.mode)
-        if (modeOperations.checkNonRenewableResources(ra, modeToChange)) {
+
+        def isModeChanged = modeOperations.checkNonRenewableResources(ra, modeToChange)
+        if (isModeChanged) {
             randomizedJob.mode = modeToChange
-            isModeChanged = true
         }
+
         modeOperations.addingNonRenewableResources(ra, randomizedJob.mode)
 
         return isModeChanged

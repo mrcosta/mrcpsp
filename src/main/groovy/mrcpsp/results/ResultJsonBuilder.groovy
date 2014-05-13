@@ -42,6 +42,11 @@ class ResultJsonBuilder {
         instanceResult.modesId = project.staggeredJobs.mode.id.toString()
         instanceResult.executionTime = ChronoWatch.instance.totalTimeSolutionFormated
 
+        instanceResult.times = [:]
+        project.staggeredJobs.each { job ->
+            instanceResult.times."$job.id" = "$job.startTime - $job.endTime"
+        }
+
         return instanceResult
     }
 
