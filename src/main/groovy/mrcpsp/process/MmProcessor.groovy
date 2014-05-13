@@ -149,14 +149,15 @@ class MmProcessor {
 		success
 	}
 	
-	private boolean executeCheckRestrictions() {
+	private boolean executeCheckRestrictionsAndSetOriginalNonRenewableConsumedAmount() {
 		if (success) {			
 			try {	
 				log.info("==========================================================================")
 				log.info("Executing Restrictions Verification . . .")
 				
 				restrictionsProcessor = new RestrictionsProcessor()
-				success = restrictionsProcessor.checkNonRenewableResourcesAmount(project)
+				success = restrictionsProcessor.checkAndSetTheNonRenewableResourcesAmount(project)
+                project.resourceAvailabilities.setOriginalNonRenewableConsumedAndRemainingAmount()
 
                 if (success) {
                     log.info(LogUtils.generateJobsModeIDListLog(project.jobs, EnumLogUtils.JOBS_MODE_LIST))
@@ -353,7 +354,7 @@ class MmProcessor {
         success = executeJobsModeSelect()
 
         // checking if the restrictions for the NR resources are OK
-        success = executeCheckRestrictions()
+        success = executeCheckRestrictionsAndSetOriginalNonRenewableConsumedAmount()
         ChronoWatch.instance.pauseSolutionTime()
 
         // some priority rules can run without runtime information update (like NIS)
@@ -361,6 +362,9 @@ class MmProcessor {
     }
 	
 	def Project initialSolutionWithGrasp() {
+        // backing the non renewable consumed amount to the first set of modes
+        project.resourceAvailabilities.backNonRenewableConsumedAndRemainingAmountToOriginal()
+
 		// generating the initial solution
         ChronoWatch.instance.startSolutionTime()
 		success = executeGenerateInitialSolution()

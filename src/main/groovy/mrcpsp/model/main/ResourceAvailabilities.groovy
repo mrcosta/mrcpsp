@@ -16,6 +16,9 @@ class ResourceAvailabilities {
 
     List<Job> scheduledJobs
 
+    List<Integer> originalNonRenewableConsumedAmount
+    List<Integer> originalNonRenewableRemainingAmount
+
 	public ResourceAvailabilities() {
 		renewableInitialAmount = []
 		nonRenewableInitialAmount = []
@@ -25,6 +28,9 @@ class ResourceAvailabilities {
 		
 		remainingRenewableAmount = []
 		remainingNonRenewableAmount = []
+
+        originalNonRenewableConsumedAmount = []
+        originalNonRenewableRemainingAmount = []
 
         scheduledJobs = []
 	}
@@ -36,6 +42,22 @@ class ResourceAvailabilities {
         this.remainingRenewableAmount.addAll(this.renewableInitialAmount)
 
         this.scheduledJobs = []
+    }
+
+    def setOriginalNonRenewableConsumedAndRemainingAmount() {
+       this.originalNonRenewableConsumedAmount.clear()
+       this.originalNonRenewableConsumedAmount.addAll(this.nonRenewableConsumedAmount)
+
+        this.originalNonRenewableRemainingAmount.clear()
+        this.originalNonRenewableRemainingAmount.addAll(this.remainingNonRenewableAmount)
+    }
+
+    def backNonRenewableConsumedAndRemainingAmountToOriginal() {
+        this.nonRenewableConsumedAmount.clear()
+        this.nonRenewableConsumedAmount.addAll(this.originalNonRenewableConsumedAmount)
+
+        this.remainingNonRenewableAmount.clear()
+        this.remainingNonRenewableAmount.addAll(this.originalNonRenewableRemainingAmount)
     }
 
 	@Override
