@@ -29,8 +29,8 @@ public class RestrictionsProcessor {
             if (checkAmount) {
                 modeOperations.addingNonRenewableResources(ra, job.mode)
             } else {
-                log.log(Level.ERROR, "FILE instance: "  + project.fileName + " .Problem calculating the non renewable resources amount of the job " + job.id + ".")
-                log.info("Consumed RN after execution will be: " + ra.nonRenewableConsumedAmount + " and remaining amout: " + ra.remainingNonRenewableAmount)
+                log.log(Level.ERROR, "FILE instance: "  + project.fileName + " .Problem calculating the non renewable resources amount of the job " + job.id + " with mode $job.mode.id")
+                log.info("Consumed RN after execution will be: " + ra.nonRenewableConsumedAmount + " and remaining amount: " + ra.remainingNonRenewableAmount)
                 return false
             }
 

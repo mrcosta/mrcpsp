@@ -38,8 +38,8 @@ class ResultJsonBuilder {
         def instanceResult = [:]
 
         instanceResult.makespan = project.makespan
-        instanceResult.jobsId = project.staggeredJobs.id.toString()
-        instanceResult.modesId = project.staggeredJobs.mode.id.toString()
+        instanceResult.jobsId = project.staggeredJobs?.id.toString()
+        instanceResult.modesId = project.staggeredJobs?.mode?.id.toString()
         instanceResult.executionTime = ChronoWatch.instance.totalTimeSolutionFormated
 
         instanceResult.times = [:]
