@@ -36,7 +36,7 @@ class ShortestFeasibleModeLS {
         }
     }
 
-    def checkShortestFeasibleMode(Project project, Integer jobId) {
+    def boolean checkShortestFeasibleMode(Project project, Integer jobId) {
         def job = project.staggeredJobs.find { it.id == jobId }
         def jobsBetweenInterval = jobOperations.getJobsBetweenInterval(job, project.staggeredJobs)
         jobsBetweenInterval.add(0, job)
@@ -44,6 +44,9 @@ class ShortestFeasibleModeLS {
         def checkModes = jobsBetweenInterval.findAll { it.mode.id == it.modesInformation.shorter }.size() == jobsBetweenInterval.size()
 
         if (!checkModes) {
+            jobsBetweenInterval.each {
+                modeOperations.removingNonRenewableResources(project.resourceAvailabilities, it.mode)
+            }
 
             sfm.jobModes = new HashMap<String, String>()
             sfm.sfm([:], project.resourceAvailabilities, jobsBetweenInterval, false, 0)
@@ -52,15 +55,14 @@ class ShortestFeasibleModeLS {
                 Job jobToChange = jobsBetweenInterval.find { it.id == key}
                 Mode mode = jobToChange.availableModes.find { it.id == value}
 
-                modeOperations.removingNonRenewableResources(project.resourceAvailabilities, jobToChange.mode)
+                jobToChange.mode = mode
+            }
 
-                def checkResources = modeOperations.checkNonRenewableResources(project.resourceAvailabilities, mode)
-                if (checkResources) {
-                    jobToChange.mode = mode
-                }
-
-                modeOperations.addingNonRenewableResources(project.resourceAvailabilities, jobToChange.mode)
+            jobsBetweenInterval.each {
+                modeOperations.addingNonRenewableResources(project.resourceAvailabilities, it.mode)
             }
         }
+
+        return true
     }
 }
