@@ -39,14 +39,14 @@ class IteratedLocalSearch {
 
         while (checkSolution) {
 
-            def intervalJobsIdList = getAndMergeJobIdIntervals(bestProject.staggeredJobs)
+            def intervalJobsIdList = getAndMergeJobIdIntervals(bestProject.staggeredJobsId)
 
             intervalJobsIdList.each { intervalJobsId ->
                 ChronoWatch.instance.pauseSolutionTime()
                 def clonedProject = CloneUtils.cloneProject(bestProject)
-                log.info("PERTURBATION - JOBS ID: " + clonedProject.staggeredJobs.id)
+                log.info("PERTURBATION - JOBS ID: " + clonedProject.staggeredJobsId.id)
                 ChronoWatch.instance.startSolutionTime()
-                def eligibleJobs = ilsHelper.getJobsThatCanChangeItsMode(intervalJobsId, clonedProject.staggeredJobs)
+                def eligibleJobs = ilsHelper.getJobsThatCanChangeItsMode(intervalJobsId, clonedProject.staggeredJobsId)
 
                 if (!eligibleJobs.isEmpty()) {
                     def randomIndex = RandomUtils.nextInt(eligibleJobs.size())
@@ -55,11 +55,11 @@ class IteratedLocalSearch {
                     def remainingModes = ilsHelper.getRemaningModesForJob(randomizedJob)
 
                     remainingModes.each { mode ->
-                        log.info("PERTURBATION - MODES ID: " + clonedProject.staggeredJobs.mode.id)
+                        log.info("PERTURBATION - MODES ID: " + clonedProject.staggeredJobsId.mode.id)
                         def isModeChanged = changeJobModeAndUpdateResourcesAvailabilities(clonedProject.resourceAvailabilities, randomizedJob, mode) // perturbation
 
                         if (isModeChanged) {
-                            log.info("PERTURBATION - MODES ID AFTER PERTURBATION: " + clonedProject.staggeredJobs.mode.id)
+                            log.info("PERTURBATION - MODES ID AFTER PERTURBATION: " + clonedProject.staggeredJobsId.mode.id)
                             def neighborProject = localSearchForPerturbation.executeLocalSearchForPerturbation(clonedProject, randomizedJob)
 
                             if (neighborProject) {

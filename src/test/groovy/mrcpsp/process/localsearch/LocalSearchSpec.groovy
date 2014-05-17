@@ -86,7 +86,7 @@ class LocalSearchSpec extends Specification {
         then:
         result != null
         localSearch.bestProject.makespan == 9
-        //localSearch.bestProject.staggeredJobs*.mode.id == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        //localSearch.bestProject.staggeredJobsId*.mode.id == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     }
 
 }

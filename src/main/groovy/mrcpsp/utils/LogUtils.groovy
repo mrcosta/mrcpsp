@@ -15,7 +15,7 @@ final class LogUtils {
 	
 	private static String INSTANCE_STATUS = "";
 	
-	static String generateJobsModeIDListLog(List<Job> jobs, EnumLogUtils text) {
+	static String generateJobsModeIDListLog(List<Integer> jobs, EnumLogUtils text) {
 		String logString = ""
 		
 		if (!jobs.isEmpty()) {
@@ -34,7 +34,7 @@ final class LogUtils {
 		return logString;
 	}
 	
-	static String generateJobsIDListLog(List<Job> jobs, EnumLogUtils text) {
+	static String generateJobsIDListLog(List<Integer> jobs, EnumLogUtils text) {
 		String logString = "";
 
         if (!jobs.isEmpty()) {

@@ -19,7 +19,7 @@ class GanttDiagram {
     def generateGanttDiagram(Project project) {
         Gantt gantt = null
         def diagramPath = getDiagramPath(project)
-        def orderedJobs = project.staggeredJobs.sort{it.id}
+        def orderedJobs = project.staggeredJobsId.sort{it.id}
         def tasks = createTasksList(orderedJobs)
 
         gantt = new Gantt( (Task[]) tasks.toArray(), diagramPath)

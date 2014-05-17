@@ -39,7 +39,7 @@ class LocalSearchForPerturbation {
         checkSolution = true
 
         log.info("LOCAL SEARCH: " + localSearch)
-        def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+        def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobsId, project.instanceInformation.jobsAmount)
         realJobs = realJobs.findAll { it.id != randomizedJob.id }
         jobsBlockSFM(project, realJobs, randomizedJob)
 

@@ -24,16 +24,17 @@ class JobTimeProcessor {
         jobOperations = new JobOperations()
     }
 
-    List<Job> getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
+    List<Job> getJobTimes(ResourceAvailabilities ra, List<Integer> staggeredJobsId, List<Job> jobs) {
         boolean checkResources = false
 
         ra.resetRenewableResources()
         jobs*.startTime = 0
         jobs*.endTime = 0
 
-        jobs.each { job ->
-            log.debug("Getting start and finish time - JOB: $job.id")
+        staggeredJobsId.each { jobId ->
+            log.debug("Getting start and finish time - JOB: $jobId")
 
+            def job = jobs[jobId - 1]
             if (job.predecessors.isEmpty()) {
                 checkResources = setTimeJobWithoutPredecessors(ra, job, jobs)
             } else {

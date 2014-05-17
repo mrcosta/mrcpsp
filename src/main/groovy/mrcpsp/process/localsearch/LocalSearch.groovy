@@ -37,7 +37,7 @@ class LocalSearch {
         log.info("LOCAL SEARCH: " + localSearch)
         switch (localSearch) {
             case EnumLocalSearch.LNRC.name:
-                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobsId, project.instanceInformation.jobsAmount)
                 lowerNonRenewableComsumption(project, realJobs)
                 break
             case EnumLocalSearch.LNRCCP.name:
@@ -45,11 +45,11 @@ class LocalSearch {
                 lowerNonRenewableComsumption(project, realJobs)
                 break
             case EnumLocalSearch.BSFM.name:
-                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobsId, project.instanceInformation.jobsAmount)
                 jobsBlockSFM(project, realJobs)
                 break
             case EnumLocalSearch.BMS.name:
-                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobsId, project.instanceInformation.jobsAmount)
                 bestModeToSchedule(project, realJobs)
                 break
             default:

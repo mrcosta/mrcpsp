@@ -17,24 +17,24 @@ class GenerateInitialSolutionGRASP {
 	
 	static final Logger log = Logger.getLogger(GenerateInitialSolutionGRASP.class) 
 	
-	List<Job> staggeredJobs 
-	List<Job> eligibleJobs 
-	List<Job> rcl 
-	List<Job> clonedJobs 
-	InitialSolutionsOperations initialSolutionOperations 
+	List<Integer> staggeredJobsId
+	List<Integer> eligibleJobsId
+	List<Integer> rcl
+    List<Job> eligibleJobs
+
+    InitialSolutionsOperations initialSolutionOperations
 	JobOperations jobOperations 
 	
-	List<Job> getInitialSolution(Project project) {
-		clonedJobs = CloneUtils.cloneJobList(project.jobs)
-
-		executeGrasp(clonedJobs) 
+	List<Integer> getInitialSolution(Project project) {
+		executeGrasp(project.jobs)
 		
-		return staggeredJobs
+		return staggeredJobsId
 	}	
 	
 	GenerateInitialSolutionGRASP() {
-		staggeredJobs = []
+		staggeredJobsId = []
 		eligibleJobs = []
+        eligibleJobsId = []
 		rcl = []
 		
 		initialSolutionOperations = new InitialSolutionsOperations() 
@@ -42,36 +42,37 @@ class GenerateInitialSolutionGRASP {
 	}
 	
 	private List<Job> executeGrasp(List<Job> jobs) {
-		Job randomizedJob 		
-		
-		log.info("Executing GRASP - Initial Solution...") 
-		
-		while (!jobs.isEmpty()) {
+		log.info("Executing GRASP - Initial Solution...")
+
+        List<Integer> jobsId = jobs.id
+        List<Job> remaniningJobs
+		while (!jobsId.isEmpty()) {
 			// getting the jobs available to be schedule
-            eligibleJobs = initialSolutionOperations.getEligibleJobsList(jobs, eligibleJobs)
+            remaniningJobs = jobOperations.getDifferentsJobsFromIdList(jobs, staggeredJobsId)
+            eligibleJobsId = initialSolutionOperations.getEligibleJobsList(remaniningJobs, eligibleJobsId)
+            eligibleJobs = jobOperations.getJobsFromIdList(jobs, eligibleJobsId)
 
 			// create/update the rclJobsList
 			rcl = generateRclJobsList(rcl, eligibleJobs)
-			
-			if (!rcl.isEmpty()) {				
+			if (!rcl.isEmpty()) {
 				// randomize a job to be scheduled
-				randomizedJob = initialSolutionOperations.getRandomJobFromRCL(rcl) 
+                Integer randomizedJobId = initialSolutionOperations.getRandomJobIdFromRCL(rcl)
                 ChronoWatch.instance.pauseSolutionTime()
-                staggeredJobs.add(CloneUtils.cloneJob(randomizedJob)) 
+                staggeredJobsId.add(randomizedJobId)
                 ChronoWatch.instance.startSolutionTime()
 				
 				// update the staggered predecessors jobs list of the remaining jobs
-				initialSolutionOperations.updateRunningJobInformation(jobs, randomizedJob) 
+				initialSolutionOperations.updateRunningJobInformation(remaniningJobs, randomizedJobId)
 				
 				// clear the rclJobsList
 				rcl.clear()
-                eligibleJobs.remove( eligibleJobs.find{ it.id == randomizedJob.id } )
-                jobs.remove( jobs.find{ it.id == randomizedJob.id } )
+                eligibleJobsId.remove( (Object)eligibleJobsId.find{ it == randomizedJobId } )
+                jobsId.remove( (Object)jobsId.find{ it == randomizedJobId } )
 
-				log.info("The job with id " + randomizedJob.getId() + " was scheduled!") 
-				log.info(LogUtils.generateJobsIDListLog(jobs, EnumLogUtils.REMAINING_JOBS)) 
-				log.info(LogUtils.generateJobsIDListLog(eligibleJobs, EnumLogUtils.ELIGIBLE_JOBS)) 				
-				log.info(LogUtils.generateJobsIDListLog(staggeredJobs, EnumLogUtils.STAGGERED_JOBS) + "\n") 
+				log.info("The job with id " + randomizedJobId + " was scheduled!")
+				log.info("The REMAINING JOBS list has this index: $jobsId ")
+                log.info("The ELIGIBLE JOBS list has this index: $eligibleJobsId ")
+                log.info("The STAGGERED JOBS jobs list has this index: $staggeredJobsId \n")
 			}
 			
 		}
@@ -79,7 +80,7 @@ class GenerateInitialSolutionGRASP {
 		log.info("Executing GRASP - Initial Solution was created... \n") 
 	}
 	
-	private List<Job> generateRclJobsList(List<Job> rclJobsList, List<Job> elegibleJobsList) {
+	private List<Integer> generateRclJobsList(List<Integer> rclJobsListId, List<Job> elegibleJobsList) {
         Integer rclSize = UrlUtils.instance.RCLSize
 				
 		// add all the eligible jobs to the rclJobsList and doesn't need to order
@@ -87,7 +88,7 @@ class GenerateInitialSolutionGRASP {
 
             ChronoWatch.instance.pauseSolutionTime()
             elegibleJobsList.each { job ->
-                rclJobsList.add(CloneUtils.cloneJob(job))
+                rclJobsListId.add(job.id)
             }
             ChronoWatch.instance.startSolutionTime()
 			
@@ -96,28 +97,22 @@ class GenerateInitialSolutionGRASP {
 			JobPriorityRulesOperations jprOperations = new JobPriorityRulesOperations() 
 			
 			// ordering the elegible jobs list
-			jprOperations.orderEligibleJobsList(elegibleJobsList) 
-			log.debug("The ELIGIBLE JOBS LIST was sorted - " + UrlUtils.instance.jobPriorityRule + " -- JOBS: " + eligibleJobs.id)
-			log.debug(LogUtils.generateJobsIDListLog(eligibleJobs, EnumLogUtils.ELIGIBLE_JOBS)) 
-			
+			jprOperations.orderEligibleJobsList(elegibleJobsList)
+			log.debug("The ELIGIBLE JOBS LIST was sorted - " + UrlUtils.instance.jobPriorityRule + " -- JOBS: " + elegibleJobsList.id)
+
 			// order the jobs by the criteria (mrcpsp.properties) and add the first ones until the rclJobsList size is equals to rclSize
             ChronoWatch.instance.pauseSolutionTime()
             Integer count = PropertyConstants.INDEX_START 
-			while(rclJobsList.size() != rclSize) {
-				Job job = elegibleJobsList.get(count++) 
+			while(rclJobsListId.size() != rclSize) {
+				Integer jobId = elegibleJobsList.get(count++).id
 				
-				rclJobsList.add(CloneUtils.cloneJob(job)) 
+				rclJobsListId.add(jobId)
 			}
             ChronoWatch.instance.startSolutionTime()
-			
-			// back the jobs to the natural order - by the index
-			jprOperations.backOrderEligibleJobsList(elegibleJobsList) 
-			log.debug("The ELIGIBLE JOBS LIST IN NATURAL ORDER - BY_ID") 
-			log.info(LogUtils.generateJobsIDListLog(eligibleJobs, EnumLogUtils.ELIGIBLE_JOBS)) 
 		}
-		log.info(LogUtils.generateJobsIDListLog(rclJobsList, EnumLogUtils.RCL_JOBS)) 
+		log.info("The RCL JOBS list has this index: $rclJobsListId")
 		
-		return rclJobsList 
+		return rclJobsListId
 	}
 
 }

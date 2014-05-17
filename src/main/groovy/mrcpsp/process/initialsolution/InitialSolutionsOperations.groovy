@@ -29,14 +29,14 @@ class InitialSolutionsOperations {
      * @param eligibleJobsList
      * @return
      */
-	List<Job> getEligibleJobsList(List<Job> remainingJobs, List<Job> eligibleJobsList) {
+	List<Integer> getEligibleJobsList(List<Job> remainingJobs, List<Integer> eligibleJobsListId) {
 		log.debug("Getting the list of remaining jobs to scheduling...");
 		remainingJobs.each { job ->
 
 			if (job.predecessors.size() == job.runningJobInformation.staggeredPredecessors.size() && !job.runningJobInformation.isEligible()) {
 
                 ChronoWatch.instance.pauseSolutionTime()
-				eligibleJobsList.add(CloneUtils.cloneJob(job))
+                eligibleJobsListId.add(job.id)
 				job.runningJobInformation.eligible = true
                 ChronoWatch.instance.startSolutionTime()
 
@@ -44,31 +44,30 @@ class InitialSolutionsOperations {
 			}
 		}				
 
-		// logging the eligible jobs list
-		log.info(LogUtils.generateJobsIDListLog(eligibleJobsList, EnumLogUtils.ELIGIBLE_JOBS))
-		
-		return eligibleJobsList
+        log.info("The ELIGIBLE JOBS list has this index: $eligibleJobsListId")
+
+		return eligibleJobsListId
 	}
 
     /**
-     * Return a randomized job from rclJobsList base in the RCList Size
+     * Return a randomized jobId from rclJobsList base in the RCList Size
      * If the RCList Size is lesser than the rclJobsList size then randomize a job from the entire list
-     * @param rclJobsList
+     * @param rclJobsIdList
      * @return
      */
-	Job getRandomJobFromRCL(List<Job> rclJobsList) {
+	Integer getRandomJobIdFromRCL(List<Integer> rclJobsIdList) {
 		Integer randomIndex
-		Integer rclSize = rclJobsList.size()
+		Integer rclSize = rclJobsIdList.size()
 		
 		// random between rclSize and 0
-		if (rclSize < rclJobsList.size()) {
+		if (rclSize < rclJobsIdList.size()) {
 			randomIndex = RandomUtils.nextInt(rclSize)
 		} else {
 			// random between 0 and rclJobsList.size
-			randomIndex = RandomUtils.nextInt(rclJobsList.size())
+			randomIndex = RandomUtils.nextInt(rclJobsIdList.size())
 		}
 		
-		return rclJobsList[randomIndex]
+		return rclJobsIdList[randomIndex]
 	}
 
     /**
@@ -78,7 +77,7 @@ class InitialSolutionsOperations {
      * @param  randomizedJob
      * @return
      */
-    List<Job> updateRunningJobInformation(List<Job> remainingJobs, Job randomizedJob) {
+    List<Job> updateRunningJobInformation(List<Job> remainingJobs, Integer randomizedJobId) {
 		
 		remainingJobs.each { job ->
 			RunningJobInformation runningJobInformation = job.runningJobInformation
@@ -86,8 +85,8 @@ class InitialSolutionsOperations {
 			/* if the predecessors list of the job has the id of the randomized job
 			 * then update the staggered predecessor list of it 
 			 */
-			if (job.predecessors.contains(randomizedJob.id)) {
-				runningJobInformation.staggeredPredecessors.add(randomizedJob.id);
+			if (job.predecessors.contains(randomizedJobId)) {
+				runningJobInformation.staggeredPredecessors.add(randomizedJobId);
 			}
 			
 			log.debug(job.toString());

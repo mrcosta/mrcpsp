@@ -1,7 +1,4 @@
-package mrcpsp.model.main;
-
-import java.util.ArrayList;
-import java.util.List;
+package mrcpsp.model.main
 
 class RunningJobInformation {
 	
@@ -18,6 +15,11 @@ class RunningJobInformation {
         totalSuccessors = 0
         eligible = false
 	}
+
+    def restartEligibilityAndStaggeredPredecessors() {
+        staggeredPredecessors.clear()
+        eligible = false
+    }
 	
 	@Override
 	def String toString() {

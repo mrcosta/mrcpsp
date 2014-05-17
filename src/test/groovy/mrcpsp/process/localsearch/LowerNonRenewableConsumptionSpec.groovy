@@ -43,7 +43,7 @@ class LowerNonRenewableConsumptionSpec extends Specification {
 		result == check
 		project.resourceAvailabilities.remainingNonRenewableAmount == remainingNonRenewableAmount
 		project.resourceAvailabilities.nonRenewableConsumedAmount == nonRenewableConsumedAmount
-		project.staggeredJobs.find{ it.id == jobId}.mode.nonRenewable == modeNonRenewable
+		project.staggeredJobsId.find{ it.id == jobId}.mode.nonRenewable == modeNonRenewable
 		
 		where:
         jobId		    | remainingNonRenewableAmount | nonRenewableConsumedAmount  | check  | modeNonRenewable

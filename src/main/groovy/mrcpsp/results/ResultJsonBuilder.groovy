@@ -1,6 +1,7 @@
 package mrcpsp.results
 
 import groovy.json.JsonBuilder
+import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
 import mrcpsp.utils.ChronoWatch
 import mrcpsp.utils.PropertyConstants
@@ -38,12 +39,13 @@ class ResultJsonBuilder {
         def instanceResult = [:]
 
         instanceResult.makespan = project.makespan
-        instanceResult.jobsId = project.staggeredJobs?.id.toString()
-        instanceResult.modesId = project.staggeredJobs?.mode?.id.toString()
+        instanceResult.jobsId = project.staggeredJobsId?.toString()
+        instanceResult.modesId = project.jobs?.mode?.id.toString()
         instanceResult.executionTime = ChronoWatch.instance.totalTimeSolutionFormated
 
         instanceResult.times = [:]
-        project.staggeredJobs.each { job ->
+        project.staggeredJobsId.each { jobId ->
+            Job job = project.jobs[jobId - 1]
             instanceResult.times."$job.id" = "$job.startTime - $job.endTime"
         }
 

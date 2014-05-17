@@ -111,11 +111,11 @@ class MmProcessor {
 				log.info("Generating the Initial Solution with GRASP . . .")
 				
 				generateInitialSolutionGRASP = new GenerateInitialSolutionGRASP()
-                project.staggeredJobs = generateInitialSolutionGRASP.getInitialSolution(project)
+                project.staggeredJobsId = generateInitialSolutionGRASP.getInitialSolution(project)
 
-				log.info(LogUtils.generateJobsIDListLog(project.getJobs(), EnumLogUtils.LIST_JOBS))
-				log.info(LogUtils.generateJobsIDListLog(project.getStaggeredJobs(), EnumLogUtils.STAGGERED_JOBS))
-				
+				log.info("The JOBS list has this index: $project.jobs.id")
+                log.info("The STAGGERED list has this index: $project.staggeredJobsId")
+
 				success = true
 				log.info("Generating the Initial Solution with GRASP . . .DONE \n")
 			} catch (Exception e) {
@@ -202,7 +202,7 @@ class MmProcessor {
 				log.info("Getting Initial and Finish Time for Jobs . . .")
 				
 				jobTimeProcessor = new JobTimeProcessor()
-				success = jobTimeProcessor.getJobTimes(project.getResourceAvailabilities(), project.getStaggeredJobs())
+				success = jobTimeProcessor.getJobTimes(project.resourceAvailabilities, project.staggeredJobsId, project.jobs)
 				log.info("Getting Initial and Finish Time for Jobs . . .DONE \n")
 			} catch (Exception e) {
                 log.error("Exception during the executeGetJobTimes phase", e)
@@ -364,6 +364,7 @@ class MmProcessor {
 	def Project initialSolutionWithGrasp() {
         // backing the non renewable consumed amount to the first set of modes
         project.resourceAvailabilities.backNonRenewableConsumedAndRemainingAmountToOriginal()
+        project.jobs.runningJobInformation*.restartEligibilityAndStaggeredPredecessors()
 
 		// generating the initial solution
         ChronoWatch.instance.startSolutionTime()

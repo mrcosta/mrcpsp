@@ -15,7 +15,7 @@ class Project {
 	ProjectInformation projectInformation
 	ResourceAvailabilities resourceAvailabilities
 	List<Job> jobs
-	List<Job> staggeredJobs
+    List<Integer> staggeredJobsId
     List<Job> criticalPath
 	Integer makespan
     Integer lowerBound

@@ -14,8 +14,8 @@ public class ResultsProcessor {
 
 	def boolean getMakespanFromScheduledJobs(Project project, boolean success) {
 		if (success) {
-			Integer lastIndex = project.staggeredJobs.size() - 1
-			Integer makespan = project.staggeredJobs.get(lastIndex).getEndTime()
+			Integer lastIndex = project.staggeredJobsId.size() - 1
+			Integer makespan = project.jobs[lastIndex].endTime
 			
 			project.makespan = makespan
 			success
@@ -37,7 +37,7 @@ public class ResultsProcessor {
 	}
 
     def getCriticalPath(Project project) {
-        Job lastJob = project.staggeredJobs.last()
+        Job lastJob = project.staggeredJobsId.last()
         project.criticalPath = []
         project.criticalPath.add(lastJob)
 
@@ -45,7 +45,7 @@ public class ResultsProcessor {
             def predecessorsJobList = []
 
             lastJob.predecessors.each { predecessor ->
-                predecessorsJobList.add(project.staggeredJobs.find{it.id == predecessor})
+                predecessorsJobList.add(project.staggeredJobsId.find{it.id == predecessor})
             }
 
             lastJob = predecessorsJobList.max { it.endTime }

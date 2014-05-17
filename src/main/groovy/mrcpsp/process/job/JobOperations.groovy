@@ -38,6 +38,14 @@ class JobOperations {
         }
     }
 
+    List<Job> getJobsFromIdList(List<Job> jobs, List<Integer> jobsId) {
+        return jobs.findAll { jobsId.contains(it.id) }
+    }
+
+    List<Job> getDifferentsJobsFromIdList(List<Job> jobs, List<Integer> jobsId) {
+        return jobs.findAll { !jobsId.contains(it.id) }
+    }
+
     def setSumRankingForTheRealJobsAndUpdateModesInformation(List<Job> realJobs, Map modesSumRankingPositions) {
 
         realJobs.each { job ->

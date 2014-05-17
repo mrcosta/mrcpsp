@@ -37,8 +37,8 @@ class ShortestFeasibleModeLSForPerturbation {
     }
 
     def boolean checkShortestFeasibleMode(Project project, Integer jobId, Integer randomizedJobId) {
-        def job = project.staggeredJobs.find { it.id == jobId }
-        def jobsBetweenInterval = jobOperations.getJobsBetweenInterval(job, project.staggeredJobs)
+        def job = project.staggeredJobsId.find { it.id == jobId }
+        def jobsBetweenInterval = jobOperations.getJobsBetweenInterval(job, project.staggeredJobsId)
         jobsBetweenInterval.add(0, job)
         jobsBetweenInterval = removeRandomizedJobFromJobsBetweenInterval(jobsBetweenInterval, randomizedJobId)
 

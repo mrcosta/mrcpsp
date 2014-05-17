@@ -37,8 +37,8 @@ class ShortestFeasibleModeLS {
     }
 
     def boolean checkShortestFeasibleMode(Project project, Integer jobId) {
-        def job = project.staggeredJobs.find { it.id == jobId }
-        def jobsBetweenInterval = jobOperations.getJobsBetweenInterval(job, project.staggeredJobs)
+        def job = project.staggeredJobsId.find { it.id == jobId }
+        def jobsBetweenInterval = jobOperations.getJobsBetweenInterval(job, project.staggeredJobsId)
         jobsBetweenInterval.add(0, job)
 
         def checkModes = jobsBetweenInterval.findAll { it.mode.id == it.modesInformation.shorter }.size() == jobsBetweenInterval.size()

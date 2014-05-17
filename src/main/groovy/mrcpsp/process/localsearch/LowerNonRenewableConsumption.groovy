@@ -34,7 +34,7 @@ class LowerNonRenewableConsumption {
 	 * @return
 	 */
 	def checkNonRenewableResourcesRestriction(Project project, Integer jobId) {
-		def job = project.staggeredJobs.find { it.id == jobId }
+		def job = project.staggeredJobsId.find { it.id == jobId }
 		Mode shorterMode = job.availableModes.find{ it.id == job.modesInformation.shorter}
 
         modeOperations.removingNonRenewableResources(project.resourceAvailabilities, job.mode)
