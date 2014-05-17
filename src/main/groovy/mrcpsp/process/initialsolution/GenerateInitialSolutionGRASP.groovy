@@ -17,22 +17,22 @@ class GenerateInitialSolutionGRASP {
 	
 	static final Logger log = Logger.getLogger(GenerateInitialSolutionGRASP.class) 
 	
-	List<Integer> staggeredJobsId
+	Map<Integer, Integer> staggeredJobsModesId
 	List<Integer> eligibleJobsId
 	List<Integer> rcl
     List<Job> eligibleJobs
 
     InitialSolutionsOperations initialSolutionOperations
-	JobOperations jobOperations 
-	
-	List<Integer> getInitialSolution(Project project) {
+	JobOperations jobOperations
+
+    Map<Integer, Integer> getInitialSolution(Project project) {
 		executeGrasp(project.jobs)
 		
-		return staggeredJobsId
+		return staggeredJobsModesId
 	}	
 	
 	GenerateInitialSolutionGRASP() {
-		staggeredJobsId = []
+        staggeredJobsModesId = [:]
 		eligibleJobs = []
         eligibleJobsId = []
 		rcl = []
@@ -48,7 +48,7 @@ class GenerateInitialSolutionGRASP {
         List<Job> remaniningJobs
 		while (!jobsId.isEmpty()) {
 			// getting the jobs available to be schedule
-            remaniningJobs = jobOperations.getDifferentsJobsFromIdList(jobs, staggeredJobsId)
+            remaniningJobs = jobOperations.getDifferentsJobsFromIdList(jobs, staggeredJobsModesId*.key)
             eligibleJobsId = initialSolutionOperations.getEligibleJobsList(remaniningJobs, eligibleJobsId)
             eligibleJobs = jobOperations.getJobsFromIdList(jobs, eligibleJobsId)
 
@@ -57,10 +57,8 @@ class GenerateInitialSolutionGRASP {
 			if (!rcl.isEmpty()) {
 				// randomize a job to be scheduled
                 Integer randomizedJobId = initialSolutionOperations.getRandomJobIdFromRCL(rcl)
-                ChronoWatch.instance.pauseSolutionTime()
-                staggeredJobsId.add(randomizedJobId)
-                ChronoWatch.instance.startSolutionTime()
-				
+                staggeredJobsModesId[randomizedJobId] = jobs[randomizedJobId - 1].mode.id
+
 				// update the staggered predecessors jobs list of the remaining jobs
 				initialSolutionOperations.updateRunningJobInformation(remaniningJobs, randomizedJobId)
 				
@@ -72,7 +70,7 @@ class GenerateInitialSolutionGRASP {
 				log.info("The job with id " + randomizedJobId + " was scheduled!")
 				log.info("The REMAINING JOBS list has this index: $jobsId ")
                 log.info("The ELIGIBLE JOBS list has this index: $eligibleJobsId ")
-                log.info("The STAGGERED JOBS jobs list has this index: $staggeredJobsId \n")
+                log.info("The STAGGERED JOBS jobs list has this index: " + staggeredJobsModesId*.key + "\n")
 			}
 			
 		}

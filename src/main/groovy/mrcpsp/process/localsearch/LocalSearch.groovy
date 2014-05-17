@@ -37,20 +37,20 @@ class LocalSearch {
         log.info("LOCAL SEARCH: " + localSearch)
         switch (localSearch) {
             case EnumLocalSearch.LNRC.name:
-                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobsId, project.instanceInformation.jobsAmount)
-                lowerNonRenewableComsumption(project, realJobs)
+                def realJobsId = jobOperations.getOnlyRealJobsId(project.staggeredJobsId, project.instanceInformation.jobsAmount)
+                lowerNonRenewableComsumption(project, realJobsId)
                 break
             case EnumLocalSearch.LNRCCP.name:
-                def realJobs = jobOperations.getOnlyRealJobs(project.criticalPath, project.instanceInformation.jobsAmount)
-                lowerNonRenewableComsumption(project, realJobs)
+                def realJobsId = jobOperations.getOnlyRealJobsId(project.criticalPath, project.instanceInformation.jobsAmount)
+                lowerNonRenewableComsumption(project, realJobsId)
                 break
             case EnumLocalSearch.BSFM.name:
-                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobsId, project.instanceInformation.jobsAmount)
-                jobsBlockSFM(project, realJobs)
+                def realJobsId = jobOperations.getOnlyRealJobsId(project.staggeredJobsId, project.instanceInformation.jobsAmount)
+                jobsBlockSFM(project, realJobsId)
                 break
             case EnumLocalSearch.BMS.name:
-                def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobsId, project.instanceInformation.jobsAmount)
-                bestModeToSchedule(project, realJobs)
+                def realJobsId = jobOperations.getOnlyRealJobsId(project.staggeredJobsId, project.instanceInformation.jobsAmount)
+                bestModeToSchedule(project, realJobsId)
                 break
             default:
                 log.log(Level.ERROR, "LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
@@ -70,7 +70,7 @@ class LocalSearch {
 	 * for each job in the project i changed it's mode and check what is the best
 	 * @param project
 	 */
-	void lowerNonRenewableComsumption(Project project, List<Job> jobs) {
+	void lowerNonRenewableComsumption(Project project, List<Integer> realJobsId) {
 		while (checkSolution) {
 
             jobs.each { job ->
@@ -91,7 +91,7 @@ class LocalSearch {
 		}		
 	}
 
-    def jobsBlockSFM(Project project, List<Job> jobs) {
+    def jobsBlockSFM(Project project, List<Integer> realJobsId) {
         ShortestFeasibleModeLS sfmLS = new ShortestFeasibleModeLS()
 
         while (checkSolution) {
@@ -116,16 +116,17 @@ class LocalSearch {
         return bestProject
     }
 
-    def bestModeToSchedule(Project project, List<Job> jobs) {
+    def bestModeToSchedule(Project project, List<Integer> realJobsId) {
         BestModeScheduling bms = new BestModeScheduling()
 
         while (checkSolution) {
 
-            jobs.each { job ->
+            realJobsId.each { jobId ->
+                Job job = project.jobs[jobId - 1]
                 def remainingModes = job.availableModes.findAll { it.id != job.mode.id}
 
                 remainingModes.each { mode ->
-                    def neighborProject = bms.changeExecutionModeJob(bestProject, job.id, mode.id);
+                    def neighborProject = bms.changeExecutionModeJob(bestProject, job, mode);
 
                     if (neighborProject) {
                         mmProcessor.project = neighborProject

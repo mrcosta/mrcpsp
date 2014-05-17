@@ -14,7 +14,7 @@ class ResourceAvailabilities {
 	List<Integer> remainingRenewableAmount
 	List<Integer> remainingNonRenewableAmount
 
-    List<Job> scheduledJobs
+    List<Integer> scheduledJobsId
 
     List<Integer> originalNonRenewableConsumedAmount
     List<Integer> originalNonRenewableRemainingAmount
@@ -32,32 +32,34 @@ class ResourceAvailabilities {
         originalNonRenewableConsumedAmount = []
         originalNonRenewableRemainingAmount = []
 
-        scheduledJobs = []
+        scheduledJobsId = []
 	}
 
     def resetRenewableResources() {
-        this.renewableConsumedAmount.each { it = 0 }
+        for (int i = 0; i < renewableConsumedAmount.size(); i++) {
+            renewableConsumedAmount[i] = 0
+        }
 
-        this.remainingRenewableAmount.clear()
-        this.remainingRenewableAmount.addAll(this.renewableInitialAmount)
+        remainingRenewableAmount.clear()
+        remainingRenewableAmount.addAll(this.renewableInitialAmount)
 
-        this.scheduledJobs = []
+        scheduledJobsId = []
     }
 
     def setOriginalNonRenewableConsumedAndRemainingAmount() {
-       this.originalNonRenewableConsumedAmount.clear()
-       this.originalNonRenewableConsumedAmount.addAll(this.nonRenewableConsumedAmount)
+        originalNonRenewableConsumedAmount.clear()
+        originalNonRenewableConsumedAmount.addAll(this.nonRenewableConsumedAmount)
 
-        this.originalNonRenewableRemainingAmount.clear()
-        this.originalNonRenewableRemainingAmount.addAll(this.remainingNonRenewableAmount)
+        originalNonRenewableRemainingAmount.clear()
+        originalNonRenewableRemainingAmount.addAll(this.remainingNonRenewableAmount)
     }
 
     def backNonRenewableConsumedAndRemainingAmountToOriginal() {
-        this.nonRenewableConsumedAmount.clear()
-        this.nonRenewableConsumedAmount.addAll(this.originalNonRenewableConsumedAmount)
+        nonRenewableConsumedAmount.clear()
+        nonRenewableConsumedAmount.addAll(this.originalNonRenewableConsumedAmount)
 
-        this.remainingNonRenewableAmount.clear()
-        this.remainingNonRenewableAmount.addAll(this.originalNonRenewableRemainingAmount)
+        remainingNonRenewableAmount.clear()
+        remainingNonRenewableAmount.addAll(this.originalNonRenewableRemainingAmount)
     }
 
 	@Override

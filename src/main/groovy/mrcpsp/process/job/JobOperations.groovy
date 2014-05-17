@@ -23,10 +23,14 @@ class JobOperations {
         return jobs.findAll{ job -> ![1, lastJobId].contains(job.id) }
     }
 
-    List<Job> getJobsBetweenInterval(Job jobToSchedule, List<Job> jobs) {
+    List<Integer> getJobsBetweenInterval(Job jobToSchedule, List<Job> jobs) {
         return jobs.findAll{ job ->
             (job.id != jobToSchedule.id) && (job.startTime < jobToSchedule.endTime) && (job.endTime > jobToSchedule.startTime) && (job.endTime > 0)
-        }
+        }.id
+    }
+
+    List<Integer> getOnlyRealJobsId(List<Integer> jobsId, Integer lastJobId) {
+        return jobsId.findAll{ jobId -> ![1, lastJobId].contains(jobId) }
     }
 
     /**

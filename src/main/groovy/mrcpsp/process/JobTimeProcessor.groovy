@@ -1,6 +1,8 @@
 package mrcpsp.process
 
-import mrcpsp.model.main.Job;
+import mrcpsp.model.main.Job
+import mrcpsp.model.main.Mode
+import mrcpsp.model.main.Project;
 import mrcpsp.model.main.ResourceAvailabilities
 import mrcpsp.process.job.JobOperations
 import mrcpsp.process.job.JobPriorityRulesOperations
@@ -24,118 +26,120 @@ class JobTimeProcessor {
         jobOperations = new JobOperations()
     }
 
-    List<Job> getJobTimes(ResourceAvailabilities ra, List<Integer> staggeredJobsId, List<Job> jobs) {
+    List<Job> getJobTimes(Project project) {
         boolean checkResources = false
+        ResourceAvailabilities ra = project.resourceAvailabilities
+        List<Job> jobs = project.jobs
+        Map<Integer, Integer> staggeredJobsModesId = project.staggeredJobsModesId
 
         ra.resetRenewableResources()
         jobs*.startTime = 0
         jobs*.endTime = 0
 
-        staggeredJobsId.each { jobId ->
-            log.debug("Getting start and finish time - JOB: $jobId")
+        staggeredJobsModesId.each { jobsModesId ->
+            log.debug("Getting start and finish time - JOB: $jobsModesId.key")
 
-            def job = jobs[jobId - 1]
+            def job = jobs[jobsModesId.key - 1]
+            def mode = job.availableModes.find { jobsModesId.value == it.id }
             if (job.predecessors.isEmpty()) {
-                checkResources = setTimeJobWithoutPredecessors(ra, job, jobs)
+                checkResources = setTimeJobWithoutPredecessors(ra, job, mode,  jobs, staggeredJobsModesId)
             } else {
-                checkResources = setTimeJobWithPredecessors(ra, job, jobs);
+                checkResources = setTimeJobWithPredecessors(ra, job, mode, jobs, staggeredJobsModesId);
             }
         }
 
         return jobs;
     }
 
-    Job setTimeJobWithoutPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
+    Job setTimeJobWithoutPredecessors(ResourceAvailabilities ra, Job jobToSchedule, Mode mode,  List<Job> jobs, Map<Integer, Integer> staggeredJobsModesId) {
         jobToSchedule.startTime = 0
-        jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
+        jobToSchedule.endTime = jobToSchedule.startTime + mode.duration
 
         def isSchedulled = false
         while (!isSchedulled) {
             //get all the jobs that was already scheduled in the proposed interval for the job that will be scheduled
-            ra.scheduledJobs = jobOperations.getJobsBetweenInterval(jobToSchedule, jobs)
+            ra.scheduledJobsId = jobOperations.getJobsBetweenInterval(jobToSchedule, jobs)
 
-            ra.scheduledJobs?.each {
-                modeOperations.addingRenewableResources(ra, it.mode)
+            ra.scheduledJobsId?.each { jobId ->
+                Mode scheduledJobMode = jobs[jobId - 1].availableModes.find { it.id ==  staggeredJobsModesId[jobId]}
+                modeOperations.addingRenewableResources(ra, scheduledJobMode)
             }
 
-            log.info("Scheduling job without predecessors - $jobToSchedule.id - Mode $jobToSchedule.mode.id RR: $jobToSchedule.mode.renewable - Jobs in interval: " + ra.scheduledJobs?.id + " - Resources usage: " + ra.toStringRenewable())
+            log.info("Scheduling job without predecessors - $jobToSchedule.id - Mode $mode.id - Duration: $mode.duration - RR: $mode.renewable - Jobs in interval: " + ra.scheduledJobsId + " - Resources usage: " + ra.toStringRenewable())
 
             // then we need to remove the jobs to schedule the one that we want and change its time (start and end)
-            if (!modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
-                jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule)
+            if (!modeOperations.checkRenewableResourcesAmount(ra, mode)) {
+                jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule, jobs, staggeredJobsModesId, mode)
             } else {
                 isSchedulled = true
             }
 
-            resetResources(ra)
-            ra.scheduledJobs.clear()
+            ra.resetRenewableResources()
+            ra.scheduledJobsId.clear()
         }
 
         log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}\n")
         return jobToSchedule
     }
 
-    Job setTimeJobWithPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
+    Job setTimeJobWithPredecessors(ResourceAvailabilities ra, Job jobToSchedule, Mode mode, List<Job> jobs, Map<Integer, Integer> staggeredJobsModesId) {
         List<Job> jobPredecessors = jobOperations.getJobPredecessors(jobToSchedule, jobs)
         jobPredecessors = jobPriorityRulesOperations.getJobListOrderByEndTime(jobPredecessors)
 
         Job latestJob = jobPredecessors.last()
         jobToSchedule.startTime = latestJob.endTime
-        jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
+        jobToSchedule.endTime = jobToSchedule.startTime + mode.duration
 
         def isSchedulled = false
         while (!isSchedulled) {
             //get all the jobs that was already scheduled in the proposed interval for the job that will be scheduled
-            ra.scheduledJobs = jobOperations.getJobsBetweenInterval(jobToSchedule, jobs)
+            ra.scheduledJobsId = jobOperations.getJobsBetweenInterval(jobToSchedule, jobs)
 
-            ra.scheduledJobs?.each {
-                modeOperations.addingRenewableResources(ra, it.mode)
+            ra.scheduledJobsId?.each { jobId ->
+                Mode scheduledJobMode = jobs[jobId - 1].availableModes.find { it.id ==  staggeredJobsModesId[jobId]}
+                modeOperations.addingRenewableResources(ra, scheduledJobMode)
             }
 
-            log.info("Scheduling job with predecessors - $jobToSchedule.id - Mode $jobToSchedule.mode.id RR: $jobToSchedule.mode.renewable - Jobs in interval: " + ra.scheduledJobs?.id + " - Resources usage: " + ra.toStringRenewable())
+            log.info("Scheduling job with predecessors - $jobToSchedule.id - Mode $mode.id - Duration: $mode.duration - RR: $mode.renewable - Jobs in interval: " + ra.scheduledJobsId + " - Resources usage: " + ra.toStringRenewable())
 
             // we need to remove the jobs to schedule the one that we want and change its time (start and end)
-            if (!modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
-                jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule)
+            if (!modeOperations.checkRenewableResourcesAmount(ra, mode)) {
+                jobToSchedule = setJobTimeUsingScheduledJobs(ra, jobToSchedule, jobs, staggeredJobsModesId, mode)
             } else {
                 isSchedulled = true
             }
 
-            resetResources(ra)
-            ra.scheduledJobs.clear()
+            ra.resetRenewableResources()
+            ra.scheduledJobsId.clear()
         }
 
         log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}\n")
         return jobToSchedule
     }
 
-    Job setJobTimeUsingScheduledJobs(ResourceAvailabilities ra, Job jobToSchedule) {
+    Job setJobTimeUsingScheduledJobs(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs, Map<Integer, Integer> staggeredJobsModesId, Mode modeToAdd) {
+        def scheduledJobs = jobOperations.getJobsFromIdList(jobs, ra.scheduledJobsId)
+        def scheduledJobsId
         // order jobs by endTime (from earliest end to the latest end)
-        ra.scheduledJobs = jobPriorityRulesOperations.getJobListOrderByEndTime(ra.scheduledJobs)
+        scheduledJobs = jobPriorityRulesOperations.getJobListOrderByEndTime(scheduledJobs)
+        scheduledJobsId = scheduledJobs.id
 
         boolean checkJobScheduled = false
-        while (!ra.scheduledJobs.isEmpty() && !checkJobScheduled) {
-            Job jobToRemove = ra.scheduledJobs[0]
+        while (!scheduledJobsId.isEmpty() && !checkJobScheduled) {
+            Job jobToRemove = jobs[scheduledJobsId[0] - 1]
+            Mode modeToRemove = jobToRemove.availableModes.find {it.id == staggeredJobsModesId[jobToRemove.id]}
 
-            modeOperations.removingRenewableResources(ra, jobToRemove.mode)
+            modeOperations.removingRenewableResources(ra, modeToRemove)
 
-            if (modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
+            if (modeOperations.checkRenewableResourcesAmount(ra, modeToAdd)) {
                 jobToSchedule.startTime = jobToRemove.endTime
-                jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
+                jobToSchedule.endTime = jobToSchedule.startTime + modeToAdd.duration
                 checkJobScheduled = true
             }
 
-            ra.scheduledJobs.remove(0)
+            scheduledJobsId.remove(0)
         }
 
         return jobToSchedule
-    }
-
-    List<Job> resetResources(ResourceAvailabilities ra) {
-        if (!ra.scheduledJobs.isEmpty()) {
-            ra.scheduledJobs.each { scheduledJob ->
-                modeOperations.removingRenewableResources(ra, scheduledJob.mode)
-            }
-        }
     }
 }

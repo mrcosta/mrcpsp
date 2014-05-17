@@ -14,7 +14,7 @@ public class ResultsProcessor {
 
 	def boolean getMakespanFromScheduledJobs(Project project, boolean success) {
 		if (success) {
-			Integer lastIndex = project.staggeredJobsId.size() - 1
+			Integer lastIndex = project.getStaggeredJobsModesId().size() - 1
 			Integer makespan = project.jobs[lastIndex].endTime
 			
 			project.makespan = makespan

@@ -111,10 +111,10 @@ class MmProcessor {
 				log.info("Generating the Initial Solution with GRASP . . .")
 				
 				generateInitialSolutionGRASP = new GenerateInitialSolutionGRASP()
-                project.staggeredJobsId = generateInitialSolutionGRASP.getInitialSolution(project)
+                project.staggeredJobsModesId = generateInitialSolutionGRASP.getInitialSolution(project)
 
 				log.info("The JOBS list has this index: $project.jobs.id")
-                log.info("The STAGGERED list has this index: $project.staggeredJobsId")
+                log.info("The STAGGERED list has this index: " + project.staggeredJobsModesId*.key)
 
 				success = true
 				log.info("Generating the Initial Solution with GRASP . . .DONE \n")
@@ -202,7 +202,7 @@ class MmProcessor {
 				log.info("Getting Initial and Finish Time for Jobs . . .")
 				
 				jobTimeProcessor = new JobTimeProcessor()
-				success = jobTimeProcessor.getJobTimes(project.resourceAvailabilities, project.staggeredJobsId, project.jobs)
+				success = jobTimeProcessor.getJobTimes(project)
 				log.info("Getting Initial and Finish Time for Jobs . . .DONE \n")
 			} catch (Exception e) {
                 log.error("Exception during the executeGetJobTimes phase", e)

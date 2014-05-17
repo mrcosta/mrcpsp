@@ -14,10 +14,12 @@ class Project {
 	InstanceInformation instanceInformation
 	ProjectInformation projectInformation
 	ResourceAvailabilities resourceAvailabilities
-	List<Job> jobs
-    List<Integer> staggeredJobsId
+
+    List<Job> jobs
+    Map<Integer, Integer> staggeredJobsModesId
     List<Job> criticalPath
-	Integer makespan
+
+    Integer makespan
     Integer lowerBound
 	
 	String fileName

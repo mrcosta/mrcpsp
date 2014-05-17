@@ -1,10 +1,9 @@
 package mrcpsp.process.localsearch
 
+import mrcpsp.model.main.Job
 import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
 import mrcpsp.process.mode.ModeOperations
-import mrcpsp.utils.ChronoWatch
-import mrcpsp.utils.CloneUtils
 
 /**
  * Created by mateus on 5/10/14.
@@ -17,13 +16,9 @@ class BestModeScheduling {
         modeOperations = new ModeOperations()
     }
 
-    def Project changeExecutionModeJob(Project project, Integer jobId, Integer modeId) {
-        ChronoWatch.instance.pauseSolutionTime()
-        Project neighborProject = CloneUtils.cloneProject(project)
-        ChronoWatch.instance.startSolutionTime()
-
-        if (changeModeAndCheckNonRenewableResourcesRestriction(neighborProject, jobId, modeId)) {
-            return neighborProject
+    def Project changeExecutionModeJob(Project project, Job job, Mode mode) {
+        if (changeModeAndCheckNonRenewableResourcesRestriction(project, job, mode)) {
+            return project
         } else {
             return null
         }
@@ -34,15 +29,12 @@ class BestModeScheduling {
      * @param project
      * @return
      */
-    def changeModeAndCheckNonRenewableResourcesRestriction(Project project, Integer jobId, Integer modeId) {
-        def job = project.staggeredJobsId.find { it.id == jobId }
-        Mode newMode = job.availableModes.find{ it.id == modeId }
-
+    def changeModeAndCheckNonRenewableResourcesRestriction(Project project, Job job, Mode newMode, List<Integer> staggeredJobsModesId) {
         modeOperations.removingNonRenewableResources(project.resourceAvailabilities, job.mode)
 
         def checkResources = modeOperations.checkNonRenewableResources(project.resourceAvailabilities, newMode)
         if (checkResources) {
-            job.mode = newMode
+            staggeredJobsModesId[job.id - 1] = newMode.id
         }
 
         modeOperations.addingNonRenewableResources(project.resourceAvailabilities, job.mode)
