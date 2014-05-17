@@ -17,6 +17,8 @@ class Project {
 
     List<Job> jobs
     Map<Integer, Integer> staggeredJobsModesId
+    Map<Integer, Integer> startJobTimes
+    Map<Integer, Integer> finishJobTimes
     List<Job> criticalPath
 
     Integer makespan
@@ -28,6 +30,9 @@ class Project {
 
 	public Project() {
 		instanceResultStatus = ""
+
+        startJobTimes = [:]
+        finishJobTimes = [:]
 	}
 
 }

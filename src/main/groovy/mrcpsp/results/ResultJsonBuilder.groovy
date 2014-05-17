@@ -45,8 +45,10 @@ class ResultJsonBuilder {
 
         instanceResult.times = [:]
         project.staggeredJobsModesId.each { jobModeId ->
-            Job job = project.jobs[jobModeId.key - 1]
-            instanceResult.times."$job.id" = "$job.startTime - $job.endTime"
+            def start = project.startJobTimes[jobModeId.key]
+            def finish = project.finishJobTimes[jobModeId.key]
+
+            instanceResult.times."$jobModeId.key" = "$start - $finish"
         }
 
         return instanceResult

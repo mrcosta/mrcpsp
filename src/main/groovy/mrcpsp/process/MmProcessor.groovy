@@ -340,6 +340,19 @@ class MmProcessor {
         }
     }
 
+    def setStartAndFinishJobTimes() {
+        try {
+            if (success) {
+                project.staggeredJobsModesId.each { jobModeId ->
+                    project.startJobTimes[jobModeId.key] = project.jobs[jobModeId.key - 1].startTime
+                    project.finishJobTimes[jobModeId.key] = project.jobs[jobModeId.key - 1].endTime
+                }
+            }
+        } catch (Exception e) {
+            log.error("Exception during the setProjectMakespan phase", e)
+        }
+    }
+
     def basicOperationsInstance(String fileName) {
         success = true
 
@@ -384,6 +397,8 @@ class MmProcessor {
 
         // setting the project makespan
         success = setProjectMakespan()
+
+        setStartAndFinishJobTimes()
 
 		return project		
 	}
