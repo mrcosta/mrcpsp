@@ -29,8 +29,8 @@ class JobOperations {
         }.id
     }
 
-    List<Integer> getOnlyRealJobsId(List<Integer> jobsId, Integer lastJobId) {
-        return jobsId.findAll{ jobId -> ![1, lastJobId].contains(jobId) }
+    List<Integer> getOnlyRealJobsId(Map<Integer, Integer> jobsId, Integer lastJobId) {
+        return jobsId.findAll{ jobId -> ![1, lastJobId].contains(jobId.key) }*.key
     }
 
     /**

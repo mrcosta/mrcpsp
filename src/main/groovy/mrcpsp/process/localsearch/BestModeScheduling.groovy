@@ -16,9 +16,11 @@ class BestModeScheduling {
         modeOperations = new ModeOperations()
     }
 
-    def Project changeExecutionModeJob(Project project, Job job, Mode mode) {
-        if (changeModeAndCheckNonRenewableResourcesRestriction(project, job, mode)) {
-            return project
+    def Map<Integer, Integer> changeExecutionModeJob(Project project, Job job, Mode mode) {
+        def neighborJobsModesId = changeModeAndCheckNonRenewableResourcesRestriction(project, job, mode)
+
+        if (neighborJobsModesId) {
+            return neighborJobsModesId
         } else {
             return null
         }
@@ -29,17 +31,21 @@ class BestModeScheduling {
      * @param project
      * @return
      */
-    def changeModeAndCheckNonRenewableResourcesRestriction(Project project, Job job, Mode newMode, List<Integer> staggeredJobsModesId) {
+    def changeModeAndCheckNonRenewableResourcesRestriction(Project project, Job job, Mode newMode) {
+        def staggeredJobsModesId = [:]
+        staggeredJobsModesId.putAll(project.staggeredJobsModesId)
         modeOperations.removingNonRenewableResources(project.resourceAvailabilities, job.mode)
 
         def checkResources = modeOperations.checkNonRenewableResources(project.resourceAvailabilities, newMode)
         if (checkResources) {
-            staggeredJobsModesId[job.id - 1] = newMode.id
+            staggeredJobsModesId[job.id] = newMode.id
+        } else {
+            staggeredJobsModesId = null
         }
 
         modeOperations.addingNonRenewableResources(project.resourceAvailabilities, job.mode)
 
-        return checkResources
+        return staggeredJobsModesId
     }
 
 
