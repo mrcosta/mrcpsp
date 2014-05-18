@@ -2,12 +2,19 @@ package mrcpsp.process;
 
 import mrcpsp.model.main.Job
 import mrcpsp.model.main.ResourceAvailabilities;
-import mrcpsp.process.mode.ModeComparatorProcessor;
+import mrcpsp.process.mode.ModeComparatorProcessor
+import mrcpsp.process.mode.ModeOperations;
 import org.apache.log4j.Logger;
 
 class JobsModeInformationProcessor {
 	
 	static final Logger log = Logger.getLogger(JobsModeInformationProcessor.class);
+
+    ModeOperations modeOperations
+
+    JobsModeInformationProcessor() {
+        modeOperations = new ModeOperations()
+    }
 
 	def List<Job> getJobModesInformation(List<Job> jobs, ResourceAvailabilities ra) {
         def modeComparatorProcessor = new ModeComparatorProcessor();
@@ -29,6 +36,9 @@ class JobsModeInformationProcessor {
 
             // by sum of all resources
             job.modesInformation = modeComparatorProcessor.orderModeBySumResources(job)
+
+            // backing to the natural order (by id)
+            job.availableModes = modeOperations.orderById(job.availableModes)
 
             // check if exists a mode near lower non renewable resources (its consumption is near the lower mode) that's shorter
             job.modesInformation = modeComparatorProcessor.checkModeNearLowerNRConsumption(job)

@@ -33,17 +33,17 @@ class ModeComparatorProcessor {
 	def ModesInformation orderModeByRenewableAmountResources(Job job) {
 		def modesInformation = job.modesInformation
 		// to not lose the natural modes order		
-		def cloneModeList = CloneUtils.cloneModeList(job.availableModes);
+		def modeList = job.availableModes
 
         modeComparator.comparatorType = EnumModesComparator.MC_AMOUNT_RENEWABLE
-		Collections.sort(cloneModeList, modeComparator);
+		Collections.sort(modeList, modeComparator);
 
-        log.debug("JOB ID: " + job.id + " - MODES ORDER BY RENEWABLE AMOUNT RESOURCES: " + LogUtils.generateIDsModeListLog(cloneModeList));
+        log.debug("JOB ID: " + job.id + " - MODES ORDER BY RENEWABLE AMOUNT RESOURCES: " + LogUtils.generateIDsModeListLog(modeList));
 		
-		def indexLowerRenewableConsumption = cloneModeList[PropertyConstants.INDEX_START].id
+		def indexLowerRenewableConsumption = modeList[PropertyConstants.INDEX_START].id
 		modesInformation.lowerRenewableConsumption = indexLowerRenewableConsumption
 
-		def indexGreaterRenewableConsumption = Iterables.getLast(cloneModeList).id
+		def indexGreaterRenewableConsumption = Iterables.getLast(modeList).id
 		modesInformation.greaterRenewableConsumption = indexGreaterRenewableConsumption
 
 		return modesInformation;
@@ -57,16 +57,16 @@ class ModeComparatorProcessor {
 	def ModesInformation orderModeByNonRenewableAmountResources(Job job) {
 		def modesInformation = job.modesInformation
 		// to not lose the natural modes order		
-		def cloneModeList = CloneUtils.cloneModeList(job.availableModes);
+		def modeList = job.availableModes
 		
 		modeComparator.comparatorType = EnumModesComparator.MC_AMOUNT_NON_RENEWABLE
-		Collections.sort(cloneModeList, modeComparator);
-		log.debug("JOB ID: " + job.id + " - MODES ORDER BY NON RENEWABLE AMOUNT RESOURCES: " + LogUtils.generateIDsModeListLog(cloneModeList));
+		Collections.sort(modeList, modeComparator);
+		log.debug("JOB ID: " + job.id + " - MODES ORDER BY NON RENEWABLE AMOUNT RESOURCES: " + LogUtils.generateIDsModeListLog(modeList));
 		
-		def indexLowerNonRenewableConsumption = cloneModeList[PropertyConstants.INDEX_START].id
+		def indexLowerNonRenewableConsumption = modeList[PropertyConstants.INDEX_START].id
 		modesInformation.lowerNonRenewableConsumption = indexLowerNonRenewableConsumption
 		
-		def indexGreaterNonRenewableConsumption = Iterables.getLast(cloneModeList).id
+		def indexGreaterNonRenewableConsumption = Iterables.getLast(modeList).id
 		modesInformation.greaterNonRenewableConsumption = indexGreaterNonRenewableConsumption
 		
 		return modesInformation;
@@ -80,17 +80,17 @@ class ModeComparatorProcessor {
 	def ModesInformation orderModeByDuration(Job job) {
 		def modesInformation = job.modesInformation
 		// to not lose the natural modes order		
-		def cloneModeList = CloneUtils.cloneModeList(job.availableModes)
+		def modeList = job.availableModes
 		
 		modeComparator.comparatorType = EnumModesComparator.MC_DURATION
-		Collections.sort(cloneModeList, modeComparator)
-		log.debug("JOB ID: " + job.id + " - MODES ORDER BY DURATION: " + LogUtils.generateIDsModeListLog(cloneModeList))
+		Collections.sort(modeList, modeComparator)
+		log.debug("JOB ID: " + job.id + " - MODES ORDER BY DURATION: " + LogUtils.generateIDsModeListLog(modeList))
 		
-		def indexShorter = cloneModeList[PropertyConstants.INDEX_START].id
+		def indexShorter = modeList[PropertyConstants.INDEX_START].id
 		modesInformation.shorter = indexShorter
-        modesInformation.modesByOrderDuration = cloneModeList.id
+        modesInformation.modesByOrderDuration = modeList.id
 		
-		def indexLonger = Iterables.getLast(cloneModeList).id
+		def indexLonger = Iterables.getLast(modeList).id
 		modesInformation.longer = indexLonger
 		
 		return modesInformation
@@ -104,16 +104,16 @@ class ModeComparatorProcessor {
 	def ModesInformation orderModeBySumResources(Job job) {
 		def modesInformation = job.modesInformation
 		// to not lose the natural modes order		
-		def cloneModeList = CloneUtils.cloneModeList(job.availableModes)
+		def modeList = job.availableModes
 		
 		modeComparator.comparatorType = EnumModesComparator.MC_SUM_RESOURCES
-		Collections.sort(cloneModeList, modeComparator);
-		log.debug("JOB ID: " + job.id + " - MODES ORDER BY SUM OF THE RESOURCES: " + LogUtils.generateIDsModeListLog(cloneModeList));
+		Collections.sort(modeList, modeComparator);
+		log.debug("JOB ID: " + job.id + " - MODES ORDER BY SUM OF THE RESOURCES: " + LogUtils.generateIDsModeListLog(modeList));
 		
-		def indexLowerSumComsuption = cloneModeList[PropertyConstants.INDEX_START].id
+		def indexLowerSumComsuption = modeList[PropertyConstants.INDEX_START].id
 		modesInformation.lowerSumComsuption = indexLowerSumComsuption
 		
-		def indexHigherSumComsuption = Iterables.getLast(cloneModeList).id
+		def indexHigherSumComsuption = Iterables.getLast(modeList).id
 		modesInformation.higherSumComsuption = indexHigherSumComsuption
 		
 		return modesInformation;
@@ -156,39 +156,43 @@ class ModeComparatorProcessor {
     }
 
     def List<Mode> excludeRenewableDumbModes(Job job, ResourceAvailabilities ra) {
-        def modes = job.availableModes
-        def cloneModeList = CloneUtils.cloneModeList(modes)
+        def modeList = job.availableModes
+        def modesIdToRemove = []
 
-        modes.each { mode ->
+        modeList.each { mode ->
             def countResource = 0
             mode.renewable.each {
                 if (it > ra.renewableInitialAmount[countResource]) {
-                    cloneModeList.removeAll { it.id == mode.id }
+                    modesIdToRemove.add(mode.id)
                     log.info("JOB " + job.id + " - Excluded mode: " + mode.id + " - Duration: " + mode.duration + " - Values R: " + mode.renewable)
                 }
                 countResource++
             }
         }
 
-        return modes = cloneModeList
+        modeList.removeAll { modesIdToRemove.contains(it.id) }
+
+        return modeList
     }
 
     def List<Mode> excludeNonRenewableDumbModes(Job job, ResourceAvailabilities ra) {
-        def modes = job.availableModes
-        def cloneModeList = CloneUtils.cloneModeList(modes)
+        def modesList = job.availableModes
+        def modesIdToRemove = []
 
-        modes.each { mode ->
+        modesList.each { mode ->
             def countResource = 0
             mode.nonRenewable.each {
                 if (it > ra.nonRenewableInitialAmount[countResource]) {
-                    cloneModeList.removeAll { it.id == mode.id }
+                    modesIdToRemove.add(mode.id)
                     log.info("JOB " + job.id + " - Excluded mode: " + mode.id + " - Duration: " + mode.duration + " - Values NR: " + mode.nonRenewable)
                 }
                 countResource++
             }
         }
 
-        return modes = cloneModeList
+        modesList.removeAll { modesIdToRemove.contains(it.id) }
+
+        return modesList
     }
 
     def getMinNonRenewableResourceConsumption(Job job) {
