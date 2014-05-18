@@ -91,11 +91,18 @@ class ExecutionTypeProcessor {
 	}
 
 	public void executeAllFiles() {
+        List<File> allFiles = FileUtils.getAllFilesInstances()
+        def size = allFiles.size()
+        def count = 1
 						
-		for (File file: FileUtils.getAllFilesInstances()) {
+		allFiles.each { file ->
+            writeStatusToFile("Executing $file.name -- $count of $size")
+
             mmProcessor.basicOperationsInstance(file.name)
             executeAll()
             addInstanceResultForJson(mmProcessor.project)
+
+            count++
 		}
 
         writeResult()
@@ -113,9 +120,13 @@ class ExecutionTypeProcessor {
     }*/
 
     public void executeAllFilesTimes() {
-		Integer timesToRun = Integer.parseInt(UrlUtils.instance.executionTimes)
+        List<File> allFiles = FileUtils.getAllFilesInstances()
+        def size = allFiles.size()
+        def count = 1
+        Integer timesToRun = Integer.parseInt(UrlUtils.instance.executionTimes)
 				
-		for (File file: FileUtils.getAllFilesInstances()) {
+		allFiles.each { file ->
+            writeStatusToFile("Executing $file.name -- $count of $size")
 
             mmProcessor.basicOperationsInstance(file.name)
 			for (int i = 0; i < timesToRun; i++) {
@@ -126,6 +137,7 @@ class ExecutionTypeProcessor {
 
             addInstanceResultForJson(resultsProcessor.lowerProjectMakespan)
 			resultsProcessor.lowerProjectMakespan = null
+            count++
 		}
 
         writeResult()
@@ -203,5 +215,11 @@ class ExecutionTypeProcessor {
         CompareResults compareResults = new CompareResults()
 
         compareResults.compareInstances()
+    }
+
+    def writeStatusToFile(String data) {
+        String pathFile = UrlUtils.instance.getUrlForResultsFileToOneInstance("status.txt")
+
+        FileUtils.writeToFile(new File(pathFile), data, false)
     }
 }
