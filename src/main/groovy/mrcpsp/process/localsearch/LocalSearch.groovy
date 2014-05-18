@@ -28,6 +28,9 @@ class LocalSearch {
     Map<Integer, Integer> bestStartJobTimes
     Map<Integer, Integer> bestFinishJobTimes
 
+    Map<Integer, Integer> neighborStartJobTimes
+    Map<Integer, Integer> neighborFinishJobTimes
+
 	boolean checkSolution
 	MmProcessor mmProcessor
     LowerNonRenewableConsumption lnrc
@@ -41,6 +44,10 @@ class LocalSearch {
         modeOperations = new ModeOperations()
 
         bestProject = [:]
+        bestStartJobTimes = [:]
+        bestFinishJobTimes = [:]
+        neighborStartJobTimes = [:]
+        neighborFinishJobTimes = [:]
 	}
 	
 	def Project executeLocalSearch(Project project) {
@@ -48,6 +55,8 @@ class LocalSearch {
         checkSolution = true
         bestProject = project
         bestMakespan = project.makespan
+        bestStartJobTimes.putAll(project.startJobTimes)
+        bestFinishJobTimes.putAll(project.finishJobTimes)
 
         log.info("LOCAL SEARCH: " + localSearch)
         switch (localSearch) {
@@ -150,6 +159,7 @@ class LocalSearch {
                         mmProcessor.project = project
                         mmProcessor.executeGetJobTimes()
                         mmProcessor.setProjectMakespan()
+                        mmProcessor.setStartAndFinishJobTimes()
                         project.staggeredJobsModesId = originalStaggeredJobsModesId
                     }
 
@@ -167,25 +177,18 @@ class LocalSearch {
 	
 	private void checkBestNeighbor(Map<Integer, Integer> neighborJobsModesId, Integer jobId, Integer modeId) {
 		if (!bestNeighbor || bestProject.makespan == PropertyConstants.INSTANCE_MAKESPAN_ERROR) {
-			bestNeighbor = neighborJobsModesId
-            bestNeighborMakespan = bestProject.makespan
-            bestJobNeighborModification = jobId
-            bestModeNeighborModification = modeId
-		} else {			
+            setValuesWhenCheckingBestNeighbor(neighborJobsModesId, jobId, modeId)
+		} else {
 			if ((bestProject.makespan < bestNeighborMakespan) && (bestProject.makespan != PropertyConstants.INSTANCE_MAKESPAN_ERROR)) {
-                bestNeighbor = neighborJobsModesId
-                bestNeighborMakespan = bestProject.makespan
-                bestJobNeighborModification = jobId
-                bestModeNeighborModification = modeId
+                setValuesWhenCheckingBestNeighbor(neighborJobsModesId, jobId, modeId)
 			}
 		}
 	}
 	
 	private void checkBestSolution(Map<Integer, Integer> bestNeighbor, Project project) {
         if (bestNeighborMakespan < bestMakespan) {
-			bestProject.staggeredJobsModesId = bestNeighbor
-            bestMakespan = bestNeighborMakespan
-            setJobModeModification(bestProject)
+            setValuesWhenCheckingBestProject(bestNeighbor)
+
 			log.info("LOOKING FOR A BETTER SOLUTION - FILE: " + project.fileName + " - INITIAL SOLUTION MAKESPAN: " + project.makespan)
 			log.info("LOOKING FOR A BETTER SOLUTION - FILE: " + bestProject.fileName + " - NEIGHBOR MAKESPAN: " + bestProject.makespan)
 		} else  {
@@ -204,6 +207,29 @@ class LocalSearch {
 
     private void setBestProjectMakespan() {
         bestProject.makespan = bestMakespan
+        bestProject.startJobTimes = bestStartJobTimes
+        bestProject.finishJobTimes = bestFinishJobTimes
     }
 
+    private void setValuesWhenCheckingBestNeighbor(Map<Integer, Integer> neighborJobsModesId, Integer jobId, Integer modeId) {
+        bestNeighbor = neighborJobsModesId
+        bestNeighborMakespan = bestProject.makespan
+        bestJobNeighborModification = jobId
+        bestModeNeighborModification = modeId
+
+        neighborStartJobTimes.clear()
+        neighborFinishJobTimes.clear()
+        neighborStartJobTimes.putAll(bestProject.startJobTimes)
+        neighborFinishJobTimes.putAll(bestProject.finishJobTimes)
+    }
+
+    private void setValuesWhenCheckingBestProject(Map<Integer, Integer> bestNeighbor) {
+        bestProject.staggeredJobsModesId = bestNeighbor
+        bestMakespan = bestNeighborMakespan
+        setJobModeModification(bestProject)
+        bestStartJobTimes.clear()
+        bestFinishJobTimes.clear()
+        bestStartJobTimes.putAll(neighborStartJobTimes)
+        bestFinishJobTimes.putAll(neighborFinishJobTimes)
+    }
 }
