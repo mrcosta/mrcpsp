@@ -37,9 +37,6 @@ class JobsModeInformationProcessor {
             // by sum of all resources
             job.modesInformation = modeComparatorProcessor.orderModeBySumResources(job)
 
-            // backing to the natural order (by id)
-            job.availableModes = modeOperations.orderById(job.availableModes)
-
             // check if exists a mode near lower non renewable resources (its consumption is near the lower mode) that's shorter
             job.modesInformation = modeComparatorProcessor.checkModeNearLowerNRConsumption(job)
 

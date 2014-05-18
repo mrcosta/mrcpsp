@@ -17,12 +17,14 @@ import java.util.List;
 
 class ModeComparatorProcessor {
 	
-	static final Logger log = Logger.getLogger(ModeComparatorProcessor.class);
+	static final Logger log = Logger.getLogger(ModeComparatorProcessor.class)
 	
-	ModeComparator modeComparator;
+	ModeComparator modeComparator
+    ModeOperations modeOperations
 	
 	ModeComparatorProcessor() {
-		modeComparator = new ModeComparator();
+		modeComparator = new ModeComparator()
+        modeOperations = new ModeOperations()
 	}
 
     /**
@@ -46,6 +48,9 @@ class ModeComparatorProcessor {
 		def indexGreaterRenewableConsumption = Iterables.getLast(modeList).id
 		modesInformation.greaterRenewableConsumption = indexGreaterRenewableConsumption
 
+        // backing to the natural order (by id)
+        job.availableModes = modeOperations.orderById(modeList)
+
 		return modesInformation;
 	}
 
@@ -68,6 +73,9 @@ class ModeComparatorProcessor {
 		
 		def indexGreaterNonRenewableConsumption = Iterables.getLast(modeList).id
 		modesInformation.greaterNonRenewableConsumption = indexGreaterNonRenewableConsumption
+
+        // backing to the natural order (by id)
+        job.availableModes = modeOperations.orderById(modeList)
 		
 		return modesInformation;
 	}
@@ -92,6 +100,9 @@ class ModeComparatorProcessor {
 		
 		def indexLonger = Iterables.getLast(modeList).id
 		modesInformation.longer = indexLonger
+
+        // backing to the natural order (by id)
+        job.availableModes = modeOperations.orderById(modeList)
 		
 		return modesInformation
 	}
@@ -115,6 +126,9 @@ class ModeComparatorProcessor {
 		
 		def indexHigherSumComsuption = Iterables.getLast(modeList).id
 		modesInformation.higherSumComsuption = indexHigherSumComsuption
+
+        // backing to the natural order (by id)
+        job.availableModes = modeOperations.orderById(modeList)
 		
 		return modesInformation;
 	}
