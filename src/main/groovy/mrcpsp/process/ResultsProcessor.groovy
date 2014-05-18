@@ -28,11 +28,16 @@ public class ResultsProcessor {
 
 	public void checkLowerMakespan(Project project) {
 		if (lowerProjectMakespan == null || lowerProjectMakespan.makespan == PropertyConstants.INSTANCE_MAKESPAN_ERROR) {
-			lowerProjectMakespan = CloneUtils.cloneProject(project)
-		} else {			
+            lowerProjectMakespan = new Project()
+            restartLowerProjectMakespanValues()
+            setLowerProjectMakespanValues(project)
+            lowerProjectMakespan.averageMakespan+= project.makespan
+		} else {
 			if (project.makespan < lowerProjectMakespan.makespan) {
-				lowerProjectMakespan = CloneUtils.cloneProject(project)
+                restartLowerProjectMakespanValues()
+                setLowerProjectMakespanValues(project)
 			}
+            lowerProjectMakespan.averageMakespan+= project.makespan
 		}
 	}
 
@@ -53,5 +58,21 @@ public class ResultsProcessor {
         }
 
         return project.criticalPath
+    }
+
+    def restartLowerProjectMakespanValues() {
+        lowerProjectMakespan.makespan = 0
+        lowerProjectMakespan.staggeredJobsModesId.clear()
+        lowerProjectMakespan.startJobTimes.clear()
+        lowerProjectMakespan.finishJobTimes.clear()
+    }
+
+    def setLowerProjectMakespanValues(Project project) {
+        lowerProjectMakespan.fileName = project.fileName
+        lowerProjectMakespan.makespan = project.makespan
+
+        lowerProjectMakespan.staggeredJobsModesId.putAll(project.staggeredJobsModesId)
+        lowerProjectMakespan.startJobTimes.putAll(project.startJobTimes)
+        lowerProjectMakespan.finishJobTimes.putAll(project.finishJobTimes)
     }
 }

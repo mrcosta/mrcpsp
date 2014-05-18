@@ -22,6 +22,7 @@ class Project {
     List<Job> criticalPath
 
     Integer makespan
+    Double averageMakespan
     Integer lowerBound
 	
 	String fileName
@@ -31,8 +32,11 @@ class Project {
 	public Project() {
 		instanceResultStatus = ""
 
+        averageMakespan = 0.0
+
         startJobTimes = [:]
         finishJobTimes = [:]
+        staggeredJobsModesId = [:]
 	}
 
 }
