@@ -90,17 +90,24 @@ class ExecutionTypeProcessor {
         printTimeExecution()
 	}
 
-	public void executeAllFiles() {
-						
-		for (File file: FileUtils.getAllFilesInstances()) {
+    public void executeAllFiles() {
+        List<File> allFiles = FileUtils.getAllFilesInstances()
+        def size = allFiles.size()
+        def count = 1
+
+        allFiles.each { file ->
+            writeStatusToFile("Executing $file.name -- $count of $size")
+
             mmProcessor.basicOperationsInstance(file.name)
             executeAll()
             addInstanceResultForJson(mmProcessor.project)
-		}
+
+            count++
+        }
 
         writeResult()
         printTimeExecution()
-	}
+    }
 
     /*public void executeAllFilesConcurrent() {
         log.info("======== Executing in CONCURRENT MODE")
@@ -113,24 +120,29 @@ class ExecutionTypeProcessor {
     }*/
 
     public void executeAllFilesTimes() {
-		Integer timesToRun = Integer.parseInt(UrlUtils.instance.executionTimes)
-				
-		for (File file: FileUtils.getAllFilesInstances()) {
+        List<File> allFiles = FileUtils.getAllFilesInstances()
+        def size = allFiles.size()
+        def count = 1
+        Integer timesToRun = Integer.parseInt(UrlUtils.instance.executionTimes)
+
+        allFiles.each { file ->
+            writeStatusToFile("Executing $file.name -- $count of $size")
 
             mmProcessor.basicOperationsInstance(file.name)
-			for (int i = 0; i < timesToRun; i++) {
+            for (int i = 0; i < timesToRun; i++) {
                 log.info("Another execution for the file $file.name")
                 executeAll()
                 resultsProcessor.checkLowerMakespan(mmProcessor.project)
-			}
+            }
 
             addInstanceResultForJson(resultsProcessor.lowerProjectMakespan)
-			resultsProcessor.lowerProjectMakespan = null
-		}
+            resultsProcessor.lowerProjectMakespan = null
+            count++
+        }
 
         writeResult()
         printTimeExecution()
-	}
+    }
 	
 	private void executeAll() {
 		mmProcessor.initialSolutionWithGrasp()
@@ -203,5 +215,11 @@ class ExecutionTypeProcessor {
         CompareResults compareResults = new CompareResults()
 
         compareResults.compareInstances()
+    }
+
+    def writeStatusToFile(String data) {
+        String pathFile = UrlUtils.instance.getUrlForResultsFileToOneInstance("status.txt")
+
+        FileUtils.writeToFile(new File(pathFile), data, false)
     }
 }
