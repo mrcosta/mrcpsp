@@ -137,6 +137,7 @@ class ExecutionTypeProcessor {
 
             addInstanceResultForJson(resultsProcessor.lowerProjectMakespan)
             resultsProcessor.lowerProjectMakespan = null
+            resultsProcessor.averageMakespan = 0
             count++
         }
 

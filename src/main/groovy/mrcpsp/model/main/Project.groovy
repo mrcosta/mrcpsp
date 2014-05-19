@@ -19,6 +19,8 @@ class Project {
     List<Job> criticalPath
 	Integer makespan
     Integer lowerBound
+
+    Double averageMakespan
 	
 	String fileName
 	String instanceResultStatus
@@ -26,6 +28,8 @@ class Project {
 
 	public Project() {
 		instanceResultStatus = ""
+
+        averageMakespan = 0.0
 	}
 
 }

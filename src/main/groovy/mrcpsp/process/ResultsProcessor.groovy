@@ -11,6 +11,11 @@ import mrcpsp.utils.UrlUtils
 public class ResultsProcessor {
 	
 	Project lowerProjectMakespan
+    Double averageMakespan
+
+    ResultsProcessor() {
+        averageMakespan = 0.0
+    }
 
 	def boolean getMakespanFromScheduledJobs(Project project, boolean success) {
 		if (success) {
@@ -29,10 +34,14 @@ public class ResultsProcessor {
 	public void checkLowerMakespan(Project project) {
 		if (lowerProjectMakespan == null || lowerProjectMakespan.makespan == PropertyConstants.INSTANCE_MAKESPAN_ERROR) {
 			lowerProjectMakespan = CloneUtils.cloneProject(project)
+            averageMakespan+= project.makespan
+            lowerProjectMakespan.averageMakespan = averageMakespan
 		} else {			
 			if (project.makespan < lowerProjectMakespan.makespan) {
 				lowerProjectMakespan = CloneUtils.cloneProject(project)
 			}
+            averageMakespan+= project.makespan
+            lowerProjectMakespan.averageMakespan = averageMakespan
 		}
 	}
 

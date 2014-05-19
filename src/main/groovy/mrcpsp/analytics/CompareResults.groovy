@@ -113,10 +113,16 @@ class CompareResults {
         dataAnalytics.diffMakespan = [:]
         dataAnalytics.results = [:]
         dataAnalytics.diffMakespan.averageDeviation = 0
+        dataAnalytics.diffMakespan.maxAverageDeviation = 0
         lesserRa.results.each { instanceResult ->
+            def maxAverageDeviation = ((instanceResult.value.averageMakespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan) * 100
+            dataAnalytics.diffMakespan.maxAverageDeviation+= maxAverageDeviation
+
             def averageDeviation = ((instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan) * 100
             dataAnalytics.diffMakespan.averageDeviation+= averageDeviation
+
             dataAnalytics.results."$instanceResult.key" = [:]
+            dataAnalytics.results."$instanceResult.key"."averageMakespan" = instanceResult.value.averageMakespan
             dataAnalytics.results."$instanceResult.key"."$lesserRa.testName" = instanceResult.value.makespan
             dataAnalytics.results."$instanceResult.key"."$biggerRa.testName" = biggerRa.results."$instanceResult.key".makespan
 
@@ -146,6 +152,7 @@ class CompareResults {
         def totalInstances = (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
         println "Total instances: $totalInstances"
         dataAnalytics.diffMakespan.averageDeviation = dataAnalytics.diffMakespan.averageDeviation / totalInstances
+        dataAnalytics.diffMakespan.maxAverageDeviation = dataAnalytics.diffMakespan.maxAverageDeviation / totalInstances
         dataAnalytics.diffMakespan.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
 
         return new JsonBuilder(dataAnalytics).toPrettyString()

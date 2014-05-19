@@ -38,6 +38,7 @@ class ResultJsonBuilder {
         def instanceResult = [:]
 
         instanceResult.makespan = project.makespan
+        instanceResult.averageMakespan = (project.averageMakespan == 0.0) ? project.makespan : getAverageMakespan(project.averageMakespan)
         instanceResult.jobsId = project.staggeredJobs?.id.toString()
         instanceResult.modesId = project.staggeredJobs?.mode?.id.toString()
         instanceResult.executionTime = ChronoWatch.instance.totalTimeSolutionFormated
@@ -87,5 +88,13 @@ class ResultJsonBuilder {
         resultMap.instanceConfig.jobPriorityRule = UrlUtils.instance.jobPriorityRule
 
         return resultMap
+    }
+
+    Double getAverageMakespan(Double totalMakespan) {
+        def executionType = UrlUtils.instance.executionType
+        def executionTimes = Integer.parseInt(UrlUtils.instance.executionTimes)
+        def totalExecutions = (executionType == "ALL" || executionType == "ONE_FILE") ? 1 : executionTimes
+
+        return totalMakespan / totalExecutions
     }
 }
