@@ -42,7 +42,7 @@ class SimulatedAnnealing {
     def initParameterValues() {
         temperature = 50
         reductionCoefficient = 0.98
-        stoppingCriterion = 40
+        stoppingCriterion = 30
 
         totalSteps = 10
         totalNeighbor = 10

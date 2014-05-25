@@ -9,7 +9,8 @@ enum EnumLocalSearch implements Serializable {
     LNRCCP("LNRCCP", "lower non renewable consumption critical path", 5),
     BSFM("BSFM", "jobs block with shortest feasible mode", 5),
     BMS("BMS", "best mode to schedule", 6),
-    SIMULATED_ANNEALING("SA", "simulated annealing", 7)
+    SIMULATED_ANNEALING("SA", "simulated annealing", 7),
+    CRITICAL_PATH_PRIORITY("CRITICAL_PATH_PRIORITY", "critical path priority", 8)
 	
 	String name;
 	String description;

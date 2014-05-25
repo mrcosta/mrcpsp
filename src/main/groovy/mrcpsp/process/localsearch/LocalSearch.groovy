@@ -55,6 +55,9 @@ class LocalSearch {
             case EnumLocalSearch.SIMULATED_ANNEALING.name:
                 simulatedAnnealing(project)
                 break
+            case EnumLocalSearch.CRITICAL_PATH_PRIORITY.name:
+                criticalPathPriority(project)
+                break
             default:
                 log.log(Level.ERROR, "LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
                 throw new IllegalArgumentException("LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
@@ -150,6 +153,12 @@ class LocalSearch {
         SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing()
 
         bestProject = simulatedAnnealing.executeSimulatedAnnealing(project)
+    }
+
+    def criticalPathPriority(Project project) {
+        CriticalPathPriority cpp = new CriticalPathPriority()
+
+        bestProject = cpp.executeCriticalPathPriority(project)
     }
 	
 	private void checkBestNeighbor(Project project) {
