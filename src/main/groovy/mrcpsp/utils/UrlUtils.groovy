@@ -134,4 +134,8 @@ public final class UrlUtils {
     Integer getModesRankingJobsReverseOrder() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODES_RANKING_JOBS_REVERSE_ORDER))
     }
+
+    Integer getJobsPerturbation() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.JOBS_PERTURBATION))
+    }
 }

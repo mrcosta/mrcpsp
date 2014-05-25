@@ -52,6 +52,9 @@ class LocalSearch {
                 def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
                 bestModeToSchedule(project, realJobs)
                 break
+            case EnumLocalSearch.SIMULATED_ANNEALING.name:
+                simulatedAnnealing(project)
+                break
             default:
                 log.log(Level.ERROR, "LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
                 throw new IllegalArgumentException("LOCAL SEARCH " + localSearch + " is not valid! Please check the argument 'type.localSearch' in mrcpsp.properties file");
@@ -141,6 +144,12 @@ class LocalSearch {
 
             checkBestSolution(bestNeighbor, project)
         }
+    }
+
+    def simulatedAnnealing(Project project) {
+        SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing()
+
+        bestProject = simulatedAnnealing.executeSimulatedAnnealing(project)
     }
 	
 	private void checkBestNeighbor(Project project) {

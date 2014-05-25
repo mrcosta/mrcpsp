@@ -7,7 +7,8 @@ import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.mode.ModeOperations;
 import mrcpsp.utils.CloneUtils;
 import mrcpsp.utils.LogUtils;
-import mrcpsp.utils.PropertyConstants;
+import mrcpsp.utils.PropertyConstants
+import mrcpsp.utils.UrlUtils;
 import org.apache.log4j.Logger
 
 class JobTimeProcessor {
@@ -39,6 +40,11 @@ class JobTimeProcessor {
             } else {
                 checkResources = setTimeJobWithPredecessors(ra, job, jobs);
             }
+        }
+
+        Integer jobsPerturbation = UrlUtils.instance.jobsPerturbation
+        if (jobsPerturbation == PropertyConstants.TRUE) {
+            jobs = executeJobsPerturbation(jobs) ?: jobs
         }
 
         return jobs;
@@ -135,6 +141,16 @@ class JobTimeProcessor {
             ra.scheduledJobs.each { scheduledJob ->
                 modeOperations.removingRenewableResources(ra, scheduledJob.mode)
             }
+        }
+    }
+
+    List<Job> executeJobsPerturbation(List<Job> jobs) {
+        List<Job> jobsAfterPerturbation = CloneUtils.cloneJobList(jobs)
+        jobsAfterPerturbation = new JobPriorityRulesOperations().getJobListOrderByEndTime(jobs)
+        if (jobs.id != jobsAfterPerturbation.id) {
+            return jobsAfterPerturbation
+        } else {
+            return null
         }
     }
 }

@@ -8,7 +8,8 @@ enum EnumLocalSearch implements Serializable {
 	BRC("LNRC", "best ratio comsumption", 4),
     LNRCCP("LNRCCP", "lower non renewable consumption critical path", 5),
     BSFM("BSFM", "jobs block with shortest feasible mode", 5),
-    BMS("BMS", "best mode to schedule", 6)
+    BMS("BMS", "best mode to schedule", 6),
+    SIMULATED_ANNEALING("SA", "simulated annealing", 7)
 	
 	String name;
 	String description;

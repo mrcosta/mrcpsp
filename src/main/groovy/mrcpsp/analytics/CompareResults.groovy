@@ -115,8 +115,12 @@ class CompareResults {
         dataAnalytics.diffMakespan.averageDeviation = 0
         dataAnalytics.diffMakespan.maxAverageDeviation = 0
         lesserRa.results.each { instanceResult ->
-            def maxAverageDeviation = ((instanceResult.value.averageMakespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan) * 100
-            dataAnalytics.diffMakespan.maxAverageDeviation+= maxAverageDeviation
+            if (instanceResult.value?.averageMakespan) {
+                def maxAverageDeviation = ((instanceResult.value.averageMakespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan) * 100
+                dataAnalytics.diffMakespan.maxAverageDeviation+= maxAverageDeviation
+            } else {
+                dataAnalytics.diffMakespan.maxAverageDeviation+= 0
+            }
 
             def averageDeviation = ((instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan) * 100
             dataAnalytics.diffMakespan.averageDeviation+= averageDeviation

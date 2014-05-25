@@ -54,6 +54,7 @@ interface PropertyConstants {
 
     //############# MRCPSP - PERTURBATION  #################
     static final String PERTURBATION = "perturbation"
+    static final String JOBS_PERTURBATION = "jobsPerturbation"
 	
 	//############# OPERATIONS #################
 	static final Integer SUBTRACT = 0
