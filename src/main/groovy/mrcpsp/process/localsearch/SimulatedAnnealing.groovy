@@ -23,8 +23,8 @@ class SimulatedAnnealing {
     Double reductionCoefficient
     Double stoppingCriterion
 
-    Integer totalSteps
     Integer totalNeighbor
+    Integer totalJobsAndModes
 
     ModeOperations modeOperations
     MmProcessor mmProcessor
@@ -40,12 +40,10 @@ class SimulatedAnnealing {
     }
 
     def initParameterValues() {
-        temperature = 50
-        reductionCoefficient = 0.98
-        stoppingCriterion = 30
-
-        totalSteps = 10
-        totalNeighbor = 10
+        temperature = 19
+        reductionCoefficient = 0.7
+        stoppingCriterion = 0.1
+        totalNeighbor = 36
     }
 
     Project executeSimulatedAnnealing(Project project) {
@@ -53,61 +51,47 @@ class SimulatedAnnealing {
         actualSolution = project
         initParameterValues()
 
+        def jobsToRandomize = getOnlyJobsToRandomize(project)
+        def jobsIdToRandomize = jobsToRandomize.id
+        setTotalJobsAndModes(jobsToRandomize)
+
         while (temperature > stoppingCriterion) {
 
-            totalSteps.times { step ->
-                actualSolution.staggeredJobs = executeJobsPerturbation(actualSolution.staggeredJobs) ?: actualSolution.staggeredJobs
+            totalNeighbor.times { neighbor ->
+                def neighborProject = createModeNeighbor(actualSolution, jobsIdToRandomize)
 
-                totalNeighbor.times { neighbor ->
-                    def neighborProject = createModeNeighbor(actualSolution)
-
-                    if (neighborProject) {
-                        mmProcessor.project = neighborProject
-                        mmProcessor.executeGetJobTimes()
-                        mmProcessor.setProjectMakespan()
-                    }
-
-                    if (neighborProject) {
-                        checkActualSolution(neighborProject)
-                        checkBestSolution(neighborProject);
-                    }
+                if (neighborProject) {
+                    mmProcessor.project = neighborProject
+                    mmProcessor.executeGetJobTimes()
+                    mmProcessor.setProjectMakespan()
+                    checkActualSolution(neighborProject)
+                    checkBestSolution(neighborProject)
                 }
-
-                temperature*= reductionCoefficient
             }
 
+            temperature*= reductionCoefficient
         }
 
         return bestProject
     }
 
-    List<Job> executeJobsPerturbation(List<Job> jobs) {
-        List<Job> jobsAfterPerturbation = CloneUtils.cloneJobList(jobs)
-        jobsAfterPerturbation = new JobPriorityRulesOperations().getJobListOrderByEndTime(jobs)
-        if (jobs.id != jobsAfterPerturbation.id) {
-            return jobsAfterPerturbation
-        } else {
-            return null
-        }
-    }
-
-    Project createModeNeighbor(Project project) {
+    Project createModeNeighbor(Project project, List<Integer> jobsToRandomize) {
         ChronoWatch.instance.pauseSolutionTime()
         Project neighborProject = CloneUtils.cloneProject(project)
         ChronoWatch.instance.startSolutionTime()
 
         def changedJobMode = false
-        def jobsToRandomize = jobOperations.getOnlyRealJobs(neighborProject.staggeredJobs, neighborProject.instanceInformation.jobsAmount).id
+        def times = 0
 
-        while (!changedJobMode && !jobsToRandomize.isEmpty()) {
+        while (!changedJobMode && times < totalJobsAndModes) {
             def job = randomizeJob(jobsToRandomize, neighborProject.staggeredJobs)
             def newMode = randomizeModeFromJob(job)
 
-            if (changeModeAndCheckNonRenewableResourcesRestriction(neighborProject, job, newMode)) {
+            if (!checkIfIsSameModeFromOriginalProject(project, job, newMode) && changeModeAndCheckNonRenewableResourcesRestriction(neighborProject, job, newMode)) {
                 changedJobMode = true
-            } else {
-                jobsToRandomize.remove( (Object) job.id)
             }
+
+            times++
         }
 
         if (changedJobMode) {
@@ -160,11 +144,35 @@ class SimulatedAnnealing {
             actualSolution = neighborProject
         } else {
             def difference = neighborProject.makespan - actualSolution.makespan
-
-            if (Math.exp(-difference / temperature) > RandomUtils.nextInt(1)) {
+            if (Math.exp(-difference / temperature) > RandomUtils.nextDouble()) {
                 actualSolution = neighborProject
             }
         }
+    }
+
+    private boolean checkIfIsSameModeFromOriginalProject(Project originalProject, Job jobTochange, Mode newMode) {
+        Job originalJob = originalProject.staggeredJobs.find { it.id == jobTochange.id }
+
+        if (originalJob.mode.id == newMode.id) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    List<Job> getOnlyJobsToRandomize(Project project) {
+        def realJobs = jobOperations.getOnlyRealJobs(project.staggeredJobs, project.instanceInformation.jobsAmount)
+        return realJobs.findAll { it.availableModes.size() > 1 }
+    }
+
+    Integer setTotalJobsAndModes(List<Job> jobs) {
+        def total = 0
+
+        jobs.each {
+            total+= it.availableModes.size()
+        }
+
+        return totalJobsAndModes = total
     }
 
 }

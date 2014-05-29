@@ -110,6 +110,8 @@ class CompareResults {
         def similarResults = 0
         def betterResults = 0
         def worstResults = 0
+        def averageBestMakespan = 0
+
         dataAnalytics.diffMakespan = [:]
         dataAnalytics.results = [:]
         dataAnalytics.diffMakespan.averageDeviation = 0
@@ -124,6 +126,8 @@ class CompareResults {
 
             def averageDeviation = ((instanceResult.value.makespan - biggerRa.results."$instanceResult.key".makespan) /  biggerRa.results."$instanceResult.key".makespan) * 100
             dataAnalytics.diffMakespan.averageDeviation+= averageDeviation
+
+            averageBestMakespan+= biggerRa.results."$instanceResult.key".makespan
 
             dataAnalytics.results."$instanceResult.key" = [:]
             dataAnalytics.results."$instanceResult.key"."averageMakespan" = instanceResult.value.averageMakespan
@@ -155,6 +159,7 @@ class CompareResults {
 
         def totalInstances = (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
         println "Total instances: $totalInstances"
+        println "Average best makespans ${(averageBestMakespan / biggerRa.totalWithSolution)}"
         dataAnalytics.diffMakespan.averageDeviation = dataAnalytics.diffMakespan.averageDeviation / totalInstances
         dataAnalytics.diffMakespan.maxAverageDeviation = dataAnalytics.diffMakespan.maxAverageDeviation / totalInstances
         dataAnalytics.diffMakespan.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
