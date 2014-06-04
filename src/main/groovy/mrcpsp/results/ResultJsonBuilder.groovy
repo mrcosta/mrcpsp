@@ -86,6 +86,10 @@ class ResultJsonBuilder {
         resultMap.instanceConfig.modeShorterNearToLowerNrPercentage = UrlUtils.instance.modeShorterNearToLowerNrPercentage
         resultMap.instanceConfig.modeShorterNearToLowerNrUnit = UrlUtils.instance.modeShorterNearToLowerNrUnit
         resultMap.instanceConfig.jobPriorityRule = UrlUtils.instance.jobPriorityRule
+        resultMap.instanceConfig.temperature = UrlUtils.instance.SATemperature
+        resultMap.instanceConfig.reductionCoefficient = UrlUtils.instance.SAReductionCoefficient
+        resultMap.instanceConfig.stoppingCriterion = UrlUtils.instance.SAStoppingCriterion
+        resultMap.instanceConfig.totalNeighbor = UrlUtils.instance.SATotalNeighbor
 
         return resultMap
     }

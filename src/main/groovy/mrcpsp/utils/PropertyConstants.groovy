@@ -66,4 +66,10 @@ interface PropertyConstants {
     //############# DIAGRAM #################
     static final String DIAGRAM_PATH = "diagramPath"
     static final String SHOW_PREDECESSORS = "showPredecessorsInDiagram"
+
+    //############# SA CONFIGURATION #################
+    static final String SA_TEMPERATURE = "temperature"
+    static final String SA_REDUCTION_COEFFICIENT = "reductionCoefficient"
+    static final String SA_STOPPING_CRITERION = "stoppingCriterion"
+    static final String SA_TOTAL_NEIGHBOR = "totalNeighbor"
 }

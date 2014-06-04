@@ -157,6 +157,10 @@ public class PropertyManager {
         prop.put("modeShorterNearToLowerNrPercentage", Integer.toString(config.instanceConfig.modeShorterNearToLowerNrPercentage))
         prop.put("modeShorterNearToLowerNrUnit", Integer.toString(config.instanceConfig.modeShorterNearToLowerNrUnit))
         prop.put("jobPriorityRule", config.instanceConfig.jobPriorityRule)
+        prop.put("temperature", Integer.toString((config.instanceConfig.temperature ?: 0)))
+        prop.put("reductionCoefficient", Integer.toString((config.instanceConfig.reductionCoefficient ?: 0)))
+        prop.put("stoppingCriterion", Integer.toString((config.instanceConfig.stoppingCriterion ?: 0)))
+        prop.put("totalNeighbor", Integer.toString((config.instanceConfig.totalNeighbor ?: 0)))
     }
 	
 	/*public boolean isLoaded() {

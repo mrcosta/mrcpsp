@@ -138,4 +138,20 @@ public final class UrlUtils {
     Integer getJobsPerturbation() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.JOBS_PERTURBATION))
     }
+
+    Integer getSATemperature() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SA_TEMPERATURE))
+    }
+
+    Double getSAReductionCoefficient() {
+        return Double.parseDouble(PropertyManager.getInstance().getProperty(PropertyConstants.SA_REDUCTION_COEFFICIENT))
+    }
+
+    Double getSAStoppingCriterion() {
+        return Double.parseDouble(PropertyManager.getInstance().getProperty(PropertyConstants.SA_STOPPING_CRITERION))
+    }
+
+    Integer getSATotalNeighbor() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SA_TOTAL_NEIGHBOR))
+    }
 }

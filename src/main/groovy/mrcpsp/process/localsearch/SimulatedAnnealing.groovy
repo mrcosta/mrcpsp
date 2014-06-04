@@ -9,6 +9,7 @@ import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.mode.ModeOperations
 import mrcpsp.utils.ChronoWatch
 import mrcpsp.utils.CloneUtils
+import mrcpsp.utils.UrlUtils
 import org.apache.commons.lang.math.RandomUtils
 import org.apache.log4j.Logger
 
@@ -40,20 +41,24 @@ class SimulatedAnnealing {
     }
 
     def initParameterValues() {
-        temperature = 19
-        reductionCoefficient = 0.7
-        stoppingCriterion = 0.1
-        totalNeighbor = 36
+        temperature = UrlUtils.instance.SATemperature
+        reductionCoefficient = UrlUtils.instance.SAReductionCoefficient
+        stoppingCriterion = UrlUtils.instance.SAStoppingCriterion
+        totalNeighbor = UrlUtils.instance.SATotalNeighbor
+
+        if (totalNeighbor == 0) {
+            totalNeighbor = totalJobsAndModes
+        }
     }
 
     Project executeSimulatedAnnealing(Project project) {
         bestProject = project
         actualSolution = project
-        initParameterValues()
 
         def jobsToRandomize = getOnlyJobsToRandomize(project)
         def jobsIdToRandomize = jobsToRandomize.id
         setTotalJobsAndModes(jobsToRandomize)
+        initParameterValues()
 
         while (temperature > stoppingCriterion) {
 
