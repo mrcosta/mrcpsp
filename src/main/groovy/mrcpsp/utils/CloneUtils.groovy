@@ -38,4 +38,13 @@ final class CloneUtils {
 
         return jobListCloned
     }
+
+    static Project cloneProjectPausingTime(Project projectToClone) {
+        ChronoWatch.instance.pauseSolutionTime()
+        Kryo kryo = new Kryo()
+        Project projectCloned = kryo.copy(projectToClone)
+        ChronoWatch.instance.startSolutionTime()
+
+        return projectCloned
+    }
 }

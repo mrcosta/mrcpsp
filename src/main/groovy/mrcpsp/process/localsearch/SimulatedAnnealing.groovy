@@ -5,9 +5,7 @@ import mrcpsp.model.main.Mode
 import mrcpsp.model.main.Project
 import mrcpsp.process.MmProcessor
 import mrcpsp.process.job.JobOperations
-import mrcpsp.process.job.JobPriorityRulesOperations
 import mrcpsp.process.mode.ModeOperations
-import mrcpsp.utils.ChronoWatch
 import mrcpsp.utils.CloneUtils
 import mrcpsp.utils.UrlUtils
 import org.apache.commons.lang.math.RandomUtils
@@ -81,25 +79,12 @@ class SimulatedAnnealing {
     }
 
     Project createModeNeighbor(Project project, List<Integer> jobsToRandomize) {
-        ChronoWatch.instance.pauseSolutionTime()
-        Project neighborProject = CloneUtils.cloneProject(project)
-        ChronoWatch.instance.startSolutionTime()
+        Project neighborProject = CloneUtils.cloneProjectPausingTime(project)
 
-        def changedJobMode = false
-        def times = 0
+        def job = randomizeJob(jobsToRandomize, neighborProject.staggeredJobs)
+        def newMode = randomizeModeFromJob(job)
 
-        while (!changedJobMode && times < totalJobsAndModes) {
-            def job = randomizeJob(jobsToRandomize, neighborProject.staggeredJobs)
-            def newMode = randomizeModeFromJob(job)
-
-            if (!checkIfIsSameModeFromOriginalProject(project, job, newMode) && changeModeAndCheckNonRenewableResourcesRestriction(neighborProject, job, newMode)) {
-                changedJobMode = true
-            }
-
-            times++
-        }
-
-        if (changedJobMode) {
+        if (newMode && changeModeAndCheckNonRenewableResourcesRestriction(neighborProject, job, newMode)) {
             return neighborProject
         } else {
             return null
@@ -120,7 +105,7 @@ class SimulatedAnnealing {
 
             return clonedModes[randomModeIndex]
         } else {
-            return job.mode
+            return null
         }
     }
 
@@ -152,16 +137,6 @@ class SimulatedAnnealing {
             if (Math.exp(-difference / temperature) > RandomUtils.nextDouble()) {
                 actualSolution = neighborProject
             }
-        }
-    }
-
-    private boolean checkIfIsSameModeFromOriginalProject(Project originalProject, Job jobTochange, Mode newMode) {
-        Job originalJob = originalProject.staggeredJobs.find { it.id == jobTochange.id }
-
-        if (originalJob.mode.id == newMode.id) {
-            return true
-        } else {
-            return false
         }
     }
 
