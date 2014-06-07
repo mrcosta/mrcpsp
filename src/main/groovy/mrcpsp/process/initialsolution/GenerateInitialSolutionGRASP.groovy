@@ -79,44 +79,30 @@ class GenerateInitialSolutionGRASP {
 		log.info("Executing GRASP - Initial Solution was created... \n") 
 	}
 	
-	private List<Job> generateRclJobsList(List<Job> rclJobsList, List<Job> elegibleJobsList) {
-        Integer rclSize = UrlUtils.instance.RCLSize
-				
-		// add all the eligible jobs to the rclJobsList and doesn't need to order
-		if (rclSize >= elegibleJobsList.size()) {
+	def List<Job> generateRclJobsList(List<Job> rclJobsList, List<Job> elegibleJobsList) {
+        Double rclSize = UrlUtils.instance.RCLSize
+        JobPriorityRulesOperations jprOperations = new JobPriorityRulesOperations()
 
-            ChronoWatch.instance.pauseSolutionTime()
-            elegibleJobsList.each { job ->
+        jprOperations.orderEligibleJobsList(elegibleJobsList)
+        log.debug("The ELIGIBLE JOBS LIST was sorted - " + UrlUtils.instance.jobPriorityRule + " -- JOBS: " + eligibleJobs.id)
+
+        Job max = elegibleJobsList[0]
+        Job min = elegibleJobsList.last()
+
+        ChronoWatch.instance.pauseSolutionTime()
+        elegibleJobsList.each { job ->
+            def resultCriterionRcl = min.runningJobInformation.totalSuccessors + (rclSize * (max.runningJobInformation.totalSuccessors -  min.runningJobInformation.totalSuccessors))
+
+            if (job.runningJobInformation.totalSuccessors >= resultCriterionRcl) {
                 rclJobsList.add(CloneUtils.cloneJob(job))
             }
-            ChronoWatch.instance.startSolutionTime()
-			
-			log.debug("Was not necessary to order - The RCL SIZE is bigger or equals than the ELIGIBLES JOBS SIZE LIST") 
-		} else {
-			JobPriorityRulesOperations jprOperations = new JobPriorityRulesOperations() 
-			
-			// ordering the elegible jobs list
-			jprOperations.orderEligibleJobsList(elegibleJobsList) 
-			log.debug("The ELIGIBLE JOBS LIST was sorted - " + UrlUtils.instance.jobPriorityRule + " -- JOBS: " + eligibleJobs.id)
-			log.debug(LogUtils.generateJobsIDListLog(eligibleJobs, EnumLogUtils.ELIGIBLE_JOBS)) 
-			
-			// order the jobs by the criteria (mrcpsp.properties) and add the first ones until the rclJobsList size is equals to rclSize
-            ChronoWatch.instance.pauseSolutionTime()
-            Integer count = PropertyConstants.INDEX_START 
-			while(rclJobsList.size() != rclSize) {
-				Job job = elegibleJobsList.get(count++) 
-				
-				rclJobsList.add(CloneUtils.cloneJob(job)) 
-			}
-            ChronoWatch.instance.startSolutionTime()
-			
-			// back the jobs to the natural order - by the index
-			jprOperations.backOrderEligibleJobsList(elegibleJobsList) 
-			log.debug("The ELIGIBLE JOBS LIST IN NATURAL ORDER - BY_ID") 
-			log.info(LogUtils.generateJobsIDListLog(eligibleJobs, EnumLogUtils.ELIGIBLE_JOBS)) 
-		}
-		log.info(LogUtils.generateJobsIDListLog(rclJobsList, EnumLogUtils.RCL_JOBS)) 
-		
+        }
+        ChronoWatch.instance.startSolutionTime()
+
+        // back the jobs to the natural order - by the index
+        jprOperations.backOrderEligibleJobsList(elegibleJobsList)
+        log.info("The ELIGIBLE JOBS LIST IN NATURAL ORDER - BY_ID - Eligible Jobs: $eligibleJobs.id - RCL Jobs: $rclJobsList.id")
+
 		return rclJobsList 
 	}
 

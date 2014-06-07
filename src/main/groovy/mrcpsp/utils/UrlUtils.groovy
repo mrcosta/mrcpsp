@@ -39,8 +39,8 @@ public final class UrlUtils {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.START_LINE_RESOURCES_AVAILABILITIES))
 	}
 	
-	Integer getRCLSize() {
-		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.RCL_SIZE))
+	Double getRCLSize() {
+		return Double.parseDouble(PropertyManager.getInstance().getProperty(PropertyConstants.RCL_SIZE))
 	}
 	
 	String getJobsMode() {
