@@ -74,7 +74,7 @@ class ExecutionTypeProcessor {
 	}
 
 	public void executeOneFileTimes() {
-		Integer timesToRun = Integer.parseInt(UrlUtils.getInstance().getExecutionTimes())
+		Integer timesToRun = UrlUtils.getInstance().getExecutionTimes()
 		String fileName = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCE_FILE)
 
         mmProcessor.basicOperationsInstance(fileName)
@@ -123,7 +123,7 @@ class ExecutionTypeProcessor {
         List<File> allFiles = FileUtils.getAllFilesInstances()
         def size = allFiles.size()
         def count = 1
-        Integer timesToRun = Integer.parseInt(UrlUtils.instance.executionTimes)
+        Integer timesToRun = UrlUtils.instance.executionTimes
 
         allFiles.each { file ->
             writeStatusToFile("Executing $file.name -- $count of $size")

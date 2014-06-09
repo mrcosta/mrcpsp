@@ -64,16 +64,16 @@ class ResultJsonBuilder {
         resultMap.generalConfig = [:]
         resultMap.generalConfig.executionTimes = UrlUtils.instance.executionTimes
         resultMap.generalConfig.thread = UrlUtils.instance.hasThread
-        resultMap.generalConfig.concurrentPoolSize = PropertyManager.instance.getProperty(PropertyConstants.CONCURRENT_POOLSIZE)
+        //resultMap.generalConfig.concurrentPoolSize = PropertyManager.instance.getProperty(PropertyConstants.CONCURRENT_POOLSIZE) ?: 8
         resultMap.generalConfig.instanceFile = PropertyManager.instance.getProperty(PropertyConstants.INSTANCE_FILE)
         resultMap.generalConfig.executeLocalSearch = UrlUtils.instance.executeLocalSearch
-        resultMap.generalConfig.perturbation = UrlUtils.instance.perturbation
-        resultMap.generalConfig.generateDiagram = UrlUtils.instance.generateDiagram
-        resultMap.generalConfig.diagramPath = UrlUtils.instance.diagramPath
-        resultMap.generalConfig.showPredecessorsInDiagram = UrlUtils.instance.showPredecessors
-        resultMap.generalConfig.writeLowerboundForAllInstances = UrlUtils.instance.writeLowerboundForAllInstances
-        resultMap.generalConfig.showCriticalPath = UrlUtils.instance.showCriticalPath
-        resultMap.generalConfig.showLowerBound = UrlUtils.instance.showLowerBound
+        //resultMap.generalConfig.perturbation = UrlUtils.instance.perturbation ?: 0
+        //resultMap.generalConfig.generateDiagram = UrlUtils.instance.generateDiagram ?: 0
+        //resultMap.generalConfig.diagramPath = UrlUtils.instance.diagramPath ?: ""
+        //resultMap.generalConfig.showPredecessorsInDiagram = UrlUtils.instance.showPredecessors ?: 0
+        //resultMap.generalConfig.writeLowerboundForAllInstances = UrlUtils.instance.writeLowerboundForAllInstances ?: 0
+        //resultMap.generalConfig.showCriticalPath = UrlUtils.instance.showCriticalPath ?: 0
+        //resultMap.generalConfig.showLowerBound = UrlUtils.instance.showLowerBound ?: 0
 
         resultMap.instanceConfig = [:]
         resultMap.instanceConfig.modesRankingCriteria = UrlUtils.instance.modesRankingCriteria
@@ -83,20 +83,20 @@ class ResultJsonBuilder {
         resultMap.instanceConfig.startLineResourceAvailabilities = UrlUtils.instance.startLineResourceAvailabilities
         resultMap.instanceConfig.rclSize = UrlUtils.instance.RCLSize
         resultMap.instanceConfig.jobsMode = UrlUtils.instance.jobsMode
-        resultMap.instanceConfig.modeShorterNearToLowerNrPercentage = UrlUtils.instance.modeShorterNearToLowerNrPercentage
-        resultMap.instanceConfig.modeShorterNearToLowerNrUnit = UrlUtils.instance.modeShorterNearToLowerNrUnit
+        //resultMap.instanceConfig.modeShorterNearToLowerNrPercentage = UrlUtils.instance.modeShorterNearToLowerNrPercentage ?: 0
+        //resultMap.instanceConfig.modeShorterNearToLowerNrUnit = UrlUtils.instance.modeShorterNearToLowerNrUnit ?: 0
         resultMap.instanceConfig.jobPriorityRule = UrlUtils.instance.jobPriorityRule
         resultMap.instanceConfig.temperature = UrlUtils.instance.SATemperature
         resultMap.instanceConfig.reductionCoefficient = UrlUtils.instance.SAReductionCoefficient
         resultMap.instanceConfig.stoppingCriterion = UrlUtils.instance.SAStoppingCriterion
-        resultMap.instanceConfig.totalNeighbor = UrlUtils.instance.SATotalNeighbor
+        //resultMap.instanceConfig.totalNeighbor = UrlUtils.instance.SATotalNeighbor ?: 0
 
         return resultMap
     }
 
     Double getAverageMakespan(Double totalMakespan) {
         def executionType = UrlUtils.instance.executionType
-        def executionTimes = Integer.parseInt(UrlUtils.instance.executionTimes)
+        def executionTimes = UrlUtils.instance.executionTimes
         def totalExecutions = (executionType == "ALL" || executionType == "ONE_FILE") ? 1 : executionTimes
 
         return totalMakespan / totalExecutions

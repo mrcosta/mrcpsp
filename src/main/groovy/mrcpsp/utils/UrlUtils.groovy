@@ -55,8 +55,8 @@ public final class UrlUtils {
 		return PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTION_TYPE)
 	}
 	
-	String getExecutionTimes() {
-		return PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTION_TIMES)
+	Integer getExecutionTimes() {
+		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTION_TIMES))
 	}
 	
 	Integer getHasThread() {
