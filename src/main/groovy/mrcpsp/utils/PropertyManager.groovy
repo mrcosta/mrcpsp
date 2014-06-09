@@ -140,6 +140,7 @@ public class PropertyManager {
         prop.put("instanceFile", config.generalConfig.instanceFile ?: "")
         prop.put("executeLocalSearch", Integer.toString(config.generalConfig.executeLocalSearch))
         prop.put("perturbation", Integer.toString((config.generalConfig.perturbation ?: 0)))
+        prop.put("jobsPerturbation", Integer.toString((config.generalConfig.jobsPerturbation ?: 0)))
         prop.put("generateDiagram", Integer.toString(config.generalConfig.generateDiagram ?: 0))
         prop.put("diagramPath", config.generalConfig.diagramPath ?: "")
         prop.put("showPredecessorsInDiagram", Integer.toString(config.generalConfig.showPredecessorsInDiagram ?: 0))
