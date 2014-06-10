@@ -101,9 +101,9 @@ class TestFilesGenerator {
     def getCombinations() {
         def configurations = [
             temperature: [40, 20, 10],
-            reductionCoefficient: [0.9, 0.65, 0.2],
+            reductionCoefficient: [0.9, 0.65, 0.25],
             stoppingCriterion: [1, 0.1, 0.01],
-            rclSize: [0.9, 0.6, 0.2],
+            rclSize: [0.9, 0.65, 0.25],
             iterations: [1, 5],
             modesAssigner: ["ranking_frfm", "shortest_feasible_mode"],
             instanceFolder: [[folder: "j10_doe", startLineModes: 34, startLineResourceAvailabilities: 69],

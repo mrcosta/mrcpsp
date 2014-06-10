@@ -20,6 +20,7 @@ class CompareResults {
     def result
     def resultCpr
     def dataAnalytics
+    def parametersForDoE
 
     def compareInstances() {
         checkResultsFolder()
@@ -72,6 +73,15 @@ class CompareResults {
         analytics.results = [:]
         analytics.totalWithoutSolution = 0
         analytics.totalWithSolution = 0
+
+        // for design of experiments
+        analytics.executionTimes = result?.generalConfig?.executionTimes ?: "null"
+        analytics.rclSize = result?.instanceConfig?.rclSize ?: "null"
+        analytics.jobsMode = result?.instanceConfig?.jobsMode ?: "null"
+        analytics.temperature = result?.instanceConfig?.temperature ?: "null"
+        analytics.reductionCoefficient = result?.instanceConfig?.reductionCoefficient ?: "null"
+        analytics.stoppingCriterion = result?.instanceConfig?.stoppingCriterion ?: "null"
+
         result.results.each { instanceResult ->
             analytics.totalFiles++
 
@@ -164,6 +174,8 @@ class CompareResults {
         dataAnalytics.diffMakespan.maxAverageDeviation = dataAnalytics.diffMakespan.maxAverageDeviation / totalInstances
         dataAnalytics.diffMakespan.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
 
+        setParametersForDoE(dataAnalytics, lesserRa.testName)
+
         return new JsonBuilder(dataAnalytics).toPrettyString()
     }
 
@@ -175,6 +187,28 @@ class CompareResults {
         results.totalWithSolution = generalResults.totalWithSolution
         results.totalWithoutSolution = generalResults.totalWithoutSolution
 
+        // for the design of experiments
+        results.executionTimes = generalResults.executionTimes
+        results.rclSize = generalResults.rclSize
+        results.jobsMode = generalResults.jobsMode
+        results.temperature = generalResults.temperature
+        results.reductionCoefficient = generalResults.reductionCoefficient
+        results.stoppingCriterion = generalResults.stoppingCriterion
+
         return results
+    }
+
+    def setParametersForDoE(dataAnalytics, testName) {
+        parametersForDoE = [:]
+
+        parametersForDoE.averageMakespan = dataAnalytics.diffMakespan.averageDeviation
+        parametersForDoE.maxAverageDeviation = dataAnalytics.diffMakespan.maxAverageDeviation
+
+        parametersForDoE.executionTimes = dataAnalytics."$testName".executionTimes
+        parametersForDoE.rclSize = dataAnalytics."$testName".rclSize
+        parametersForDoE.jobsMode = dataAnalytics."$testName".jobsMode
+        parametersForDoE.temperature = dataAnalytics."$testName".temperature
+        parametersForDoE.reductionCoefficient = dataAnalytics."$testName".reductionCoefficient
+        parametersForDoE.stoppingCriterion = dataAnalytics."$testName".stoppingCriterion
     }
 }
