@@ -2,7 +2,6 @@ package mrcpsp.analytics
 
 import groovy.json.JsonSlurper
 import mrcpsp.process.MmProcessor
-import mrcpsp.utils.FileUtils
 import org.apache.log4j.Logger
 
 /**
@@ -71,11 +70,9 @@ class DesignOfExperimentsAnalytics {
         def averageResult = [:]
         result.each { experiment ->
             averageResult."$experiment.key" = experiment.value.averageMakespan / experiment.value.count
-            println experiment.value.count
             countExperiments+= experiment.value.count
         }
 
-        println countExperiments
         averageResult.generalAverageMakespan = (doeAverageMakespan / countExperiments)
 
         return averageResult

@@ -99,13 +99,33 @@ class TestFilesGenerator {
     }
 
     def getCombinations() {
+          // First Attempt
+//        def configurations = [
+//            temperature: [40, 20, 10],
+//            reductionCoefficient: [0.9, 0.65, 0.25],
+//            stoppingCriterion: [1, 0.1, 0.01],
+//            rclSize: [0.9, 0.65, 0.25],
+//            iterations: [1, 5],
+//            modesAssigner: ["ranking_frfm", "shortest_feasible_mode"],
+//            instanceFolder: [[folder: "j10_doe", startLineModes: 34, startLineResourceAvailabilities: 69],
+//                             [folder: "j12_doe", startLineModes: 36, startLineResourceAvailabilities: 77],
+//                             [folder: "j14_doe", startLineModes: 38, startLineResourceAvailabilities: 85],
+//                             [folder: "j16_doe", startLineModes: 40, startLineResourceAvailabilities: 93],
+//                             [folder: "j18_doe", startLineModes: 42, startLineResourceAvailabilities: 101],
+//                             [folder: "j20_doe", startLineModes: 44, startLineResourceAvailabilities: 109],
+//                             [folder: "j30_doe", startLineModes: 54, startLineResourceAvailabilities: 149]
+//            ]
+//        ]
+
+        // Second attempt
         def configurations = [
-            temperature: [40, 20, 10],
-            reductionCoefficient: [0.9, 0.65, 0.25],
-            stoppingCriterion: [1, 0.1, 0.01],
-            rclSize: [0.9, 0.65, 0.25],
+            temperature: [25, 35],
+            reductionCoefficient: [0.8, 0.93],
+            stoppingCriterion: [0.1, 0.08],
+            rclSize: [0.65, 0.8],
             iterations: [1, 5],
-            modesAssigner: ["ranking_frfm", "shortest_feasible_mode"],
+            //modesAssigner: ["ranking_frfm", "shortest_feasible_mode"],
+            modesAssigner: ["ranking_frfm"],
             instanceFolder: [[folder: "j10_doe", startLineModes: 34, startLineResourceAvailabilities: 69],
                              [folder: "j12_doe", startLineModes: 36, startLineResourceAvailabilities: 77],
                              [folder: "j14_doe", startLineModes: 38, startLineResourceAvailabilities: 85],
