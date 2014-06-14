@@ -44,9 +44,48 @@ class DesignOfExperimentsAnalytics {
         }
     }
 
+    def checkFactors(parametersForDoe, factor) {
+        def result = [:]
+        def doeAverageMakespan = 0
+
+        parametersForDoe.sort{ it."$factor" }
+        parametersForDoe = parametersForDoe.reverse()
+        def groupFactorValues = parametersForDoe.groupBy{ it."$factor" }
+
+        groupFactorValues.each { group ->
+
+            group.value.each { experiment ->
+                doeAverageMakespan+= experiment.averageMakespan
+                if (!result."$factor-$group.key") {
+                    result."$factor-$group.key" = [:]
+                    result."$factor-$group.key".averageMakespan = 0
+                    result."$factor-$group.key".count = 0
+                }
+
+                result."$factor-$group.key".averageMakespan+= experiment.averageMakespan
+                result."$factor-$group.key".count++
+            }
+        }
+
+        def countExperiments = 0
+        def averageResult = [:]
+        result.each { experiment ->
+            averageResult."$experiment.key" = experiment.value.averageMakespan / experiment.value.count
+            println experiment.value.count
+            countExperiments+= experiment.value.count
+        }
+
+        println countExperiments
+        averageResult.generalAverageMakespan = (doeAverageMakespan / countExperiments)
+
+        return averageResult
+    }
+
+
     public static void main(String[] args) {
         DesignOfExperimentsAnalytics dea = new DesignOfExperimentsAnalytics()
         CompareResults compareResults = new CompareResults()
+        def factors = ["rclSize", "jobsMode", "temperature", "reductionCoefficient", "stoppingCriterion"]
 
         dea.removePreviousResultFile()
 
@@ -65,11 +104,21 @@ class DesignOfExperimentsAnalytics {
             dea.parametersForDoe.add(compareResults.parametersForDoE)
         }
 
-        File parametersResultFile = new File(System.getProperty("user.home") + "/results/results.txt")
-        dea.parametersForDoe.sort { it.averageMakespan }
-        dea.parametersForDoe.each {
-            parametersResultFile << it
-            parametersResultFile << "\n"
+        def groupExecutionTimes = dea.parametersForDoe.groupBy{ it.executionTimes }
+
+        groupExecutionTimes.each {
+
+            factors.each { factor ->
+                println "Execution times: $it.key -- Factor: $factor -- ${(dea.checkFactors(it.value, factor))}"
+            }
+
         }
+
+//        File parametersResultFile = new File(System.getProperty("user.home") + "/results/results.txt")
+//        dea.parametersForDoe.sort { it.averageMakespan }
+//        dea.parametersForDoe.each {
+//            parametersResultFile << it
+//            parametersResultFile << "\n"
+//        }
     }
 }

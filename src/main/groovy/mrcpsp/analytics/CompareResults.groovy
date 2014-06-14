@@ -87,6 +87,9 @@ class CompareResults {
 
             if (instanceResult.value.makespan == NR_PSPLIB || instanceResult.value.makespan == NR ) {
                 analytics.totalWithoutSolution++
+                if (result.testName != "reading the results from psplib") {
+		            println "ops, something wrong $result.testName"
+                }
             } else {
                 analytics.results."$instanceResult.key" = instanceResult.value
                 analytics.totalWithSolution++
@@ -111,7 +114,7 @@ class CompareResults {
         dataAnalytics = [:]
 
         log.info("Difference between $lesserRa.testName and $biggerRa.testName")
-        println "Difference between $lesserRa.testName and $biggerRa.testName"
+        //println "Difference between $lesserRa.testName and $biggerRa.testName"
 
         dataAnalytics."$resultAnalytics.testName" = putGeneralResultsInformation(resultAnalytics)
         dataAnalytics."$resultAnalyticsCpr.testName" = putGeneralResultsInformation(resultAnalyticsCpr)
@@ -150,7 +153,7 @@ class CompareResults {
                 betterResults++
             } else {
                 def psplibMakespan = biggerRa.results."$instanceResult.key".makespan
-                println "Instance: $instanceResult.key --- psplib: $psplibMakespan --- this work: $instanceResult.value.makespan -- difference: $averageDeviation"
+                //println "Instance: $instanceResult.key --- psplib: $psplibMakespan --- this work: $instanceResult.value.makespan -- difference: $averageDeviation"
                 worstResults++
             }
         }
@@ -168,8 +171,8 @@ class CompareResults {
         dataAnalytics.diffMakespan.worstResults.percentage = worstResults / lesserRa.totalWithSolution * 100
 
         def totalInstances = (lesserRa.totalFiles - lesserRa.totalWithoutSolution)
-        println "Total instances: $totalInstances"
-        println "Average best makespans ${(averageBestMakespan / biggerRa.totalWithSolution)}"
+        //println "Total instances: $totalInstances"
+        //println "Average best makespans ${(averageBestMakespan / biggerRa.totalWithSolution)}"
         dataAnalytics.diffMakespan.averageDeviation = dataAnalytics.diffMakespan.averageDeviation / totalInstances
         dataAnalytics.diffMakespan.maxAverageDeviation = dataAnalytics.diffMakespan.maxAverageDeviation / totalInstances
         dataAnalytics.diffMakespan.diffFoundSolutions = 100 + ((lesserRa.totalWithSolution - biggerRa.totalWithSolution) / biggerRa.totalWithSolution * 100)
