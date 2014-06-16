@@ -310,6 +310,7 @@ final class FileUtils {
 			}
 			
 			job.predecessors = predecessors
+            job.originalSuccessors = new ArrayList<>(job.successors)
 			log.info(job.toString());
 			
 			for (Mode mode : job.availableModes) {

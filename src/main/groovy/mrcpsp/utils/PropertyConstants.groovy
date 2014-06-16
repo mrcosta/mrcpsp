@@ -47,6 +47,7 @@ interface PropertyConstants {
     static final String SHOW_LOWER_BOUND = "showLowerBound"
     static final String TEST_NAME = "testName"
     static final String TEST_DESCRIPTION = "testDescription"
+    static final String WRITE_INSTANCE_INFORMATION_TO_JSON = "writeInstanceInformationToJson"
 	
 	//############# MRCPSP - TYPE - LOCALSEARCH  #################
 	static final String LOCAL_SEARCH = "localSearchType"

@@ -1,16 +1,9 @@
 package mrcpsp.utils
 
-import groovy.json.JsonSlurper;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import groovy.json.JsonSlurper
+import org.apache.log4j.Level
+import org.apache.log4j.LogManager
+import org.apache.log4j.Logger
 
 /**
  * @author mrcosta

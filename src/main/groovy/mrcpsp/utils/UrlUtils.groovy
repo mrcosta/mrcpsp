@@ -154,4 +154,8 @@ public final class UrlUtils {
     Integer getSATotalNeighbor() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SA_TOTAL_NEIGHBOR))
     }
+
+    Integer getWriteInstanceInformationToJson() {
+        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.WRITE_INSTANCE_INFORMATION_TO_JSON))
+    }
 }

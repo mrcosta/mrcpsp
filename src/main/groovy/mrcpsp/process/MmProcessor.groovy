@@ -3,6 +3,7 @@ package mrcpsp.process
 import mrcpsp.diagram.GanttDiagram
 import mrcpsp.model.enums.EnumLogUtils
 import mrcpsp.model.main.Project
+import mrcpsp.process.file.ProjectFileWriter
 import mrcpsp.process.initialsolution.GenerateInitialSolutionGRASP
 import mrcpsp.process.initialsolution.LowerBoundProcessor
 import mrcpsp.process.job.JobPriorityRulesOperations
@@ -340,6 +341,19 @@ class MmProcessor {
         }
     }
 
+    def writeInstanceInformationToJson() {
+        def writeInstanceInformation = UrlUtils.instance.writeInstanceInformationToJson
+
+        if (writeInstanceInformation) {
+            ProjectFileWriter projectFileWriter = new ProjectFileWriter()
+            projectFileWriter.writeProjectToJson(project)
+
+            return false
+        }
+
+        return true
+    }
+
     def basicOperationsInstance(String fileName) {
         success = true
 
@@ -359,6 +373,8 @@ class MmProcessor {
 
         // some priority rules can run without runtime information update (like NIS)
         success = executeJobsPriorityRules()
+
+        success = writeInstanceInformationToJson()
     }
 	
 	def Project initialSolutionWithGrasp() {

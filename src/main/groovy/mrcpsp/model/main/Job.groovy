@@ -11,6 +11,7 @@ class Job {
 	Integer predecessorsAmount
 	
 	List<Integer> successors
+    List<Integer> originalSuccessors
 	List<Integer> predecessors
 	List<Mode> availableModes
 	

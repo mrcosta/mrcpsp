@@ -12,7 +12,7 @@ class MmRunner {
 
 	public static void main(String[] args) {
         ExecutionTypeProcessor executionTypeProcessor = new ExecutionTypeProcessor()
-        File testsFolder = new File(System.getProperty("user.home") + "/tests");
+        File testsFolder = new File(System.getProperty("user.home") + "/tests_temp");
 
         executionTypeProcessor.removeOldResultFiles();
         SystemUtils.getSystemInformation()
