@@ -1,0 +1,1014 @@
+{
+    "jobsId": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+    ],
+    "modes": {
+        "1": 1,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 1,
+        "6": 3,
+        "7": 2,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 1,
+        "14": 2,
+        "15": 3,
+        "16": 1,
+        "17": 3,
+        "18": 2,
+        "19": 3,
+        "20": 1
+    },
+    "fileName": "j1834_7.mm",
+    "jobsAmount": 20,
+    "resourceAvailabilities": {
+        "renewableInitialAmount": [
+            13,
+            24
+        ],
+        "nonRenewableInitialAmount": [
+            83,
+            101
+        ],
+        "renewableConsumedAmount": [
+            0,
+            0
+        ],
+        "nonRenewableConsumedAmount": [
+            83,
+            101
+        ],
+        "remainingRenewableAmount": [
+            13,
+            24
+        ],
+        "remainingNonRenewableAmount": [
+            0,
+            0
+        ],
+        "originalNonRenewableConsumedAmount": [
+            83,
+            101
+        ],
+        "originalNonRenewableRemainingAmount": [
+            0,
+            0
+        ]
+    },
+    "jobs": {
+        "1": {
+            "modesAmount": 1,
+            "successorsAmount": 3,
+            "predecessorsAmount": 0,
+            "successors": [
+                2,
+                3,
+                4
+            ],
+            "predecessors": [
+                
+            ],
+            "totalSuccessors": 19,
+            "availableModes": {
+                "1": {
+                    "duration": 0,
+                    "renewable": [
+                        0,
+                        0
+                    ],
+                    "nonRenewable": [
+                        0,
+                        0
+                    ]
+                }
+            }
+        },
+        "2": {
+            "modesAmount": 3,
+            "successorsAmount": 3,
+            "predecessorsAmount": 1,
+            "successors": [
+                11,
+                13,
+                19
+            ],
+            "predecessors": [
+                1
+            ],
+            "totalSuccessors": 9,
+            "availableModes": {
+                "1": {
+                    "duration": 1,
+                    "renewable": [
+                        0,
+                        6
+                    ],
+                    "nonRenewable": [
+                        5,
+                        6
+                    ]
+                },
+                "2": {
+                    "duration": 1,
+                    "renewable": [
+                        6,
+                        0
+                    ],
+                    "nonRenewable": [
+                        5,
+                        6
+                    ]
+                },
+                "3": {
+                    "duration": 3,
+                    "renewable": [
+                        0,
+                        6
+                    ],
+                    "nonRenewable": [
+                        3,
+                        5
+                    ]
+                }
+            }
+        },
+        "3": {
+            "modesAmount": 3,
+            "successorsAmount": 3,
+            "predecessorsAmount": 1,
+            "successors": [
+                5,
+                8,
+                12
+            ],
+            "predecessors": [
+                1
+            ],
+            "totalSuccessors": 15,
+            "availableModes": {
+                "1": {
+                    "duration": 2,
+                    "renewable": [
+                        7,
+                        0
+                    ],
+                    "nonRenewable": [
+                        3,
+                        9
+                    ]
+                },
+                "2": {
+                    "duration": 7,
+                    "renewable": [
+                        5,
+                        0
+                    ],
+                    "nonRenewable": [
+                        2,
+                        7
+                    ]
+                },
+                "3": {
+                    "duration": 8,
+                    "renewable": [
+                        0,
+                        5
+                    ],
+                    "nonRenewable": [
+                        2,
+                        6
+                    ]
+                }
+            }
+        },
+        "4": {
+            "modesAmount": 3,
+            "successorsAmount": 1,
+            "predecessorsAmount": 1,
+            "successors": [
+                12
+            ],
+            "predecessors": [
+                1
+            ],
+            "totalSuccessors": 5,
+            "availableModes": {
+                "1": {
+                    "duration": 2,
+                    "renewable": [
+                        0,
+                        2
+                    ],
+                    "nonRenewable": [
+                        4,
+                        3
+                    ]
+                },
+                "2": {
+                    "duration": 10,
+                    "renewable": [
+                        0,
+                        1
+                    ],
+                    "nonRenewable": [
+                        3,
+                        3
+                    ]
+                },
+                "3": {
+                    "duration": 10,
+                    "renewable": [
+                        2,
+                        0
+                    ],
+                    "nonRenewable": [
+                        4,
+                        2
+                    ]
+                }
+            }
+        },
+        "5": {
+            "modesAmount": 3,
+            "successorsAmount": 3,
+            "predecessorsAmount": 1,
+            "successors": [
+                6,
+                7,
+                9
+            ],
+            "predecessors": [
+                3
+            ],
+            "totalSuccessors": 10,
+            "availableModes": {
+                "1": {
+                    "duration": 4,
+                    "renewable": [
+                        0,
+                        8
+                    ],
+                    "nonRenewable": [
+                        8,
+                        8
+                    ]
+                },
+                "2": {
+                    "duration": 8,
+                    "renewable": [
+                        0,
+                        7
+                    ],
+                    "nonRenewable": [
+                        7,
+                        7
+                    ]
+                },
+                "3": {
+                    "duration": 9,
+                    "renewable": [
+                        7,
+                        0
+                    ],
+                    "nonRenewable": [
+                        4,
+                        7
+                    ]
+                }
+            }
+        },
+        "6": {
+            "modesAmount": 3,
+            "successorsAmount": 3,
+            "predecessorsAmount": 1,
+            "successors": [
+                14,
+                15,
+                16
+            ],
+            "predecessors": [
+                5
+            ],
+            "totalSuccessors": 7,
+            "availableModes": {
+                "1": {
+                    "duration": 2,
+                    "renewable": [
+                        5,
+                        0
+                    ],
+                    "nonRenewable": [
+                        5,
+                        4
+                    ]
+                },
+                "2": {
+                    "duration": 9,
+                    "renewable": [
+                        0,
+                        9
+                    ],
+                    "nonRenewable": [
+                        5,
+                        4
+                    ]
+                },
+                "3": {
+                    "duration": 10,
+                    "renewable": [
+                        0,
+                        8
+                    ],
+                    "nonRenewable": [
+                        4,
+                        3
+                    ]
+                }
+            }
+        },
+        "7": {
+            "modesAmount": 3,
+            "successorsAmount": 2,
+            "predecessorsAmount": 1,
+            "successors": [
+                15,
+                18
+            ],
+            "predecessors": [
+                5
+            ],
+            "totalSuccessors": 5,
+            "availableModes": {
+                "1": {
+                    "duration": 1,
+                    "renewable": [
+                        0,
+                        8
+                    ],
+                    "nonRenewable": [
+                        7,
+                        9
+                    ]
+                },
+                "2": {
+                    "duration": 2,
+                    "renewable": [
+                        5,
+                        0
+                    ],
+                    "nonRenewable": [
+                        7,
+                        8
+                    ]
+                },
+                "3": {
+                    "duration": 5,
+                    "renewable": [
+                        0,
+                        6
+                    ],
+                    "nonRenewable": [
+                        7,
+                        6
+                    ]
+                }
+            }
+        },
+        "8": {
+            "modesAmount": 3,
+            "successorsAmount": 1,
+            "predecessorsAmount": 1,
+            "successors": [
+                10
+            ],
+            "predecessors": [
+                3
+            ],
+            "totalSuccessors": 8,
+            "availableModes": {
+                "1": {
+                    "duration": 1,
+                    "renewable": [
+                        7,
+                        0
+                    ],
+                    "nonRenewable": [
+                        8,
+                        7
+                    ]
+                },
+                "2": {
+                    "duration": 2,
+                    "renewable": [
+                        5,
+                        0
+                    ],
+                    "nonRenewable": [
+                        7,
+                        6
+                    ]
+                },
+                "3": {
+                    "duration": 4,
+                    "renewable": [
+                        0,
+                        2
+                    ],
+                    "nonRenewable": [
+                        7,
+                        4
+                    ]
+                }
+            }
+        },
+        "9": {
+            "modesAmount": 3,
+            "successorsAmount": 1,
+            "predecessorsAmount": 1,
+            "successors": [
+                15
+            ],
+            "predecessors": [
+                5
+            ],
+            "totalSuccessors": 4,
+            "availableModes": {
+                "1": {
+                    "duration": 5,
+                    "renewable": [
+                        0,
+                        8
+                    ],
+                    "nonRenewable": [
+                        3,
+                        8
+                    ]
+                },
+                "2": {
+                    "duration": 8,
+                    "renewable": [
+                        0,
+                        5
+                    ],
+                    "nonRenewable": [
+                        3,
+                        8
+                    ]
+                },
+                "3": {
+                    "duration": 10,
+                    "renewable": [
+                        0,
+                        4
+                    ],
+                    "nonRenewable": [
+                        2,
+                        7
+                    ]
+                }
+            }
+        },
+        "10": {
+            "modesAmount": 3,
+            "successorsAmount": 3,
+            "predecessorsAmount": 1,
+            "successors": [
+                13,
+                16,
+                19
+            ],
+            "predecessors": [
+                8
+            ],
+            "totalSuccessors": 7,
+            "availableModes": {
+                "1": {
+                    "duration": 2,
+                    "renewable": [
+                        0,
+                        9
+                    ],
+                    "nonRenewable": [
+                        6,
+                        7
+                    ]
+                },
+                "2": {
+                    "duration": 9,
+                    "renewable": [
+                        0,
+                        8
+                    ],
+                    "nonRenewable": [
+                        3,
+                        5
+                    ]
+                },
+                "3": {
+                    "duration": 10,
+                    "renewable": [
+                        3,
+                        0
+                    ],
+                    "nonRenewable": [
+                        3,
+                        2
+                    ]
+                }
+            }
+        },
+        "11": {
+            "modesAmount": 3,
+            "successorsAmount": 2,
+            "predecessorsAmount": 1,
+            "successors": [
+                12,
+                16
+            ],
+            "predecessors": [
+                2
+            ],
+            "totalSuccessors": 6,
+            "availableModes": {
+                "1": {
+                    "duration": 6,
+                    "renewable": [
+                        7,
+                        0
+                    ],
+                    "nonRenewable": [
+                        4,
+                        9
+                    ]
+                },
+                "2": {
+                    "duration": 8,
+                    "renewable": [
+                        0,
+                        5
+                    ],
+                    "nonRenewable": [
+                        2,
+                        9
+                    ]
+                },
+                "3": {
+                    "duration": 8,
+                    "renewable": [
+                        6,
+                        0
+                    ],
+                    "nonRenewable": [
+                        3,
+                        8
+                    ]
+                }
+            }
+        },
+        "12": {
+            "modesAmount": 3,
+            "successorsAmount": 2,
+            "predecessorsAmount": 3,
+            "successors": [
+                14,
+                17
+            ],
+            "predecessors": [
+                11,
+                4,
+                3
+            ],
+            "totalSuccessors": 4,
+            "availableModes": {
+                "1": {
+                    "duration": 5,
+                    "renewable": [
+                        0,
+                        6
+                    ],
+                    "nonRenewable": [
+                        8,
+                        2
+                    ]
+                },
+                "2": {
+                    "duration": 6,
+                    "renewable": [
+                        0,
+                        6
+                    ],
+                    "nonRenewable": [
+                        5,
+                        2
+                    ]
+                },
+                "3": {
+                    "duration": 9,
+                    "renewable": [
+                        0,
+                        5
+                    ],
+                    "nonRenewable": [
+                        2,
+                        2
+                    ]
+                }
+            }
+        },
+        "13": {
+            "modesAmount": 3,
+            "successorsAmount": 1,
+            "predecessorsAmount": 2,
+            "successors": [
+                14
+            ],
+            "predecessors": [
+                10,
+                2
+            ],
+            "totalSuccessors": 3,
+            "availableModes": {
+                "1": {
+                    "duration": 1,
+                    "renewable": [
+                        8,
+                        0
+                    ],
+                    "nonRenewable": [
+                        8,
+                        9
+                    ]
+                },
+                "2": {
+                    "duration": 4,
+                    "renewable": [
+                        6,
+                        0
+                    ],
+                    "nonRenewable": [
+                        8,
+                        7
+                    ]
+                },
+                "3": {
+                    "duration": 10,
+                    "renewable": [
+                        0,
+                        3
+                    ],
+                    "nonRenewable": [
+                        7,
+                        6
+                    ]
+                }
+            }
+        },
+        "14": {
+            "modesAmount": 3,
+            "successorsAmount": 1,
+            "predecessorsAmount": 3,
+            "successors": [
+                18
+            ],
+            "predecessors": [
+                13,
+                12,
+                6
+            ],
+            "totalSuccessors": 2,
+            "availableModes": {
+                "1": {
+                    "duration": 6,
+                    "renewable": [
+                        7,
+                        0
+                    ],
+                    "nonRenewable": [
+                        10,
+                        2
+                    ]
+                },
+                "2": {
+                    "duration": 10,
+                    "renewable": [
+                        0,
+                        3
+                    ],
+                    "nonRenewable": [
+                        7,
+                        2
+                    ]
+                },
+                "3": {
+                    "duration": 10,
+                    "renewable": [
+                        6,
+                        0
+                    ],
+                    "nonRenewable": [
+                        8,
+                        2
+                    ]
+                }
+            }
+        },
+        "15": {
+            "modesAmount": 3,
+            "successorsAmount": 2,
+            "predecessorsAmount": 3,
+            "successors": [
+                17,
+                19
+            ],
+            "predecessors": [
+                9,
+                7,
+                6
+            ],
+            "totalSuccessors": 3,
+            "availableModes": {
+                "1": {
+                    "duration": 2,
+                    "renewable": [
+                        0,
+                        9
+                    ],
+                    "nonRenewable": [
+                        6,
+                        7
+                    ]
+                },
+                "2": {
+                    "duration": 6,
+                    "renewable": [
+                        2,
+                        0
+                    ],
+                    "nonRenewable": [
+                        6,
+                        6
+                    ]
+                },
+                "3": {
+                    "duration": 9,
+                    "renewable": [
+                        0,
+                        9
+                    ],
+                    "nonRenewable": [
+                        4,
+                        4
+                    ]
+                }
+            }
+        },
+        "16": {
+            "modesAmount": 3,
+            "successorsAmount": 2,
+            "predecessorsAmount": 3,
+            "successors": [
+                17,
+                18
+            ],
+            "predecessors": [
+                11,
+                10,
+                6
+            ],
+            "totalSuccessors": 3,
+            "availableModes": {
+                "1": {
+                    "duration": 4,
+                    "renewable": [
+                        0,
+                        5
+                    ],
+                    "nonRenewable": [
+                        8,
+                        9
+                    ]
+                },
+                "2": {
+                    "duration": 7,
+                    "renewable": [
+                        8,
+                        0
+                    ],
+                    "nonRenewable": [
+                        7,
+                        9
+                    ]
+                },
+                "3": {
+                    "duration": 10,
+                    "renewable": [
+                        7,
+                        0
+                    ],
+                    "nonRenewable": [
+                        5,
+                        7
+                    ]
+                }
+            }
+        },
+        "17": {
+            "modesAmount": 3,
+            "successorsAmount": 1,
+            "predecessorsAmount": 3,
+            "successors": [
+                20
+            ],
+            "predecessors": [
+                16,
+                15,
+                12
+            ],
+            "totalSuccessors": 1,
+            "availableModes": {
+                "1": {
+                    "duration": 2,
+                    "renewable": [
+                        0,
+                        8
+                    ],
+                    "nonRenewable": [
+                        4,
+                        8
+                    ]
+                },
+                "2": {
+                    "duration": 2,
+                    "renewable": [
+                        0,
+                        9
+                    ],
+                    "nonRenewable": [
+                        3,
+                        9
+                    ]
+                },
+                "3": {
+                    "duration": 7,
+                    "renewable": [
+                        0,
+                        8
+                    ],
+                    "nonRenewable": [
+                        1,
+                        5
+                    ]
+                }
+            }
+        },
+        "18": {
+            "modesAmount": 3,
+            "successorsAmount": 1,
+            "predecessorsAmount": 3,
+            "successors": [
+                20
+            ],
+            "predecessors": [
+                16,
+                14,
+                7
+            ],
+            "totalSuccessors": 1,
+            "availableModes": {
+                "1": {
+                    "duration": 3,
+                    "renewable": [
+                        10,
+                        0
+                    ],
+                    "nonRenewable": [
+                        8,
+                        9
+                    ]
+                },
+                "2": {
+                    "duration": 6,
+                    "renewable": [
+                        2,
+                        0
+                    ],
+                    "nonRenewable": [
+                        6,
+                        8
+                    ]
+                },
+                "3": {
+                    "duration": 6,
+                    "renewable": [
+                        0,
+                        2
+                    ],
+                    "nonRenewable": [
+                        8,
+                        7
+                    ]
+                }
+            }
+        },
+        "19": {
+            "modesAmount": 3,
+            "successorsAmount": 1,
+            "predecessorsAmount": 3,
+            "successors": [
+                20
+            ],
+            "predecessors": [
+                15,
+                10,
+                2
+            ],
+            "totalSuccessors": 1,
+            "availableModes": {
+                "1": {
+                    "duration": 1,
+                    "renewable": [
+                        3,
+                        0
+                    ],
+                    "nonRenewable": [
+                        7,
+                        9
+                    ]
+                },
+                "2": {
+                    "duration": 6,
+                    "renewable": [
+                        2,
+                        0
+                    ],
+                    "nonRenewable": [
+                        5,
+                        9
+                    ]
+                },
+                "3": {
+                    "duration": 9,
+                    "renewable": [
+                        2,
+                        0
+                    ],
+                    "nonRenewable": [
+                        4,
+                        9
+                    ]
+                }
+            }
+        },
+        "20": {
+            "modesAmount": 1,
+            "successorsAmount": 0,
+            "predecessorsAmount": 3,
+            "successors": [
+                
+            ],
+            "predecessors": [
+                19,
+                18,
+                17
+            ],
+            "totalSuccessors": 0,
+            "availableModes": {
+                "1": {
+                    "duration": 0,
+                    "renewable": [
+                        0,
+                        0
+                    ],
+                    "nonRenewable": [
+                        0,
+                        0
+                    ]
+                }
+            }
+        }
+    }
+}
