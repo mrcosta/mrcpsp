@@ -13,7 +13,6 @@ class MmProcessor {
 	InstanceDataProcessor instanceDataProcessor
 	GenerateInitialSolutionGRASP generateInitialSolutionGRASP
 	JobTimeProcessor jobTimeProcessor
-	ResultsProcessor resultsProcessor
 	LocalSearch localSearch
 
     Project project
@@ -32,12 +31,10 @@ class MmProcessor {
 	private boolean executeGetInstanceData(fileName) {
 		if (success) {			
 			try {	
-				log.info("==========================================================================")
 				log.info("Loading instance's data . . .")
 				instanceDataProcessor = new InstanceDataProcessor()
 				project = instanceDataProcessor.getInstanceData(fileName)
 				success = true
-				log.info("Loading instance's data . . . DONE \n")	
 			} catch (Exception e) {
                 log.error("Exception during the executeGetInstanceData phase", e)
 				success = false
@@ -50,14 +47,12 @@ class MmProcessor {
 	private boolean executeGenerateInitialSolution() {
 		if (success) {			
 			try {
-				log.info("==========================================================================")
 				log.info("Generating the Initial Solution with GRASP . . .")
 				
 				generateInitialSolutionGRASP = new GenerateInitialSolutionGRASP()
                 project.staggeredJobsId = generateInitialSolutionGRASP.getInitialSolution(project)
 
 				success = true
-				log.info("Generating the Initial Solution with GRASP . . .DONE \n")
 			} catch (Exception e) {
                 log.error("Exception during the executeGenerateInitialSolution phase", e)
 				success = false
@@ -67,15 +62,14 @@ class MmProcessor {
 		success
 	}
 	
-	boolean executeGetJobTimes() {
+	boolean executeGetJobTimesAndSetMakespan() {
 		if (success) {			
 			try {	
-				log.info("==========================================================================")
 				log.info("Getting Initial and Finish Time for Jobs . . .")
 				
 				jobTimeProcessor = new JobTimeProcessor()
-				success = jobTimeProcessor.getJobTimes(project.getResourceAvailabilities(), project.getStaggeredJobs())
-				log.info("Getting Initial and Finish Time for Jobs . . .DONE \n")
+				project.times = jobTimeProcessor.getJobTimes(project)
+                project.makespan = project.jobs.last().endTime
 			} catch (Exception e) {
                 log.error("Exception during the executeGetJobTimes phase", e)
 				return success = false
@@ -88,7 +82,6 @@ class MmProcessor {
 	private boolean executeLocalSearch() {		
 		if (success) {			
 			try {	
-				log.info("==========================================================================")
 				log.info("Executing Local Search . . .")
 
                 ChronoWatch.instance.startSolutionTime()
@@ -106,31 +99,12 @@ class MmProcessor {
 					success = false
 				}
 				
-				log.info("Executing Local Search . . .DONE \n")	
 			} catch (Exception e) {
                 log.error("Exception during the executeLocalSearch phase", e)
 				return success = false
 			}			
 		}	
 		success
-	}
-	
-	public boolean setProjectMakespan() {
-		try {
-			log.info("==========================================================================")
-			log.info("Setting the project makespan. . .")
-			
-			resultsProcessor = new ResultsProcessor()
-			success = resultsProcessor.getMakespanFromScheduledJobs(project, success)
-			log.info("FILE: " + project.getFileName() + " - MAKESPAN: " + project.getMakespan())
-						
-			log.info("Setting the project makespan. . .DONE \n")
-			true
-		} catch (Exception e) {
-            log.error("Exception during the setProjectMakespan phase", e)
-		}
-
-        success
 	}
 
     def Project localSearchDescentUphillMethod() {
@@ -139,7 +113,6 @@ class MmProcessor {
 
             return project
         } else {
-            log.info("==========================================================================")
             log.info("Some problem was previously found. Local Search won't be executed. . .")
         }
     }
@@ -162,11 +135,8 @@ class MmProcessor {
 
         ChronoWatch.instance.startSolutionTime()
         //getting initial and finish time for jobs and checking the R resources restrictions
-        success = executeGetJobTimes()
+        success = executeGetJobTimesAndSetMakespan()
         ChronoWatch.instance.pauseSolutionTime()
-
-        // setting the project makespan
-        success = setProjectMakespan()
 
 		return project		
 	}

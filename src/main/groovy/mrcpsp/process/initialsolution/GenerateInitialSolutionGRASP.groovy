@@ -19,7 +19,10 @@ class GenerateInitialSolutionGRASP {
     JobOperations jobOperations
 
 	List<Job> getInitialSolution(Project project) {
-		return executeGrasp(project)
+        project.jobs*.runningJobInformation*.eligible = false
+        project.jobs*.runningJobInformation*.staggeredPredecessors*.clear()
+
+        return executeGrasp(project)
 	}
 	
 	GenerateInitialSolutionGRASP() {
@@ -34,9 +37,7 @@ class GenerateInitialSolutionGRASP {
 	private List<Integer> executeGrasp(Project project) {
 		List<Integer> remainingJobsId = new ArrayList<>(project.jobsId)
         Integer randomizedJobId
-		
-		log.info("Executing GRASP - Initial Solution...") 
-		
+
 		while (!remainingJobsId.isEmpty()) {
 			// getting the jobs available to be schedule
             eligibleJobsId = initialSolutionOperations.getEligibleJobsList(remainingJobsId, eligibleJobsId, project.jobs)
@@ -56,12 +57,11 @@ class GenerateInitialSolutionGRASP {
 				rclId.clear()
                 eligibleJobsId.remove( (Object) randomizedJobId )
                 remainingJobsId.remove( (Object) randomizedJobId )
-
-				log.info("The job with id " + randomizedJobId + " was scheduled!")
 			}
 			
 		}
 
+        log.info("Normal Jobs list: $project.jobsId")
         log.info("Staggered Jobs list: $staggeredJobsId")
 
         return staggeredJobsId

@@ -35,11 +35,10 @@ interface PropertyConstants {
     static final String TEST_DESCRIPTION = "testDescription"
 	
 	//############# MRCPSP - TYPE - LOCALSEARCH  #################
-	static final String LOCAL_SEARCH = "localSearchType"
 	static final String EXECUTE_LOCAL_SEARCH = "executeLocalSearch"
 
 	//############# RESULTS #################
-	static final String RESULTS_PATH = System.getProperty("user.home") + "/mrcpsp_results/results"
+	static final String RESULTS_PATH = System.getProperty("user.home") + "/mrcpsp_results_temp"
 
     //############# SA CONFIGURATION #################
     static final String SA_TEMPERATURE = "temperature"

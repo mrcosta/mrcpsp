@@ -1,6 +1,7 @@
 package mrcpsp.process
 
 import mrcpsp.model.main.Job
+import mrcpsp.model.main.Project
 import mrcpsp.model.main.ResourceAvailabilities
 import mrcpsp.process.job.JobOperations
 import mrcpsp.process.job.JobPriorityRulesOperations
@@ -23,32 +24,35 @@ class JobTimeProcessor {
         jobOperations = new JobOperations()
     }
 
-    List<Job> getJobTimes(ResourceAvailabilities ra, List<Job> jobs) {
-        boolean checkResources = false
+    Map getJobTimes(Project project) {
+        String jobTimes = null
+        def times = [:]
+
+        def staggeredJobsId = new ArrayList<>(project.staggeredJobsId)
+        def ra = project.resourceAvailabilities
+        def jobs = project.jobs
 
         ra.resetRenewableResources()
         jobs*.startTime = 0
         jobs*.endTime = 0
 
-        jobs.each { job ->
-            log.debug("Getting start and finish time - JOB: $job.id")
+        staggeredJobsId.each { jobId ->
+            log.debug("Getting start and finish time - JOB: $jobId")
+            Job job = jobs[jobId - 1]
 
             if (job.predecessors.isEmpty()) {
-                checkResources = setTimeJobWithoutPredecessors(ra, job, jobs)
+                jobTimes = setTimeJobWithoutPredecessors(ra, job, jobs)
             } else {
-                checkResources = setTimeJobWithPredecessors(ra, job, jobs);
+                jobTimes = setTimeJobWithPredecessors(ra, job, jobs);
             }
+
+            times."$jobId" = jobTimes
         }
 
-        Integer jobsPerturbation = UrlUtils.instance.jobsPerturbation
-        if (jobsPerturbation == PropertyConstants.TRUE) {
-            jobs = executeJobsPerturbation(jobs) ?: jobs
-        }
-
-        return jobs;
+        return times;
     }
 
-    Job setTimeJobWithoutPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
+    String setTimeJobWithoutPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
         jobToSchedule.startTime = 0
         jobToSchedule.endTime = jobToSchedule.startTime + jobToSchedule.mode.duration
 
@@ -61,7 +65,7 @@ class JobTimeProcessor {
                 modeOperations.addingRenewableResources(ra, it.mode)
             }
 
-            log.info("Scheduling job without predecessors - $jobToSchedule.id - Mode $jobToSchedule.mode.id RR: $jobToSchedule.mode.renewable - Jobs in interval: " + ra.scheduledJobs?.id + " - Resources usage: " + ra.toStringRenewable())
+            log.debug("Scheduling job without predecessors - $jobToSchedule.id - Mode $jobToSchedule.mode.id RR: $jobToSchedule.mode.renewable - Jobs in interval: " + ra.scheduledJobs?.id + " - Resources usage: " + ra.toStringRenewable())
 
             // then we need to remove the jobs to schedule the one that we want and change its time (start and end)
             if (!modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
@@ -74,11 +78,11 @@ class JobTimeProcessor {
             ra.scheduledJobs.clear()
         }
 
-        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}\n")
-        return jobToSchedule
+        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}")
+        return "$jobToSchedule.startTime - $jobToSchedule.endTime"
     }
 
-    Job setTimeJobWithPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
+    String setTimeJobWithPredecessors(ResourceAvailabilities ra, Job jobToSchedule, List<Job> jobs) {
         List<Job> jobPredecessors = jobOperations.getJobPredecessors(jobToSchedule, jobs)
         jobPredecessors = jobPriorityRulesOperations.getJobListOrderByEndTime(jobPredecessors)
 
@@ -95,7 +99,7 @@ class JobTimeProcessor {
                 modeOperations.addingRenewableResources(ra, it.mode)
             }
 
-            log.info("Scheduling job with predecessors - $jobToSchedule.id - Mode $jobToSchedule.mode.id RR: $jobToSchedule.mode.renewable - Jobs in interval: " + ra.scheduledJobs?.id + " - Resources usage: " + ra.toStringRenewable())
+            log.debug("Scheduling job with predecessors - $jobToSchedule.id - Mode $jobToSchedule.mode.id RR: $jobToSchedule.mode.renewable - Jobs in interval: " + ra.scheduledJobs?.id + " - Resources usage: " + ra.toStringRenewable())
 
             // we need to remove the jobs to schedule the one that we want and change its time (start and end)
             if (!modeOperations.checkRenewableResourcesAmount(ra, jobToSchedule.mode)) {
@@ -108,8 +112,8 @@ class JobTimeProcessor {
             ra.scheduledJobs.clear()
         }
 
-        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}\n")
-        return jobToSchedule
+        log.info("JOB $jobToSchedule.id was scheduled: {start: $jobToSchedule.startTime, end: $jobToSchedule.endTime}")
+        return "$jobToSchedule.startTime - $jobToSchedule.endTime"
     }
 
     Job setJobTimeUsingScheduledJobs(ResourceAvailabilities ra, Job jobToSchedule) {
@@ -139,16 +143,6 @@ class JobTimeProcessor {
             ra.scheduledJobs.each { scheduledJob ->
                 modeOperations.removingRenewableResources(ra, scheduledJob.mode)
             }
-        }
-    }
-
-    List<Job> executeJobsPerturbation(List<Job> jobs) {
-        List<Job> jobsAfterPerturbation = CloneUtils.cloneJobList(jobs)
-        jobsAfterPerturbation = new JobPriorityRulesOperations().getJobListOrderByEndTime(jobs)
-        if (jobs.id != jobsAfterPerturbation.id) {
-            return jobsAfterPerturbation
-        } else {
-            return null
         }
     }
 }

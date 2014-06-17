@@ -4,7 +4,6 @@ import mrcpsp.model.enums.EnumExecutionTypes
 import mrcpsp.model.main.Project
 import mrcpsp.results.ResultJsonBuilder
 import mrcpsp.utils.*
-import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
 class ExecutionTypeProcessor {
@@ -14,9 +13,7 @@ class ExecutionTypeProcessor {
     ResultJsonBuilder resultJsonBuilder
 	MmProcessor mmProcessor
     def executionType;
-    def hasThread;
 
-	
 	public ExecutionTypeProcessor() {
 		super()
 		mmProcessor = new MmProcessor()
@@ -98,6 +95,9 @@ class ExecutionTypeProcessor {
                 executeAll()
                 resultsProcessor.checkLowerMakespan(mmProcessor.project)
             }
+            log.info("Best  makespan: ${resultsProcessor.bestProject.makespan}")
+            log.info("Staggered jobs: ${resultsProcessor.bestProject.staggeredJobsId}")
+            log.info("Modes         : ${resultsProcessor.bestProject.modes}")
 
             addInstanceResultForJson(resultsProcessor.bestProject)
             resultsProcessor.bestProject = null

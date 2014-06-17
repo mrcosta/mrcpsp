@@ -59,10 +59,6 @@ public final class UrlUtils {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTION_TIMES))
 	}
 	
-	String getLocalSearch() {
-		return PropertyManager.getInstance().getProperty(PropertyConstants.LOCAL_SEARCH)
-	}
-	
 	Integer getExecuteLocalSearch() {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTE_LOCAL_SEARCH))
 	}

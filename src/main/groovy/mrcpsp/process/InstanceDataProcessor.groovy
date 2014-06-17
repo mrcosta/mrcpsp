@@ -13,9 +13,6 @@ import mrcpsp.utils.FileUtils
  */
 class InstanceDataProcessor {
 
-    /**
-     * get the instance's information
-     */
     Project getInstanceData(String fileName) {
         FileUtils fileUtils = new FileUtils()
         File instanceFile = fileUtils.loadFile(fileName)
@@ -79,6 +76,9 @@ class InstanceDataProcessor {
 
             job.availableModes = getAvailableModes(instanceInformation.jobs."$index".availableModes)
 
+            def modeId = project.modes."$job.id"
+            job.mode = job.availableModes.find {it.id == modeId}
+
             project.jobs.add(job)
         }
 
@@ -96,6 +96,8 @@ class InstanceDataProcessor {
             mode.duration = mapAvailableModes."$id".duration
             mode.renewable = mapAvailableModes."$id".renewable
             mode.nonRenewable = mapAvailableModes."$id".nonRenewable
+
+            availableModes.add(mode)
         }
 
         return availableModes

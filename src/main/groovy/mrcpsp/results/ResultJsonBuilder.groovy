@@ -39,13 +39,13 @@ class ResultJsonBuilder {
 
         instanceResult.makespan = project.makespan
         instanceResult.averageMakespan = (project.averageMakespan == 0.0) ? project.makespan : getAverageMakespan(project.averageMakespan)
-        instanceResult.jobsId = project.staggeredJobs?.id.toString()
-        instanceResult.modesId = project.staggeredJobs?.mode?.id.toString()
+        instanceResult.jobsId = project.staggeredJobsId?.toString()
+        instanceResult.modesId = getJobsModeId(project.staggeredJobsId, project.modes)
         instanceResult.executionTime = ChronoWatch.instance.totalTimeSolutionFormated
 
         instanceResult.times = [:]
-        project.staggeredJobs.each { job ->
-            instanceResult.times."$job.id" = "$job.startTime - $job.endTime"
+        project.staggeredJobsId.each { jobId ->
+            instanceResult.times."$jobId" = project.times."$jobId"
         }
 
         return instanceResult
@@ -54,7 +54,6 @@ class ResultJsonBuilder {
     def addConfigurationProperties() {
         resultMap.executionType = UrlUtils.instance.executionType
         resultMap.instanceFolder = PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCES_FOLDER)
-        resultMap.localSearchType = UrlUtils.instance.localSearch
         resultMap.testName = UrlUtils.instance.testName
         resultMap.testDescription = UrlUtils.instance.testDescription
 
@@ -88,5 +87,15 @@ class ResultJsonBuilder {
         def totalExecutions = (executionType == "ALL" || executionType == "ONE_FILE") ? 1 : executionTimes
 
         return totalMakespan / totalExecutions
+    }
+
+    String getJobsModeId(List<Integer> staggeredJobsId, Map modes) {
+        def modesId = []
+
+        staggeredJobsId.each { jobId ->
+            modesId.add(modes."$jobId")
+        }
+
+        return modesId.toString()
     }
 }

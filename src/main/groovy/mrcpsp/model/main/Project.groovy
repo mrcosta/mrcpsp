@@ -12,29 +12,30 @@ class Project {
     List<Job> jobs
 
     Map modes
-    Map staggeredModes
-
     Map times
-
-    List<Integer> start
-    List<Integer> end
 
     Integer makespan
     Double averageMakespan
 	
 	String fileName
-	String instanceResultStatus
     String totalTimeSolutionFormated
 
 	public Project() {
-		instanceResultStatus = ""
-
         averageMakespan = 0.0
 	}
 
-    Project setProjectUsingAnother(Project project, Project baseProject) {
-        //project.staggeredJobs =
-        //project.staggeredModes =
+    Project setProject(Project baseProject) {
+        this.makespan = baseProject.makespan
+        this.fileName = baseProject.fileName
+
+        this.staggeredJobsId.clear()
+        this.staggeredJobsId.addAll(baseProject.staggeredJobsId)
+
+        this.modes.clear()
+        this.modes.putAll(baseProject.modes)
+
+        this.times.clear()
+        this.times.putAll(baseProject.times)
     }
 
 }
