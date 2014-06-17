@@ -14,7 +14,7 @@ class ResourceAvailabilities {
 	List<Integer> remainingRenewableAmount
 	List<Integer> remainingNonRenewableAmount
 
-    List<Job> scheduledJobs
+    List<Integer> scheduledJobs
 
     List<Integer> originalNonRenewableConsumedAmount
     List<Integer> originalNonRenewableRemainingAmount

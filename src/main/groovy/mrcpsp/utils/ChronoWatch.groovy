@@ -1,8 +1,6 @@
 package mrcpsp.utils
 
 import java.text.SimpleDateFormat
-import java.util.concurrent.TimeUnit;
-
 
 /**
  * @author mrcosta

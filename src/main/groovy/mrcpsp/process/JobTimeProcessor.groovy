@@ -1,14 +1,12 @@
 package mrcpsp.process
 
-import mrcpsp.model.main.Job;
+import mrcpsp.model.main.Job
 import mrcpsp.model.main.ResourceAvailabilities
 import mrcpsp.process.job.JobOperations
 import mrcpsp.process.job.JobPriorityRulesOperations
-import mrcpsp.process.mode.ModeOperations;
-import mrcpsp.utils.CloneUtils;
-import mrcpsp.utils.LogUtils;
+import mrcpsp.process.mode.ModeOperations
 import mrcpsp.utils.PropertyConstants
-import mrcpsp.utils.UrlUtils;
+import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Logger
 
 class JobTimeProcessor {

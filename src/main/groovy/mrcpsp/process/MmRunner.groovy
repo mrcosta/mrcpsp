@@ -1,8 +1,7 @@
 package mrcpsp.process
 
-import mrcpsp.utils.ChronoWatch;
-import mrcpsp.utils.PropertyManager;
-import mrcpsp.utils.SystemUtils;
+import mrcpsp.utils.ChronoWatch
+import mrcpsp.utils.PropertyManager
 
 /**
  * @author mrcosta
@@ -12,10 +11,9 @@ class MmRunner {
 
 	public static void main(String[] args) {
         ExecutionTypeProcessor executionTypeProcessor = new ExecutionTypeProcessor()
-        File testsFolder = new File(System.getProperty("user.home") + "/tests");
+        File testsFolder = new File(System.getProperty("user.home") + "/tests_temp");
 
         executionTypeProcessor.removeOldResultFiles();
-        SystemUtils.getSystemInformation()
 
         if (testsFolder.listFiles().length > 0) {
             testsFolder.listFiles().each {

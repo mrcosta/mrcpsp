@@ -1,16 +1,9 @@
 package mrcpsp.utils
 
-import groovy.json.JsonSlurper;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import groovy.json.JsonSlurper
+import org.apache.log4j.Level
+import org.apache.log4j.LogManager
+import org.apache.log4j.Logger
 
 /**
  * @author mrcosta
@@ -53,26 +46,12 @@ public class PropertyManager {
         return instance;
     }
 
-    static PropertyManager newInstance() {
-        instance = new PropertyManager();
-        return instance;
-    }
-
     String getProperty(String key) {
         if (prop == null) {
         	loadProperties();
         }
         return prop.getProperty(key).trim();
     }
-    
-    /*public boolean isPropertySet(String key) {
-        return prop.getProperty(key) != null;
-    }
-
-	public void reload() {
-        log.info("Reloading properties . . .");
-        loadProperties();
-    }*/
 	
 	void loadProperties() {
         loadPropertiesFromConfigFile()
@@ -129,24 +108,13 @@ public class PropertyManager {
 
         prop.put("executionType", config.executionType)
         prop.put("instanceFolder", config.instanceFolder)
-        prop.put("localSearchType", config.localSearchType)
         prop.put("testName", config.testName)
         prop.put("testDescription", config.testDescription)
         prop.put("totalExecutionTime", config.totalExecutionTime ?: "")
 
         prop.put("executionTimes", Integer.toString(config.generalConfig.executionTimes))
-        prop.put("thread", Integer.toString(config.generalConfig.thread ?: 0))
-        prop.put("concurrentPoolSize", config.generalConfig.concurrentPoolSize ?: 8)
         prop.put("instanceFile", config.generalConfig.instanceFile ?: "")
         prop.put("executeLocalSearch", Integer.toString(config.generalConfig.executeLocalSearch))
-        prop.put("perturbation", Integer.toString((config.generalConfig.perturbation ?: 0)))
-        prop.put("jobsPerturbation", Integer.toString((config.generalConfig.jobsPerturbation ?: 0)))
-        prop.put("generateDiagram", Integer.toString(config.generalConfig.generateDiagram ?: 0))
-        prop.put("diagramPath", config.generalConfig.diagramPath ?: "")
-        prop.put("showPredecessorsInDiagram", Integer.toString(config.generalConfig.showPredecessorsInDiagram ?: 0))
-        prop.put("writeLowerboundForAllInstances", Integer.toString(config.generalConfig.writeLowerboundForAllInstances ?: 0))
-        prop.put("showCriticalPath", Integer.toString(config.generalConfig.showCriticalPath ?: 0))
-        prop.put("showLowerBound", Integer.toString(config.generalConfig.showLowerBound ?: 0))
 
         prop.put("modesRankingCriteria", (config.instanceConfig.modesRankingCriteria ?: "empty"))
         prop.put("rankingJobsReverseOrder", Integer.toString((config.instanceConfig.rankingJobsReverseOrder ?: 0)))
@@ -155,29 +123,10 @@ public class PropertyManager {
         prop.put("startLineResourceAvailabilities", Integer.toString(config.instanceConfig.startLineResourceAvailabilities))
         prop.put("rclSize", Double.toString(config.instanceConfig.rclSize))
         prop.put("jobsMode", config.instanceConfig.jobsMode)
-        prop.put("modeShorterNearToLowerNrPercentage", Integer.toString(config.instanceConfig.modeShorterNearToLowerNrPercentage ?: 0))
-        prop.put("modeShorterNearToLowerNrUnit", Integer.toString(config.instanceConfig.modeShorterNearToLowerNrUnit ?: 0))
         prop.put("jobPriorityRule", config.instanceConfig.jobPriorityRule)
         prop.put("temperature", Integer.toString((config.instanceConfig.temperature ?: 0)))
         prop.put("reductionCoefficient", Double.toString((config.instanceConfig.reductionCoefficient ?: 0)))
         prop.put("stoppingCriterion", Double.toString((config.instanceConfig.stoppingCriterion ?: 0)))
         prop.put("totalNeighbor", Integer.toString((config.instanceConfig.totalNeighbor ?: 0)))
     }
-	
-	/*public boolean isLoaded() {
-        return isLoaded;
-    }
-
-	public Properties getProp() {
-		return prop;
-	}
-
-	public void setProp(Properties prop) {
-		this.prop = prop;
-	}
-	
-	public void setProperty(String key, String value) {
-		this.prop.setProperty(key, value);
-	}*/
-
 }

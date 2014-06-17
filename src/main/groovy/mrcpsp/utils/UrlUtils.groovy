@@ -59,10 +59,6 @@ public final class UrlUtils {
 		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.EXECUTION_TIMES))
 	}
 	
-	Integer getHasThread() {
-		return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.HAS_THREAD))
-	}
-	
 	String getLocalSearch() {
 		return PropertyManager.getInstance().getProperty(PropertyConstants.LOCAL_SEARCH)
 	}
@@ -83,38 +79,6 @@ public final class UrlUtils {
 			   PropertyManager.getInstance().getProperty(PropertyConstants.INSTANCES_FOLDER)
 	}
 
-    Integer getGenerateDiagram() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.GENERATE_DIAGRAM))
-    }
-
-    String getDiagramPath() {
-        return PropertyManager.getInstance().getProperty(PropertyConstants.DIAGRAM_PATH)
-    }
-
-    Integer getShowPredecessors() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_PREDECESSORS))
-    }
-
-    Integer getModeShorterNearToLowerNrPercentage() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODE_SHORTER_NEAR_TO_LOWER_NR_PERCENTAGE))
-    }
-
-    Integer getModeShorterNearToLowerNrUnit() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODE_SHORTER_NEAR_TO_LOWER_NR_UNIT))
-    }
-
-    Integer getWriteLowerboundForAllInstances() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.WRITE_LOWERBOUND))
-    }
-
-    Integer getShowCriticalPath() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_CRITICAL_PATH))
-    }
-
-    Integer getShowLowerBound() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.SHOW_LOWER_BOUND))
-    }
-
     public String getTestName() {
         return PropertyManager.getInstance().getProperty(PropertyConstants.TEST_NAME)
     }
@@ -123,20 +87,12 @@ public final class UrlUtils {
         return PropertyManager.getInstance().getProperty(PropertyConstants.TEST_DESCRIPTION)
     }
 
-    Integer getPerturbation() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.PERTURBATION))
-    }
-
     public String getModesRankingCriteria() {
         return PropertyManager.getInstance().getProperty(PropertyConstants.MODES_RANKING_CRITERIA)
     }
 
     Integer getModesRankingJobsReverseOrder() {
         return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.MODES_RANKING_JOBS_REVERSE_ORDER))
-    }
-
-    Integer getJobsPerturbation() {
-        return Integer.parseInt(PropertyManager.getInstance().getProperty(PropertyConstants.JOBS_PERTURBATION))
     }
 
     Integer getSATemperature() {

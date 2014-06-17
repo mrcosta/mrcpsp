@@ -6,14 +6,10 @@ import mrcpsp.model.main.Project
 import mrcpsp.process.MmProcessor
 import mrcpsp.process.job.JobOperations
 import mrcpsp.process.mode.ModeOperations
-import mrcpsp.utils.CloneUtils
 import mrcpsp.utils.UrlUtils
 import org.apache.commons.lang.math.RandomUtils
 import org.apache.log4j.Logger
 
-/**
- * Created by mateus on 5/24/14.
- */
 class SimulatedAnnealing {
 
     static final Logger log = Logger.getLogger(LocalSearch.class);

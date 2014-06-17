@@ -1,25 +1,25 @@
 package mrcpsp.model.main;
 
-import java.util.List;
-
-import mrcpsp.model.instance.InstanceInformation;
-import mrcpsp.model.instance.ProjectInformation;
-
-/**
- * @author mrcosta
- *
- */
 class Project {
-	
-	InstanceInformation instanceInformation
-	ProjectInformation projectInformation
-	ResourceAvailabilities resourceAvailabilities
-	List<Job> jobs
-	List<Job> staggeredJobs
-    List<Job> criticalPath
-	Integer makespan
-    Integer lowerBound
 
+    Integer jobsAmount
+	
+	ResourceAvailabilities resourceAvailabilities
+
+	List<Integer> jobsId
+    List<Integer> staggeredJobsId
+
+    List<Job> jobs
+
+    Map modes
+    Map staggeredModes
+
+    Map times
+
+    List<Integer> start
+    List<Integer> end
+
+    Integer makespan
     Double averageMakespan
 	
 	String fileName
@@ -31,5 +31,10 @@ class Project {
 
         averageMakespan = 0.0
 	}
+
+    Project setProjectUsingAnother(Project project, Project baseProject) {
+        //project.staggeredJobs =
+        //project.staggeredModes =
+    }
 
 }

@@ -1,8 +1,5 @@
 package mrcpsp.model.main
-/**
- * @author mrcosta
- *
- */
+
 class Job {
 	
 	Integer id
@@ -17,11 +14,10 @@ class Job {
 	Integer startTime
 	Integer endTime
 
-    Integer sumRanking
-	
-	Mode mode;
-	ModesInformation modesInformation;
-	RunningJobInformation runningJobInformation;
+    Integer totalSuccessors
+
+	Mode mode
+	RunningJobInformation runningJobInformation
 		
 	public Job(Integer id, Integer modesAmount, Integer successorsAmount) {		
 		this.id = id;
@@ -34,42 +30,19 @@ class Job {
 		modesAmount = 0
 		successorsAmount = 0
 		predecessorsAmount = 0
-		
+
 		successors = new ArrayList<Integer>()
 		predecessors = new ArrayList<Integer>()
 		availableModes = new ArrayList<Mode>()
-		modesInformation = new ModesInformation()
 		runningJobInformation = new RunningJobInformation()
-		
+
 		startTime = 0
 		endTime = 0
-
-        sumRanking = 0
 	}
 
 	@Override
 	public String toString() {
 		return """Job [id: $id, modesAmount: $modesAmount, successorsAmount: $successorsAmount, predecessorsAmount: $predecessorsAmount, successors: $successors, predecessors: $predecessors, staggeredPredecessors: $runningJobInformation.staggeredPredecessors, {Start, End} =  { $startTime, $endTime }"""
-	}
-	
-	public String toStringAvailableModes(Mode mode) {
-		String availableModesString = "{id: " + mode.getId() + ", duration: " + mode.getDuration();
-		
-		availableModesString+= " , renewable: [";
-		availableModesString+= "R" + 1 + ": " + mode.getRenewable().get(0);
-		for(int i = 1; i < mode.getRenewable().size(); i++) {
-			availableModesString+= ", R" + (i + 1) + ": " + mode.getRenewable().get(i);
-		}
-		availableModesString+= "], nonRenewable: [";
-				
-		availableModesString+= "N" + 1 + ": " + mode.getNonRenewable().get(0);
-		for(int i = 1; i < mode.getRenewable().size(); i++) {
-			availableModesString+= ", N" + (i + 1) + ": " + mode.getNonRenewable().get(i);
-		}
-		availableModesString+= "], amountRenewable: $mode.amountRenewable, amountNonRenewable: $mode.amountNonRenewable, sumResources: $mode.sumResources}";
-		
-		return availableModesString;
-				
 	}
 	
 }

@@ -1,10 +1,9 @@
-package mrcpsp.process.job;
+package mrcpsp.process.job
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
-import mrcpsp.model.enums.EnumJobPriorityRules;
-import mrcpsp.model.main.Job;
+import mrcpsp.model.enums.EnumJobPriorityRules
+import mrcpsp.model.main.Job
+import org.apache.log4j.Level
+import org.apache.log4j.Logger
 
 class JobComparator implements Comparator<Job> {
 
@@ -20,20 +19,11 @@ class JobComparator implements Comparator<Job> {
 			case EnumJobPriorityRules.BY_ID.name:
     			result = job.id.compareTo(jobToCompare.id)
     			break
-			case EnumJobPriorityRules.MAX_NIS.name:
-        		result = job.runningJobInformation.nisAmount.compareTo(jobToCompare.runningJobInformation.nisAmount)
-        		break
-            case EnumJobPriorityRules.MIN_SLK.name:
-                result = job.runningJobInformation.slackAmount.compareTo(jobToCompare.runningJobInformation.slackAmount)
-                break
         	case EnumJobPriorityRules.BY_END_TIME.name:
     			result = job.endTime.compareTo(jobToCompare.endTime)
     			break
-            case EnumJobPriorityRules.BY_SUM_POSITIONS.name:
-                result = job.sumRanking.compareTo(jobToCompare.sumRanking)
-                break
             case EnumJobPriorityRules.TOTAL_SUCCESSORS.name:
-                result = job.runningJobInformation.totalSuccessors.compareTo(jobToCompare.runningJobInformation.totalSuccessors)
+                result = job.totalSuccessors.compareTo(jobToCompare.totalSuccessors)
                 break
         	default:  
         		log.log(Level.ERROR, "Invalid Option to order: " + JobComparator.class)
