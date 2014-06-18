@@ -5,7 +5,6 @@ import mrcpsp.model.main.Project
 import mrcpsp.process.initialsolution.GenerateInitialSolutionGRASP
 import mrcpsp.process.localsearch.LocalSearch
 import mrcpsp.utils.ChronoWatch
-import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Logger
 
 class MmProcessor {
@@ -18,8 +17,6 @@ class MmProcessor {
 	LocalSearch localSearch
 
     Project project
-
-    Map originalModes
 
     Integer executionTimes
 	
@@ -115,7 +112,7 @@ class MmProcessor {
 	}
 
     def backToOriginalModesProjectConfiguration(Project project) {
-        project.modes.each { jobMode ->
+        project.originalModes.each { jobMode ->
             Integer jobPosition = Integer.parseInt(jobMode.key) - 1
             Job job = project.jobs[jobPosition]
 
