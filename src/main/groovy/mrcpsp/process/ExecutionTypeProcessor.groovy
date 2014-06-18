@@ -72,6 +72,7 @@ class ExecutionTypeProcessor {
             mmProcessor.basicOperationsInstance(file.name)
             executeAll()
             addInstanceResultForJson(mmProcessor.project)
+            mmProcessor.executionTimes = 0
 
             count++
         }
@@ -99,8 +100,9 @@ class ExecutionTypeProcessor {
             log.info("Staggered jobs: ${resultsProcessor.bestProject.staggeredJobsId}")
             log.info("Modes         : ${resultsProcessor.bestProject.modes}")
 
+            mmProcessor.executionTimes = 0
             addInstanceResultForJson(resultsProcessor.bestProject)
-            resultsProcessor.bestProject = null
+            resultsProcessor.bestProject = new Project(staggeredJobsId: [], modes: [:], times: [:])
             resultsProcessor.averageMakespan = 0
             count++
         }

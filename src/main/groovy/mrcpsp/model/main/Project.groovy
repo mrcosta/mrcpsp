@@ -11,6 +11,7 @@ class Project {
 
     List<Job> jobs
 
+    Map originalModes
     Map modes
     Map times
 

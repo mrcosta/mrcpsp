@@ -25,10 +25,11 @@ class InstanceDataProcessor {
 	}
 
     Project createProjectFromInstanceInformation(Map instanceInformation) {
-        Project project = new Project()
+        Project project = new Project(originalModes: [:])
 
         project.jobsId = instanceInformation.jobsId
         project.modes = instanceInformation.modes
+        project.originalModes.putAll(instanceInformation.modes)
 
         project.fileName = instanceInformation.fileName
         project.jobsAmount = instanceInformation.jobsAmount

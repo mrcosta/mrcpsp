@@ -82,7 +82,8 @@ class SimulatedAnnealing {
             temperature*= reductionCoefficient
         }
 
-        return bestProject
+        project.setProject(bestProject)
+        return project
     }
 
     Job createModeNeighbor(List<Job> jobs, List<Integer> jobsIdToRandomize, ResourceAvailabilities resourceAvailabilities) {
@@ -106,7 +107,8 @@ class SimulatedAnnealing {
 
     Mode randomizeModeFromJob(Job job) {
         if (job.availableModes.size() > 1) {
-            def jobsToRandomize = job.availableModes
+            def jobsToRandomize = []
+            jobsToRandomize.addAll(job.availableModes)
             jobsToRandomize.remove( jobsToRandomize.find { it.id == job.mode.id } )
             def randomModeIndex = RandomUtils.nextInt(jobsToRandomize.size())
 

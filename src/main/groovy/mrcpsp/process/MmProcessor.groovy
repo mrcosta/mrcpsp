@@ -1,9 +1,11 @@
 package mrcpsp.process
 
+import mrcpsp.model.main.Job
 import mrcpsp.model.main.Project
 import mrcpsp.process.initialsolution.GenerateInitialSolutionGRASP
 import mrcpsp.process.localsearch.LocalSearch
 import mrcpsp.utils.ChronoWatch
+import mrcpsp.utils.UrlUtils
 import org.apache.log4j.Logger
 
 class MmProcessor {
@@ -16,6 +18,10 @@ class MmProcessor {
 	LocalSearch localSearch
 
     Project project
+
+    Map originalModes
+
+    Integer executionTimes
 	
 	boolean success
 
@@ -26,6 +32,7 @@ class MmProcessor {
 	void init() {
 		log.info("Starting the execution . . .")		
 		success = true
+        executionTimes = 0
 	}
 	
 	private boolean executeGetInstanceData(fileName) {
@@ -79,7 +86,7 @@ class MmProcessor {
 		success
 	}
 	
-	private boolean executeLocalSearch() {		
+	boolean localSearchDescentUphillMethod() {
 		if (success) {			
 			try {	
 				log.info("Executing Local Search . . .")
@@ -107,13 +114,12 @@ class MmProcessor {
 		success
 	}
 
-    def Project localSearchDescentUphillMethod() {
-        if (success) {
-            success = executeLocalSearch()
+    def backToOriginalModesProjectConfiguration(Project project) {
+        project.modes.each { jobMode ->
+            Integer jobPosition = Integer.parseInt(jobMode.key) - 1
+            Job job = project.jobs[jobPosition]
 
-            return project
-        } else {
-            log.info("Some problem was previously found. Local Search won't be executed. . .")
+            job.mode = job.availableModes.find {it.id == jobMode.value}
         }
     }
 
@@ -126,7 +132,10 @@ class MmProcessor {
 	
 	def Project initialSolutionWithGrasp() {
         // backing the non renewable consumed amount to the first set of modes
-        project.resourceAvailabilities.backNonRenewableConsumedAndRemainingAmountToOriginal()
+        if (executionTimes) {
+            project.resourceAvailabilities.backNonRenewableConsumedAndRemainingAmountToOriginal()
+            backToOriginalModesProjectConfiguration(project)
+        }
 
 		// generating the initial solution
         ChronoWatch.instance.startSolutionTime()
@@ -137,6 +146,8 @@ class MmProcessor {
         //getting initial and finish time for jobs and checking the R resources restrictions
         success = executeGetJobTimesAndSetMakespan()
         ChronoWatch.instance.pauseSolutionTime()
+
+        executionTimes++
 
 		return project		
 	}
